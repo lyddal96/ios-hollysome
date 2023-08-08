@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="HeaderTableCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderTableCell" rowHeight="58" id="cAR-aK-fFn" customClass="HeaderTableCell" customModule="RocateerKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cAR-aK-fFn" id="i6m-IJ-aig">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZP-sx-nsN">
+                        <rect key="frame" x="20" y="10" width="374" height="38"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj1-RV-W3c">
+                        <rect key="frame" x="0.0" y="57" width="414" height="1"/>
+                        <color key="backgroundColor" name="DDDDDD"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="gEP-Ve-jBI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Aj1-RV-W3c" firstAttribute="leading" secondItem="i6m-IJ-aig" secondAttribute="leading" id="asg-H4-6p1"/>
+                    <constraint firstAttribute="trailing" secondItem="qZP-sx-nsN" secondAttribute="trailing" constant="20" id="hPB-si-aIl"/>
+                    <constraint firstAttribute="trailing" secondItem="Aj1-RV-W3c" secondAttribute="trailing" id="nrD-8D-NbS"/>
+                    <constraint firstItem="qZP-sx-nsN" firstAttribute="leading" secondItem="i6m-IJ-aig" secondAttribute="leading" constant="20" id="obI-OB-qPt"/>
+                    <constraint firstItem="qZP-sx-nsN" firstAttribute="top" secondItem="i6m-IJ-aig" secondAttribute="top" constant="10" id="wrw-mO-jtE"/>
+                    <constraint firstAttribute="bottom" secondItem="qZP-sx-nsN" secondAttribute="bottom" constant="10" id="y5x-2f-1Kj"/>
+                    <constraint firstAttribute="bottom" secondItem="Aj1-RV-W3c" secondAttribute="bottom" id="zaO-dn-yVa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" name="F6F6F6"/>
+            <connections>
+                <outlet property="contentsLabel" destination="qZP-sx-nsN" id="rpU-jw-RfV"/>
+            </connections>
+            <point key="canvasLocation" x="-101.44927536231884" y="97.098214285714278"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="DDDDDD">
+            <color red="0.86699998378753662" green="0.86699998378753662" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="F6F6F6">
+            <color red="0.9649999737739563" green="0.9649999737739563" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

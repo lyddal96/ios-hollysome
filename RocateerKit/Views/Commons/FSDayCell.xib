@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="FSDayCell" reuseIdentifier="FSDayCell" id="yOk-id-aAp" customClass="FSDayCell" customModule="RocateerKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="102" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Rts-tE-eSV">
+                <rect key="frame" x="0.0" y="0.0" width="102" height="99"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBE-cR-TLu">
+                        <rect key="frame" x="1.5" y="0.0" width="99" height="99"/>
+                        <color key="backgroundColor" name="FC5A5D"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="BBE-cR-TLu" secondAttribute="height" id="mOz-YG-NED"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGr-hh-ile">
+                        <rect key="frame" x="0.0" y="0.0" width="51" height="99"/>
+                        <color key="backgroundColor" name="FC5A5D"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z53-C2-8nR">
+                        <rect key="frame" x="51" y="0.0" width="51" height="99"/>
+                        <color key="backgroundColor" name="FC5A5D"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="z53-C2-8nR" secondAttribute="bottom" id="FfB-CX-bgj"/>
+                    <constraint firstAttribute="bottom" secondItem="UGr-hh-ile" secondAttribute="bottom" id="IGj-vu-utP"/>
+                    <constraint firstItem="z53-C2-8nR" firstAttribute="top" secondItem="Rts-tE-eSV" secondAttribute="top" id="Rew-UZ-xCc"/>
+                    <constraint firstAttribute="bottom" secondItem="BBE-cR-TLu" secondAttribute="bottom" id="VYS-Cy-bLF"/>
+                    <constraint firstItem="BBE-cR-TLu" firstAttribute="centerX" secondItem="Rts-tE-eSV" secondAttribute="centerX" id="Ygx-Gd-Xph"/>
+                    <constraint firstItem="UGr-hh-ile" firstAttribute="top" secondItem="Rts-tE-eSV" secondAttribute="top" id="aS3-7z-RGN"/>
+                    <constraint firstAttribute="centerX" secondItem="UGr-hh-ile" secondAttribute="trailing" id="dRy-0N-TpC"/>
+                    <constraint firstItem="BBE-cR-TLu" firstAttribute="top" secondItem="Rts-tE-eSV" secondAttribute="top" id="gLN-TH-gW0"/>
+                    <constraint firstItem="UGr-hh-ile" firstAttribute="leading" secondItem="Rts-tE-eSV" secondAttribute="leading" id="mIr-ux-AcZ"/>
+                    <constraint firstItem="z53-C2-8nR" firstAttribute="leading" secondItem="UGr-hh-ile" secondAttribute="trailing" id="q2V-Zo-EXo"/>
+                    <constraint firstAttribute="trailing" secondItem="z53-C2-8nR" secondAttribute="trailing" id="vxA-hH-TTJ"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="102" height="99"/>
+            <connections>
+                <outlet property="circleView" destination="BBE-cR-TLu" id="iLn-W9-IxL"/>
+                <outlet property="leftView" destination="UGr-hh-ile" id="dCm-di-v6M"/>
+                <outlet property="rightView" destination="z53-C2-8nR" id="ygI-kT-z3M"/>
+            </connections>
+            <point key="canvasLocation" x="126.08695652173914" y="-207.25446428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="FC5A5D">
+            <color red="0.98799997568130493" green="0.3529999852180481" blue="0.36500000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

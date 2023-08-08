@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lUY-7W-3x3">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="MTt-uU-5uR">
+            <objects>
+                <navigationController storyboardIdentifier="SideMenuNavigationController" navigationBarHidden="YES" id="lUY-7W-3x3" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="m9r-rK-834">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="yOG-Ul-cpX" kind="relationship" relationship="rootViewController" id="DBb-7I-XsO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebV-7m-Kdm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-388" y="161"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="o8X-Pr-QKh">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" id="yOG-Ul-cpX" customClass="MenuViewController" customModule="RocateerKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OdG-jJ-CqH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jhz-ty-PfO">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KEC-zM-dYq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Jhz-ty-PfO" firstAttribute="top" secondItem="KEC-zM-dYq" secondAttribute="top" id="IeV-wM-U5Z"/>
+                            <constraint firstItem="Jhz-ty-PfO" firstAttribute="leading" secondItem="KEC-zM-dYq" secondAttribute="leading" id="aVN-r3-ibX"/>
+                            <constraint firstItem="KEC-zM-dYq" firstAttribute="trailing" secondItem="Jhz-ty-PfO" secondAttribute="trailing" id="cOD-3o-rIC"/>
+                            <constraint firstItem="KEC-zM-dYq" firstAttribute="bottom" secondItem="Jhz-ty-PfO" secondAttribute="bottom" id="e7l-CT-aSD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="wXe-Bl-sPO"/>
+                    <connections>
+                        <outlet property="menuTableView" destination="Jhz-ty-PfO" id="XOe-4J-RTx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9nA-WQ-GXn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="161"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="to7-w5-azm">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Line-->
+        <scene sceneID="mUi-al-fa7">
+            <objects>
+                <viewController storyboardIdentifier="LineChartViewController" id="to7-w5-azm" customClass="LineChartViewController" customModule="RocateerKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="erQ-W8-wiY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxd-0D-jgc">
+                                <rect key="frame" x="20" y="108" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zww-0H-jXD" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="149" width="414" height="157"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="157" id="bND-d3-iBj"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5r-Ym-oTs">
+                                <rect key="frame" x="20" y="336" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sn-sB-CyD" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="377" width="414" height="157"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="157" id="Hoh-il-LH6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="F5r-Ym-oTs" firstAttribute="top" secondItem="zww-0H-jXD" secondAttribute="bottom" constant="30" id="D4M-BQ-D8G"/>
+                            <constraint firstItem="3sn-sB-CyD" firstAttribute="top" secondItem="F5r-Ym-oTs" secondAttribute="bottom" constant="20" id="Oee-hw-9u0"/>
+                            <constraint firstItem="F5r-Ym-oTs" firstAttribute="leading" secondItem="Gum-rX-vTl" secondAttribute="leading" constant="20" id="Qjp-Rs-Dnu"/>
+                            <constraint firstItem="oxd-0D-jgc" firstAttribute="top" secondItem="Gum-rX-vTl" secondAttribute="top" constant="20" id="Rpx-km-b8t"/>
+                            <constraint firstItem="Gum-rX-vTl" firstAttribute="trailing" secondItem="zww-0H-jXD" secondAttribute="trailing" id="WFg-oB-gGT"/>
+                            <constraint firstItem="3sn-sB-CyD" firstAttribute="leading" secondItem="Gum-rX-vTl" secondAttribute="leading" id="hRw-7b-Rw1"/>
+                            <constraint firstItem="oxd-0D-jgc" firstAttribute="leading" secondItem="Gum-rX-vTl" secondAttribute="leading" constant="20" id="jrc-1Q-LNt"/>
+                            <constraint firstItem="zww-0H-jXD" firstAttribute="leading" secondItem="Gum-rX-vTl" secondAttribute="leading" id="rfy-X4-HCD"/>
+                            <constraint firstItem="zww-0H-jXD" firstAttribute="top" secondItem="oxd-0D-jgc" secondAttribute="bottom" constant="20" id="tW7-ij-nFj"/>
+                            <constraint firstAttribute="trailing" secondItem="3sn-sB-CyD" secondAttribute="trailing" id="tjd-96-BMO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gum-rX-vTl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Line" id="tpe-SF-K0P"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="multiLineChartView" destination="3sn-sB-CyD" id="dQw-VQ-Ed7"/>
+                        <outlet property="singleLineChartView" destination="zww-0H-jXD" id="q25-rY-TMK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yL2-Zu-pqY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304" y="-173"/>
+        </scene>
+        <!--Bar-->
+        <scene sceneID="kWI-Rf-PyD">
+            <objects>
+                <viewController storyboardIdentifier="BarChartViewController" id="1Gs-o0-yLc" customClass="BarChartViewController" customModule="RocateerKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Cg-IJ-fmJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vp-U0-dzp">
+                                <rect key="frame" x="20" y="108" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lP-Qn-cQQ" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="149" width="414" height="157"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="157" id="uKo-Ya-7ee"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9N-UQ-d9X">
+                                <rect key="frame" x="20" y="326" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmq-NO-dqJ" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="367" width="414" height="157"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="157" id="35C-27-kaU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4lP-Qn-cQQ" firstAttribute="leading" secondItem="Mys-RL-Yve" secondAttribute="leading" id="2XN-LG-iOb"/>
+                            <constraint firstItem="mmq-NO-dqJ" firstAttribute="trailing" secondItem="Mys-RL-Yve" secondAttribute="trailing" id="78d-b9-H5q"/>
+                            <constraint firstItem="mmq-NO-dqJ" firstAttribute="top" secondItem="B9N-UQ-d9X" secondAttribute="bottom" constant="20" id="GwF-ZS-1DX"/>
+                            <constraint firstItem="B9N-UQ-d9X" firstAttribute="top" secondItem="4lP-Qn-cQQ" secondAttribute="bottom" constant="20" id="Y80-PG-L3F"/>
+                            <constraint firstItem="4lP-Qn-cQQ" firstAttribute="trailing" secondItem="Mys-RL-Yve" secondAttribute="trailing" id="eM6-Y5-ErH"/>
+                            <constraint firstItem="1Vp-U0-dzp" firstAttribute="leading" secondItem="Mys-RL-Yve" secondAttribute="leading" constant="20" id="iwk-u9-Ceq"/>
+                            <constraint firstItem="B9N-UQ-d9X" firstAttribute="leading" secondItem="Mys-RL-Yve" secondAttribute="leading" constant="20" id="kK1-UI-Jxk"/>
+                            <constraint firstItem="1Vp-U0-dzp" firstAttribute="top" secondItem="Mys-RL-Yve" secondAttribute="top" constant="20" id="lD0-hD-loO"/>
+                            <constraint firstItem="mmq-NO-dqJ" firstAttribute="leading" secondItem="Mys-RL-Yve" secondAttribute="leading" id="u3t-ss-bds"/>
+                            <constraint firstItem="4lP-Qn-cQQ" firstAttribute="top" secondItem="1Vp-U0-dzp" secondAttribute="bottom" constant="20" id="zdF-0P-4qq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mys-RL-Yve"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bar" id="8Av-gO-jJc"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="multiBarChartView" destination="mmq-NO-dqJ" id="zqL-Oc-J50"/>
+                        <outlet property="singleBarChartView" destination="4lP-Qn-cQQ" id="BH7-bD-FVG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cQh-ZV-wsv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1194" y="-173"/>
+        </scene>
+    </scenes>
+</document>
