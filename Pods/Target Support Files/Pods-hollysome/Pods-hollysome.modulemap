@@ -1,0 +1,6 @@
+framework module Pods_hollysome {
+  umbrella header "Pods-hollysome-umbrella.h"
+
+  export *
+  module * { export * }
+}
