@@ -47,9 +47,6 @@ target 'hollysome' do
   pod 'DropDown' #드롭다운
   pod 'FSCalendar' # 달력
   
-  pod 'Bolts' #Facebook
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
   pod 'naveridlogin-sdk-ios' #네이버 로그인
   pod 'KakaoSDKAuth'
   pod 'KakaoSDKUser'

@@ -7,8 +7,6 @@
 //
 import UIKit
 import Defaults
-import FBSDKLoginKit
-import FBSDKCoreKit
 import NaverThirdPartyLogin
 import KakaoSDKAuth
 import KakaoSDKUser
@@ -17,31 +15,25 @@ import FirebaseAuth
 import GoogleSignIn
 import FirebaseAuth
 import NVActivityIndicatorView
+import AuthenticationServices
+import CryptoKit
 
 class LoginViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
-  @IBOutlet weak var idTextField: UITextField!
-  @IBOutlet weak var pwTextField: UITextField!
-  @IBOutlet weak var loginButton: UIButton!
-  @IBOutlet weak var findIdButton: UIButton!
-  @IBOutlet weak var findPwButton: UIButton!
-  @IBOutlet weak var joinButton: UIButton!
-//  @IBOutlet weak var kakaoWrapView: UIView!
-//  @IBOutlet weak var kakaoLoginButton: UIButton!
-//  @IBOutlet weak var naverWrapView: UIView!
-//  @IBOutlet weak var naverLoginButton: UIButton!
-//  @IBOutlet weak var facebookWrapView: UIView!
-//  @IBOutlet weak var facebookLoginButton: UIButton!
-//  @IBOutlet weak var googleWrapView: UIView!
-//  @IBOutlet weak var googleLoginButton: UIButton!
+  @IBOutlet weak var naverButton: UIButton!
+  @IBOutlet weak var kakaoButton: UIButton!
+  @IBOutlet weak var appleButton: UIButton!
+  @IBOutlet weak var emailLoginButton: UIButton!
+  @IBOutlet weak var emailJoinButton: UIButton!
   
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-  let facebookManager = LoginManager()
-  
+
+  var activityData = ActivityData(size: CGSize(width: 50, height: 50), message: "", messageFont: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular), type: NVActivityIndicatorType.circleStrokeSpin, color: UIColor(named: "333333"), padding: nil, displayTimeThreshold: 1, minimumDisplayTime: 300, backgroundColor: UIColor.clear, textColor: UIColor.black)
+  fileprivate var currentNonce: String?
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -57,25 +49,11 @@ class LoginViewController: RocateerViewController {
   override func initLayout() {
     super.initLayout()
     
-    self.loginButton.setCornerRadius(radius: 3)
-    self.findIdButton.setCornerRadius(radius: 3)
-    self.findPwButton.setCornerRadius(radius: 3)
-    self.joinButton.setCornerRadius(radius: 3)
     
-//    self.joinButton.isHidden = true
+    self.naverButton.setCornerRadius(radius: 12)
+    self.kakaoButton.setCornerRadius(radius: 12)
+    self.appleButton.setCornerRadius(radius: 12)
     
-//    self.kakaoWrapView.setCornerRadius(radius: 5)
-//    self.kakaoWrapView.layer.masksToBounds = false
-//    self.kakaoWrapView.addShadow(offset: CGSize(width: 0, height: 1), radius: 3, color: UIColor.black, opacity: 0.1)
-//    self.naverWrapView.setCornerRadius(radius: 5)
-//    self.naverWrapView.layer.masksToBounds = false
-//    self.naverWrapView.addShadow(offset: CGSize(width: 0, height: 1), radius: 3, color: UIColor.black, opacity: 0.1)
-//    self.facebookWrapView.setCornerRadius(radius: 5)
-//    self.facebookWrapView.layer.masksToBounds = false
-//    self.facebookWrapView.addShadow(offset: CGSize(width: 0, height: 1), radius: 3, color: UIColor.black, opacity: 0.1)
-//    self.googleWrapView.setCornerRadius(radius: 5)
-//    self.googleWrapView.layer.masksToBounds = false
-//    self.googleWrapView.addShadow(offset: CGSize(width: 0, height: 1), radius: 3, color: UIColor.black, opacity: 0.1)
   }
   
   override func initRequest() {
@@ -108,24 +86,24 @@ class LoginViewController: RocateerViewController {
   
   /// 로그인
   private func loginAPI() {
-    let memberReqeust = MemberModel()
-    memberReqeust.email = self.idTextField.text
-    memberReqeust.password = self.pwTextField.text
-    memberReqeust.fcm_key = "test"
-    memberReqeust.device_type = "1"
-    
-    APIRouter.shared.api(path: APIURL.login, parameters: memberReqeust.toJSON()) { data in
-      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-        if let result = memberResponse.result {
-          Defaults[.access_token] = result.access_token
-          Defaults[.email] = self.idTextField.text
-          Defaults[.password] = self.pwTextField.text
-          self.navigationController?.popViewController(animated: true)
-        }
-      }
-    }
-
-    
+//    let memberReqeust = MemberModel()
+//    memberReqeust.email = self.idTextField.text
+//    memberReqeust.password = self.pwTextField.text
+//    memberReqeust.fcm_key = "test"
+//    memberReqeust.device_type = "1"
+//
+//    APIRouter.shared.api(path: APIURL.login, parameters: memberReqeust.toJSON()) { data in
+//      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+//        if let result = memberResponse.result {
+//          Defaults[.access_token] = result.access_token
+//          Defaults[.email] = self.idTextField.text
+//          Defaults[.password] = self.pwTextField.text
+//          self.navigationController?.popViewController(animated: true)
+//        }
+//      }
+//    }
+//
+//
   }
   
   /// 네이버
@@ -233,34 +211,88 @@ class LoginViewController: RocateerViewController {
       
     }
   }
+  
+  
+  
+  // 애플로그인
+  @available(iOS 13, *)
+  func startSignInWithAppleFlow() {
+    let nonce = randomNonceString()
+    currentNonce = nonce
+    let appleIDProvider = ASAuthorizationAppleIDProvider()
+    let request = appleIDProvider.createRequest()
+    request.requestedScopes = [.fullName, .email]
+    request.nonce = sha256(nonce)
+    
+    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+    authorizationController.delegate = self
+    authorizationController.presentationContextProvider = self
+    authorizationController.performRequests()
+  }
+  
+  // 로그인 요청과 함께 nonce의 SHA256 해시를 전송하면 Apple은 이에 대한 응답으로 원래의 값을 전달합니다. Firebase는 원래의 nonce를 해싱하고 Apple에서 전달한 값과 비교하여 응답을 검증합니다.
+  @available(iOS 13, *)
+  private func sha256(_ input: String) -> String {
+    let inputData = Data(input.utf8)
+    let hashedData = SHA256.hash(data: inputData)
+    let hashString = hashedData.compactMap {
+      String(format: "%02x", $0)
+    }.joined()
+    
+    return hashString
+  }
+  
+  // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+  // 로그인 요청마다 임의의 문자열인 'nonce'가 생성되며, 이 nonce는 앱의 인증 요청에 대한 응답으로 ID 토큰이 명시적으로 부여되었는지 확인하는 데 사용됩니다. 재전송 공격을 방지하려면 이 단계가 필요합니다.
+  private func randomNonceString(length: Int = 32) -> String {
+    precondition(length > 0)
+    let charset: [Character] =
+    Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+    var result = ""
+    var remainingLength = length
+    
+    while remainingLength > 0 {
+      let randoms: [UInt8] = (0 ..< 16).map { _ in
+        var random: UInt8 = 0
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+        if errorCode != errSecSuccess {
+          fatalError(
+            "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+          )
+        }
+        return random
+      }
+      
+      randoms.forEach { random in
+        if remainingLength == 0 {
+          return
+        }
+        
+        if random < charset.count {
+          result.append(charset[Int(random)])
+          remainingLength -= 1
+        }
+      }
+    }
+    
+    return result
+  }
+  
+  
+  @objc func taskFunc() {
+    NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+  }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
-  /// 로그인 버튼 터치시
-  ///
-  /// - Parameter sender: 버튼
-  @IBAction func loginButtonTouched(sender: UIButton) {
-    self.loginAPI()
-  }
-  
-  /// 아이디 찾기 버튼 터치시
-  ///
-  /// - Parameter sender: 버튼
-  @IBAction func findIdButtonTouched(sender: UIButton) {
-    let destination = FindIdViewController.instantiate(storyboard: "Login").coverNavigationController()
+  @IBAction func emailLoginButtonTouched(sender: UIButton) {
+    let destination = EmailLoginViewController.instantiate(storyboard: "Login").coverNavigationController()
     destination.modalPresentationStyle = .fullScreen
-    self.present(destination, animated: true, completion: nil)
+    destination.hero.isEnabled = true
+    destination.hero.modalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+    self.present(destination, animated: true)
   }
-  
-  /// 비밀번호 찾기 버튼 터치시
-  ///
-  /// - Parameter sender: 버튼
-  @IBAction func findPwButtonTouched(sender: UIButton) {
-    let destination = FindPwViewController.instantiate(storyboard: "Login").coverNavigationController()
-    destination.modalPresentationStyle = .fullScreen
-    self.present(destination, animated: true, completion: nil)
-  }
-  
+   
   @IBAction func joinButtonTouched(sender: UIButton) {
     let destination = JoinViewController.instantiate(storyboard: "Login")
     self.navigationController?.pushViewController(destination, animated: true)
@@ -282,47 +314,12 @@ class LoginViewController: RocateerViewController {
     //      self.site = "naver"
   }
   
-  /// 페이스북 로그인
+  /// 애플 로그인
   ///
   /// - Parameter sender: 버튼
-  @IBAction func facebookLoginButtonTouched(sender: UIButton) {
-    facebookManager.logIn(permissions: ["public_profile", "email"], from: self) { (loginResult, error) in
-      if let error = error {
-        log.error(error.localizedDescription)
-      } else if loginResult?.isCancelled ?? false {
-        log.debug("사용자 로그인 취소")
-      } else {
-        if let accessToken = loginResult?.token {
-          log.debug("FB access token = \(accessToken.tokenString)")
-          
-          GraphRequest.init(graphPath: "me", parameters: ["fields": "id,name,email"]).start { (connection, result, error) in
-            if let error = error {
-              log.error(error.localizedDescription)
-            } else {
-              if let dic = result as? [String: Any] {
-                
-                let id = dic["id"] as? String ?? ""
-                let name = dic["name"] as? String ?? ""
-                let email = dic["email"] as? String ?? ""
-                let profile = dic["profile"] as? String ?? ""
-                log.debug(id)
-                log.debug(email)
-                log.debug(profile)
-                //                  self.site = "facebook"
-                //                  self.loginAPI(snsMode: "sns_facebook", accessToken: accessToken.tokenString, userId: "", name: name, email: email, phone: "", image: profile)
-                
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  /// 구글 로그인
-  ///
-  /// - Parameter sender: 버튼
-  @IBAction func googleLoginButtonTouched(sender: UIButton) {
-    self.googleLogin()
+  @IBAction func appleLoginButtonTouched(sender: UIButton) {
+    NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData)
+    self.startSignInWithAppleFlow()
   }
   
 }
@@ -350,6 +347,66 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
   
   func oauth20ConnectionDidOpenInAppBrowser(forOAuth request: URLRequest!) {
     //    self.present(NLoginThirdPartyOAuth20InAppBrowserViewController(request: request), animated: true, completion: nil)
+  }
+  
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - ASAuthorizationControllerDelegate
+//-------------------------------------------------------------------------------------------
+extension LoginViewController: ASAuthorizationControllerDelegate {
+  
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+      guard let nonce = currentNonce else {
+        fatalError("Invalid state: A login callback was received, but no login request was sent.")
+      }
+      guard let appleIDToken = appleIDCredential.identityToken else {
+        print("Unable to fetch identity token")
+        return
+      }
+      guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+        print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+        return
+      }
+      // Initialize a Firebase credential.
+      let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                idToken: idTokenString,
+                                                rawNonce: nonce)
+      // Sign in with Firebase.
+      Auth.auth().signIn(with: credential) { (authResult, error) in
+        if (error != nil) {
+          // Error. If error.code == .MissingOrInvalidNonce, make sure
+          // you're sending the SHA256-hashed nonce as a hex string with
+          // your request to Apple.
+          print(error?.localizedDescription ?? "")
+          return
+        }
+        // User is signed in to Firebase with Apple.
+        // ...
+        log.debug("LOGIN!!!!!!!!")
+        log.debug("\(Auth.auth().currentUser?.displayName ?? "")")
+        log.debug("\(Auth.auth().currentUser?.email ?? "")")
+        log.debug("\(Auth.auth().currentUser?.uid ?? "")")
+        log.debug("\(appleIDCredential.user)")
+        
+//        self.snsLoginAPI(member_id: Auth.auth().currentUser?.uid ?? "", member_join_type: "A")
+      }
+    }
+  }
+  
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+    // Handle error.
+    NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+    print("Sign in with Apple errored: \(error)")
+  }
+}
+//-------------------------------------------------------------------------------------------
+// MARK: - ASAuthorizationControllerPresentationContextProviding
+//-------------------------------------------------------------------------------------------
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    return self.view.window!
   }
   
 }

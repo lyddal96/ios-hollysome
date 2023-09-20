@@ -10,6 +10,12 @@
 		4B18F3982A26F404003E694E /* Commons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B18F3972A26F404003E694E /* Commons.storyboard */; };
 		4B3E55362A833E5A0015FEB1 /* AccountBook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E55352A833E5A0015FEB1 /* AccountBook.storyboard */; };
 		4B3E55392A833E740015FEB1 /* AccountBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E55382A833E740015FEB1 /* AccountBookViewController.swift */; };
+		4B3E55402AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553C2AAE8C200015FEB1 /* SpoqaHanSansNeo-Light.otf */; };
+		4B3E55412AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553F2AAE8C200015FEB1 /* SpoqaHanSansNeo-Medium.otf */; };
+		4B3E55422AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553D2AAE8C200015FEB1 /* SpoqaHanSansNeo-Regular.otf */; };
+		4B3E55432AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553E2AAE8C200015FEB1 /* SpoqaHanSansNeo-Bold.otf */; };
+		4B3E55442AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553B2AAE8C200015FEB1 /* SpoqaHanSansNeo-Thin.otf */; };
+		4B3E55462AAEDCDA0015FEB1 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E55452AAEDCDA0015FEB1 /* EmailLoginViewController.swift */; };
 		4B3F61802A2036EA0049882D /* MainTabBarViewCntroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F617F2A2036EA0049882D /* MainTabBarViewCntroller.swift */; };
 		4B3F61852A2037920049882D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61842A2037920049882D /* HomeViewController.swift */; };
 		4B3F61872A20379E0049882D /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61862A20379E0049882D /* ScheduleViewController.swift */; };
@@ -155,6 +161,12 @@
 		4B18F3972A26F404003E694E /* Commons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Commons.storyboard; sourceTree = "<group>"; };
 		4B3E55352A833E5A0015FEB1 /* AccountBook.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountBook.storyboard; sourceTree = "<group>"; };
 		4B3E55382A833E740015FEB1 /* AccountBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookViewController.swift; sourceTree = "<group>"; };
+		4B3E553B2AAE8C200015FEB1 /* SpoqaHanSansNeo-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.otf"; sourceTree = "<group>"; };
+		4B3E553C2AAE8C200015FEB1 /* SpoqaHanSansNeo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.otf"; sourceTree = "<group>"; };
+		4B3E553D2AAE8C200015FEB1 /* SpoqaHanSansNeo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.otf"; sourceTree = "<group>"; };
+		4B3E553E2AAE8C200015FEB1 /* SpoqaHanSansNeo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.otf"; sourceTree = "<group>"; };
+		4B3E553F2AAE8C200015FEB1 /* SpoqaHanSansNeo-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.otf"; sourceTree = "<group>"; };
+		4B3E55452AAEDCDA0015FEB1 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		4B3F617F2A2036EA0049882D /* MainTabBarViewCntroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewCntroller.swift; sourceTree = "<group>"; };
 		4B3F61842A2037920049882D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4B3F61862A20379E0049882D /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +338,18 @@
 			path = AccountBook;
 			sourceTree = "<group>";
 		};
+		4B3E553A2AAE8B9B0015FEB1 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				4B3E553E2AAE8C200015FEB1 /* SpoqaHanSansNeo-Bold.otf */,
+				4B3E553C2AAE8C200015FEB1 /* SpoqaHanSansNeo-Light.otf */,
+				4B3E553F2AAE8C200015FEB1 /* SpoqaHanSansNeo-Medium.otf */,
+				4B3E553D2AAE8C200015FEB1 /* SpoqaHanSansNeo-Regular.otf */,
+				4B3E553B2AAE8C200015FEB1 /* SpoqaHanSansNeo-Thin.otf */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
 		4B3F61812A20376D0049882D /* My */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +490,7 @@
 				68C0A6B02333440600FCB61B /* JoinViewController.swift */,
 				68182F0323CF02990015B042 /* JoinFinishViewController.swift */,
 				68C0A6AC2333437700FCB61B /* LoginViewController.swift */,
+				4B3E55452AAEDCDA0015FEB1 /* EmailLoginViewController.swift */,
 				68A4653423BEFE99008E8A0A /* FindIdViewController.swift */,
 				68A4653623BF00B7008E8A0A /* FindPwViewController.swift */,
 				68182F0B23CF10CE0015B042 /* ChangePwViewController.swift */,
@@ -634,6 +659,7 @@
 		BB8C9CAF22AE235D005E00B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4B3E553A2AAE8B9B0015FEB1 /* font */,
 				68C5796B21E4B0CE00558FF8 /* LaunchScreen.storyboard */,
 				4B18F3972A26F404003E694E /* Commons.storyboard */,
 				68A4653823BF04B9008E8A0A /* Intro.storyboard */,
@@ -746,6 +772,7 @@
 				685E294023C80E38001DD8B3 /* HeaderView.xib in Resources */,
 				68C5796D21E4B0CE00558FF8 /* LaunchScreen.storyboard in Resources */,
 				68A4654123BF0534008E8A0A /* TutorialCell.xib in Resources */,
+				4B3E55432AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				4B3F618B2A2037B50049882D /* Home.storyboard in Resources */,
 				68C0A6B32333475000FCB61B /* Images.xcassets in Resources */,
 				685E293323C726B3001DD8B3 /* Tab.storyboard in Resources */,
@@ -756,13 +783,16 @@
 				685E291A23C6C0AE001DD8B3 /* Colors.xcassets in Resources */,
 				4BA147622A2582B100ED1B96 /* ImageTableCell.xib in Resources */,
 				4B554C792A25DDC7007DC591 /* BottomAJAlertController.xib in Resources */,
+				4B3E55402AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Light.otf in Resources */,
 				68A4654723BF1010008E8A0A /* BannerImageCell.xib in Resources */,
 				6817AF3822C60F600026CDAF /* FaqDetailCell.xib in Resources */,
 				68C5797521E4B18E00558FF8 /* GoogleService-Info.plist in Resources */,
+				4B3E55422AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Regular.otf in Resources */,
 				6859B1E7240E3E720021DED5 /* AlarmCell.xib in Resources */,
 				688EE11123D8361E0014640F /* Chart.storyboard in Resources */,
 				6869965323D175ED00EFEE01 /* EventDetailCell.xib in Resources */,
 				68C5796A21E4B0CE00558FF8 /* Assets.xcassets in Resources */,
+				4B3E55412AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Medium.otf in Resources */,
 				685E292A23C70B84001DD8B3 /* MenuSection.xib in Resources */,
 				68C5797821E4B27900558FF8 /* AuthKey_B726BV89UD.p8 in Resources */,
 				6817AF2622C5EF910026CDAF /* QnaListCell.xib in Resources */,
@@ -778,6 +808,7 @@
 				4B18F3982A26F404003E694E /* Commons.storyboard in Resources */,
 				4B3F618D2A2037BA0049882D /* Schedule.storyboard in Resources */,
 				685E294623C810D1001DD8B3 /* HeaderTableCell.xib in Resources */,
+				4B3E55442AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Thin.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +897,7 @@
 				68A4653C23BF04EF008E8A0A /* TutorialViewController.swift in Sources */,
 				6869964D23D159E100EFEE01 /* EventViewController.swift in Sources */,
 				685E293723C80B17001DD8B3 /* SubTab2ViewController.swift in Sources */,
+				4B3E55462AAEDCDA0015FEB1 /* EmailLoginViewController.swift in Sources */,
 				68129FA12333802F0019EDBC /* WebViewController.swift in Sources */,
 				688EE10C23D81EA70014640F /* CardPopupViewController.swift in Sources */,
 				4B554C752A25D5BA007DC591 /* DialogListViewController.swift in Sources */,

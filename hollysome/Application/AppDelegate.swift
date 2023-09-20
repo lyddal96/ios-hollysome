@@ -26,6 +26,10 @@ import Hero
 let log = SwiftyBeaver.self
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+  override init() {
+    super.init()
+    UIFont.overrideInitialize()
+  }
   
 //  var window: UIWindow?
   var fcmKey: String?
@@ -176,11 +180,11 @@ extension AppDelegate {
     
     // 네비게이션 하단 라인 설정
     let navigationBarAppearance = UINavigationBarAppearance()
-    navigationBarAppearance.shadowColor = UIColor(named: "BCBCBC")
-    navigationBarAppearance.backgroundColor = UIColor(named: "FF5F58")
+    navigationBarAppearance.shadowColor = UIColor(named: "FFFFFF")
+    navigationBarAppearance.backgroundColor = UIColor(named: "FFFFFF")
     navigationBarAppearance.titleTextAttributes = [
-      NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18 , weight: UIFont.Weight.bold),
-      NSAttributedString.Key.foregroundColor: UIColor(named: "282828")!
+      NSAttributedString.Key.font: UIFont(name: "SpoqaHanSansNeo-Regular", size: 16)!,
+      NSAttributedString.Key.foregroundColor: UIColor(named: "text")!
     ]
     
     

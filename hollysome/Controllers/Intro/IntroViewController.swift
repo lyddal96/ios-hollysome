@@ -76,7 +76,8 @@ class IntroViewController: RocateerViewController {
 //        }
 //      }
     } else {
-      self.gotoMain()
+//      self.gotoMain()
+      self.gotoLogin()
     }
 
       //    } else { //SNS 로그인
