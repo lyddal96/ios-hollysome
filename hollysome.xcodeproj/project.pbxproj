@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,11 +31,17 @@
 		4B6C315D2A2733A50048DE1C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C315C2A2733A50048DE1C /* CalendarViewController.swift */; };
 		4B6C316B2A298A9B0048DE1C /* FSDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C316A2A298A9B0048DE1C /* FSDayCell.swift */; };
 		4B6C316D2A298ADE0048DE1C /* FSDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B6C316C2A298ADE0048DE1C /* FSDayCell.xib */; };
+		4B99FF2D2AD428D700EF35F8 /* CreateAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF2C2AD428D700EF35F8 /* CreateAvatarViewController.swift */; };
+		4B99FF2F2AD42CCB00EF35F8 /* ImageCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B99FF2E2AD42CCB00EF35F8 /* ImageCollectionCell.xib */; };
+		4B99FF312AD42CD000EF35F8 /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF302AD42CD000EF35F8 /* ImageCollectionCell.swift */; };
+		4B99FF332AD55BED00EF35F8 /* ProfileColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B99FF322AD55BED00EF35F8 /* ProfileColorCell.xib */; };
+		4B99FF352AD55BF000EF35F8 /* ProfileColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF342AD55BF000EF35F8 /* ProfileColorCell.swift */; };
+		4B99FF372AD563D900EF35F8 /* FaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B99FF362AD563D900EF35F8 /* FaceCell.xib */; };
+		4B99FF392AD563DD00EF35F8 /* FaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF382AD563DD00EF35F8 /* FaceCell.swift */; };
 		4BA1475F2A204A8F00ED1B96 /* IndicatingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1475E2A204A8F00ED1B96 /* IndicatingTabBarController.swift */; };
 		4BA147622A2582B100ED1B96 /* ImageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA147612A2582B100ED1B96 /* ImageTableCell.xib */; };
 		4BA147642A2582B600ED1B96 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA147632A2582B600ED1B96 /* ImageTableCell.swift */; };
 		4BBD0C252A2D6BBE00B89F6C /* MultiSelectCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD0C242A2D6BBE00B89F6C /* MultiSelectCalendarViewController.swift */; };
-		6133A070E7B2DF952CF8ACCD /* Pods_hollysome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E239AA79C9208A0D58892D79 /* Pods_hollysome.framework */; };
 		68129F9D2333772C0019EDBC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68129F9C2333772C0019EDBC /* PopupViewController.swift */; };
 		68129FA12333802F0019EDBC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68129FA02333802F0019EDBC /* WebViewController.swift */; };
 		6817AF2422C5EE650026CDAF /* QnaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6817AF2322C5EE650026CDAF /* QnaViewController.swift */; };
@@ -141,23 +147,24 @@
 		BB8C9CCA22AE4E35005E00B0 /* AJAlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8C9CC822AE4E35005E00B0 /* AJAlertController.xib */; };
 		BB8C9CCB22AE4E35005E00B0 /* AJAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C9CC922AE4E35005E00B0 /* AJAlertController.swift */; };
 		BBA2264A264CD44A0060ADBA /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA22649264CD44A0060ADBA /* Tools.swift */; };
+		FF3A42D1029CC80E0A59E88E /* Pods_hollysome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DEF60642EE152A1F4EFBE11 /* Pods_hollysome.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BB4C8D27266DC9430025F786 /* Embed App Extensions */ = {
+		BB4C8D27266DC9430025F786 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2B046C1BBCD7C4B249A3B80F /* Pods-hollysome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hollysome.debug.xcconfig"; path = "Target Support Files/Pods-hollysome/Pods-hollysome.debug.xcconfig"; sourceTree = "<group>"; };
+		054338C6BDF096289633F4A2 /* Pods-hollysome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hollysome.release.xcconfig"; path = "Target Support Files/Pods-hollysome/Pods-hollysome.release.xcconfig"; sourceTree = "<group>"; };
 		4B18F3972A26F404003E694E /* Commons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Commons.storyboard; sourceTree = "<group>"; };
 		4B3E55352A833E5A0015FEB1 /* AccountBook.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountBook.storyboard; sourceTree = "<group>"; };
 		4B3E55382A833E740015FEB1 /* AccountBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +189,13 @@
 		4B6C315C2A2733A50048DE1C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4B6C316A2A298A9B0048DE1C /* FSDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSDayCell.swift; sourceTree = "<group>"; };
 		4B6C316C2A298ADE0048DE1C /* FSDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSDayCell.xib; sourceTree = "<group>"; };
+		4B99FF2C2AD428D700EF35F8 /* CreateAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAvatarViewController.swift; sourceTree = "<group>"; };
+		4B99FF2E2AD42CCB00EF35F8 /* ImageCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionCell.xib; sourceTree = "<group>"; };
+		4B99FF302AD42CD000EF35F8 /* ImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionCell.swift; sourceTree = "<group>"; };
+		4B99FF322AD55BED00EF35F8 /* ProfileColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileColorCell.xib; sourceTree = "<group>"; };
+		4B99FF342AD55BF000EF35F8 /* ProfileColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileColorCell.swift; sourceTree = "<group>"; };
+		4B99FF362AD563D900EF35F8 /* FaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FaceCell.xib; sourceTree = "<group>"; };
+		4B99FF382AD563DD00EF35F8 /* FaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCell.swift; sourceTree = "<group>"; };
 		4BA1475E2A204A8F00ED1B96 /* IndicatingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatingTabBarController.swift; sourceTree = "<group>"; };
 		4BA147612A2582B100ED1B96 /* ImageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableCell.xib; sourceTree = "<group>"; };
 		4BA147632A2582B600ED1B96 /* ImageTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
@@ -275,7 +289,8 @@
 		68F7EB7224331AE200D83318 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		68F7EB7424331AEF00D83318 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		68F7EB7624331B3900D83318 /* Settings+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+UserDefaults.swift"; sourceTree = "<group>"; };
-		956A4DD9B595D181CA65912E /* Pods-hollysome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hollysome.release.xcconfig"; path = "Target Support Files/Pods-hollysome/Pods-hollysome.release.xcconfig"; sourceTree = "<group>"; };
+		6DEF60642EE152A1F4EFBE11 /* Pods_hollysome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hollysome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1B26E7E98118A6DB393D31 /* Pods-hollysome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hollysome.debug.xcconfig"; path = "Target Support Files/Pods-hollysome/Pods-hollysome.debug.xcconfig"; sourceTree = "<group>"; };
 		BB34FD4422AF6318000CC795 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BB34FD4622AF6352000CC795 /* RocateerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocateerViewController.swift; sourceTree = "<group>"; };
 		BB34FD4922AF6520000CC795 /* MainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCell.xib; sourceTree = "<group>"; };
@@ -298,7 +313,6 @@
 		BB8C9CC822AE4E35005E00B0 /* AJAlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AJAlertController.xib; sourceTree = "<group>"; };
 		BB8C9CC922AE4E35005E00B0 /* AJAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AJAlertController.swift; sourceTree = "<group>"; };
 		BBA22649264CD44A0060ADBA /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		E239AA79C9208A0D58892D79 /* Pods_hollysome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hollysome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,7 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6133A070E7B2DF952CF8ACCD /* Pods_hollysome.framework in Frameworks */,
+				FF3A42D1029CC80E0A59E88E /* Pods_hollysome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +340,7 @@
 				6869964C23D159E100EFEE01 /* EventViewController.swift */,
 				6869964E23D1752700EFEE01 /* EventDetailViewController.swift */,
 				68129FA02333802F0019EDBC /* WebViewController.swift */,
+				4B99FF2C2AD428D700EF35F8 /* CreateAvatarViewController.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -400,6 +415,12 @@
 				6869964A23D1586C00EFEE01 /* EventCell.swift */,
 				6869965223D175ED00EFEE01 /* EventDetailCell.xib */,
 				6869965023D175C900EFEE01 /* EventDetailCell.swift */,
+				4B99FF2E2AD42CCB00EF35F8 /* ImageCollectionCell.xib */,
+				4B99FF302AD42CD000EF35F8 /* ImageCollectionCell.swift */,
+				4B99FF362AD563D900EF35F8 /* FaceCell.xib */,
+				4B99FF382AD563DD00EF35F8 /* FaceCell.swift */,
+				4B99FF322AD55BED00EF35F8 /* ProfileColorCell.xib */,
+				4B99FF342AD55BF000EF35F8 /* ProfileColorCell.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -407,8 +428,8 @@
 		56758816C021C04978189030 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2B046C1BBCD7C4B249A3B80F /* Pods-hollysome.debug.xcconfig */,
-				956A4DD9B595D181CA65912E /* Pods-hollysome.release.xcconfig */,
+				AE1B26E7E98118A6DB393D31 /* Pods-hollysome.debug.xcconfig */,
+				054338C6BDF096289633F4A2 /* Pods-hollysome.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -549,7 +570,7 @@
 				6887B24A29D1600F0085736F /* FBSDKCoreKit_Basics.xcframework */,
 				BB4C8D3F266DEA220025F786 /* UserNotifications.framework */,
 				BB4C8D41266DEA220025F786 /* UserNotificationsUI.framework */,
-				E239AA79C9208A0D58892D79 /* Pods_hollysome.framework */,
+				6DEF60642EE152A1F4EFBE11 /* Pods_hollysome.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -582,13 +603,6 @@
 				6859B1E8240E3E7B0021DED5 /* AlarmCell.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		BB34FD5222AF6880000CC795 /* Cs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cs;
 			sourceTree = "<group>";
 		};
 		BB8C9CAB22AE22FA005E00B0 /* Application */ = {
@@ -631,7 +645,6 @@
 				68A4653D23BF050C008E8A0A /* Intro */,
 				BB34FD4822AF6512000CC795 /* Main */,
 				685E292023C7076E001DD8B3 /* Menu */,
-				BB34FD5222AF6880000CC795 /* Cs */,
 				685E293A23C80DF7001DD8B3 /* Tab */,
 			);
 			path = Views;
@@ -708,12 +721,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68C5797121E4B0CE00558FF8 /* Build configuration list for PBXNativeTarget "hollysome" */;
 			buildPhases = (
-				5FD0185E832E7F719993F61D /* [CP] Check Pods Manifest.lock */,
+				785E1C0D25E89E0E942D6FC6 /* [CP] Check Pods Manifest.lock */,
 				68C5795B21E4B0CD00558FF8 /* Sources */,
 				68C5795C21E4B0CD00558FF8 /* Frameworks */,
 				68C5795D21E4B0CD00558FF8 /* Resources */,
-				BB4C8D27266DC9430025F786 /* Embed App Extensions */,
-				7ED50CAC8BC427BF394D0EBA /* [CP] Embed Pods Frameworks */,
+				BB4C8D27266DC9430025F786 /* Embed Foundation Extensions */,
+				79C12FD8B56CCFEA5B89F267 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -730,8 +743,9 @@
 		68C5795721E4B0CD00558FF8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = rocateer;
 				TargetAttributes = {
 					68C5795E21E4B0CD00558FF8 = {
@@ -768,12 +782,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B3E55362A833E5A0015FEB1 /* AccountBook.storyboard in Resources */,
+				4B99FF332AD55BED00EF35F8 /* ProfileColorCell.xib in Resources */,
 				685E292223C70783001DD8B3 /* Menu.storyboard in Resources */,
 				685E294023C80E38001DD8B3 /* HeaderView.xib in Resources */,
 				68C5796D21E4B0CE00558FF8 /* LaunchScreen.storyboard in Resources */,
 				68A4654123BF0534008E8A0A /* TutorialCell.xib in Resources */,
 				4B3E55432AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				4B3F618B2A2037B50049882D /* Home.storyboard in Resources */,
+				4B99FF2F2AD42CCB00EF35F8 /* ImageCollectionCell.xib in Resources */,
 				68C0A6B32333475000FCB61B /* Images.xcassets in Resources */,
 				685E293323C726B3001DD8B3 /* Tab.storyboard in Resources */,
 				BB8C9CCA22AE4E35005E00B0 /* AJAlertController.xib in Resources */,
@@ -783,6 +799,7 @@
 				685E291A23C6C0AE001DD8B3 /* Colors.xcassets in Resources */,
 				4BA147622A2582B100ED1B96 /* ImageTableCell.xib in Resources */,
 				4B554C792A25DDC7007DC591 /* BottomAJAlertController.xib in Resources */,
+				4B99FF372AD563D900EF35F8 /* FaceCell.xib in Resources */,
 				4B3E55402AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Light.otf in Resources */,
 				68A4654723BF1010008E8A0A /* BannerImageCell.xib in Resources */,
 				6817AF3822C60F600026CDAF /* FaqDetailCell.xib in Resources */,
@@ -815,7 +832,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5FD0185E832E7F719993F61D /* [CP] Check Pods Manifest.lock */ = {
+		785E1C0D25E89E0E942D6FC6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -837,7 +854,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7ED50CAC8BC427BF394D0EBA /* [CP] Embed Pods Frameworks */ = {
+		79C12FD8B56CCFEA5B89F267 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -871,6 +888,7 @@
 				BB34FD4722AF6352000CC795 /* RocateerViewController.swift in Sources */,
 				685BB17F2A3C3FB200CB39EA /* APIResponse.swift in Sources */,
 				68C5796521E4B0CD00558FF8 /* FcmViewController.swift in Sources */,
+				4B99FF2D2AD428D700EF35F8 /* CreateAvatarViewController.swift in Sources */,
 				6859B1E3240E32960021DED5 /* UserInfoViewController.swift in Sources */,
 				68A4654923BF101C008E8A0A /* BannerImageCell.swift in Sources */,
 				BB8C9CB922AE3DB3005E00B0 /* QnaModel.swift in Sources */,
@@ -895,6 +913,7 @@
 				6859B1E5240E3D440021DED5 /* AlarmViewController.swift in Sources */,
 				68848B6625DFB0A400117274 /* SceneDelegate.swift in Sources */,
 				68A4653C23BF04EF008E8A0A /* TutorialViewController.swift in Sources */,
+				4B99FF392AD563DD00EF35F8 /* FaceCell.swift in Sources */,
 				6869964D23D159E100EFEE01 /* EventViewController.swift in Sources */,
 				685E293723C80B17001DD8B3 /* SubTab2ViewController.swift in Sources */,
 				4B3E55462AAEDCDA0015FEB1 /* EmailLoginViewController.swift in Sources */,
@@ -919,10 +938,12 @@
 				BB8C9CB122AE2733005E00B0 /* BaseModel.swift in Sources */,
 				68C5797A21E4B4FD00558FF8 /* LocalStore.swift in Sources */,
 				6859B1E9240E3E7B0021DED5 /* AlarmCell.swift in Sources */,
+				4B99FF352AD55BF000EF35F8 /* ProfileColorCell.swift in Sources */,
 				68A4654323BF0CD5008E8A0A /* PhotoPopupViewController.swift in Sources */,
 				6859B1EB240E4BBB0021DED5 /* MemberOutViewController.swift in Sources */,
 				685E292423C70793001DD8B3 /* MenuViewController.swift in Sources */,
 				68A4653723BF00B7008E8A0A /* FindPwViewController.swift in Sources */,
+				4B99FF312AD42CD000EF35F8 /* ImageCollectionCell.swift in Sources */,
 				685E294423C80FEE001DD8B3 /* TabTableViewController.swift in Sources */,
 				BB8C9CC422AE49C0005E00B0 /* Extensions.swift in Sources */,
 				4BA1475F2A204A8F00ED1B96 /* IndicatingTabBarController.swift in Sources */,
@@ -981,6 +1002,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1003,6 +1025,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1014,6 +1037,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1028,7 +1052,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1043,6 +1067,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1065,6 +1090,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1076,6 +1102,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1084,7 +1111,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1097,7 +1124,7 @@
 		};
 		68C5797221E4B0CE00558FF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B046C1BBCD7C4B249A3B80F /* Pods-hollysome.debug.xcconfig */;
+			baseConfigurationReference = AE1B26E7E98118A6DB393D31 /* Pods-hollysome.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = hollysome/hollysome.entitlements;
@@ -1122,7 +1149,7 @@
 		};
 		68C5797321E4B0CE00558FF8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 956A4DD9B595D181CA65912E /* Pods-hollysome.release.xcconfig */;
+			baseConfigurationReference = 054338C6BDF096289633F4A2 /* Pods-hollysome.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = hollysome/hollysome.entitlements;

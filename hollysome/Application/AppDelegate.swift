@@ -15,8 +15,6 @@ import SDWebImage
 import SKPhotoBrowser
 import UserNotifications
 import AlamofireNetworkActivityLogger
-import FBSDKCoreKit
-import FBSDKLoginKit
 import NaverThirdPartyLogin
 import FirebaseAuth
 import KakaoSDKCommon
@@ -121,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //    }
     //    return false
     //
-    return ApplicationDelegate.shared.application(app, open: url, options: options)
+//    return ApplicationDelegate.shared.application(app, open: url, options: options)
   }
 }
 

@@ -47,11 +47,15 @@ target 'hollysome' do
   pod 'DropDown' #드롭다운
   pod 'FSCalendar' # 달력
   
+  pod 'Bolts' #Facebook
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
   pod 'naveridlogin-sdk-ios' #네이버 로그인
   pod 'KakaoSDKAuth'
   pod 'KakaoSDKUser'
   pod 'GoogleSignIn'  #구글 로그인
   pod 'Firebase/Auth'
+  pod 'CHIPageControl/Jaloro' #커스텀 페이지 컨트롤
 
   pods_with_specific_swift_versions = {
     'EZSwiftExtensions' => '4.0',
@@ -59,8 +63,15 @@ target 'hollysome' do
     'RSKPlaceholderTextView' => '5.0',
     'ExpyTableView' => '5.0'
   }
-
+  
   post_install do |installer|
+    installer.generated_projects.each do |project|
+      project.targets.each do |target|
+        target.build_configurations.each do |config|
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        end
+      end
+    end
     installer.pods_project.targets.each do |target|
       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
         target.build_configurations.each do |config|

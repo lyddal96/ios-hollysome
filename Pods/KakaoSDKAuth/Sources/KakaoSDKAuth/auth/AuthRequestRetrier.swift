@@ -16,7 +16,7 @@ import Foundation
 import Alamofire
 import KakaoSDKCommon
 
-///:nodoc:
+@_documentation(visibility: private)
 @available(iOSApplicationExtension, unavailable)
 public class AuthRequestRetrier : RequestInterceptor {
     private var requestsToRetry: [(RetryResult) -> Void] = []
@@ -36,7 +36,7 @@ public class AuthRequestRetrier : RequestInterceptor {
         if let sdkError = API.getSdkError(error: error) {
             if !sdkError.isApiFailed {
                 SdkLog.e("\(logString)\n error:\(error)\n not api error -> pass through\n\n")
-                completion(.doNotRetryWithError(SdkError(message:"not api error -> pass through")))
+                completion(.doNotRetryWithError(sdkError))
                 return
             }
 

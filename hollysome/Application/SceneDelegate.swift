@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FBSDKCoreKit
 import GoogleSignIn
 import NaverThirdPartyLogin
 import KakaoSDKAuth
@@ -66,12 +65,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       _ = AuthController.handleOpenUrl(url: url)
     }
     
-    ApplicationDelegate.shared.application(
-      UIApplication.shared,
-      open: url,
-      sourceApplication: nil,
-      annotation: [UIApplication.OpenURLOptionsKey.annotation]
-    )
     
     // 네이버 로그인
     NaverThirdPartyLoginConnection

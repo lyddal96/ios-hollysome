@@ -40,6 +40,8 @@ class LoginViewController: RocateerViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    
   }
   
   override func didReceiveMemoryWarning() {
@@ -294,8 +296,14 @@ class LoginViewController: RocateerViewController {
   }
    
   @IBAction func joinButtonTouched(sender: UIButton) {
-    let destination = JoinViewController.instantiate(storyboard: "Login")
-    self.navigationController?.pushViewController(destination, animated: true)
+//    let destination = JoinViewController.instantiate(storyboard: "Login")
+//    self.navigationController?.pushViewController(destination, animated: true)
+    
+    let destination = CreateAvatarViewController.instantiate(storyboard: "Commons").coverNavigationController()
+    destination.modalPresentationStyle = .fullScreen
+    destination.hero.isEnabled = true
+    destination.heroModalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+    self.present(destination, animated: true)
   }
   
   /// 카카오톡 로그인

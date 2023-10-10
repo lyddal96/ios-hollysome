@@ -3,6 +3,7 @@ ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework
 ${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
+${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
 ${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework
 ${BUILT_PRODUCTS_DIR}/DKCamera/DKCamera.framework
@@ -41,6 +42,7 @@ ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
 ${BUILT_PRODUCTS_DIR}/RKTagsView/RKTagsView.framework
 ${BUILT_PRODUCTS_DIR}/RSKGrowingTextView/RSKGrowingTextView.framework
 ${BUILT_PRODUCTS_DIR}/RSKPlaceholderTextView/RSKPlaceholderTextView.framework
+${BUILT_PRODUCTS_DIR}/RecaptchaInterop/RecaptchaInterop.framework
 ${BUILT_PRODUCTS_DIR}/Result/Result.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework
