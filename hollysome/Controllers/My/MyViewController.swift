@@ -64,40 +64,21 @@ class MyViewController: RocateerViewController {
     
     self.beforeLoginView.isHidden = !Defaults[.access_token].isNil
     self.memberView.isHidden = Defaults[.access_token].isNil
-    if !Defaults[.access_token].isNil {
-      self.meAPI()
-    }
+    
   }
   
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
   /// 사용자 프로필 정보 확인
-  func meAPI() {
-    APIRouter.shared.api(path: APIURL.me, method: .get, parameters: nil) { data in
-      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-        if let memberResult = memberResponse.result {
-          self.idLabel.text = memberResult.email ?? ""
-          self.nameLabel.text = memberResult.name ?? ""
-          self.phoneLabel.text = memberResult.phone ?? ""
-          self.genderLabel.text = memberResult.gender == "0" ? "남자" : memberResult.gender == "1" ? "여자" : ""
-          self.birthLabel.text = memberResult.birth ?? ""
-          self.followerLabel.text = "팔로워 수 : \(memberResult.follower_count ?? 0)"
-          self.followingLabel.text = "팔로잉 수 : \(memberResult.following_count ?? 0)"
-        }
-      }
-    }
-
-  }
+ 
   
   func logoutAPI() {
     let memberRequest = MemberModel()
-    memberRequest.access_token = Defaults[.access_token]
+    memberRequest.member_idx = Defaults[.member_idx]
     APIRouter.shared.api(path: .logout, parameters: memberRequest.toJSON()) { data in
       if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-        Defaults[.access_token] = nil
-        Defaults[.email] = nil
-        Defaults[.password] = nil
+        self.resetDefaults()
         
         self.beforeLoginView.isHidden = false
         self.memberView.isHidden = true

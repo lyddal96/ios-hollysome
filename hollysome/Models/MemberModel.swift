@@ -11,9 +11,9 @@ import ObjectMapper
 
 class MemberModel: BaseModel {
   // 이메일
-  var email: String?
+  var member_id: String?
   // 비밀번호
-  var password: String?
+  var member_pw: String?
   // 비밀번호 확인
   var password_confirmation: String?
   // 이름
@@ -33,8 +33,8 @@ class MemberModel: BaseModel {
   
   override func mapping(map: Map) {
     super.mapping(map: map)
-    self.email <- map["email"]
-    self.password <- map["password"]
+    self.member_id <- map["member_id"]
+    self.member_pw <- map["member_pw"]
     self.password_confirmation <- map["password_confirmation"]
     self.name <- map["name"]
     self.phone <- map["phone"]

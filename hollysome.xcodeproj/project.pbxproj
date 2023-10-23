@@ -38,6 +38,7 @@
 		4B99FF352AD55BF000EF35F8 /* ProfileColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF342AD55BF000EF35F8 /* ProfileColorCell.swift */; };
 		4B99FF372AD563D900EF35F8 /* FaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B99FF362AD563D900EF35F8 /* FaceCell.xib */; };
 		4B99FF392AD563DD00EF35F8 /* FaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF382AD563DD00EF35F8 /* FaceCell.swift */; };
+		4B99FF3F2AE0C12800EF35F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B99FF3E2AE0C12800EF35F8 /* GoogleService-Info.plist */; };
 		4BA1475F2A204A8F00ED1B96 /* IndicatingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1475E2A204A8F00ED1B96 /* IndicatingTabBarController.swift */; };
 		4BA147622A2582B100ED1B96 /* ImageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA147612A2582B100ED1B96 /* ImageTableCell.xib */; };
 		4BA147642A2582B600ED1B96 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA147632A2582B600ED1B96 /* ImageTableCell.swift */; };
@@ -118,7 +119,6 @@
 		68C5796821E4B0CD00558FF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C5796621E4B0CD00558FF8 /* Main.storyboard */; };
 		68C5796A21E4B0CE00558FF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68C5796921E4B0CE00558FF8 /* Assets.xcassets */; };
 		68C5796D21E4B0CE00558FF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C5796B21E4B0CE00558FF8 /* LaunchScreen.storyboard */; };
-		68C5797521E4B18E00558FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C5797421E4B18E00558FF8 /* GoogleService-Info.plist */; };
 		68C5797821E4B27900558FF8 /* AuthKey_B726BV89UD.p8 in Resources */ = {isa = PBXBuildFile; fileRef = 68C5797721E4B27900558FF8 /* AuthKey_B726BV89UD.p8 */; };
 		68C5797A21E4B4FD00558FF8 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5797921E4B4FD00558FF8 /* LocalStore.swift */; };
 		68CF9C8529D16375000EB6E0 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CF9C8429D16375000EB6E0 /* PreviewImageViewController.swift */; };
@@ -196,6 +196,7 @@
 		4B99FF342AD55BF000EF35F8 /* ProfileColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileColorCell.swift; sourceTree = "<group>"; };
 		4B99FF362AD563D900EF35F8 /* FaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FaceCell.xib; sourceTree = "<group>"; };
 		4B99FF382AD563DD00EF35F8 /* FaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCell.swift; sourceTree = "<group>"; };
+		4B99FF3E2AE0C12800EF35F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4BA1475E2A204A8F00ED1B96 /* IndicatingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatingTabBarController.swift; sourceTree = "<group>"; };
 		4BA147612A2582B100ED1B96 /* ImageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableCell.xib; sourceTree = "<group>"; };
 		4BA147632A2582B600ED1B96 /* ImageTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
@@ -279,7 +280,6 @@
 		68C5796921E4B0CE00558FF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68C5796C21E4B0CE00558FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68C5796E21E4B0CE00558FF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68C5797421E4B18E00558FF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68C5797621E4B26700558FF8 /* hollysome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hollysome.entitlements; sourceTree = "<group>"; };
 		68C5797721E4B27900558FF8 /* AuthKey_B726BV89UD.p8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AuthKey_B726BV89UD.p8; sourceTree = "<group>"; };
 		68C5797921E4B4FD00558FF8 /* LocalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
@@ -609,9 +609,9 @@
 			isa = PBXGroup;
 			children = (
 				68C5796221E4B0CD00558FF8 /* AppDelegate.swift */,
+				4B99FF3E2AE0C12800EF35F8 /* GoogleService-Info.plist */,
 				68848B6525DFB0A400117274 /* SceneDelegate.swift */,
 				68C5796E21E4B0CE00558FF8 /* Info.plist */,
-				68C5797421E4B18E00558FF8 /* GoogleService-Info.plist */,
 				68C5797721E4B27900558FF8 /* AuthKey_B726BV89UD.p8 */,
 				68C5797921E4B4FD00558FF8 /* LocalStore.swift */,
 				68F7EB7624331B3900D83318 /* Settings+UserDefaults.swift */,
@@ -783,6 +783,7 @@
 			files = (
 				4B3E55362A833E5A0015FEB1 /* AccountBook.storyboard in Resources */,
 				4B99FF332AD55BED00EF35F8 /* ProfileColorCell.xib in Resources */,
+				4B99FF3F2AE0C12800EF35F8 /* GoogleService-Info.plist in Resources */,
 				685E292223C70783001DD8B3 /* Menu.storyboard in Resources */,
 				685E294023C80E38001DD8B3 /* HeaderView.xib in Resources */,
 				68C5796D21E4B0CE00558FF8 /* LaunchScreen.storyboard in Resources */,
@@ -803,7 +804,6 @@
 				4B3E55402AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Light.otf in Resources */,
 				68A4654723BF1010008E8A0A /* BannerImageCell.xib in Resources */,
 				6817AF3822C60F600026CDAF /* FaqDetailCell.xib in Resources */,
-				68C5797521E4B18E00558FF8 /* GoogleService-Info.plist in Resources */,
 				4B3E55422AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Regular.otf in Resources */,
 				6859B1E7240E3E720021DED5 /* AlarmCell.xib in Resources */,
 				688EE11123D8361E0014640F /* Chart.storyboard in Resources */,
@@ -1131,14 +1131,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L9BY8TF4B4;
+				DEVELOPMENT_TEAM = B97DZJN7M5;
 				INFOPLIST_FILE = "$(SRCROOT)/hollysome/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = rocateer.hollysome;
+				PRODUCT_BUNDLE_IDENTIFIER = sseung.noommate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1156,14 +1156,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L9BY8TF4B4;
+				DEVELOPMENT_TEAM = B97DZJN7M5;
 				INFOPLIST_FILE = "$(SRCROOT)/hollysome/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = rocateer.hollysome;
+				PRODUCT_BUNDLE_IDENTIFIER = sseung.noommate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

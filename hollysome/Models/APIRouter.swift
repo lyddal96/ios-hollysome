@@ -15,10 +15,10 @@ import Defaults
 
 #if DEBUG
 //let baseURL = "http://192.168.50.81/"
-let baseURL = "http://webcat.store/"
+let baseURL = "http://noom.api.hollysome.com/"
 #else
 //let baseURL = "http://192.168.50.81/"
-let baseURL = "http://webcat.store/"
+let baseURL = "http://noom.api.hollysome.com/"
 #endif
 
 typealias JSONDict = [String: AnyObject]
@@ -33,7 +33,7 @@ enum APIResult<T, Error> {
 enum APIURL: String {
   /// 인증
   case register = "api/register" // 회원가입
-  case login = "api/login" // 로그인
+  case login = "login_v_1_0_0/member_login" // 로그인
   case me = "api/me" // 사용자 프로필 정보 확인
   case logout = "api/logout" // 로그아웃
   

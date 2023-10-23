@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Defaults
 
 class EmailLoginViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
@@ -66,14 +67,27 @@ class EmailLoginViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
-  
+  func loginAPI() {
+    let memberRequest = MemberModel()
+    memberRequest.member_id = self.emailTextField.text
+    memberRequest.member_pw = self.pwTextField.text
+    memberRequest.device_os = "I"
+    memberRequest.gcm_key = self.appDelegate.fcmKey
+    APIRouter.shared.api(path: .login, method: .post, parameters: memberRequest.toJSON()) { response in
+      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
+        Defaults[.member_idx] = memberResponse.member_idx
+        Defaults[.member_id] = memberResponse.member_id
+        Defaults[.member_pw] = self.pwTextField.text
+      }
+    }
+  }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
   /// 로그인하기
   /// - Parameter sender: 버튼
   @IBAction func loginButtonTouched(sender: UIButton) {
-    
+    self.loginAPI()
   }
 }
 
@@ -96,8 +110,9 @@ extension EmailLoginViewController: UITextFieldDelegate {
       }
     }
     
-    self.loginButton.isEnabled = self.pwTextField.text?.count ?? 0 > 0 && self.emailTextField.text?.isEmail ?? false == true
+//    self.loginButton.isEnabled = self.pwTextField.text?.count ?? 0 > 0 && self.emailTextField.text?.isEmail ?? false == true
     
+    self.loginButton.isEnabled = true
     
     return true
   }

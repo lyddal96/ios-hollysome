@@ -94,7 +94,13 @@ class RocateerViewController: UIViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
-  
+  func resetDefaults() {
+    Defaults[.member_idx] = nil
+    Defaults[.member_id] = nil
+    Defaults[.member_pw] = nil
+    Defaults[.member_join_type] = nil
+    
+  }
   /// Swipe dismiss
   /// - Parameter gestureRecognizer: UIScreenEdgePanGestureRecognizer
   @objc func leftSwipeDismiss(gestureRecognizer: UIScreenEdgePanGestureRecognizer) {

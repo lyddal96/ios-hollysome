@@ -13,6 +13,7 @@ class CreateAvatarViewController: RocateerViewController {
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
   @IBOutlet weak var avatarView: UIView!
+  @IBOutlet weak var colorView: UIView!
   @IBOutlet weak var shapeImageView: UIImageView!
   @IBOutlet weak var faceImageView: UIImageView!
   @IBOutlet weak var shapeCollectionView: UICollectionView!
@@ -48,7 +49,8 @@ class CreateAvatarViewController: RocateerViewController {
     super.initLayout()
     
     self.finishButton.setCornerRadius(radius: 12)
-    self.avatarView.setCornerRadius(radius: 12)
+    
+    self.setAvatarView()
   }
   
   override func initRequest() {
@@ -63,24 +65,13 @@ class CreateAvatarViewController: RocateerViewController {
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
   func setAvatarView() {
-    self.avatarView.backgroundColor = UIColor(named: "profile\(self.selectedAvatar[2])")
     let shapeList = ["round", "clover", "heart", "square", "cloud", "star"]
-//    colorCell.colorView.backgroundColor = UIColor(named: "profile\(indexPath)")
-//    colorCell.grayView.addBorder(width: 2, color: UIColor(named: indexPath.row == self.selectedAvatar[2] ? "accent" : "F1F1F4")!)
-//    return colorCell
-//  } else if collectionView == self.shapeCollectionView {
-//    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionCell", for: indexPath) as! ImageCollectionCell
-//    cell.setCornerRadius(radius: 12)
-
-//    cell.cellImageView.image = UIImage(named: "\(shapeList[indexPath.row])71")
-//    cell.addBorder(width: 2, color: UIColor(named: indexPath.row == self.selectedAvatar[0] ? "accent" : "F1F1F4")!)
-//    
-//
-//    return cell
-//  } else {
-//    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FaceCell", for: indexPath) as! FaceCell
-//    cell.setCornerRadius(radius: 12)
-//    cell.faceImageView.image = UIImage(named: "face\(indexPath.row + 1)")
+    
+    self.shapeImageView.image = UIImage(named: "\(shapeList[self.selectedAvatar[0]])119")
+    
+    self.faceImageView.image = UIImage(named: "face119_\(self.selectedAvatar[1] + 1)")
+    
+    self.colorView.backgroundColor = UIColor(named: "profile\(self.selectedAvatar[2])")
   }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
@@ -93,7 +84,14 @@ class CreateAvatarViewController: RocateerViewController {
 //-------------------------------------------------------------------------------------------
 extension CreateAvatarViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    self.selectedAvatar[indexPath.section] = indexPath.row
+    var selected = 0
+    if collectionView == self.faceCollectionView {
+      selected = 1
+    } else if collectionView == self.colorCollectionView {
+      selected = 2
+    }
+    self.selectedAvatar[selected] = indexPath.row
+    self.setAvatarView()
     collectionView.reloadData()
   }
 }

@@ -20,6 +20,7 @@ import FirebaseAuth
 import KakaoSDKCommon
 import GoogleSignIn
 import Hero
+import Defaults
 
 let log = SwiftyBeaver.self
 @main

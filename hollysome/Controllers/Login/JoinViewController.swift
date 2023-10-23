@@ -152,26 +152,26 @@ class JoinViewController: RocateerViewController {
   
   /// 회원가입 API
   func registerAPI() {
-    let memberRequest = MemberModel()
-    memberRequest.email = self.idTextField.text ?? ""
-    memberRequest.password = self.pwTextField.text ?? ""
-    memberRequest.password_confirmation = self.pwConfirmTextField.text ?? ""
-    memberRequest.name = self.nameTextField.text ?? ""
-    memberRequest.phone = self.phoneTextField.text ?? ""
-    memberRequest.gender = self.manButton.isSelected ? "0" : self.womanButton.isSelected ? "1" : nil
-    memberRequest.birth = self.birthTextField.text ?? ""
-    
-    
-    APIRouter.shared.api(path: APIURL.register, parameters: memberRequest.toJSON()) { data in
-      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-        if let result = memberResponse.result {
-          Defaults[.access_token] = result.access_token ?? ""
-          Defaults[.name] = result.name ?? ""
-          Defaults[.email] = self.idTextField.text ?? ""
-          Defaults[.password] = self.pwTextField.text ?? ""
-        }
-      }
-    }
+//    let memberRequest = MemberModel()
+//    memberRequest.email = self.idTextField.text ?? ""
+//    memberRequest.password = self.pwTextField.text ?? ""
+//    memberRequest.password_confirmation = self.pwConfirmTextField.text ?? ""
+//    memberRequest.name = self.nameTextField.text ?? ""
+//    memberRequest.phone = self.phoneTextField.text ?? ""
+//    memberRequest.gender = self.manButton.isSelected ? "0" : self.womanButton.isSelected ? "1" : nil
+//    memberRequest.birth = self.birthTextField.text ?? ""
+//    
+//    
+//    APIRouter.shared.api(path: APIURL.register, parameters: memberRequest.toJSON()) { data in
+//      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+//        if let result = memberResponse.result {
+//          Defaults[.access_token] = result.access_token ?? ""
+//          Defaults[.name] = result.name ?? ""
+//          Defaults[.email] = self.idTextField.text ?? ""
+//          Defaults[.password] = self.pwTextField.text ?? ""
+//        }
+//      }
+//    }
 
   }
   

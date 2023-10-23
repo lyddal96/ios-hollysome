@@ -10,6 +10,8 @@ import Foundation
 import ObjectMapper
 
 class BaseModel: Mappable {
+  // 회원 키
+  var member_idx: String?
   // 성공 여부
   var success: Bool?
   // 메세지
@@ -17,9 +19,9 @@ class BaseModel: Mappable {
   // 토큰
   var access_token: String?
   // Google FCM Key
-  var fcm_key: String?
+  var gcm_key: String?
   // 디바이스 종류. 1: Android, 2: IOS, 3: Other
-  var device_type: String?
+  var device_os: String?
   // 에러목록
   var errors: [String]?
   // 키
@@ -45,11 +47,12 @@ class BaseModel: Mappable {
   }
   
   func mapping(map: Map) {
+    self.member_idx <- map["member_idx"]
     self.success <- map["success"]
     self.message <- map["message"]
     self.access_token <- map["access_token"]
-    self.fcm_key <- map["fcm_key"]
-    self.device_type <- map["device_type"]
+    self.gcm_key <- map["gcm_key"]
+    self.device_os <- map["device_os"]
     self.errors <- map["errors"]
     self.id <- map["id"]
     self.page <- map["page"]

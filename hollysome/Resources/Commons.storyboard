@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RuJ-pq-Scc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RuJ-pq-Scc">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -744,24 +744,34 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJ2-I9-Tvy">
                                 <rect key="frame" x="137" y="123" width="119" height="119"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cR9-Za-KnE">
+                                        <rect key="frame" x="10" y="10" width="99" height="99"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w9h-jt-eTR">
                                         <rect key="frame" x="0.0" y="0.0" width="119" height="119"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mdq-VD-RaL">
-                                        <rect key="frame" x="0.0" y="0.0" width="119" height="119"/>
+                                        <rect key="frame" x="34.666666666666657" y="34.666666666666657" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="KtP-dn-xa7"/>
+                                            <constraint firstAttribute="height" constant="50" id="Vrw-bB-sqZ"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Mdq-VD-RaL" secondAttribute="trailing" id="17i-jZ-Zje"/>
-                                    <constraint firstItem="Mdq-VD-RaL" firstAttribute="top" secondItem="LJ2-I9-Tvy" secondAttribute="top" id="94m-8Y-bUf"/>
+                                    <constraint firstAttribute="bottom" secondItem="cR9-Za-KnE" secondAttribute="bottom" constant="10" id="AeQ-oE-ukG"/>
                                     <constraint firstAttribute="width" constant="119" id="CQC-Ql-b98"/>
+                                    <constraint firstItem="cR9-Za-KnE" firstAttribute="leading" secondItem="LJ2-I9-Tvy" secondAttribute="leading" constant="10" id="CoR-bg-ZyC"/>
+                                    <constraint firstItem="Mdq-VD-RaL" firstAttribute="centerY" secondItem="LJ2-I9-Tvy" secondAttribute="centerY" id="IEs-uo-Soo"/>
+                                    <constraint firstItem="cR9-Za-KnE" firstAttribute="top" secondItem="LJ2-I9-Tvy" secondAttribute="top" constant="10" id="LKx-t0-ecq"/>
                                     <constraint firstAttribute="bottom" secondItem="w9h-jt-eTR" secondAttribute="bottom" id="VDg-sA-cwj"/>
                                     <constraint firstAttribute="height" constant="119" id="WkE-aP-2l8"/>
+                                    <constraint firstAttribute="trailing" secondItem="cR9-Za-KnE" secondAttribute="trailing" constant="10" id="eTk-I3-lMn"/>
                                     <constraint firstItem="w9h-jt-eTR" firstAttribute="top" secondItem="LJ2-I9-Tvy" secondAttribute="top" id="eUN-Ey-fTH"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mdq-VD-RaL" secondAttribute="bottom" id="f08-hh-FMs"/>
-                                    <constraint firstItem="Mdq-VD-RaL" firstAttribute="leading" secondItem="LJ2-I9-Tvy" secondAttribute="leading" id="fbE-uf-J9P"/>
                                     <constraint firstItem="w9h-jt-eTR" firstAttribute="leading" secondItem="LJ2-I9-Tvy" secondAttribute="leading" id="jRh-u5-lMY"/>
+                                    <constraint firstItem="Mdq-VD-RaL" firstAttribute="centerX" secondItem="LJ2-I9-Tvy" secondAttribute="centerX" id="sAe-s2-yY9"/>
                                     <constraint firstAttribute="trailing" secondItem="w9h-jt-eTR" secondAttribute="trailing" id="xCm-HZ-EH3"/>
                                 </constraints>
                             </view>
@@ -771,7 +781,7 @@
                                 <color key="textColor" name="3A3A3C"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fkA-3w-uhh">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fkA-3w-uhh">
                                 <rect key="frame" x="0.0" y="293.33333333333331" width="393" height="71"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -800,7 +810,7 @@
                                 <color key="textColor" name="3A3A3C"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L81-qo-laH">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L81-qo-laH">
                                 <rect key="frame" x="0.0" y="416.33333333333331" width="393" height="71"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -829,7 +839,7 @@
                                 <color key="textColor" name="3A3A3C"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wVQ-4v-0MO">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wVQ-4v-0MO">
                                 <rect key="frame" x="0.0" y="539.33333333333337" width="393" height="71"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -889,6 +899,7 @@
                     <connections>
                         <outlet property="avatarView" destination="LJ2-I9-Tvy" id="JTS-87-mVn"/>
                         <outlet property="colorCollectionView" destination="wVQ-4v-0MO" id="mef-3H-yGD"/>
+                        <outlet property="colorView" destination="cR9-Za-KnE" id="Anj-0h-BG3"/>
                         <outlet property="faceCollectionView" destination="L81-qo-laH" id="xv0-yn-ob4"/>
                         <outlet property="faceImageView" destination="Mdq-VD-RaL" id="aQG-3s-M2i"/>
                         <outlet property="finishButton" destination="WP7-om-82y" id="Cj0-m1-dQG"/>

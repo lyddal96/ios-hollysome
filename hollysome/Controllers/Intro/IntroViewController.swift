@@ -45,20 +45,20 @@ class IntroViewController: RocateerViewController {
   @objc func delay() {
 //    Defaults[.access_token] = nil
     if Defaults[.access_token] != nil {
-      let memberRequest = MemberModel()
-      memberRequest.email = Defaults[.email]
-      memberRequest.password = Defaults[.password]
-      memberRequest.fcm_key = self.appDelegate.fcmKey ?? ""
-      memberRequest.device_type = "I"
-      APIRouter.shared.api(path: APIURL.login, parameters: memberRequest.toJSON()) { data in
-        if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-          if let result = memberResponse.result {
-            Defaults[.access_token] = result.access_token
-//            self.navigationController?.popViewController(animated: true)
-            self.gotoMain()
-          }
-        }
-      }
+//      let memberRequest = MemberModel()
+//      memberRequest.email = Defaults[.email]
+//      memberRequest.password = Defaults[.password]
+//      memberRequest.fcm_key = self.appDelegate.fcmKey ?? ""
+//      memberRequest.device_type = "I"
+//      APIRouter.shared.api(path: APIURL.login, parameters: memberRequest.toJSON()) { data in
+//        if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+//          if let result = memberResponse.result {
+//            Defaults[.access_token] = result.access_token
+////            self.navigationController?.popViewController(animated: true)
+//            self.gotoMain()
+//          }
+//        }
+//      }
 //      APIRouter.shared.api(path: .login, parameters: memberRequest.toJSON()) { response in
 //        if let memberResponse = MemberModel(JSON: response) {
 //          if memberResponse.success == true {
