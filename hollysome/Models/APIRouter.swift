@@ -32,10 +32,16 @@ enum APIResult<T, Error> {
 
 enum APIURL: String {
   /// 인증
-  case register = "api/register" // 회원가입
+  case member_reg_in = "join_v_1_0_0/member_reg_in" // 회원가입
+  case sns_member_login = "sns_login_v_1_0_0/sns_member_login" // sns 로그인
   case login = "login_v_1_0_0/member_login" // 로그인
   case me = "api/me" // 사용자 프로필 정보 확인
-  case logout = "api/logout" // 로그아웃
+  case logout = "logout_v_1_0_0/member_logout" // 로그아웃
+  case member_id_check = "join_v_1_0_0/member_id_check" // 아이디 중복확인
+  case passwordemail_check_in = "join_v_1_0_0/passwordemail_check_in" // 비밀번호/이메일 유효성 확인
+  case app_info_mod_up = "sns_join_v_1_0_0/app_info_mod_up" // 추가정보 입력
+  
+  
   
   
   /// CS
@@ -76,11 +82,11 @@ class APIRouter {
   func api(path: APIURL, method: HTTPMethod = .post, parameters: [String: Any]?, success: @escaping(_ data: [String: Any])-> Void) {
     
     var headers: HTTPHeaders = []
-    if let access_token = Defaults[.access_token], access_token != "", path != .login {
-      headers = [
-        "Authorization" : "Bearer \(access_token)",
-      ]
-    }
+//    if let access_token = Defaults[.access_token], access_token != "", path != .login {
+//      headers = [
+//        "Authorization" : "Bearer \(access_token)",
+//      ]
+//    }
     
     NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData, nil)
     AF.request( baseURL + path.rawValue, method:method, parameters: parameters, headers: headers).responseJSON(completionHandler: { response in

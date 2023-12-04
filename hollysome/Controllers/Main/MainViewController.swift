@@ -150,7 +150,8 @@ class MainViewController: RocateerViewController {
   private func logoutAPI() {
     APIRouter.shared.api(path: APIURL.logout, method: .post, parameters: nil) { data in
       if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-        Defaults[.access_token] = nil
+        Defaults.reset([.member_idx, .member_join_type, .member_id, .member_pw])
+        
       }
     }
 
@@ -232,8 +233,7 @@ extension MainViewController: UITableViewDelegate {
           }
         }
       } else if indexPath.row == 5 {
-        let destination = MemberOutViewController.instantiate(storyboard: "Login")
-        self.navigationController?.pushViewController(destination, animated: true)
+        
       }
     } else if indexPath.section == 1 {
       if indexPath.row == 0 {

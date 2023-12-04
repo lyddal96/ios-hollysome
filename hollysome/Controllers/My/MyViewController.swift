@@ -62,8 +62,7 @@ class MyViewController: RocateerViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    self.beforeLoginView.isHidden = !Defaults[.access_token].isNil
-    self.memberView.isHidden = Defaults[.access_token].isNil
+    
     
   }
   

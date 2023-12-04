@@ -44,21 +44,23 @@ class IntroViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
   @objc func delay() {
 //    Defaults[.access_token] = nil
-    if Defaults[.access_token] != nil {
-//      let memberRequest = MemberModel()
-//      memberRequest.email = Defaults[.email]
-//      memberRequest.password = Defaults[.password]
-//      memberRequest.fcm_key = self.appDelegate.fcmKey ?? ""
-//      memberRequest.device_type = "I"
-//      APIRouter.shared.api(path: APIURL.login, parameters: memberRequest.toJSON()) { data in
-//        if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-//          if let result = memberResponse.result {
-//            Defaults[.access_token] = result.access_token
-////            self.navigationController?.popViewController(animated: true)
-//            self.gotoMain()
-//          }
-//        }
-//      }
+    if Defaults[.member_idx] != nil && Defaults[.member_join_type] == "C" {
+      let memberRequest = MemberModel()
+      memberRequest.member_id = Defaults[.member_id]
+      memberRequest.member_pw = Defaults[.member_pw]
+      memberRequest.gcm_key = self.appDelegate.fcmKey ?? ""
+      memberRequest.device_os = "I"
+      APIRouter.shared.api(path: APIURL.login, parameters: memberRequest.toJSON()) { data in
+        if let memberResponse = MemberModel(JSON: data) {
+          if let result = memberResponse.result {
+            Defaults[.member_idx] = memberResponse.member_idx
+            self.gotoMain()
+          }
+        } else {
+          Defaults.reset([.member_idx, .member_join_type, .member_id, .member_pw])
+          self.gotoLogin()
+        }
+      }
 //      APIRouter.shared.api(path: .login, parameters: memberRequest.toJSON()) { response in
 //        if let memberResponse = MemberModel(JSON: response) {
 //          if memberResponse.success == true {

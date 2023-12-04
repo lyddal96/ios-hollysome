@@ -17,8 +17,9 @@ class AJAlertController: UIViewController {
   private var strAlertText = String()
   private var btnCancelTitle:String?
   private var btnOtherTitle:String?
-  private let btnOtherColor  = UIColor(named:"282828")
-  private let btnCancelColor = UIColor(named:"F44336")
+  private var img: String?
+  private let btnOtherColor  = UIColor(named:"FFFFFF")
+  private let btnCancelColor = UIColor(named:"FFFFFF")
   
   // MARK:- Public Properties
   @IBOutlet var viewAlert: UIView!
@@ -27,6 +28,7 @@ class AJAlertController: UIViewController {
   @IBOutlet var btnCancel: UIButton!
   @IBOutlet var btnOther: UIButton!
   @IBOutlet var btnOK: UIButton!
+  @IBOutlet weak var circleImageView: UIImageView!
 //  @IBOutlet var viewAlertBtns: UIView!
   //  @IBOutlet var alertImageView: UIImageView!
   @IBOutlet var alertWidthConstraint: NSLayoutConstraint!
@@ -74,7 +76,8 @@ class AJAlertController: UIViewController {
     
     lblTitle.text   = strAlertTitle
     lblAlertText?.text   = strAlertText
-    
+    self.circleImageView.isHidden = self.img.isNil
+    self.circleImageView.image = UIImage(named: self.img ?? "")
     if let aCancelTitle = btnCancelTitle {
       btnCancel.setCornerRadius(radius: 6)
       btnCancel.setTitle(aCancelTitle, for: .normal)
@@ -112,9 +115,11 @@ class AJAlertController: UIViewController {
   private func preferredAlertWidth() {
     switch UIDevice.current.userInterfaceIdiom {
     case .phone:
-      alertWidthConstraint.constant = 280.0
+//      alertWidthConstraint.constant = 280.0
+      break
     case .pad:
-      alertWidthConstraint.constant = 340.0
+//      alertWidthConstraint.constant = 340.0
+      break
     case .mac : break
     case .unspecified: break
     case .tv: break
@@ -124,11 +129,12 @@ class AJAlertController: UIViewController {
   }
   
   /// Create and Configure Alert Controller
-  private func configure(title: String, message:String, btnCancelTitle:String?, btnOtherTitle:String?) {
+  private func configure(title: String, message:String, btnCancelTitle:String?, btnOtherTitle:String?, img: String?) {
     self.strAlertTitle    = title
     self.strAlertText     = message
     self.btnCancelTitle   = btnCancelTitle
     self.btnOtherTitle    = btnOtherTitle
+    self.img = img
   }
   
   /// Show Alert Controller
@@ -222,8 +228,8 @@ class AJAlertController: UIViewController {
    - parameter completion:     Completion block. Other Button Index - 1 and Cancel Button Index - 0
    */
   
-  public func showAlert(astrTitle: String, aStrMessage: String, aCancelBtnTitle: String?, aOtherBtnTitle: String?, completion : alertCompletionBlock) {
-    configure(title: astrTitle, message: aStrMessage, btnCancelTitle: aCancelBtnTitle, btnOtherTitle: aOtherBtnTitle)
+  public func showAlert(astrTitle: String, aStrMessage: String, aCancelBtnTitle: String?, aOtherBtnTitle: String?, img: String? = nil, completion : alertCompletionBlock) {
+    configure(title: astrTitle, message: aStrMessage, btnCancelTitle: aCancelBtnTitle, btnOtherTitle: aOtherBtnTitle, img: img)
     show()
     block = completion
   }
@@ -238,9 +244,9 @@ class AJAlertController: UIViewController {
   // 2018-03-29 sn
   // astrTitle add
   // aImageViewCheck add
-  public func showAlertWithOkButton(astrTitle: String, aStrMessage: String, alertViewHiddenCheck: Bool, completion : alertCompletionBlock){
+  public func showAlertWithOkButton(astrTitle: String, aStrMessage: String, alertViewHiddenCheck: Bool, img: String? = nil, completion : alertCompletionBlock){
     alertViewHidden = alertViewHiddenCheck
-    configure(title: astrTitle, message: aStrMessage, btnCancelTitle: nil, btnOtherTitle: nil)
+    configure(title: astrTitle, message: aStrMessage, btnCancelTitle: nil, btnOtherTitle: nil, img: img)
     show()
     block = completion
   }

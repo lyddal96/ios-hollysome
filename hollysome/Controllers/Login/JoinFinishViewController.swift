@@ -52,7 +52,9 @@ class JoinFinishViewController: RocateerViewController {
   /// 로그인 화면으로
   /// - Parameter sender: 버튼
   @IBAction func toLoginTouched(sender: UIButton) {
-    self.dismiss(animated: true, completion: nil)
+    let destination = MainTabBarViewController.instantiate(storyboard: "Main")
+    let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    window?.rootViewController = destination
   }
   
 }

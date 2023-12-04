@@ -299,26 +299,39 @@ class LoginViewController: RocateerViewController {
 //    let destination = JoinViewController.instantiate(storyboard: "Login")
 //    self.navigationController?.pushViewController(destination, animated: true)
     
-    let destination = CreateAvatarViewController.instantiate(storyboard: "Commons").coverNavigationController()
+    let destination = EmailJoinViewController.instantiate(storyboard: "Login").coverNavigationController()
     destination.modalPresentationStyle = .fullScreen
     destination.hero.isEnabled = true
     destination.heroModalAnimationType = .autoReverse(presenting: .cover(direction: .left))
     self.present(destination, animated: true)
+    
+//    let destination = CreateAvatarViewController.instantiate(storyboard: "Commons").coverNavigationController()
+//    destination.modalPresentationStyle = .fullScreen
+//    destination.hero.isEnabled = true
+//    destination.heroModalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+//    self.present(destination, animated: true)
   }
   
   /// 카카오톡 로그인
   ///
   /// - Parameter sender: 버튼
   @IBAction func kakaoLoginButtonTouched(sender: UIButton) {
-    self.kakaoLogin()
+//    self.kakaoLogin()
+    let destination = MainTabBarViewController.instantiate(storyboard: "Main")
+    let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    window?.rootViewController = destination
+    
   }
   /// 네이버 로그인
   ///
   /// - Parameter sender: 버튼
   @IBAction func naverLoginButtonTouched(sender: UIButton) {
-    let naverConnection = NaverThirdPartyLoginConnection.getSharedInstance()
-    naverConnection?.delegate = self
-    naverConnection?.requestThirdPartyLogin()
+    let destination = MainTabBarViewController.instantiate(storyboard: "Main")
+    let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    window?.rootViewController = destination
+//    let naverConnection = NaverThirdPartyLoginConnection.getSharedInstance()
+//    naverConnection?.delegate = self
+//    naverConnection?.requestThirdPartyLogin()
     //      self.site = "naver"
   }
   
@@ -326,9 +339,13 @@ class LoginViewController: RocateerViewController {
   ///
   /// - Parameter sender: 버튼
   @IBAction func appleLoginButtonTouched(sender: UIButton) {
-    NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData)
-    self.startSignInWithAppleFlow()
+//    NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData)
+//    self.startSignInWithAppleFlow()
+    let destination = MainTabBarViewController.instantiate(storyboard: "Main")
+    let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    window?.rootViewController = destination
   }
+  
   
 }
 

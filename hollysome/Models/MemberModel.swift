@@ -15,11 +15,11 @@ class MemberModel: BaseModel {
   // 비밀번호
   var member_pw: String?
   // 비밀번호 확인
-  var password_confirmation: String?
+  var member_pw_confirm: String?
   // 이름
-  var name: String?
+  var member_name: String?
   // 연락처
-  var phone: String?
+  var member_phone: String?
   // 생년월일
   var birth: String?
   // 팔로워 수
@@ -28,6 +28,8 @@ class MemberModel: BaseModel {
   var following_count: Int?
   // 성별 - 0 : 남자, 1: 여자
   var gender: String?
+  /// 이메일
+  var member_email: String?
   
   var result: MemberModel?
   
@@ -35,14 +37,14 @@ class MemberModel: BaseModel {
     super.mapping(map: map)
     self.member_id <- map["member_id"]
     self.member_pw <- map["member_pw"]
-    self.password_confirmation <- map["password_confirmation"]
-    self.name <- map["name"]
-    self.phone <- map["phone"]
+    self.member_pw_confirm <- map["member_pw_confirm"]
+    self.member_name <- map["member_name"]
+    self.member_phone <- map["member_phone"]
     self.birth <- map["birth"]
     self.follower_count <- map["follower_count"]
     self.following_count <- map["following_count"]
     self.gender <- map["gender"]
-    
+    self.member_email <- map["member_email"]
     
     self.result <- map["result"]
   }

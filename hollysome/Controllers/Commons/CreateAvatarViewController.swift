@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol AvatarDelegate {
+  func avatarDelegate(selectedAvatar:[Int])
+}
 class CreateAvatarViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
@@ -24,6 +27,8 @@ class CreateAvatarViewController: RocateerViewController {
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
   var selectedAvatar: [Int] = [0,0,0]
+  var memberRequest = MemberModel()
+  var delegate: AvatarDelegate? = nil
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -73,10 +78,17 @@ class CreateAvatarViewController: RocateerViewController {
     
     self.colorView.backgroundColor = UIColor(named: "profile\(self.selectedAvatar[2])")
   }
+  
+  
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
-  
+  /// 선택 완료
+  /// - Parameter sender: 버튼
+  @IBAction func finishButtonTouched(sender: UIButton) {
+    self.delegate?.avatarDelegate(selectedAvatar: self.selectedAvatar)
+    self.navigationController?.popViewController(animated: true)
+  }
 }
 
 //-------------------------------------------------------------------------------------------

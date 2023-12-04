@@ -10,14 +10,15 @@ import Foundation
 import ObjectMapper
 
 class BaseModel: Mappable {
+  /// 메세지
+  var code_msg: String?
+  var code: String?
   // 회원 키
   var member_idx: String?
   // 성공 여부
   var success: Bool?
   // 메세지
   var message: String?
-  // 토큰
-  var access_token: String?
   // Google FCM Key
   var gcm_key: String?
   // 디바이스 종류. 1: Android, 2: IOS, 3: Other
@@ -39,6 +40,18 @@ class BaseModel: Mappable {
   var per_page: Int?
   // 공지사항 타겟 - 0 : 사용자 , 1 : 파트너
   var target: Int?
+  /// 캐릭터 얼굴
+  var member_role1: String?
+  /// 캐릭터 표정
+  var member_role2: String?
+  /// 캐릭터 컬러
+  var member_role3: String?
+  /// 하우스 코드
+  var house_code: String?
+  /// 아이디 중복확인 YN
+  var id_check: String?
+  /// 필수 이용 약관
+  var term_arr: String?
   
   init() {
   }
@@ -47,10 +60,11 @@ class BaseModel: Mappable {
   }
   
   func mapping(map: Map) {
+    self.code_msg <- map["code_msg"]
+    self.code <- map["code"]
     self.member_idx <- map["member_idx"]
     self.success <- map["success"]
     self.message <- map["message"]
-    self.access_token <- map["access_token"]
     self.gcm_key <- map["gcm_key"]
     self.device_os <- map["device_os"]
     self.errors <- map["errors"]
@@ -61,6 +75,12 @@ class BaseModel: Mappable {
     self.total_cnt <- map["total_cnt"]
     self.per_page <- map["per_page"]
     self.target <- map["target"]
+    self.member_role1 <- map["member_role1"]
+    self.member_role2 <- map["member_role2"]
+    self.member_role3 <- map["member_role3"]
+    self.house_code <- map["house_code"]
+    self.id_check <- map["id_check"]
+    self.term_arr <- map["term_arr"]
   }
   
   

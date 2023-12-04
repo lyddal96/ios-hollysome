@@ -155,7 +155,7 @@ class RocateerViewController: UIViewController {
   /// - Parameter closure: closure
   /// - Returns: return
   func loginCheck(closure: @escaping () -> ()) {
-    if Defaults[.access_token] == nil {
+    if Defaults[.member_idx] == nil {
       self.gotoLogin()
     } else {
       closure()
