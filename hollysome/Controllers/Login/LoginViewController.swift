@@ -25,9 +25,11 @@ class LoginViewController: RocateerViewController {
   @IBOutlet weak var naverButton: UIButton!
   @IBOutlet weak var kakaoButton: UIButton!
   @IBOutlet weak var appleButton: UIButton!
-  @IBOutlet weak var emailLoginButton: UIButton!
   @IBOutlet weak var emailJoinButton: UIButton!
-  
+  @IBOutlet weak var loginButton: UIButton!
+  @IBOutlet weak var idTextField: UITextField!
+  @IBOutlet weak var pwTextField: UITextField!
+  @IBOutlet weak var findPwButton: UIButton!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -52,10 +54,20 @@ class LoginViewController: RocateerViewController {
     super.initLayout()
     
     
-    self.naverButton.setCornerRadius(radius: 12)
-    self.kakaoButton.setCornerRadius(radius: 12)
-    self.appleButton.setCornerRadius(radius: 12)
+    self.naverButton.setCornerRadius(radius: 25)
+    self.kakaoButton.setCornerRadius(radius: 25)
+    self.appleButton.setCornerRadius(radius: 25)
     
+    self.idTextField.setCornerRadius(radius: 4)
+    self.pwTextField.setCornerRadius(radius: 4)
+    self.idTextField.addBorder(width: 1, color: UIColor(named: "C8CCD5")!)
+    self.pwTextField.addBorder(width: 1, color: UIColor(named: "C8CCD5")!)
+    
+    self.loginButton.setCornerRadius(radius: 12)
+    self.loginButton.addBorder(width: 1, color: UIColor(named: "accent")!)
+    
+    self.idTextField.setTextPadding(10)
+    self.pwTextField.setTextPadding(10)
   }
   
   override func initRequest() {
@@ -66,46 +78,24 @@ class LoginViewController: RocateerViewController {
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
   /// 회원 로그인 API
-//  private func memberLoginAPI() {
-//    let memberReqeust = MemberModel()
-//    memberReqeust.member_id = self.idTextField.text
-//    memberReqeust.member_pw = self.pwTextField.text
-//    memberReqeust.device_os = "I"
-//    memberReqeust.gcm_key = "test"
-//
-//    APIRouter.shared.api(path: .member_login, parameters: memberReqeust.toJSON()) { response in
-//      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
-//        Defaults[.member_idx] = memberResponse.member_idx
-//        Defaults[.member_id] = self.idTextField.text
-//        Defaults[.member_pw] = self.pwTextField.text
-//
-//        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "Rocateer", aStrMessage: "로그인 성공", alertViewHiddenCheck: false) { (position, title) in
-//        }
-//      }
-//    } 
-//  }
-  
-  
-  /// 로그인
-  private func loginAPI() {
-//    let memberReqeust = MemberModel()
-//    memberReqeust.email = self.idTextField.text
-//    memberReqeust.password = self.pwTextField.text
-//    memberReqeust.fcm_key = "test"
-//    memberReqeust.device_type = "1"
-//
-//    APIRouter.shared.api(path: APIURL.login, parameters: memberReqeust.toJSON()) { data in
-//      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
-//        if let result = memberResponse.result {
-//          Defaults[.access_token] = result.access_token
-//          Defaults[.email] = self.idTextField.text
-//          Defaults[.password] = self.pwTextField.text
-//          self.navigationController?.popViewController(animated: true)
-//        }
-//      }
-//    }
-//
-//
+  private func memberLoginAPI() {
+    let memberReqeust = MemberModel()
+    memberReqeust.member_id = self.idTextField.text
+    memberReqeust.member_pw = self.pwTextField.text
+    memberReqeust.device_os = "I"
+    memberReqeust.gcm_key = self.appDelegate.fcmKey
+
+    APIRouter.shared.api(path: .login, parameters: memberReqeust.toJSON()) { response in
+      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
+        Defaults[.member_idx] = memberResponse.member_idx
+        Defaults[.member_id] = self.idTextField.text
+        Defaults[.member_pw] = self.pwTextField.text
+        Defaults[.house_code] = memberResponse.house_code
+        let destination = MainTabBarViewController.instantiate(storyboard: "Main")
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        window?.rootViewController = destination
+      }
+    } 
   }
   
   /// 네이버
@@ -287,14 +277,25 @@ class LoginViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
+  /// 로그인
+  /// - Parameter sender: 버튼
   @IBAction func emailLoginButtonTouched(sender: UIButton) {
-    let destination = EmailLoginViewController.instantiate(storyboard: "Login").coverNavigationController()
-    destination.modalPresentationStyle = .fullScreen
-    destination.hero.isEnabled = true
-    destination.hero.modalAnimationType = .autoReverse(presenting: .cover(direction: .left))
-    self.present(destination, animated: true)
+    self.memberLoginAPI()
+//    let destination = EmailLoginViewController.instantiate(storyboard: "Login").coverNavigationController()
+//    destination.modalPresentationStyle = .fullScreen
+//    destination.hero.isEnabled = true
+//    destination.hero.modalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+//    self.present(destination, animated: true)
   }
-   
+  
+  /// 비밀번호 찾기
+  /// - Parameter sender: 버튼
+  @IBAction func findPwButtonTouched(sender: UIButton) {
+    
+  }
+  
+  /// 회원가입
+  /// - Parameter sender: 버튼
   @IBAction func joinButtonTouched(sender: UIButton) {
 //    let destination = JoinViewController.instantiate(storyboard: "Login")
 //    self.navigationController?.pushViewController(destination, animated: true)
