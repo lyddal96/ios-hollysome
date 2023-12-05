@@ -31,6 +31,8 @@ class NoticeModel: BaseModel {
   var width: Int?
   /// 이미지 세로 길이
   var height: Int?
+  /// 날짜
+  var ins_date: String?
   
   /// 결과
   var result: NoticeModel?
@@ -54,6 +56,7 @@ class NoticeModel: BaseModel {
     self.path <- map["path"]
     self.width <- map["width"]
     self.height <- map["height"]
+    self.ins_date <- map["ins_date"]
     
     self.result <- map["result"]
     self.data_array <- map["data_array"]

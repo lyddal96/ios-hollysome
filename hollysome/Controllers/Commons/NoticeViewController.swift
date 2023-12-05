@@ -54,17 +54,12 @@ class NoticeViewController: RocateerViewController {
   /// 공지사항 리스트
   private func noticeListAPI() {
     self.noticeRequest.setNextPage()
-    self.noticeRequest.per_page = 10
-    self.noticeRequest.target = 0
     APIRouter.shared.api(path: .notice_list, method: .get, parameters: self.noticeRequest.toJSON()) { response in
       if let noticeResponse = NoticeModel(JSON: response), Tools.shared.isSuccessResponse(response: noticeResponse) {
-        if let result = noticeResponse.result {
-          self.isLoadingList = true
-          self.noticeRequest.total_page = result.total_page
-          if let data = result.data, data.count > 0 {
-            self.noticeList += data
-            
-          }
+        self.isLoadingList = true
+        self.noticeRequest.total_page = noticeResponse.total_page
+        if let data = noticeResponse.data_array, data.count > 0 {
+          self.noticeList += data
         }
         self.noticeTableView.emptyDataSetSource = self
         self.noticeTableView.reloadData()
@@ -112,12 +107,8 @@ extension NoticeViewController: UITableViewDataSource {
   private func noticeListCell(cell: UITableViewCell, indexPath: IndexPath) {
     let cell = cell as! NoticeListCell
     let notice = self.noticeList[indexPath.row]
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    let date = dateFormatter.date(from: notice.created_at ?? "") ?? Date()
-    dateFormatter.dateFormat = "yyyy.MM.dd"
     cell.noticeTitleLabel.text = notice.title ?? ""
-    cell.noticeDateLabel.text = dateFormatter.string(from: date)
+    cell.noticeDateLabel.text = notice.ins_date
   }
 }
 

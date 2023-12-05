@@ -34,7 +34,7 @@ class MyViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-
+  var memberResponse = MemberModel()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -97,7 +97,11 @@ class MyViewController: RocateerViewController {
     
     // 하우스 나가기
     self.outHouseView.addTapGesture { recognizer in
-      
+      AJAlertController.initialization().showAlert(astrTitle: "하우스의 일정, 가계부 등은 삭제되어 더 이상 볼 수 없게 됩니다. \(self.memberResponse.house_name ?? "") 을(를) 나가시곘어요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "하우스 나가기", img: "error_circle") { position, title in
+        if position == 1 {
+           
+        }
+      }
     }
     
     // 로그아웃
@@ -137,6 +141,7 @@ class MyViewController: RocateerViewController {
     
     APIRouter.shared.api(path: .member_info_detail, method: .post, parameters: memberRequest.toJSON()) { response in
       if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
+        self.memberResponse = memberResponse
         self.houseNameLabel.isHidden = memberResponse.house_code.isNil
         self.inputHouseCodeView.isHidden = !memberResponse.house_code.isNil
         self.inviteView.isHidden = memberResponse.house_code.isNil
