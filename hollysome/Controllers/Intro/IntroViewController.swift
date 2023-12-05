@@ -52,10 +52,8 @@ class IntroViewController: RocateerViewController {
       memberRequest.device_os = "I"
       APIRouter.shared.api(path: APIURL.login, parameters: memberRequest.toJSON()) { data in
         if let memberResponse = MemberModel(JSON: data) {
-          if let result = memberResponse.result {
-            Defaults[.member_idx] = memberResponse.member_idx
-            self.gotoMain()
-          }
+          Defaults[.member_idx] = memberResponse.member_idx
+          self.gotoMain()
         } else {
           Defaults.reset([.member_idx, .member_join_type, .member_id, .member_pw])
           self.gotoLogin()

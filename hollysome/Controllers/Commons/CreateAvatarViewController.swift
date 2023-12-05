@@ -74,7 +74,7 @@ class CreateAvatarViewController: RocateerViewController {
     
     self.shapeImageView.image = UIImage(named: "\(shapeList[self.selectedAvatar[0]])119")
     
-    self.faceImageView.image = UIImage(named: "face119_\(self.selectedAvatar[1] + 1)")
+    self.faceImageView.image = UIImage(named: "face119_\(self.selectedAvatar[1])")
     
     self.colorView.backgroundColor = UIColor(named: "profile\(self.selectedAvatar[2])")
   }
@@ -139,7 +139,7 @@ extension CreateAvatarViewController: UICollectionViewDataSource {
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FaceCell", for: indexPath) as! FaceCell
       cell.setCornerRadius(radius: 12)
-      cell.faceImageView.image = UIImage(named: "face\(indexPath.row + 1)")
+      cell.faceImageView.image = UIImage(named: "face\(indexPath.row)")
       cell.addBorder(width: 2, color: UIColor(named: indexPath.row == self.selectedAvatar[1] ? "accent" : "F1F1F4")!)
       
       return cell

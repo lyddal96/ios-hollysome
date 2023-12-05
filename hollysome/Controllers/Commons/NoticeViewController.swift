@@ -56,7 +56,7 @@ class NoticeViewController: RocateerViewController {
     self.noticeRequest.setNextPage()
     self.noticeRequest.per_page = 10
     self.noticeRequest.target = 0
-    APIRouter.shared.api(path: .notice, method: .get, parameters: self.noticeRequest.toJSON()) { response in
+    APIRouter.shared.api(path: .notice_list, method: .get, parameters: self.noticeRequest.toJSON()) { response in
       if let noticeResponse = NoticeModel(JSON: response), Tools.shared.isSuccessResponse(response: noticeResponse) {
         if let result = noticeResponse.result {
           self.isLoadingList = true

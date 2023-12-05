@@ -32,6 +32,7 @@
 		4B6C316D2A298ADE0048DE1C /* FSDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B6C316C2A298ADE0048DE1C /* FSDayCell.xib */; };
 		4B70452E2AE651EF001E03AA /* EmailJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B70452D2AE651EF001E03AA /* EmailJoinViewController.swift */; };
 		4B7045302AEB4F84001E03AA /* IntputHouseCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B70452F2AEB4F84001E03AA /* IntputHouseCodeViewController.swift */; };
+		4B747EFE2B1F2BF8006919EA /* HouseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B747EFD2B1F2BF8006919EA /* HouseModel.swift */; };
 		4B99FF2D2AD428D700EF35F8 /* CreateAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF2C2AD428D700EF35F8 /* CreateAvatarViewController.swift */; };
 		4B99FF2F2AD42CCB00EF35F8 /* ImageCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B99FF2E2AD42CCB00EF35F8 /* ImageCollectionCell.xib */; };
 		4B99FF312AD42CD000EF35F8 /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF302AD42CD000EF35F8 /* ImageCollectionCell.swift */; };
@@ -190,6 +191,7 @@
 		4B6C316C2A298ADE0048DE1C /* FSDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSDayCell.xib; sourceTree = "<group>"; };
 		4B70452D2AE651EF001E03AA /* EmailJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailJoinViewController.swift; sourceTree = "<group>"; };
 		4B70452F2AEB4F84001E03AA /* IntputHouseCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntputHouseCodeViewController.swift; sourceTree = "<group>"; };
+		4B747EFD2B1F2BF8006919EA /* HouseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseModel.swift; sourceTree = "<group>"; };
 		4B99FF2C2AD428D700EF35F8 /* CreateAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAvatarViewController.swift; sourceTree = "<group>"; };
 		4B99FF2E2AD42CCB00EF35F8 /* ImageCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionCell.xib; sourceTree = "<group>"; };
 		4B99FF302AD42CD000EF35F8 /* ImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionCell.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 				BB8C9CBC22AE44A9005E00B0 /* BannerModel.swift */,
 				BB8C9CBE22AE455D005E00B0 /* AlarmModel.swift */,
 				BB8C9CC022AE476C005E00B0 /* EventModel.swift */,
+				4B747EFD2B1F2BF8006919EA /* HouseModel.swift */,
 				68F7EB6D24331A8A00D83318 /* Chat */,
 			);
 			path = Models;
@@ -910,6 +913,7 @@
 				68A4653F23BF051F008E8A0A /* TutorialCell.swift in Sources */,
 				4BBD0C252A2D6BBE00B89F6C /* MultiSelectCalendarViewController.swift in Sources */,
 				68F7EB7524331AEF00D83318 /* MockUser.swift in Sources */,
+				4B747EFE2B1F2BF8006919EA /* HouseModel.swift in Sources */,
 				4B7045302AEB4F84001E03AA /* IntputHouseCodeViewController.swift in Sources */,
 				6817AF2422C5EE650026CDAF /* QnaViewController.swift in Sources */,
 				6859B1E5240E3D440021DED5 /* AlarmViewController.swift in Sources */,

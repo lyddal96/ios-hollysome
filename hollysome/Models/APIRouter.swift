@@ -42,16 +42,26 @@ enum APIURL: String {
   case app_info_mod_up = "sns_join_v_1_0_0/app_info_mod_up" // 추가정보 입력
   
   
+  /// 마이페이지
+  case member_info_detail = "member_info_v_1_0_0/member_info_detail" // 내 정보
+  case member_info_mod_up = "member_info_v_1_0_0/member_info_mod_up" // 내정보 수정
+  case member_out_up = "member_out_v_1_0_0/member_out_up" // 탈퇴하기
+  
+  /// 하우스
+  case house_reg_in = "house_v_1_0_0/house_reg_in" // 하우스 만들기
+  case house_join_in = "house_v_1_0_0/house_join_in" // 하우스 들어가기
   
   
   /// CS
-  case notice = "api/notice/list" // 공지시항 리스트
-  case notice_detail = "api/notice/detail" // 공지사항 상세
+  case notice_list = "notice_v_1_0_0/notice_list" // 공지시항 리스트
+  case notice_detail = "notice_v_1_0_0/notice_detail" // 공지사항 상세
   case faq = "api/faq/list" // faq
-  case qa = "api/qa/list" // 1:1문의 리스트
-  case qa_detail = "api/qa/detail" // 1:1문의 상세
-  case qa_create = "api/qa/create" // 1:1문의 등록
-  case qa_delete = "api/qa/delete" // 1:1문의 삭제
+  case qa = "qa_v_1_0_0/qa_list" // 1:1문의 리스트
+  case qa_detail = "qa_v_1_0_0/qa_detail" // 1:1문의 상세
+  case qa_reg_in = "qa_v_1_0_0/qa_reg_in" // 1:1문의 등록
+  case qa_del = "qa_v_1_0_0/qa_del" // 1:1문의 삭제
+  case terms_list = "terms_web_view_v_1_0_0/terms_list" // 이용약관 리스트
+  case terms_detail = "terms_web_view_v_1_0_0/terms_detail" // 이용약관 상세
   
   
   

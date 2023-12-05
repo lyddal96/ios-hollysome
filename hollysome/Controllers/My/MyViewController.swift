@@ -13,20 +13,24 @@ class MyViewController: RocateerViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
-  @IBOutlet weak var beforeLoginView: UIView!
-  @IBOutlet weak var memberView: UIView!
-  @IBOutlet weak var idLabel: UILabel!
+  @IBOutlet weak var avatarShapeImageView: UIImageView!
+  @IBOutlet weak var colorView: UIView!
+  @IBOutlet weak var faceImageView: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
-  @IBOutlet weak var phoneLabel: UILabel!
-  @IBOutlet weak var genderLabel: UILabel!
-  @IBOutlet weak var birthLabel: UILabel!
-  @IBOutlet weak var followerLabel: UILabel!
-  @IBOutlet weak var followingLabel: UILabel!
-  @IBOutlet weak var logoutButton: UIButton!
-  @IBOutlet weak var noticeButton: UIButton!
-  @IBOutlet weak var faqButton: UIButton!
-  @IBOutlet weak var qnaButton: UIButton!
-  @IBOutlet weak var authButton: UIButton!
+  @IBOutlet weak var idView: UIView!
+  @IBOutlet weak var loginTypeImageView: UIImageView!
+  @IBOutlet weak var idLabel: UILabel!
+  @IBOutlet weak var inputHouseCodeView: UIView!
+  @IBOutlet weak var inviteView: UIView!
+  @IBOutlet weak var modifyInfoView: UIView!
+  @IBOutlet weak var alarmView: UIView!
+  @IBOutlet weak var noticeView: UIView!
+  @IBOutlet weak var qnaView: UIView!
+  @IBOutlet weak var termsView: UIView!
+  @IBOutlet weak var outHouseView: UIView!
+  @IBOutlet weak var logoutView: UIView!
+  @IBOutlet weak var memberOutView: UIView!
+  @IBOutlet weak var houseNameLabel: UILabel!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -45,14 +49,70 @@ class MyViewController: RocateerViewController {
   override func initLayout() {
     super.initLayout()
     
-    self.noticeButton.addShadow(cornerRadius: 25)
-    self.faqButton.addShadow(cornerRadius: 25)
-    self.qnaButton.addShadow(cornerRadius: 25)
-    self.authButton.addShadow(cornerRadius: 25)
+    self.idView.setCornerRadius(radius: 12)
+    self.colorView.setCornerRadius(radius: 20)
   }
   
   override func initRequest() {
     super.initRequest()
+    
+    // 하우스 코드 입력하기
+    self.inputHouseCodeView.addTapGesture { recognizer in
+      
+    }
+    
+    // 눔메이트 초대하기
+    self.inviteView.addTapGesture { recognizer in
+      
+    }
+    
+    // 내 정보 수정
+    self.modifyInfoView.addTapGesture { recognizer in
+      
+    }
+    
+    // 알림설정
+    self.alarmView.addTapGesture { recognizer in
+      
+    }
+    
+    // 눔메이트 공지사항
+    self.noticeView.addTapGesture { recognizer in
+      let destination = NoticeViewController.instantiate(storyboard: "Commons")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    // 1:1 문의
+    self.qnaView.addTapGesture { recognizer in
+      let destination = QnaViewController.instantiate(storyboard: "Commons")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    // 이용약관
+    self.termsView.addTapGesture { recognizer in
+      
+    }
+    
+    // 하우스 나가기
+    self.outHouseView.addTapGesture { recognizer in
+      
+    }
+    
+    // 로그아웃
+    self.logoutView.addTapGesture { recognizer in
+      AJAlertController.initialization().showAlert(astrTitle: "로그아웃 하시겠어요?", aStrMessage: "", aCancelBtnTitle: "닫기", aOtherBtnTitle: "로그아웃") { position, title in
+        if position == 1 {
+          self.logoutAPI()
+        }
+      }
+    }
+    
+    // 회원탈퇴
+    self.memberOutView.addTapGesture { recognizer in
+      
+    }
   }
   
   override func initLocalize() {
@@ -63,6 +123,7 @@ class MyViewController: RocateerViewController {
     super.viewWillAppear(animated)
     
     
+    self.memberInfoDetailAPI()
     
   }
   
@@ -70,7 +131,32 @@ class MyViewController: RocateerViewController {
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
   /// 사용자 프로필 정보 확인
- 
+  func memberInfoDetailAPI() {
+    let memberRequest = MemberModel()
+    memberRequest.member_idx = Defaults[.member_idx]
+    
+    APIRouter.shared.api(path: .member_info_detail, method: .post, parameters: memberRequest.toJSON()) { response in
+      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
+        self.houseNameLabel.isHidden = memberResponse.house_code.isNil
+        self.inputHouseCodeView.isHidden = !memberResponse.house_code.isNil
+        self.inviteView.isHidden = memberResponse.house_code.isNil
+        self.outHouseView.isHidden = memberResponse.house_code.isNil
+        self.houseNameLabel.text = memberResponse.house_name
+        self.nameLabel.text = memberResponse.member_name ?? ""
+        self.idLabel.text = memberResponse.member_id ?? ""
+        self.idView.isHidden = memberResponse.member_join_type != "C"
+        self.loginTypeImageView.isHidden = Defaults[.member_join_type] == "C"
+        self.loginTypeImageView.image = UIImage(named: Defaults[.member_join_type] == "K" ? "state_kko" : Defaults[.member_join_type] == "N" ? "state_naver" : "state_apple")
+        let shapeList = ["round", "clover", "heart", "square", "cloud", "star"]
+        
+        self.avatarShapeImageView.image = UIImage(named: "\(shapeList[(memberResponse.member_role1 ?? "").toInt() ?? 0])71")
+        
+        self.faceImageView.image = UIImage(named: "face\(memberResponse.member_role2 ?? "")")
+        
+        self.colorView.backgroundColor = UIColor(named: "profile\(memberResponse.member_role3 ?? "")")
+      }
+    }
+  }
   
   func logoutAPI() {
     let memberRequest = MemberModel()
@@ -78,9 +164,12 @@ class MyViewController: RocateerViewController {
     APIRouter.shared.api(path: .logout, parameters: memberRequest.toJSON()) { data in
       if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
         self.resetDefaults()
-        
-        self.beforeLoginView.isHidden = false
-        self.memberView.isHidden = true
+        let destination = LoginViewController.instantiate(storyboard: "Login")
+        destination.hero.isEnabled = true
+        destination.hero.modalAnimationType = .zoom
+        destination.modalPresentationStyle = .fullScreen
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        window?.rootViewController = destination
       }
     }
 

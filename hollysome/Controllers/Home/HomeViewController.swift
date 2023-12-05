@@ -55,11 +55,11 @@ class HomeViewController: RocateerViewController {
     self.inputCodeView.addTapGesture { recognizer in
       // 하우스 코드 입력하기
       let destination = IntputHouseCodeViewController.instantiate(storyboard: "Home")
-//      destination.modalTransitionStyle = .crossDissolve
-//      destination.modalPresentationStyle = .overCurrentContext
-      destination.modalPresentationStyle = .fullScreen
+      destination.modalTransitionStyle = .crossDissolve
+      destination.modalPresentationStyle = .overCurrentContext
       destination.hidesBottomBarWhenPushed = true
-      self.present(destination, animated: false, completion: nil)
+//      self.present(destination, animated: false, completion: nil)
+      self.tabBarController?.present(destination, animated: true)
     }
   }
   

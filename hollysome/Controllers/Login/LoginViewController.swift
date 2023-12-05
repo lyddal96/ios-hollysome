@@ -86,14 +86,21 @@ class LoginViewController: RocateerViewController {
     memberReqeust.gcm_key = self.appDelegate.fcmKey
 
     APIRouter.shared.api(path: .login, parameters: memberReqeust.toJSON()) { response in
-      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
-        Defaults[.member_idx] = memberResponse.member_idx
-        Defaults[.member_id] = self.idTextField.text
-        Defaults[.member_pw] = self.pwTextField.text
-        Defaults[.house_code] = memberResponse.house_code
-        let destination = MainTabBarViewController.instantiate(storyboard: "Main")
-        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-        window?.rootViewController = destination
+      if let memberResponse = MemberModel(JSON: response) {
+        if memberResponse.code == "1000" {
+          Defaults[.member_idx] = memberResponse.member_idx
+          Defaults[.member_id] = self.idTextField.text
+          Defaults[.member_pw] = self.pwTextField.text
+          Defaults[.member_join_type] = "C"
+          Defaults[.house_code] = memberResponse.house_code
+          let destination = MainTabBarViewController.instantiate(storyboard: "Main")
+          let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+          window?.rootViewController = destination
+        } else {
+          AJAlertController.initialization().showAlertWithOkButton(astrTitle: memberResponse.code_msg ?? "", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
+          }
+        }
+        
       }
     } 
   }

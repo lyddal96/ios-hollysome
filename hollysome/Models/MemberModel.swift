@@ -30,6 +30,8 @@ class MemberModel: BaseModel {
   var gender: String?
   /// 이메일
   var member_email: String?
+  /// 회원가입 타입
+  var member_join_type: String?
   
   var result: MemberModel?
   
@@ -45,6 +47,7 @@ class MemberModel: BaseModel {
     self.following_count <- map["following_count"]
     self.gender <- map["gender"]
     self.member_email <- map["member_email"]
+    self.member_join_type <- map["member_join_type"]
     
     self.result <- map["result"]
   }

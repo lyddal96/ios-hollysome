@@ -166,14 +166,10 @@ class RocateerViewController: UIViewController {
   func gotoLogin() {
     let destination = LoginViewController.instantiate(storyboard: "Login")
     destination.hidesBottomBarWhenPushed = true
-    if let navigationController = self.navigationController {
-      navigationController.pushViewController(destination, animated: true)
-    } else {
-      destination.hero.isEnabled = false
-      destination.hero.modalAnimationType = .autoReverse(presenting: .cover(direction: .left))
-      destination.modalPresentationStyle = .fullScreen
-      self.present(destination, animated: true)
-    }
+    destination.hero.isEnabled = false
+    destination.hero.modalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+    destination.modalPresentationStyle = .fullScreen
+    self.present(destination, animated: true)
     
   }
   

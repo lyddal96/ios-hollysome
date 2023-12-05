@@ -77,7 +77,7 @@ class QnaRegistViewController: RocateerViewController {
     }
     
   
-    APIRouter.shared.api(path: .qa_create,method: .post , parameters: self.qnaRequest.toJSON()) { response in
+    APIRouter.shared.api(path: .qa_reg_in,method: .post , parameters: self.qnaRequest.toJSON()) { response in
       if let qnaResponse = QnaModel(JSON: response), Tools.shared.isSuccessResponse(response: qnaResponse) {
         let notificationCenter = NotificationCenter.default
         notificationCenter.post(name: Notification.Name("QnaListUpdate"), object: nil)

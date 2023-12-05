@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "face119_6.png",
+      "filename" : "state-kko.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "face119_6@2x.png",
+      "filename" : "state-kko@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "face119_6@3x.png",
+      "filename" : "state-kko@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

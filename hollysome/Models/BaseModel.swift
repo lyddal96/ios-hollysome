@@ -52,6 +52,8 @@ class BaseModel: Mappable {
   var id_check: String?
   /// 필수 이용 약관
   var term_arr: String?
+  /// 하우스 명
+  var house_name: String?
   
   init() {
   }
@@ -81,6 +83,7 @@ class BaseModel: Mappable {
     self.house_code <- map["house_code"]
     self.id_check <- map["id_check"]
     self.term_arr <- map["term_arr"]
+    self.house_name <- map["house_name"]
   }
   
   

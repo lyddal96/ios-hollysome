@@ -101,7 +101,7 @@ class QnaDetailViewController: RocateerViewController {
   private func qnaDelAPI() {
     self.qnaRequest.id = self.id
     
-    APIRouter.shared.api(path: .qa_delete, method: .post, parameters: self.qnaRequest.toJSON()) { response in
+    APIRouter.shared.api(path: .qa_del, method: .post, parameters: self.qnaRequest.toJSON()) { response in
       if let qnaResponse = QnaModel(JSON: response),Tools.shared.isSuccessResponse(response: qnaResponse) {
         let notificationCenter = NotificationCenter.default
         notificationCenter.post(name: Notification.Name("QnaListUpdate"), object: nil)

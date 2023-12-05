@@ -93,7 +93,7 @@ class JoinViewController: RocateerViewController {
     }
     
     if let face = self.selectedAvatar[1] {
-      self.faceImageView.image = UIImage(named: "face119_\(face + 1)")
+      self.faceImageView.image = UIImage(named: "face119_\(face)")
     }
     
     if let color = self.selectedAvatar[2] {
@@ -116,7 +116,7 @@ class JoinViewController: RocateerViewController {
         Defaults[.member_idx] = memberResponse.member_idx
         Defaults[.member_id] = self.memberRequest.member_id
         Defaults[.member_pw] = self.memberRequest.member_pw
-        
+        Defaults[.member_join_type] = "C"
         let destination = JoinFinishViewController.instantiate(storyboard: "Login")
         if var viewControllers = self.navigationController?.viewControllers {
           viewControllers = [destination]
