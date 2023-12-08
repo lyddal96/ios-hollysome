@@ -21,7 +21,7 @@ class NoticeModel: BaseModel {
   /// 이미지 세로 길이 (px)
   var img_height: Int?
   /// 공지사항 내용
-  var content: String?
+  var contents: String?
   /// 공지사항 등록일
   var created_at: String?
   var img: String?
@@ -50,7 +50,7 @@ class NoticeModel: BaseModel {
     self.img_path <- map["img_path"]
     self.img_width <- map["img_width"]
     self.img_height <- map["img_height"]
-    self.content <- map["content"]
+    self.contents <- map["contents"]
     self.created_at <- map["created_at"]
     self.img <- map["img"]
     self.path <- map["path"]

@@ -118,8 +118,7 @@ extension NoticeViewController: UITableViewDataSource {
 extension NoticeViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let destination = NoticeDetailViewController.instantiate(storyboard: "Commons")
-    destination.noticeResponse = self.noticeList[indexPath.row]
-    destination.id = self.noticeList[indexPath.row].id
+    destination.notice_idx = self.noticeList[indexPath.row].notice_idx ?? ""
     self.navigationController?.pushViewController(destination, animated: true)
     
   }
@@ -145,10 +144,10 @@ extension NoticeViewController: UITableViewDelegate {
 extension NoticeViewController: DZNEmptyDataSetSource {
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
     
-    let text = "공지사항이 없습니다."
+    let text = "새로운 공지사항이 없습니다."
     let attributes: [NSAttributedString.Key : Any] = [
-      NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16),
-      NSAttributedString.Key.foregroundColor : UIColor(named: "666666")!
+      NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
+      NSAttributedString.Key.foregroundColor : UIColor(named: "C8CCD5")!
     ]
     
     return NSAttributedString(string: text, attributes: attributes)
