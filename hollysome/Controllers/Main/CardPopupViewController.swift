@@ -2,13 +2,10 @@
 //  CardPopupViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/22.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
 
 import UIKit
 
-class CardPopupViewController: RocateerViewController {
+class CardPopupViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

@@ -2,9 +2,6 @@
 //  ImageModel.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/03.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
 
 import Foundation
 import ObjectMapper

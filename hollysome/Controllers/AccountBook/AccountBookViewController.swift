@@ -3,12 +3,12 @@
 //  hollysome
 //
 //  Created by 이승아 on 2023/08/09.
-//  Copyright © 2023 rocateer. All rights reserved.
+//
 //
 
 import UIKit
 
-class AccountBookViewController: RocateerViewController {
+class AccountBookViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

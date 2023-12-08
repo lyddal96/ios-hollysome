@@ -3,7 +3,7 @@
 //  hollysome
 //  이벤트와 앱 시작시 팝업 보기에서 같이 사용한다.
 //  Created by rocket on 10/06/2019.
-//  Copyright © 2019 rocateer. All rights reserved.
+//
 //
 
 import Foundation

@@ -2,14 +2,10 @@
 //  IntroViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/09.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
-
 import UIKit
 import Defaults
 
-class IntroViewController: RocateerViewController {
+class IntroViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

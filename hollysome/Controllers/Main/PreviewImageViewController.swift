@@ -2,13 +2,10 @@
 //  PreviewImageViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2023/03/27.
-//  Copyright © 2023 rocateer. All rights reserved.
-//
 
 import UIKit
 
-class PreviewImageViewController: RocateerViewController {
+class PreviewImageViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

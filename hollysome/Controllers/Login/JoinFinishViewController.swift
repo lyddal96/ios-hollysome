@@ -2,13 +2,10 @@
 //  JoinFinishViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/15.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
 
 import UIKit
 
-class JoinFinishViewController: RocateerViewController {
+class JoinFinishViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

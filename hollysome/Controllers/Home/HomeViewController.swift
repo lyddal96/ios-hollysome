@@ -3,13 +3,13 @@
 //  hollysome
 //
 //  Created by 이승아 on 2023/05/26.
-//  Copyright © 2023 rocateer. All rights reserved.
+//
 //
 
 import UIKit
 import Defaults
 
-class HomeViewController: RocateerViewController {
+class HomeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

@@ -2,15 +2,11 @@
 //  EventViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/17.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
-
 
 import UIKit
 import DZNEmptyDataSet
 
-class EventViewController: RocateerViewController {
+class EventViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

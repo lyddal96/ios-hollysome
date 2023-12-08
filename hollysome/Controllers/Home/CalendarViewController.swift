@@ -3,7 +3,7 @@
 //  hollysome
 //
 //  Created by 이승아 on 2023/05/31.
-//  Copyright © 2023 rocateer. All rights reserved.
+//
 //
 
 import UIKit
@@ -14,7 +14,7 @@ protocol DateSelectDelegate {
   func multiSelectDelegate(startDate: Date, endDate: Date)
 }
 
-class CalendarViewController: RocateerViewController {
+class CalendarViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

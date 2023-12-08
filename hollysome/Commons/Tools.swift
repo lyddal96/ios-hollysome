@@ -3,7 +3,7 @@
 //  자주 사용하는 함수 모음
 //
 //  Created by rocket on 2021/05/11.
-//  Copyright © 2021 rocateer. All rights reserved.
+//
 //
 
 import Foundation

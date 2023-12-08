@@ -3,12 +3,12 @@
 //  hollysome
 //
 //  Created by 이승아 on 2023/05/26.
-//  Copyright © 2023 rocateer. All rights reserved.
+//
 //
 
 import UIKit
 
-class ScheduleViewController: RocateerViewController {
+class ScheduleViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

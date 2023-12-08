@@ -2,15 +2,12 @@
 //  FaqCategoryViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/17.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
 
 import UIKit
 import ExpyTableView
 import DZNEmptyDataSet
 
-class FaqCategoryViewController: RocateerViewController{
+class FaqCategoryViewController: BaseViewController{
   
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets

@@ -2,10 +2,6 @@
 //  APIResponse.swift
 //  hollysome
 //
-//  Created by rocateer on 2023/06/16.
-//  Copyright © 2023 rocateer. All rights reserved.
-//
-
 
 import Foundation
 import Alamofire

@@ -2,9 +2,6 @@
 //  AJAlertController.swift
 //  bike
 //
-//  Created by Rocateerimac on 2018. 12. 27..
-//  Copyright © 2018년 rocket. All rights reserved.
-//
 
 import UIKit
 import Foundation

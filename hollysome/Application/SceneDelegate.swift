@@ -2,9 +2,6 @@
 //  SceneDelegate.swift
 //  hollysome
 //
-//  Created by rocateer on 2021/02/19.
-//  Copyright © 2021 rocateer. All rights reserved.
-//
 
 import UIKit
 import GoogleSignIn

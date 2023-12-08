@@ -2,13 +2,11 @@
 //  JoinViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 19/09/2019.
-//  Copyright © 2019 rocateer. All rights reserved.
-//
+
 import UIKit
 import Defaults
 
-class JoinViewController: RocateerViewController {
+class JoinViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

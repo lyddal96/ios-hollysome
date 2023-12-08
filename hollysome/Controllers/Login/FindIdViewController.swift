@@ -2,13 +2,10 @@
 //  FindIdViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/03.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
 
 import UIKit
 
-class FindIdViewController: RocateerViewController {
+class FindIdViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
@@ -63,11 +60,10 @@ class FindIdViewController: RocateerViewController {
 //          self.notFoundIdLabel.isHidden = false
 //          self.foundIdWrapView.isHidden = true
 //        } else {
-//          AJAlertController.initialization().showAlertWithOkButton(astrTitle: "Rocateer", aStrMessage: memberResponse.code_msg ?? "", alertViewHiddenCheck: false) { (position, title) in
-//          }
 //        }
 //      }
-//    } 
+  
+//    }
 //  }
   
   //-------------------------------------------------------------------------------------------

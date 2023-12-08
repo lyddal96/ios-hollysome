@@ -3,13 +3,13 @@
 //  hollysome
 //
 //  Created by 이승아 on 2023/06/05.
-//  Copyright © 2023 rocateer. All rights reserved.
+//
 //
 
 import UIKit
 import FSCalendar
 
-class MultiSelectCalendarViewController: RocateerViewController {
+class MultiSelectCalendarViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

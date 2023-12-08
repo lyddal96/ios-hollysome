@@ -2,12 +2,9 @@
 //  QnaDetailViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 28/06/2019.
-//  Copyright © 2019 rocateer. All rights reserved.
-//
 import UIKit
 
-class QnaDetailViewController: RocateerViewController {
+class QnaDetailViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
@@ -117,11 +114,7 @@ class QnaDetailViewController: RocateerViewController {
   ///
   /// - Parameter sender: 버튼
   @IBAction func deleteButtonTouched(sender: UIButton) {
-    AJAlertController.initialization().showAlert(astrTitle: "Rocateer", aStrMessage: "삭제하시겠습니까?", aCancelBtnTitle: "취소", aOtherBtnTitle: "확인") { (position, title) in
-      if position == 1 {
-        self.qnaDelAPI()
-      }
-    }
+    
     
   }
   

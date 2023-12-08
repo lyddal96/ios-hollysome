@@ -2,9 +2,7 @@
 //  WebViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 19/09/2019.
-//  Copyright © 2019 rocateer. All rights reserved.
-//
+
 import UIKit
 import WebKit
 import Defaults
@@ -44,7 +42,7 @@ enum WebType {
   }
 }
 
-class WebViewController: RocateerViewController {
+class WebViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

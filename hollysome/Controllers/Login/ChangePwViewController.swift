@@ -2,14 +2,11 @@
 //  ChangePwViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/15.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
 
 import UIKit
 import Defaults
 
-class ChangePwViewController: RocateerViewController {
+class ChangePwViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------

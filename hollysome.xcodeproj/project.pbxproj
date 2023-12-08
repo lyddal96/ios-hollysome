@@ -129,7 +129,7 @@
 		68F7EB7524331AEF00D83318 /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7EB7424331AEF00D83318 /* MockUser.swift */; };
 		68F7EB7724331B3900D83318 /* Settings+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7EB7624331B3900D83318 /* Settings+UserDefaults.swift */; };
 		BB34FD4522AF6318000CC795 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34FD4422AF6318000CC795 /* MainViewController.swift */; };
-		BB34FD4722AF6352000CC795 /* RocateerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34FD4622AF6352000CC795 /* RocateerViewController.swift */; };
+		BB34FD4722AF6352000CC795 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34FD4622AF6352000CC795 /* BaseViewController.swift */; };
 		BB34FD4A22AF6520000CC795 /* MainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB34FD4922AF6520000CC795 /* MainCell.xib */; };
 		BB34FD4C22AF65FD000CC795 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34FD4B22AF65FD000CC795 /* MainCell.swift */; };
 		BB34FD5122AF6839000CC795 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34FD5022AF6839000CC795 /* NoticeViewController.swift */; };
@@ -294,7 +294,7 @@
 		6DEF60642EE152A1F4EFBE11 /* Pods_hollysome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hollysome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE1B26E7E98118A6DB393D31 /* Pods-hollysome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hollysome.debug.xcconfig"; path = "Target Support Files/Pods-hollysome/Pods-hollysome.debug.xcconfig"; sourceTree = "<group>"; };
 		BB34FD4422AF6318000CC795 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		BB34FD4622AF6352000CC795 /* RocateerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocateerViewController.swift; sourceTree = "<group>"; };
+		BB34FD4622AF6352000CC795 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BB34FD4922AF6520000CC795 /* MainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCell.xib; sourceTree = "<group>"; };
 		BB34FD4B22AF65FD000CC795 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		BB34FD5022AF6839000CC795 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
@@ -656,7 +656,7 @@
 		BB8C9CAE22AE2353005E00B0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BB34FD4622AF6352000CC795 /* RocateerViewController.swift */,
+				BB34FD4622AF6352000CC795 /* BaseViewController.swift */,
 				4B18F3942A26F334003E694E /* Commons */,
 				68A4653A23BF04DB008E8A0A /* Intro */,
 				BB34FD4322AF6307000CC795 /* Main */,
@@ -888,7 +888,7 @@
 				685E291C23C6EA70001DD8B3 /* ChatViewController.swift in Sources */,
 				6869965123D175C900EFEE01 /* EventDetailCell.swift in Sources */,
 				685E292C23C70B8F001DD8B3 /* MenuCell.swift in Sources */,
-				BB34FD4722AF6352000CC795 /* RocateerViewController.swift in Sources */,
+				BB34FD4722AF6352000CC795 /* BaseViewController.swift in Sources */,
 				685BB17F2A3C3FB200CB39EA /* APIResponse.swift in Sources */,
 				68C5796521E4B0CD00558FF8 /* FcmViewController.swift in Sources */,
 				4B99FF2D2AD428D700EF35F8 /* CreateAvatarViewController.swift in Sources */,

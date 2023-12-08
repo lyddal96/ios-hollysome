@@ -2,13 +2,10 @@
 //  SubTabViewController.swift
 //  hollysome
 //
-//  Created by rocateer on 2020/01/09.
-//  Copyright © 2020 rocateer. All rights reserved.
-//
 
 import UIKit
 
-class SubTabViewController: RocateerViewController {
+class SubTabViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
