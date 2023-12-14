@@ -9,9 +9,9 @@ class QnaDetailViewController: BaseViewController {
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
   @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var stateLabel: UILabel!
-  @IBOutlet weak var stateView: UIView!
   @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var categoryLabel: UILabel!
+  @IBOutlet weak var categoryView: UIView!
   @IBOutlet weak var contentLabel: UILabel!
   @IBOutlet weak var answerView: UIView!
   @IBOutlet weak var answerLabel: UILabel!
@@ -40,8 +40,8 @@ class QnaDetailViewController: BaseViewController {
   
   override func initLayout() {
     super.initLayout()
-    self.stateView.setCornerRadius(radius: 15)
-    self.deleteButton.addShadow(cornerRadius: 25)
+    self.categoryView.setCornerRadius(radius: 12)
+    self.deleteButton.addShadow(cornerRadius: 12)
   }
   
   override func initRequest() {
@@ -55,38 +55,18 @@ class QnaDetailViewController: BaseViewController {
   /// QnA 상세
   private func qnaDetailAPI() {
 //    self.qnaRequest.setNextPage()
-//    self.qnaRequest.qa_idx = self.qa_idx
-//
-    self.qnaRequest.id = self.id
+    self.qnaRequest.qa_idx = self.qa_idx
     
     APIRouter.shared.api(path: .qa_detail, method: .get, parameters: self.qnaRequest.toJSON()) { response in
       if let qnaResponse = QnaModel(JSON: response), Tools.shared.isSuccessResponse(response: qnaResponse) {
-        if let result = qnaResponse.result {
-          self.titleLabel.text = result.title ?? ""
-          let dateFormatter = DateFormatter()
-          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-          let date = dateFormatter.date(from: result.created_at ?? "") ?? Date()
-          let replyDate = dateFormatter.date(from: result.reply_date ?? "") ?? Date()
-          dateFormatter.dateFormat = "yyyy.MM.dd"
-          self.dateLabel.text = dateFormatter.string(from: date)
-          self.contentLabel.text = result.content
-          
-          self.answerView.isHidden = result.reply_yn != 1
-          self.answerLabel.text = result.reply_content ?? ""
-          self.answerDateLabel.text = dateFormatter.string(from: replyDate)
-          
-          if result.reply_yn == 1 {
-            self.stateLabel.text = "답변완료"
-            self.stateLabel.textColor = UIColor(named: "4CAF50")
-            self.stateView.backgroundColor = UIColor(named: "E8F5E9")
-            self.qnaScrollView.backgroundColor = UIColor(named: "E1F5FE")
-          } else {
-            self.stateLabel.text = "미답변"
-            self.stateLabel.textColor = UIColor(named: "F44336")
-            self.stateView.backgroundColor = UIColor(named: "FFEBEE")
-          }
-          
-        }
+        self.titleLabel.text = qnaResponse.qa_title ?? ""
+        self.dateLabel.text = qnaResponse.ins_date ?? ""
+        self.answerDateLabel.text = qnaResponse.reply_date ?? ""
+        self.contentLabel.text = qnaResponse.qa_contents
+        self.answerLabel.text = qnaResponse.reply_content ?? ""
+        self.categoryLabel.text = Constants.qna_category(item: qnaResponse.qa_type ?? "")
+        
+        self.answerView.isHidden = qnaResponse.reply_yn != "Y"
         self.qnaResponse = qnaResponse
         
       }
@@ -102,7 +82,9 @@ class QnaDetailViewController: BaseViewController {
       if let qnaResponse = QnaModel(JSON: response),Tools.shared.isSuccessResponse(response: qnaResponse) {
         let notificationCenter = NotificationCenter.default
         notificationCenter.post(name: Notification.Name("QnaListUpdate"), object: nil)
-        self.navigationController?.popViewController(animated: true)
+        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "문의가 삭제 되었습니다.", aStrMessage: "", alertViewHiddenCheck: false, img: "check_circle") { position, title in
+          self.navigationController?.popViewController(animated: true)
+        }
       }
     }
   }
@@ -114,8 +96,11 @@ class QnaDetailViewController: BaseViewController {
   ///
   /// - Parameter sender: 버튼
   @IBAction func deleteButtonTouched(sender: UIButton) {
-    
-    
+    AJAlertController.initialization().showAlert(astrTitle: "해당 문의글을 삭제하시겠습니까?\n삭제 하시면 해당 글은 다시 복구 할 수 없습니다.", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "확인") { position, title in
+      if position == 1 {
+        self.qnaDelAPI()
+      }
+    }
   }
   
 }

@@ -5,13 +5,13 @@
 
 import UIKit
 import DZNEmptyDataSet
+import Defaults
 
 class QnaViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
   @IBOutlet weak var qnaTableView: UITableView!
-  @IBOutlet weak var registButton: UIButton!
   
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
@@ -45,10 +45,7 @@ class QnaViewController: BaseViewController {
   
   override func initLayout() {
     super.initLayout()
-    
-    self.registButton.setCornerRadius(radius: 25)
-    self.registButton.addShadow(cornerRadius: 25)
-    
+
   }
   
   override func initRequest() {
@@ -62,23 +59,20 @@ class QnaViewController: BaseViewController {
   /// QnA 리스트
   private func qnaListAPI() {
     self.qnaRequest.setNextPage()
-//    self.qnaRequest.member_idx = "1"
+    self.qnaRequest.member_idx = Defaults[.member_idx]
     self.qnaRequest.per_page = 10
     
     APIRouter.shared.api(path: .qa, method: .get, parameters: self.qnaRequest.toJSON()) { response in
       if let qnaResponse = QnaModel(JSON: response), Tools.shared.isSuccessResponse(response: qnaResponse) {
-        if let result = qnaResponse.result {
-          self.isLoadingList = true
-          self.qnaRequest.total_page = qnaResponse.total_page
-          if let data = result.data, data.count > 0 {
-            self.qnaList += data
-          }
-          
-          self.qnaTableView.emptyDataSetSource = self
-          self.qnaTableView.reloadData()
-          self.refresh.endRefreshing()
+        self.isLoadingList = true
+        self.qnaRequest.total_page = qnaResponse.total_page
+        if let data = qnaResponse.data_array, data.count > 0 {
+          self.qnaList += data
         }
         
+        self.qnaTableView.emptyDataSetSource = self
+        self.qnaTableView.reloadData()
+        self.refresh.endRefreshing()
       }
     }
     
@@ -97,8 +91,8 @@ class QnaViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   /// Qna 등록 버튼 터치시
   ///
-  /// - Parameter sender: 버튼
-  @IBAction func registButtonTouched(sender: UIButton) {
+  /// - Parameter sender: 바버튼
+  @IBAction func registBarButtonItemTouched(sender: UIBarButtonItem) {
     let destination = QnaRegistViewController.instantiate(storyboard: "Commons")
     self.navigationController?.pushViewController(destination, animated: true)
   }
@@ -132,22 +126,16 @@ extension QnaViewController: UITableViewDataSource {
   private func qnaListCell(cell: UITableViewCell, indexPath: IndexPath) {
     let cell = cell as! QnaListCell
     let qna = self.qnaList[indexPath.row]
-    cell.qnaTitleLabel.text = qna.title ?? ""
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    let date = dateFormatter.date(from: qna.created_at ?? "") ?? Date()
-    dateFormatter.dateFormat = "yyyy.MM.dd"
-    cell.qnaDateLabel.text = dateFormatter.string(from: date)
+    cell.qnaTitleLabel.text = qna.qa_title ?? ""
+    cell.qnaDateLabel.text = qna.ins_date ?? ""
+    cell.categoryLabel.text = Constants.qna_category(item: qna.qa_type ?? "")
     
-    if qna.reply_yn == 1 {
+    if qna.reply_yn == "Y" {
       cell.stateLabel.text = "답변완료"
-      cell.stateLabel.textColor = UIColor(named: "4CAF50")
-      cell.stateView.backgroundColor = UIColor(named: "E8F5E9")
+      cell.stateLabel.textColor = UIColor(named: "accent")
     } else {
       cell.stateLabel.text = "미답변"
-      cell.stateLabel.textColor = UIColor(named: "F44336")
-      cell.stateView.backgroundColor = UIColor(named: "FFEBEE")
-      
+      cell.stateLabel.textColor = UIColor(named: "A3A7B6")
     }
   }
 }
@@ -158,12 +146,8 @@ extension QnaViewController: UITableViewDataSource {
 extension QnaViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let destination = QnaDetailViewController.instantiate(storyboard: "Commons")
-    destination.id = self.qnaList[indexPath.row].id
+    destination.qa_idx = self.qnaList[indexPath.row].qa_idx ?? ""
     self.navigationController?.pushViewController(destination, animated: true)
-  }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -190,14 +174,14 @@ extension QnaViewController: DZNEmptyDataSetSource {
 //  }
   
   func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-    return -100
+    return -250
   }
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
     
-    let text = "1:1 문의가 없습니다."
+    let text = "궁금하신 내용이\n자주묻는질문(FAQ)으로는\n해결이 어려우신가요?\n\n1:1 문의 글을 작성하시면\n확인 후에 답변을 드립니다."
     let attributes: [NSAttributedString.Key : Any] = [
-      NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16),
-      NSAttributedString.Key.foregroundColor : UIColor(named: "666666")!
+      NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
+      NSAttributedString.Key.foregroundColor : UIColor(named: "C8CCD5")!
     ]
     
     return NSAttributedString(string: text, attributes: attributes)

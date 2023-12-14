@@ -22,7 +22,7 @@ class Tools {
   /// - Returns: 성공 여부
   func isSuccessResponse(response: BaseModel) -> Bool {
     
-    if response.code == "1000" {
+    if response.code == "1000" || response.code == "2000" {
       return true
     } else {
       if let errors = response.errors, errors.count > 0 {

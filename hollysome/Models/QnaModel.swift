@@ -13,11 +13,11 @@ class QnaModel: BaseModel {
   /// QNA 인덱스
   var qa_idx: String?
   /// QNA 질문 제목
-  var title: String?
+  var qa_title: String?
   /// QNA 질문 내용
-  var content: String?
-  /// QNA 답변 유무: (1: 답변 있음, 0: 답변 없음)
-  var reply_yn: Int?
+  var qa_contents: String?
+  /// QNA 답변 유무
+  var reply_yn: String?
   /// QNA 답변 내용
   var reply_content: String?
   /// QNA 답변일
@@ -28,6 +28,8 @@ class QnaModel: BaseModel {
   var category: Int?
   /// 등록일
   var created_at: String?
+  /// 카테고리 0:불편신고 1:제안및건의 2:기타
+  var qa_type: String?
   
   /// QNA 리스트
   var data_array: [QnaModel]?
@@ -38,14 +40,15 @@ class QnaModel: BaseModel {
   override func mapping(map: Map) {
     super.mapping(map: map)
     self.qa_idx <- map["qa_idx"]
-    self.title <- map["title"]
-    self.content <- map["content"]
+    self.qa_title <- map["qa_title"]
+    self.qa_contents <- map["qa_contents"]
     self.reply_yn <- map["reply_yn"]
     self.reply_content <- map["reply_content"]
     self.reply_date <- map["reply_date"]
     self.ins_date <- map["ins_date"]
     self.category <- map["category"]
     self.created_at <- map["created_at"]
+    self.qa_type <- map["qa_type"]
     
     self.data_array <- map["data_array"]
     self.data <- map["data"]

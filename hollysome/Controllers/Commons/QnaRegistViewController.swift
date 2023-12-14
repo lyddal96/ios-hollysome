@@ -4,6 +4,7 @@
 //
 import UIKit
 import DropDown
+import Defaults
 
 class QnaRegistViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -13,16 +14,17 @@ class QnaRegistViewController: BaseViewController {
   @IBOutlet weak var categoryWrapView: UIView!
   @IBOutlet weak var titleTextField: UITextField!
   @IBOutlet weak var contentTextView: UITextView!
+  @IBOutlet weak var contentView: UIView!
   @IBOutlet weak var enrollButton: UIButton!
-  
+  @IBOutlet weak var cateImageView: UIImageView!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
   var qnaRequest = QnaModel()
   var categoryType: Int? = nil
   let dropDown = DropDown()
-  
-  let categoryList = ["신고", "건의", "기타"]
+  var qa_type = "0"
+  let categoryList = ["불편 신고", "제보", "기타"]
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -37,15 +39,17 @@ class QnaRegistViewController: BaseViewController {
   
   override func initLayout() {
     super.initLayout()
-//    self.titleTextField.addLeftTextPadding(15)
-//    self.titleTextField.addBorder(width: 1, color: UIColor(named: "DDDDDD")!)
-//    self.contentsWrapView.addBorder(width: 1, color: UIColor(named: "DDDDDD")!)
     
-    self.categoryWrapView.setCornerRadius(radius: 3)
-    self.categoryWrapView.addBorder(width: 1, color: .darkGray)
-    self.enrollButton.setCornerRadius(radius: 3)
-    
+    self.categoryWrapView.setCornerRadius(radius: 8)
+    self.categoryWrapView.addBorder(width: 1, color: UIColor(named: "E4E6EB")!)
+    self.titleTextField.setCornerRadius(radius: 8)
+    self.titleTextField.addBorder(width: 1, color: UIColor(named: "E4E6EB")!)
+    self.contentView.setCornerRadius(radius: 8)
+    self.contentView.addBorder(width: 1, color: UIColor(named: "E4E6EB")!)
+    self.enrollButton.setCornerRadius(radius: 12)
+    self.cateImageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi))
     self.categoryTextField.isEnabled = false
+    self.titleTextField.setTextPadding(16)
   }
   
   override func initRequest() {
@@ -54,6 +58,9 @@ class QnaRegistViewController: BaseViewController {
     self.customizeDropDown(self)
     self.categoryWrapView.addTapGesture { recognizer in
       self.dropDown.show()
+      UIView.animate(withDuration: (0.3)) {
+        self.cateImageView.transform = CGAffineTransform(rotationAngle: (0))
+      }
     }
   }
   
@@ -66,9 +73,10 @@ class QnaRegistViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   /// QnA 등록
   private func qaRegInAPI() {
-//    self.qnaRequest.member_idx = "1"
-    self.qnaRequest.title = self.titleTextField.text
-    self.qnaRequest.content = self.contentTextView.text
+    self.qnaRequest.member_idx = Defaults[.member_idx]
+    self.qnaRequest.qa_type = self.qa_type
+    self.qnaRequest.qa_title = self.titleTextField.text
+    self.qnaRequest.qa_contents = self.contentTextView.text
     if let category = self.categoryType {
       self.qnaRequest.category = category
     }
@@ -111,6 +119,16 @@ class QnaRegistViewController: BaseViewController {
     self.dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
       self.categoryTextField.text = self.categoryList[index]
       self.categoryType = index
+      self.qa_type = "\(index)"
+      UIView.animate(withDuration: (0.3)) {
+        self.cateImageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi))
+      }
+    }
+    
+    self.dropDown.cancelAction = {
+      UIView.animate(withDuration: (0.3)) {
+        self.cateImageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi))
+      }
     }
   }
   //-------------------------------------------------------------------------------------------
