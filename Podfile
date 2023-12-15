@@ -56,6 +56,7 @@ target 'hollysome' do
   pod 'GoogleSignIn'  #구글 로그인
   pod 'Firebase/Auth'
   pod 'CHIPageControl/Jaloro' #커스텀 페이지 컨트롤
+  pod 'Google-Mobile-Ads-SDK' # 구글 광고
 
   pods_with_specific_swift_versions = {
     'EZSwiftExtensions' => '4.0',

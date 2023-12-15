@@ -99,6 +99,10 @@ class HomeViewController: BaseViewController {
     // 일정 리스트
     self.scheduleView.addTapGesture { recognizer in
       log.debug("일정")
+      
+      let destination = TodayScheduleViewController.instantiate(storyboard: "Home")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
     }
     
     // 알림장 리스트
@@ -114,6 +118,10 @@ class HomeViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.setTitleBar()
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM월 dd일 (E)"
+    self.dateLabel.text = dateFormatter.string(from: Date())
   }
   
   //-------------------------------------------------------------------------------------------
@@ -154,7 +162,9 @@ class HomeViewController: BaseViewController {
   /// 더보기
   /// - Parameter sender: 버튼
   @IBAction func moreButtonTouched(sender: UIButton) {
-    
+    let destination = TodayScheduleViewController.instantiate(storyboard: "Home")
+    destination.hidesBottomBarWhenPushed = true
+    self.navigationController?.pushViewController(destination, animated: true)
   }
 }
 

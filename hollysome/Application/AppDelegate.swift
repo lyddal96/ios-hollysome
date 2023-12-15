@@ -18,6 +18,7 @@ import KakaoSDKCommon
 import GoogleSignIn
 import Hero
 import Defaults
+import GoogleMobileAds
 
 let log = SwiftyBeaver.self
 @main
@@ -77,7 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     self.applicationSetting()
-    
+    GADMobileAds.sharedInstance().start(completionHandler: nil)
+
     return true
   }
   

@@ -39,6 +39,7 @@ class IntroViewController: BaseViewController {
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
   @objc func delay() {
+    Defaults[.poke_cnt] = 3
 //    Defaults[.access_token] = nil
     if Defaults[.member_idx] != nil && Defaults[.member_join_type] == "C" {
       let memberRequest = MemberModel()

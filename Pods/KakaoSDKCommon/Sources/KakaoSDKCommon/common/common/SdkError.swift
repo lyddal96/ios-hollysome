@@ -27,7 +27,9 @@ public enum SdkError : Error {
     case AuthFailed(reason:AuthFailureReason, errorInfo:AuthErrorInfo?)
 }
 
+#if swift(>=5.8)
 @_documentation(visibility: private)
+#endif
 extension SdkError {
     public init(reason:ClientFailureReason = .Unknown, message:String? = nil) {
         switch reason {
@@ -38,7 +40,7 @@ extension SdkError {
         case .Cancelled:
             self = .ClientFailed(reason: reason, errorMessage:message ?? "user cancelled")
         case .NotSupported:
-            self = .ClientFailed(reason: reason, errorMessage: "target app is not installed.")
+            self = .ClientFailed(reason: reason, errorMessage:message ?? "target app is not installed.")
         case .BadParameter:
             self = .ClientFailed(reason: reason, errorMessage:message ?? "bad parameters.")
         case .TokenNotFound:
@@ -53,7 +55,9 @@ extension SdkError {
     }
 }
 
+#if swift(>=5.8)
 @_documentation(visibility: private)
+#endif
 extension SdkError {
     public init?(response:HTTPURLResponse, data:Data, type:ApiType) {
         if 200 ..< 300 ~= response.statusCode { return nil }
@@ -300,30 +304,23 @@ public enum ApiFailureReason : Int, Codable {
     
     /// 일간 메시지 전송 허용 횟수 초과
     case TalkSendMessageDailyLimitExceed = -532
+        
+    /// 이미지 업로드 시 최대 용량을 초과한 경우
+    case ImageUploadSizeExceed = -602
     
-    /// 카카오스토리 사용자가 아님
-    case NotStoryUser = -601
+    /// 카카오 플랫폼 내부에서 요청 처리 중 타임아웃이 발생한 경우
+    case ServerTimeout = -603
     
-    /// 카카오스토리 이미지 업로드 사이즈 제한 초과
-    case StoryImageUploadSizeExceed = -602
-    
-    /// 카카오스토리 이미지 업로드 타임아웃
-    case StoryUploadTimeout = -603
-    
-    /// 카카오스토리 스크랩시 잘못된 스크랩 URL로 호출할 경우
-    case StoryInvalidScrapUrl = -604
-    
-    /// 카카오스토리의 내정보 요청시 잘못된 내스토리 아이디(포스트 아이디)로 호출할 경우
-    case StoryInvalidPostId = -605
-    
-    /// 카카오스토리 이미지 업로드시 허용된 업로드 파일 수가 넘을 경우
-    case StoryMaxUploadNumberExceed = -606
+    /// 이미지 업로드시 허용된 업로드 파일 수가 넘을 경우
+    case ImageMaxUploadNumberExceed = -606
     
     /// 서버 점검 중
     case UnderMaintenance = -9798
 }
 
+#if swift(>=5.8)
 @_documentation(visibility: private)
+#endif
 extension ApiFailureReason {
     public init(from decoder: Decoder) throws {
         self = try ApiFailureReason(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .Unknown
@@ -360,12 +357,16 @@ public enum AuthFailureReason : String, Codable {
     /// 서버 내부 에러
     case ServerError = "server_error"
     
+#if swift(>=5.8)
     @_documentation(visibility: private)
+#endif
     /// 카카오싱크 전용
     case AutoLogin = "auto_login"
 }
 
+#if swift(>=5.8)
 @_documentation(visibility: private)
+#endif
 extension AuthFailureReason {
     public init(from decoder: Decoder) throws {
         self = try AuthFailureReason(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .Unknown
