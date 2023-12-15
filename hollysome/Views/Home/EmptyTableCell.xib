@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyTableCell" rowHeight="97" id="Eb9-eh-7pk" customClass="EmptyTableCell" customModule="hollysome" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="97"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eb9-eh-7pk" id="vqA-no-ELx">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="97"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ddF-k8-hL7">
+                        <rect key="frame" x="16" y="0.0" width="361" height="57"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 작성된 알림장이 없어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ix8-DX-2e6">
+                                <rect key="frame" x="16" y="16.666666666666668" width="329" height="24.000000000000004"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" name="E4E6EB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="FAFAFC"/>
+                        <constraints>
+                            <constraint firstItem="ix8-DX-2e6" firstAttribute="leading" secondItem="ddF-k8-hL7" secondAttribute="leading" constant="16" id="7wO-8q-IGl"/>
+                            <constraint firstAttribute="trailing" secondItem="ix8-DX-2e6" secondAttribute="trailing" constant="16" id="HpB-7P-v8L"/>
+                            <constraint firstAttribute="height" constant="57" id="Mxn-iO-lht"/>
+                            <constraint firstItem="ix8-DX-2e6" firstAttribute="centerY" secondItem="ddF-k8-hL7" secondAttribute="centerY" id="QKZ-g2-h2y"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ddF-k8-hL7" firstAttribute="top" secondItem="vqA-no-ELx" secondAttribute="top" id="3CF-L5-Ido"/>
+                    <constraint firstAttribute="trailing" secondItem="ddF-k8-hL7" secondAttribute="trailing" constant="16" id="dI3-va-uxF"/>
+                    <constraint firstItem="ddF-k8-hL7" firstAttribute="leading" secondItem="vqA-no-ELx" secondAttribute="leading" constant="16" id="iEN-mn-ocy"/>
+                    <constraint firstAttribute="bottom" secondItem="ddF-k8-hL7" secondAttribute="bottom" id="pdm-1J-GT2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="emptyLabel" destination="ix8-DX-2e6" id="X9w-hH-a1f"/>
+                <outlet property="roundView" destination="ddF-k8-hL7" id="Um4-6M-epI"/>
+            </connections>
+            <point key="canvasLocation" x="-837.40458015267177" y="446.12676056338029"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="E4E6EB">
+            <color red="0.89399999380111694" green="0.90200001001358032" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FAFAFC">
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

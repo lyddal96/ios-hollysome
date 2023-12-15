@@ -20,16 +20,27 @@ class Tools {
   /// API 성공 유무를 판단
   /// - Parameter response:
   /// - Returns: 성공 여부
-  func isSuccessResponse(response: BaseModel) -> Bool {
+  func isSuccessResponse(response: BaseModel, alertYn: Bool = false) -> Bool {
     
     if response.code == "1000" || response.code == "2000" {
       return true
     } else {
-      if let errors = response.errors, errors.count > 0 {
-        self.showToast(message: errors[0])
+      if alertYn {
+        if let errors = response.errors, errors.count > 0 {
+          AJAlertController.initialization().showAlertWithOkButton(astrTitle: errors[0], aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
+          }
+        } else {
+          AJAlertController.initialization().showAlertWithOkButton(astrTitle: response.message ?? "", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
+          }
+        }
       } else {
-        self.showToast(message: response.message ?? "")
+        if let errors = response.errors, errors.count > 0 {
+          self.showToast(message: errors[0])
+        } else {
+          self.showToast(message: response.message ?? "")
+        }
       }
+      
       return false
     }
   }
@@ -108,6 +119,7 @@ class Tools {
   /// - Parameter text: 복사할 문자
   func copyToClipboard(text: String) {
     UIPasteboard.general.string = text
+    self.showToast(message: "복사되었습니다.")
   }
   
   

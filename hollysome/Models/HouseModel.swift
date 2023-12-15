@@ -8,9 +8,10 @@ import Foundation
 import ObjectMapper
 
 class HouseModel: BaseModel {
-  
+  var house_img: String?
   override func mapping(map: Map) {
     super.mapping(map: map)
     
+    self.house_img <- map["house_img"]
   }
 }

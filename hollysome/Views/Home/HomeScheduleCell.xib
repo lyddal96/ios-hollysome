@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeScheduleCell" id="vCe-za-oma" customClass="HomeScheduleCell" customModule="hollysome" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="213" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Jm0-Jr-GA6">
+                <rect key="frame" x="0.0" y="0.0" width="213" height="104"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeB-Hp-yC7">
+                        <rect key="frame" x="0.0" y="0.0" width="213" height="104"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnU-Tl-rJu">
+                                <rect key="frame" x="16" y="16" width="181" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" name="3A3A3C"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTA-jx-ltl">
+                                <rect key="frame" x="16" y="37" width="181" height="14.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" name="A3A7B6"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1i-vB-ZL1">
+                                <rect key="frame" x="141" y="64" width="56" height="24"/>
+                                <color key="backgroundColor" name="FFFFFF"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="7az-xT-l7N"/>
+                                    <constraint firstAttribute="height" constant="24" id="MW6-FZ-3Db"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="완료">
+                                    <color key="titleColor" name="accent"/>
+                                </state>
+                                <state key="selected" title="미완료">
+                                    <color key="titleColor" name="E4E6EB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="FAFAFC"/>
+                        <constraints>
+                            <constraint firstItem="rTA-jx-ltl" firstAttribute="top" secondItem="EnU-Tl-rJu" secondAttribute="bottom" constant="4" id="Bzd-ZS-K0i"/>
+                            <constraint firstItem="EnU-Tl-rJu" firstAttribute="top" secondItem="HeB-Hp-yC7" secondAttribute="top" constant="16" id="HwE-JN-ptS"/>
+                            <constraint firstAttribute="trailing" secondItem="EnU-Tl-rJu" secondAttribute="trailing" constant="16" id="KpW-6L-6Se"/>
+                            <constraint firstAttribute="trailing" secondItem="rTA-jx-ltl" secondAttribute="trailing" constant="16" id="TCP-kx-JQZ"/>
+                            <constraint firstItem="EnU-Tl-rJu" firstAttribute="leading" secondItem="HeB-Hp-yC7" secondAttribute="leading" constant="16" id="iEg-Pg-Ufp"/>
+                            <constraint firstAttribute="bottom" secondItem="W1i-vB-ZL1" secondAttribute="bottom" constant="16" id="o52-T5-B6I"/>
+                            <constraint firstAttribute="trailing" secondItem="W1i-vB-ZL1" secondAttribute="trailing" constant="16" id="ztp-HQ-l9K"/>
+                            <constraint firstItem="rTA-jx-ltl" firstAttribute="leading" secondItem="HeB-Hp-yC7" secondAttribute="leading" constant="16" id="zxM-aO-f1R"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HeB-Hp-yC7" firstAttribute="top" secondItem="Jm0-Jr-GA6" secondAttribute="top" id="Bod-Ru-9At"/>
+                    <constraint firstAttribute="bottom" secondItem="HeB-Hp-yC7" secondAttribute="bottom" id="FnT-BR-mu0"/>
+                    <constraint firstItem="HeB-Hp-yC7" firstAttribute="leading" secondItem="Jm0-Jr-GA6" secondAttribute="leading" id="lNW-pp-fci"/>
+                    <constraint firstAttribute="trailing" secondItem="HeB-Hp-yC7" secondAttribute="trailing" id="wWv-IY-Wpd"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="213" height="104"/>
+            <connections>
+                <outlet property="roundView" destination="HeB-Hp-yC7" id="wee-vk-gFX"/>
+                <outlet property="stateButton" destination="W1i-vB-ZL1" id="e2m-iK-8zl"/>
+                <outlet property="timeLabel" destination="rTA-jx-ltl" id="Krs-NM-kx3"/>
+                <outlet property="titleLabel" destination="EnU-Tl-rJu" id="Blv-C1-nmB"/>
+            </connections>
+            <point key="canvasLocation" x="263.35877862595419" y="38.732394366197184"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="3A3A3C">
+            <color red="0.22699999809265137" green="0.22699999809265137" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="A3A7B6">
+            <color red="0.63899999856948853" green="0.65499997138977051" blue="0.71399998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="E4E6EB">
+            <color red="0.89399999380111694" green="0.90200001001358032" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FAFAFC">
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FFFFFF">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="accent">
+            <color red="1" green="0.37299999594688416" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

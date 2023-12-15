@@ -19,7 +19,6 @@ class QnaViewController: BaseViewController {
   var qnaRequest = QnaModel()
   var qnaList = [QnaModel]()
   
-  let notificationCenter = NotificationCenter.default
   let refresh = UIRefreshControl()
   
   //-------------------------------------------------------------------------------------------

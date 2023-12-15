@@ -1,5 +1,5 @@
 //
-//  IntputHouseCodeViewController.swift
+//  InputHouseCodeViewController.swift
 //  hollysome
 //
 //  Created by 이승아 on 10/27/23.
@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Defaults
 
-class IntputHouseCodeViewController: BaseViewController {
+class InputHouseCodeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
@@ -55,6 +56,9 @@ class IntputHouseCodeViewController: BaseViewController {
     self.cancelButton.setCornerRadius(radius: 12)
     self.codeTextField.addBorder(width: 1, color: UIColor(named: "C8CCD5")!)
     self.codeTextField.setTextPadding(15)
+    
+    self.redDotImageView.isHidden = true
+    self.retryLabel.isHidden = true
   }
   
   override func initRequest() {
@@ -128,13 +132,32 @@ class IntputHouseCodeViewController: BaseViewController {
     hideCard.startAnimation()
   }
   
+  /// 하우스 들어가기 API
+  func houseJoinAPI() {
+    let houseRequest = HouseModel()
+    houseRequest.member_idx = Defaults[.member_idx]
+    houseRequest.house_code = self.codeTextField.text
+    
+    APIRouter.shared.api(path: .house_join_in, method: .post, parameters: houseRequest.toJSON()) { response in
+      if let houseResponse = HouseModel(JSON: response) {
+        if houseResponse.code == "1000" || houseResponse.code == "2000" {
+          self.hideCardAndGoBack()
+          Defaults[.house_code] = self.codeTextField.text
+        } else {
+          self.redDotImageView.isHidden = false
+          self.retryLabel.isHidden = false
+        }
+      }
+    }
+  }
+  
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
   /// 입력 완료
   /// - Parameter sender: 버튼
   @IBAction func finishButtonTouched(sender: UIButton) {
-    self.hideCardAndGoBack()
+    self.houseJoinAPI()
   }
   
   

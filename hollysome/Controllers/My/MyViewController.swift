@@ -58,7 +58,13 @@ class MyViewController: BaseViewController {
     
     // 하우스 코드 입력하기
     self.inputHouseCodeView.addTapGesture { recognizer in
-      
+      // 하우스 코드 입력하기
+      let destination = InputHouseCodeViewController.instantiate(storyboard: "Home")
+      destination.modalTransitionStyle = .crossDissolve
+      destination.modalPresentationStyle = .overCurrentContext
+      destination.hidesBottomBarWhenPushed = true
+//      self.present(destination, animated: false, completion: nil)
+      self.tabBarController?.present(destination, animated: true)
     }
     
     // 눔메이트 초대하기
@@ -97,9 +103,9 @@ class MyViewController: BaseViewController {
     
     // 하우스 나가기
     self.outHouseView.addTapGesture { recognizer in
-      AJAlertController.initialization().showAlert(astrTitle: "하우스의 일정, 가계부 등은 삭제되어 더 이상 볼 수 없게 됩니다. \(self.memberResponse.house_name ?? "") 을(를) 나가시곘어요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "하우스 나가기", img: "error_circle") { position, title in
+      AJAlertController.initialization().showAlert(astrTitle: "하우스의 일정, 가계부 등은 삭제되어 더 이상 볼 수 없게 됩니다. \(self.memberResponse.house_name ?? "") 을(를) 나가시겠어요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "하우스 나가기", img: "error_circle") { position, title in
         if position == 1 {
-           
+          self.outHouseAPI()
         }
       }
     }
@@ -163,6 +169,22 @@ class MyViewController: BaseViewController {
     }
   }
   
+  /// 하우스 나가기 APi
+  func outHouseAPI() {
+    let memberRequest = MemberModel()
+    memberRequest.member_idx = Defaults[.member_idx]
+    
+    APIRouter.shared.api(path: .house_out_up, method: .post, parameters: memberRequest.toJSON()) { response in
+      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
+        Defaults[.house_code] = nil
+        self.memberInfoDetailAPI()
+        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "\(self.memberResponse.house_name ?? "")하우스를 나왔습니다.", aStrMessage: "", alertViewHiddenCheck: false, img: "check_circle") { position, title in
+        }
+      }
+    }
+  }
+  
+  /// 로그아웃 API
   func logoutAPI() {
     let memberRequest = MemberModel()
     memberRequest.member_idx = Defaults[.member_idx]

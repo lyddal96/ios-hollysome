@@ -50,6 +50,7 @@ enum APIURL: String {
   /// 하우스
   case house_reg_in = "house_v_1_0_0/house_reg_in" // 하우스 만들기
   case house_join_in = "house_v_1_0_0/house_join_in" // 하우스 들어가기
+  case house_out_up = "house_v_1_0_0/house_out_up" // 하우스 나가기
   
   
   /// CS
@@ -68,7 +69,7 @@ enum APIURL: String {
   /// 파일 업로드
   case imageupload = "api/imageupload" // 이미지 업로드
   case imageMultiUpload = "api/imageMultiUpload" // 이미지 다중 업로드
-  
+  case fileUpload_action = "common/fileUpload_action" // 이미지 업로드
 }
 
 
@@ -116,17 +117,42 @@ class APIRouter {
   ///   - userFile: File
   ///   - success: 성공
   ///   - fail: 실패
+//  func api(path: APIURL, method: HTTPMethod = .post, file : Data, success: @escaping(_ data: [String: Any])-> Void) {
+//    let headers: HTTPHeaders = [
+//      "Content-type": "multipart/form-data"
+//    ]
+//    NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData, nil)
+//    AF.upload(multipartFormData: { (multipartFormData) in
+//      multipartFormData.append(file, withName: "image", fileName: "rocateer.png", mimeType: "image/jpeg")
+//    }, to: baseURL + path.rawValue, method: .post, headers: headers).responseJSON(completionHandler: { response in
+//      NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+//      if APIResponse.shared.isSuccessStatus(response: response) {
+//        success(response.result.value as! [String : Any])
+//      }
+//    })
+//  }
+  
+  /// Multipart Form
+  /// - Parameters:
+  ///   - path: API URL
+  ///   - method: HTTP Method
+  ///   - userFile: File
+  ///   - success: 성공
+  ///   - fail: 실패
   func api(path: APIURL, method: HTTPMethod = .post, file : Data, success: @escaping(_ data: [String: Any])-> Void) {
     let headers: HTTPHeaders = [
       "Content-type": "multipart/form-data"
     ]
     NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData, nil)
     AF.upload(multipartFormData: { (multipartFormData) in
-      multipartFormData.append(file, withName: "image", fileName: "rocateer.png", mimeType: "image/jpeg")
+    multipartFormData.append(file, withName: "file", fileName: "rocateer.jpg", mimeType: "image/jpeg")
     }, to: baseURL + path.rawValue, method: .post, headers: headers).responseJSON(completionHandler: { response in
       NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-      if APIResponse.shared.isSuccessStatus(response: response) {
-        success(response.result.value as! [String : Any])
+      switch response.result {
+      case .success(let value):
+        success(value as! [String : Any])
+      case .failure(let error):
+        break
       }
     })
   }
