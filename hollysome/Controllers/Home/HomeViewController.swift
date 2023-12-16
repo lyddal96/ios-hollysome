@@ -108,6 +108,10 @@ class HomeViewController: BaseViewController {
     // 알림장 리스트
     self.houseNoticeView.addTapGesture { recognizer in
       log.debug("알림장")
+      
+      let destination = HouseNoticeViewController.instantiate(storyboard: "Home")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
     }
   }
   

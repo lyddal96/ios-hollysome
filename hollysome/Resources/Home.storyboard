@@ -541,6 +541,136 @@
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="824.64788732394368"/>
         </scene>
+        <!--알림장-->
+        <scene sceneID="G7E-wS-SEW">
+            <objects>
+                <viewController storyboardIdentifier="HouseNoticeViewController" id="MWa-od-fSq" customClass="HouseNoticeViewController" customModule="hollysome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tVU-RX-chS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bXz-e4-iMz">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" name="F6F8FA"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5EC-Sf-S8V"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5EC-Sf-S8V" firstAttribute="bottom" secondItem="bXz-e4-iMz" secondAttribute="bottom" id="9p3-N0-Fn7"/>
+                            <constraint firstItem="bXz-e4-iMz" firstAttribute="leading" secondItem="5EC-Sf-S8V" secondAttribute="leading" id="Lpf-jx-Nt1"/>
+                            <constraint firstItem="5EC-Sf-S8V" firstAttribute="trailing" secondItem="bXz-e4-iMz" secondAttribute="trailing" id="ofZ-8o-B3k"/>
+                            <constraint firstItem="bXz-e4-iMz" firstAttribute="top" secondItem="5EC-Sf-S8V" secondAttribute="top" id="qkb-j8-doP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="알림장" id="b7S-fX-kIw">
+                        <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="KR4-TH-9yU">
+                            <connections>
+                                <action selector="backButtonTouchedWithSender:" destination="MWa-od-fSq" id="7hb-Y5-jAn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="write_btn" id="oK4-jw-ukb">
+                            <connections>
+                                <action selector="writeBarButtonItemTouchedWithSender:" destination="MWa-od-fSq" id="z9z-ds-Wk9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="noticeTableView" destination="bXz-e4-iMz" id="wNY-B3-fHb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPr-aX-UDn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="1661"/>
+        </scene>
+        <!--알림장 쓰기-->
+        <scene sceneID="fbe-GC-RbE">
+            <objects>
+                <viewController storyboardIdentifier="NoticeRegViewController" id="Ivc-fT-eR7" customClass="NoticeRegViewController" customModule="hollysome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ztH-n5-Pqh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bI-IF-GkN">
+                                <rect key="frame" x="16" y="127" width="361" height="56"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h3C-8p-w41" customClass="RSKGrowingTextView" customModule="RSKGrowingTextView">
+                                        <rect key="frame" x="16" y="8" width="329" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="750" constant="40" id="JO8-db-hYk"/>
+                                        </constraints>
+                                        <color key="textColor" name="3A3A3C"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" name="C8CCD5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="하우스 메이트에게 알리고 싶은 내용을 작성해 보세요! "/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximumNumberOfLines">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumNumberOfLines">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="h3C-8p-w41" firstAttribute="top" secondItem="4bI-IF-GkN" secondAttribute="top" constant="8" id="6Lz-rL-qys"/>
+                                    <constraint firstAttribute="height" priority="250" constant="56" id="ZTY-tt-gPI"/>
+                                    <constraint firstItem="h3C-8p-w41" firstAttribute="leading" secondItem="4bI-IF-GkN" secondAttribute="leading" constant="16" id="ZU6-85-mAd"/>
+                                    <constraint firstAttribute="trailing" secondItem="h3C-8p-w41" secondAttribute="trailing" constant="16" id="ncc-GS-yMa"/>
+                                    <constraint firstAttribute="bottom" secondItem="h3C-8p-w41" secondAttribute="bottom" constant="8" id="u0A-pB-V8D"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wS-FD-rWR">
+                                <rect key="frame" x="331" y="186" width="46" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="C8CCD5"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0aL-v5-QiB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0aL-v5-QiB" firstAttribute="trailing" secondItem="6wS-FD-rWR" secondAttribute="trailing" constant="16" id="KTX-e1-KmN"/>
+                            <constraint firstItem="4bI-IF-GkN" firstAttribute="leading" secondItem="0aL-v5-QiB" secondAttribute="leading" constant="16" id="KZN-9W-dOO"/>
+                            <constraint firstItem="4bI-IF-GkN" firstAttribute="top" secondItem="0aL-v5-QiB" secondAttribute="top" constant="24" id="QaP-CC-Q63"/>
+                            <constraint firstItem="6wS-FD-rWR" firstAttribute="top" secondItem="4bI-IF-GkN" secondAttribute="bottom" constant="3" id="nN7-9w-Q5a"/>
+                            <constraint firstItem="0aL-v5-QiB" firstAttribute="trailing" secondItem="4bI-IF-GkN" secondAttribute="trailing" constant="16" id="on9-oa-X6w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="알림장 쓰기" id="9bU-lZ-YOe">
+                        <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="CiM-Cf-wjz">
+                            <connections>
+                                <action selector="backButtonTouchedWithSender:" destination="Ivc-fT-eR7" id="Csf-9Q-I3K"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem id="Gsz-mT-BfE"/>
+                            <barButtonItem image="reg_btn" id="2Up-pT-nLk">
+                                <connections>
+                                    <action selector="regBarButtonItemTouchedWithSender:" destination="Ivc-fT-eR7" id="g44-iV-cyW"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="contentsWrapView" destination="4bI-IF-GkN" id="u1o-jq-axa"/>
+                        <outlet property="noticeTextView" destination="h3C-8p-w41" id="Yf2-X1-jRi"/>
+                        <outlet property="registBarButtonItem" destination="2Up-pT-nLk" id="H63-K1-L3f"/>
+                        <outlet property="textCntLabel" destination="6wS-FD-rWR" id="csB-Cq-cGN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FBN-NO-0zC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1227" y="1661"/>
+        </scene>
         <!--Poke View Controller-->
         <scene sceneID="Uqk-je-feV">
             <objects>
@@ -1464,6 +1594,8 @@
         <image name="img_makehouse" width="375" height="249"/>
         <image name="logo_01" width="138" height="18"/>
         <image name="red_dot" width="4" height="4"/>
+        <image name="reg_btn" width="55" height="23"/>
+        <image name="write_btn" width="55" height="23"/>
         <namedColor name="006064">
             <color red="0.0" green="0.37599998712539673" blue="0.3919999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
