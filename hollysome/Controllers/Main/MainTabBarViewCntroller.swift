@@ -23,7 +23,18 @@ class MainTabBarViewController: UITabBarController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    let appearance = UITabBarAppearance()
+    // set tabbar opacity
+    appearance.configureWithOpaqueBackground()
     
+    // tabbar border line
+    appearance.shadowColor = UIColor.clear
+    
+    // set tabbar background color
+    appearance.backgroundColor = .white
+    
+    self.tabBar.standardAppearance = appearance
+    self.tabBar.addBorderTop(size: 1, color: UIColor(named: "C8CCD5")!)
 //    self.delegate = self
     
     

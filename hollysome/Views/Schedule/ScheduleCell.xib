@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleCell" rowHeight="187" id="ICa-SP-tHZ" customClass="ScheduleCell" customModule="hollysome" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="187"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ICa-SP-tHZ" id="bOu-71-0IM">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="187"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vf-wu-rhV">
+                        <rect key="frame" x="16" y="24" width="361" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" name="3A3A3C"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2js-bm-M6d">
+                        <rect key="frame" x="0.0" y="64" width="393" height="74"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="74" id="Six-FO-2Ee"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="8" id="4KL-Jx-eil">
+                            <size key="itemSize" width="52" height="74"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                    </collectionView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ciq-0e-wLe">
+                        <rect key="frame" x="0.0" y="162" width="393" height="8"/>
+                        <color key="backgroundColor" name="FAFAFC"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="8" id="dbU-qk-RjU"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4vf-wu-rhV" firstAttribute="leading" secondItem="bOu-71-0IM" secondAttribute="leading" constant="16" id="2Fx-Kh-GmA"/>
+                    <constraint firstItem="2js-bm-M6d" firstAttribute="top" secondItem="4vf-wu-rhV" secondAttribute="bottom" constant="16" id="4GM-Yk-54g"/>
+                    <constraint firstAttribute="trailing" secondItem="ciq-0e-wLe" secondAttribute="trailing" id="5S3-sf-fKE"/>
+                    <constraint firstItem="4vf-wu-rhV" firstAttribute="top" secondItem="bOu-71-0IM" secondAttribute="top" constant="24" id="7VE-cA-0mS"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ciq-0e-wLe" secondAttribute="bottom" id="9Km-ED-HBK"/>
+                    <constraint firstItem="2js-bm-M6d" firstAttribute="leading" secondItem="bOu-71-0IM" secondAttribute="leading" id="9Q2-6e-JjC"/>
+                    <constraint firstItem="ciq-0e-wLe" firstAttribute="top" secondItem="2js-bm-M6d" secondAttribute="bottom" constant="24" id="MWH-2d-FIN"/>
+                    <constraint firstItem="ciq-0e-wLe" firstAttribute="leading" secondItem="bOu-71-0IM" secondAttribute="leading" id="fiG-2t-EaQ"/>
+                    <constraint firstAttribute="trailing" secondItem="2js-bm-M6d" secondAttribute="trailing" id="smZ-s4-g8I"/>
+                    <constraint firstAttribute="trailing" secondItem="4vf-wu-rhV" secondAttribute="trailing" constant="16" id="ubk-cy-5Ec"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mateCollectionView" destination="2js-bm-M6d" id="VxV-L6-gXM"/>
+                <outlet property="titleLabel" destination="4vf-wu-rhV" id="HoA-mG-VTn"/>
+            </connections>
+            <point key="canvasLocation" x="-796.18320610687022" y="477.81690140845075"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="3A3A3C">
+            <color red="0.22699999809265137" green="0.22699999809265137" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FAFAFC">
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

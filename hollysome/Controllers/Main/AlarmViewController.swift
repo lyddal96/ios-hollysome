@@ -5,13 +5,14 @@
 
 import UIKit
 import Defaults
+import DZNEmptyDataSet
 
 class AlarmViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
   @IBOutlet weak var alarmTableView: UITableView!
-  
+  @IBOutlet weak var deleteAllBarButtonItem: UIBarButtonItem!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -27,6 +28,7 @@ class AlarmViewController: BaseViewController {
     self.alarmTableView.delegate = self
     self.alarmTableView.dataSource = self
     self.alarmTableView.tableFooterView = UIView(frame: CGRect.zero)
+    self.alarmTableView.emptyDataSetSource = self
   }
   
   override func didReceiveMemoryWarning() {
@@ -114,17 +116,17 @@ extension AlarmViewController: UITableViewDelegate {
   }
   
   
-  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    let contextItem = UIContextualAction(style: .normal, title: "") {  (contextualAction, view, boolValue) in
-      self.alarmDel(alarm_idx: self.alarmList[indexPath.row].alarm_idx ?? "")
-    }
-//    contextItem.image = UIImage(named: "btn_delete")
-    contextItem.backgroundColor = UIColor(named: "DDDDDD")
-    
-    let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
-    
-    return swipeActions
-  }
+//  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//    let contextItem = UIContextualAction(style: .normal, title: "") {  (contextualAction, view, boolValue) in
+//      self.alarmDel(alarm_idx: self.alarmList[indexPath.row].alarm_idx ?? "")
+//    }
+////    contextItem.image = UIImage(named: "btn_delete")
+//    contextItem.backgroundColor = UIColor(named: "DDDDDD")
+//    
+//    let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+//    
+//    return swipeActions
+//  }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if scrollView == self.alarmTableView {
@@ -167,3 +169,29 @@ extension AlarmViewController: UITableViewDataSource {
   }
   
 }
+
+//-------------------------------------------------------------------------------------------
+// MARK: - DZNEmptyDataSetSource
+//-------------------------------------------------------------------------------------------
+extension AlarmViewController: DZNEmptyDataSetSource {
+//  func spaceHeight(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+//    return -100
+//  }
+  
+  func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+    return -250
+  }
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    
+    let text = "새로운 알림이 없습니다."
+    let attributes: [NSAttributedString.Key : Any] = [
+      NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
+      NSAttributedString.Key.foregroundColor : UIColor(named: "C8CCD5")!
+    ]
+    
+    return NSAttributedString(string: text, attributes: attributes)
+  }
+  
+}
+
+

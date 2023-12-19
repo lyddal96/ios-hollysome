@@ -12,6 +12,7 @@ class MateCell: UICollectionViewCell {
   @IBOutlet weak var shapeImageView: UIImageView!
   @IBOutlet weak var faceImageView: UIImageView!
   @IBOutlet weak var colorView: UIView!
+  @IBOutlet weak var selectImageView: UIImageView!
   override func awakeFromNib() {
     super.awakeFromNib()
     

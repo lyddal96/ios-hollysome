@@ -52,6 +52,13 @@ enum APIURL: String {
   case house_join_in = "house_v_1_0_0/house_join_in" // 하우스 들어가기
   case house_out_up = "house_v_1_0_0/house_out_up" // 하우스 나가기
   
+  /// 알림장
+  case note_list = "house_v_1_0_0/note_list" // 알림장 리스트
+  case note_reg_in = "house_v_1_0_0/note_reg_in" // 알림장 등록
+  case note_detail = "house_v_1_0_0/note_detail" // 알림장 상세
+  case note_mod_up = "house_v_1_0_0/note_mod_up" // 알림장 수정
+  case note_del = "house_v_1_0_0/note_del" // 알림장 삭제
+  
   
   /// CS
   case notice_list = "notice_v_1_0_0/notice_list" // 공지시항 리스트

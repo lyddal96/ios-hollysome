@@ -170,6 +170,14 @@ class HomeViewController: BaseViewController {
     destination.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(destination, animated: true)
   }
+  
+  /// 알림
+  /// - Parameter sender: 바버튼
+  @IBAction func alarmBarButtonItemTouched(sender: UIButton) {
+    let destination = AlarmViewController.instantiate(storyboard: "Main")
+    destination.hidesBottomBarWhenPushed = true
+    self.navigationController?.pushViewController(destination, animated: true)
+  }
 }
 
 //-------------------------------------------------------------------------------------------

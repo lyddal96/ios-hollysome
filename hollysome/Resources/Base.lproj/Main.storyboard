@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="10D-Ao-qcq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="10D-Ao-qcq">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -835,7 +835,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yXx-wm-KLF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yXx-wm-KLF">
                                 <rect key="frame" x="0.0" y="94" width="375" height="684"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -850,15 +850,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="알림" id="QNs-L5-fmf">
-                        <barButtonItem key="rightBarButtonItem" title="전체삭제" id="6qz-Ad-UNG">
+                        <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="0eC-jY-Uj1">
                             <connections>
-                                <action selector="allDeleteBarButtonTouchedWithSender:" destination="ae7-Mw-FQi" id="Mig-ii-w0i"/>
+                                <action selector="backButtonTouchedWithSender:" destination="ae7-Mw-FQi" id="PpW-BB-4lf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="delete_all_btm" id="ccV-GX-psH">
+                            <connections>
+                                <action selector="allDeleteBarButtonTouchedWithSender:" destination="ae7-Mw-FQi" id="Mnc-df-wXQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="alarmTableView" destination="yXx-wm-KLF" id="6Nc-BV-7dM"/>
+                        <outlet property="deleteAllBarButtonItem" destination="ccV-GX-psH" id="GfY-cc-Lzg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sty-S3-nUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -896,6 +902,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="delete_all_btm" width="77" height="23"/>
+        <image name="head_btn_back" width="10.666666984558105" height="19.666666030883789"/>
         <namedColor name="6E7583">
             <color red="0.4309999942779541" green="0.45899999141693115" blue="0.51399999856948853" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

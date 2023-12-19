@@ -8,6 +8,11 @@
 import UIKit
 import RSKGrowingTextView
 
+enum EnrollType {
+  case enroll
+  case modify
+}
+
 class NoticeRegViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
@@ -19,7 +24,7 @@ class NoticeRegViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-
+  var enrollType = EnrollType.enroll
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -39,6 +44,7 @@ class NoticeRegViewController: BaseViewController {
     self.contentsWrapView.setCornerRadius(radius: 12)
     self.contentsWrapView.addBorder(width: 1, color: UIColor(named: "E4E6EB")!)
     
+    self.registBarButtonItem.image = UIImage(named: self.enrollType == .enroll ? "reg_btn" : "modi_btn")
   }
   
   override func initRequest() {

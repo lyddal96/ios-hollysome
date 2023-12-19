@@ -12,15 +12,14 @@ import UIKit
 
 class FSDayCell: FSCalendarCell {
  
-  @IBOutlet weak var leftView: UIView!
-  @IBOutlet weak var rightView: UIView!
   @IBOutlet weak var circleView: UIView!
-  
+  @IBOutlet weak var newView: UIView!
   var cellWidth: CGFloat = 0
   var currentDate = Date()
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    self.newView.setCornerRadius(radius: 2.5)
   }
   
   // 선택 영역 세팅

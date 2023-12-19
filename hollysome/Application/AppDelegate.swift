@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var pushIndex = ""
   
+  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     

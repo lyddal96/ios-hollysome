@@ -13,7 +13,7 @@ class IntroViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-  
+  var timer: Timer?
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -28,7 +28,8 @@ class IntroViewController: BaseViewController {
   
   override func initLayout() {
     super.initLayout()
-    self.perform(#selector(self.delay), with: nil, afterDelay: 1)
+//    self.perform(#selector(self.delay), with: nil, afterDelay: 1)
+    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.retry), userInfo: nil, repeats: true)
   }
   
   override func initRequest() {
@@ -38,18 +39,29 @@ class IntroViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  @objc func retry() {
+    if self.appDelegate.fcmKey.isNil {
+      return
+    } else {
+      self.timer?.invalidate()
+      self.timer = nil
+      self.delay()
+    }
+  }
   @objc func delay() {
     Defaults[.poke_cnt] = 3
-//    Defaults[.access_token] = nil
+
     if Defaults[.member_idx] != nil && Defaults[.member_join_type] == "C" {
       let memberRequest = MemberModel()
       memberRequest.member_id = Defaults[.member_id]
       memberRequest.member_pw = Defaults[.member_pw]
-      memberRequest.gcm_key = self.appDelegate.fcmKey ?? ""
       memberRequest.device_os = "I"
+      memberRequest.gcm_key = self.appDelegate.fcmKey
       APIRouter.shared.api(path: APIURL.login, parameters: memberRequest.toJSON()) { data in
-        if let memberResponse = MemberModel(JSON: data) {
+        if let memberResponse = MemberModel(JSON: data), memberResponse.code == "1000" {
           Defaults[.member_idx] = memberResponse.member_idx
+          Defaults[.member_join_type] = "C"
+          Defaults[.house_code] = memberResponse.house_code
           self.gotoMain()
         } else {
           Defaults.reset([.member_idx, .member_join_type, .member_id, .member_pw])

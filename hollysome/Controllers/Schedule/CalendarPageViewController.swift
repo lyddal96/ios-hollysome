@@ -1,44 +1,41 @@
 //
-//  CalendarViewController.swift
+//  CalendarPageViewController.swift
 //  hollysome
 //
-//  Created by 이승아 on 2023/05/31.
-//
+//  Created by 이승아 on 12/18/23.
 //
 
 import UIKit
 import FSCalendar
+import DZNEmptyDataSet
 
-protocol DateSelectDelegate {
-  func singleSelectDelegate(date: Date)
-  func multiSelectDelegate(startDate: Date, endDate: Date)
-}
-
-class CalendarViewController: BaseViewController {
+class CalendarPageViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
-  @IBOutlet weak var calendarWrapView: UIView!
-  @IBOutlet weak var selectedView: UIView!
-  @IBOutlet weak var selectedLabel: UILabel!
-  @IBOutlet weak var popupView: UIView!
-  @IBOutlet weak var selectButton: UIButton!
-  @IBOutlet weak var cancelButton: UIButton!
-  @IBOutlet weak var goToTodayButton: UIButton!
   @IBOutlet weak var monthLabel: UILabel!
-  
+  @IBOutlet weak var scheduleTableView: UITableView!
+  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var calendarWrapView: UIView!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
+  var parentsViewController: ScheduleViewController? = nil
   
   var calendarView = FSCalendar()
-  var delegate: DateSelectDelegate?
+  var currentPage = Date()
+  
+  var scheduleList = 3
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.scheduleTableView.registerCell(type: ScheduleCell.self)
+    self.scheduleTableView.delegate = self
+    self.scheduleTableView.dataSource = self
+    self.scheduleTableView.emptyDataSetSource = self
   }
   
   override func didReceiveMemoryWarning() {
@@ -48,16 +45,14 @@ class CalendarViewController: BaseViewController {
   override func initLayout() {
     super.initLayout()
     
-    self.popupView.setCornerRadius(radius: 15)
-    self.selectedView.setCornerRadius(radius: 10)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM.dd (E)"
+    self.dateLabel.text = dateFormatter.string(from: Date())
+    self.addCalendar()
   }
   
   override func initRequest() {
     super.initRequest()
-//    self.setupCalendarView()
-    self.addCalendar()
-    
-    
   }
   
   override func initLocalize() {
@@ -74,19 +69,17 @@ class CalendarViewController: BaseViewController {
     self.calendarView.delegate = self
     self.calendarView.dataSource = self
     
-    self.calendarView.scrollDirection = .vertical
+    self.calendarView.scrollDirection = .horizontal
     
     self.calendarView.allowsMultipleSelection = false
-    
     self.calendarWrapView.addSubview(self.calendarView)
-    self.calendarView.locale = Locale(identifier: "ko")
+    self.calendarView.locale = Locale(identifier: "en")
     self.calendarView.calendarHeaderView = FSCalendarHeaderView()
     self.calendarView.headerHeight = 0
     self.calendarView.weekdayHeight = 20
     self.calendarView.rowHeight = 0
-    
+    self.calendarView.firstWeekday = 2
     self.monthLabel.text = "\(self.calendarView.currentPage.year)년 \(self.calendarView.currentPage.month)월"
-    //    self.calendar.appearance.heig
     
     self.calendarView.today = nil
     self.calendarView.scope = .month
@@ -95,13 +88,14 @@ class CalendarViewController: BaseViewController {
 
     
     self.calendarView.appearance.titleOffset = CGPoint(x: 0, y: 3)
-    self.calendarView.appearance.weekdayTextColor = UIColor(named: "4F4E60")
+    self.calendarView.appearance.weekdayTextColor = UIColor(named: "A3A7B6")
     self.calendarView.appearance.weekdayFont = UIFont.systemFont(ofSize: 14, weight: .regular)
     self.calendarView.appearance.borderDefaultColor = .clear
-    self.calendarView.appearance.titlePlaceholderColor = UIColor(named: "CCCCCC")!
+    self.calendarView.appearance.titlePlaceholderColor = .clear
     self.calendarView.appearance.titleFont = UIFont.systemFont(ofSize: 14)
-    self.calendarView.appearance.titleSelectionColor = UIColor(named: "9F9EB0") // 선택시 텍스트 컬러
+    self.calendarView.appearance.titleSelectionColor = .clear // 선택시 텍스트 컬러
     self.calendarView.appearance.selectionColor = UIColor.clear
+    self.calendarView.select(Date())
     
     self.calendarView.reloadData()
   }
@@ -110,13 +104,11 @@ class CalendarViewController: BaseViewController {
   private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
     let dayCell = (cell as! FSDayCell)
     dayCell.removeSelectionView()
-    dayCell.leftView.isHidden = true
-    dayCell.rightView.isHidden = true
     dayCell.circleView.isHidden = true
-    
-    dayCell.circleView.setCornerRadius(radius: ((self.calendarView.frame.size.width / 7) - 20) / 2)
-    dayCell.titleLabel.font = UIFont.systemFont(ofSize: 12)
-    dayCell.titleLabel.textColor = UIColor(named: "9F9EB0")
+    dayCell.newView.isHidden = !(date.isToday || date.isTomorrow)
+    dayCell.circleView.setCornerRadius(radius: (8))
+    dayCell.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
+    dayCell.titleLabel.textColor = UIColor(named: "222B45")
     if position == .current { // 현재달
       if self.calendarView.selectedDates.contains(date) {
         dayCell.circleView.isHidden = false
@@ -127,7 +119,7 @@ class CalendarViewController: BaseViewController {
       let month = dateFormatter.string(from: date)
       
     } else {
-      dayCell.titleLabel.textColor = UIColor.clear
+      dayCell.titleLabel.textColor = UIColor(named: "A3A7B6")!
     }
     
     dayCell.setConfigureCell()
@@ -143,60 +135,51 @@ class CalendarViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
-  
-  
-  /// 선택
+  /// 이전 달
   /// - Parameter sender: 버튼
-  @IBAction func selectButtonTouched(sender:UIButton) {
-    guard self.calendarView.selectedDates.count == 1 else {
-      Tools.shared.showToastWithImage(message: "선택된 날짜가 없습니다.", image: UIImage(named: "ios_app_icon")!)
-      return
-    }
-    self.dismiss(animated: true) {
-      self.delegate?.singleSelectDelegate(date: self.calendarView.selectedDates[0])
-    }
-  }
-  
-  /// 취소
-  /// - Parameter sender: 버튼
-  @IBAction func cancelButtonTouched(sender: UIButton) {
-    self.dismiss(animated: true)
-  }
-  
-  /// 오늘
-  /// - Parameter sender: 버튼
-  @IBAction func todayButtonTouched(sender: UIButton) {
+  @IBAction func prevButtonTouched(sender: UIButton) {
+    self.currentPage = Calendar.current.date(byAdding: .month, value: -1, to: self.calendarView.currentPage)!
+    self.calendarView.setCurrentPage(self.currentPage, animated: true)
     
-    if self.calendarView.selectedDates.contains(where: { $0.isToday}) {
-      self.calendarView.select(Date(), scrollToDate: true)
-    } else {
-      self.calendarView.select(Date(), scrollToDate: true)
-      self.calendarView.deselect(Date())
-    }
+  }
+  
+  /// 다음 달
+  /// - Parameter sender: 버튼
+  @IBAction func nextButtonTouched(sender: UIButton) {
+    self.currentPage = Calendar.current.date(byAdding: .month, value: 1, to: self.calendarView.currentPage)!
+    self.calendarView.setCurrentPage(self.currentPage, animated: true)
   }
 }
-
 
 //-------------------------------------------------------------------------------------------
 // MARK: - FSCalendarDelegate
 //-------------------------------------------------------------------------------------------
-extension CalendarViewController: FSCalendarDelegate {
+extension CalendarPageViewController: FSCalendarDelegate {
   
   func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
     self.monthLabel.text = "\(self.calendarView.currentPage.year)년 \(self.calendarView.currentPage.month)월"
+    self.currentPage = self.calendarView.currentPage
   }
   
   func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
     
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy/MM/dd"
+    dateFormatter.dateFormat = "MM.dd (E)"
 
-    self.selectedLabel.text = dateFormatter.string(from: date)
+    self.dateLabel.text = dateFormatter.string(from: date)
+    
+    if date.isToday || date.isTomorrow {
+      self.scheduleList = 3
+    } else {
+      self.scheduleList = 0
+    }
+    
+    self.scheduleTableView.reloadData()
     return true
   }
   
   func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-    self.selectedLabel.text = ""
+    self.dateLabel.text = ""
     return true
   }
   
@@ -207,12 +190,13 @@ extension CalendarViewController: FSCalendarDelegate {
   func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
     self.configureVisibleCells()
   }
+  
 }
 
 //-------------------------------------------------------------------------------------------
 // MARK: - FSCalendarDataSource
 //-------------------------------------------------------------------------------------------
-extension CalendarViewController: FSCalendarDataSource {
+extension CalendarPageViewController: FSCalendarDataSource {
   func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
     let cell = calendar.dequeueReusableCell(withIdentifier: "FSDayCell", for: date, at: position) as! FSDayCell
     cell.cellWidth = self.calendarView.frame.size.width / 7
@@ -224,3 +208,55 @@ extension CalendarViewController: FSCalendarDataSource {
     self.configure(cell: cell, for: date, at: position)
   }
 }
+
+//-------------------------------------------------------------------------------------------
+// MARK: - UITableViewDelegate
+//-------------------------------------------------------------------------------------------
+extension CalendarPageViewController: UITableViewDelegate {
+  
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - UITableViewDataSource
+//-------------------------------------------------------------------------------------------
+extension CalendarPageViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return self.scheduleList
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
+    
+    cell.titleLabel.text = "할일 \(indexPath.row)"
+    
+    return cell
+  }
+  
+  
+}
+
+
+//-------------------------------------------------------------------------------------------
+// MARK: - DZNEmptyDataSetSource
+//-------------------------------------------------------------------------------------------
+extension CalendarPageViewController: DZNEmptyDataSetSource {
+//  func spaceHeight(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+//    return -100
+//  }
+  
+  func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+    return 250
+  }
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    
+    let text = "해당 날짜에 할 일이 없어요"
+    let attributes: [NSAttributedString.Key : Any] = [
+      NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20),
+      NSAttributedString.Key.foregroundColor : UIColor(named: "C8CCD5")!
+    ]
+    
+    return NSAttributedString(string: text, attributes: attributes)
+  }
+  
+}
+

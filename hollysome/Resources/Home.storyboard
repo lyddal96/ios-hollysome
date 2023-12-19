@@ -153,7 +153,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5f-rv-mhv">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luu-oE-arJ">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luu-oE-arJ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssh-kT-5R1">
@@ -445,6 +445,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="bell" catalog="system" id="nSN-Pe-aw0">
                             <color key="tintColor" name="282828"/>
+                            <connections>
+                                <action selector="alarmBarButtonItemTouchedWithSender:" destination="Y6W-OH-hqX" id="vVI-qJ-bIJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
