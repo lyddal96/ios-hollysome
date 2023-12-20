@@ -6,6 +6,10 @@
 import UIKit
 import Defaults
 
+enum LoginType {
+  case normal
+  case sns
+}
 class JoinViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
@@ -29,6 +33,7 @@ class JoinViewController: BaseViewController {
   var termsButtons: [UIButton] = []
   var selectedAvatar: [Int?] = [nil,nil,nil]
   var memberRequest = MemberModel()
+  var loginType = LoginType.normal
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -60,6 +65,7 @@ class JoinViewController: BaseViewController {
   override func initRequest() {
     super.initRequest()
     
+    /// 캐릭터 만들기
     self.charactorView.addTapGesture { recognizer in
       let destination = CreateAvatarViewController.instantiate(storyboard: "Commons")
       if self.selectedAvatar != [nil,nil,nil] {
@@ -105,11 +111,37 @@ class JoinViewController: BaseViewController {
     self.memberRequest.member_role1 = self.selectedAvatar[0]!.toString
     self.memberRequest.member_role2 = self.selectedAvatar[1]!.toString
     self.memberRequest.member_role3 = self.selectedAvatar[2]!.toString
+    self.memberRequest.house_code = self.houseCodeTextField.text
     self.memberRequest.id_check = "Y"
     self.memberRequest.term_arr = "\(self.terms1Button.isSelected ? "Y" : "N"),\(self.terms2Button.isSelected ? "Y" : "N")"
     
     
     APIRouter.shared.api(path: .member_reg_in, parameters: self.memberRequest.toJSON()) { data in
+      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+        Defaults[.member_idx] = memberResponse.member_idx
+        Defaults[.member_id] = self.memberRequest.member_id
+        Defaults[.member_pw] = self.memberRequest.member_pw
+        Defaults[.member_join_type] = "C"
+        let destination = JoinFinishViewController.instantiate(storyboard: "Login")
+        if var viewControllers = self.navigationController?.viewControllers {
+          viewControllers = [destination]
+          self.navigationController?.setViewControllers(viewControllers, animated: true)
+        }
+      }
+    }
+  }
+  
+  /// 소셜 가입
+  func snsJoinAPI() {
+    self.memberRequest.member_name = self.nicknameTextField.text
+    self.memberRequest.member_role1 = self.selectedAvatar[0]!.toString
+    self.memberRequest.member_role2 = self.selectedAvatar[1]!.toString
+    self.memberRequest.member_role3 = self.selectedAvatar[2]!.toString
+    self.memberRequest.id_check = "Y"
+    self.memberRequest.term_arr = "\(self.terms1Button.isSelected ? "Y" : "N"),\(self.terms2Button.isSelected ? "Y" : "N")"
+    self.memberRequest.house_code = self.houseCodeTextField.text
+    
+    APIRouter.shared.api(path: .sns_member_reg_in, parameters: self.memberRequest.toJSON()) { data in
       if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
         Defaults[.member_idx] = memberResponse.member_idx
         Defaults[.member_id] = self.memberRequest.member_id
@@ -139,7 +171,11 @@ class JoinViewController: BaseViewController {
       AJAlertController.initialization().showAlertWithOkButton(astrTitle: "필수 이용약관의 동의가 필요합니다.", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
       }
     } else {
-      self.emailJoinAPI()
+      if self.loginType == .normal {
+        self.emailJoinAPI()
+      } else {
+        self.snsJoinAPI()
+      }
     }
   }
   

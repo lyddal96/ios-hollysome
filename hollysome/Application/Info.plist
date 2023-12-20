@@ -227,6 +227,22 @@
 				<string>com.googleusercontent.apps.899989826321-mcip6rkdj86kljpst8k17ekrve7ralnm</string>
 			</array>
 		</dict>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>noommate</string>
+      </array>
+    </dict>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>kakao75c772ef169467f241b618c3885272d2</string>
+      </array>
+    </dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
@@ -288,6 +304,13 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>kakaolink</string>
+    <string>naversearchapp</string>
+    <string>naversearchthirdlogin</string>
+    <string>kakaokompassauth</string>
+  </array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -40,24 +40,38 @@ enum APIURL: String {
   case member_id_check = "join_v_1_0_0/member_id_check" // 아이디 중복확인
   case passwordemail_check_in = "join_v_1_0_0/passwordemail_check_in" // 비밀번호/이메일 유효성 확인
   case app_info_mod_up = "sns_join_v_1_0_0/app_info_mod_up" // 추가정보 입력
+  case sns_member_reg_in = "sns_join_v_1_0_0/sns_member_reg_in" // 소셜 회원가입
   
   
   /// 마이페이지
   case member_info_detail = "member_info_v_1_0_0/member_info_detail" // 내 정보
   case member_info_mod_up = "member_info_v_1_0_0/member_info_mod_up" // 내정보 수정
   case member_out_up = "member_out_v_1_0_0/member_out_up" // 탈퇴하기
+  case pw_mod_up = "member_info_v_1_0_0/pw_mod_up" // 비밀번호 수정
+  case alarm_toggle_view = "alarm_v_1_0_0/alarm_toggle_view" // 알림 상태 보기
+  case alarm_toggle_mod_up = "alarm_v_1_0_0/alarm_toggle_mod_up" // 알림 변경
   
   /// 하우스
   case house_reg_in = "house_v_1_0_0/house_reg_in" // 하우스 만들기
   case house_join_in = "house_v_1_0_0/house_join_in" // 하우스 들어가기
   case house_out_up = "house_v_1_0_0/house_out_up" // 하우스 나가기
+  case house_mod_up = "house_v_1_0_0/house_mod_up" // 하우스 사진 등록
+  case mate_list = "book_v_1_0_0/mate_list" // 메이트 리스트
   
   /// 알림장
-  case note_list = "house_v_1_0_0/note_list" // 알림장 리스트
-  case note_reg_in = "house_v_1_0_0/note_reg_in" // 알림장 등록
-  case note_detail = "house_v_1_0_0/note_detail" // 알림장 상세
-  case note_mod_up = "house_v_1_0_0/note_mod_up" // 알림장 수정
-  case note_del = "house_v_1_0_0/note_del" // 알림장 삭제
+  case note_list = "note_v_1_0_0/note_list" // 알림장 리스트
+  case note_reg_in = "note_v_1_0_0/note_reg_in" // 알림장 등록
+  case note_detail = "note_v_1_0_0/note_detail" // 알림장 상세
+  case note_mod_up = "note_v_1_0_0/note_mod_up" // 알림장 수정
+  case note_del = "note_v_1_0_0/note_del" // 알림장 삭제
+  case report_reg_in = "note_v_1_0_0/report_reg_in" // 알림장 신고
+  case block_mod_up = "note_v_1_0_0/block_mod_up" // 알림장 차단
+  
+  /// 가계부
+  case book_view = "book_v_1_0_0/book_view" // 당월 가계부
+  case book_reg_in = "book_v_1_0_0/book_reg_in" // 가계부 등록
+  case book_detail = "book_v_1_0_0/book_detail" // 가계부 상세
+  case book_mod_up = "book_v_1_0_0/book_mod_up" // 가계부 수정
   
   
   /// CS

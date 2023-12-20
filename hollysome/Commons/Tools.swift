@@ -30,14 +30,14 @@ class Tools {
           AJAlertController.initialization().showAlertWithOkButton(astrTitle: errors[0], aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
           }
         } else {
-          AJAlertController.initialization().showAlertWithOkButton(astrTitle: response.message ?? "", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
+          AJAlertController.initialization().showAlertWithOkButton(astrTitle: response.code_msg ?? "", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
           }
         }
       } else {
         if let errors = response.errors, errors.count > 0 {
           self.showToast(message: errors[0])
         } else {
-          self.showToast(message: response.message ?? "")
+          self.showToast(message: response.code_msg ?? "")
         }
       }
       

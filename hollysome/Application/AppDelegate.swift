@@ -77,6 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     naverThirdPartyLoginInstance?.consumerKey = "H99UZ_ot69w1gIzMLe8Z" //
     naverThirdPartyLoginInstance?.consumerSecret = "MSNEbm9lZw" //
     
+    // 카카오 로그인
+    KakaoSDK.initSDK(appKey: "75c772ef169467f241b618c3885272d2")
     
     self.applicationSetting()
     GADMobileAds.sharedInstance().start(completionHandler: nil)

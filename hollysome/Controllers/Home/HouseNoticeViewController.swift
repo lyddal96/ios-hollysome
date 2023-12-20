@@ -7,6 +7,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import Defaults
 
 class HouseNoticeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -16,18 +17,19 @@ class HouseNoticeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-  var noticeList = 0
+  var noteList = [HouseModel]()
+  var noteRequest = HouseModel()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.notificationCenter.addObserver(self, selector: #selector(self.houseNoteUpdate), name: Notification.Name("HouseNoteUpdate"), object: nil)
+    
     self.noticeTableView.registerCell(type: HouseNoticeCell.self)
     self.noticeTableView.delegate = self
     self.noticeTableView.dataSource = self
-    self.noticeTableView.emptyDataSetSource = self
-    self.noticeTableView.emptyDataSetDelegate = self
   }
   
   override func didReceiveMemoryWarning() {
@@ -41,6 +43,8 @@ class HouseNoticeViewController: BaseViewController {
   
   override func initRequest() {
     super.initRequest()
+    
+    self.noteListAPI()
   }
   
   override func initLocalize() {
@@ -50,7 +54,32 @@ class HouseNoticeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  /// 알림장 리스트 API
+  func noteListAPI() {
+    self.noteRequest.member_idx = Defaults[.member_idx]
+    self.noteRequest.house_code = Defaults[.house_code]
+    self.noteRequest.setNextPage()
+    
+    APIRouter.shared.api(path: .note_list, method: .post, parameters: noteRequest.toJSON()) { response in
+      if let noteResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: noteResponse) {
+        self.noteRequest.total_page = noteResponse.total_page
+        
+        if let data_array = noteResponse.data_array, data_array.count > 0 {
+          self.noteList += data_array
+        }
+        
+        self.noticeTableView.emptyDataSetSource = self
+        self.noticeTableView.reloadData()
+      }
+    }
+  }
   
+  /// 새로고침
+  @objc func houseNoteUpdate() {
+    self.noteRequest.resetPage()
+    self.noteList.removeAll()
+    self.noteListAPI()
+  }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
@@ -74,16 +103,12 @@ extension HouseNoticeViewController: UITableViewDelegate {
 //-------------------------------------------------------------------------------------------
 extension HouseNoticeViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.noticeList
+    return self.noteList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "HouseNoticeCell", for: indexPath) as! HouseNoticeCell
     let shapeList = ["round", "clover", "heart", "square", "cloud", "star"]
-    
-    cell.shapeImageView.image = UIImage(named: "\(shapeList[0])71")
-    cell.faceImageView.image = UIImage(named: "face\(0)")
-    cell.colorView.backgroundColor = UIColor(named: "profile\(0)")
     
     cell.blockView.isHidden = true
     cell.blockLabel.isHidden = true
@@ -91,25 +116,32 @@ extension HouseNoticeViewController: UITableViewDataSource {
     cell.contentLabel.isHidden = false
     cell.roundView.backgroundColor = .white
     cell.contentLabel.text = ""
-    cell.timeLabel.text = "23-01-02 00:00"
     cell.moreButton.isHidden = true
-    if indexPath.row == 0 {
-      cell.contentLabel.text = "보일러 수리기사님 1월 10일 오전에 방문"
-      cell.buttonsView.isHidden = false
-    } else if indexPath.row == 2 {
+    
+    let note = self.noteList[indexPath.row]
+    
+    
+    cell.timeLabel.text = note.ins_date ?? ""
+    
+    cell.shapeImageView.image = UIImage(named: "\(shapeList[note.member_role1?.toInt() ?? 0])71")
+    cell.faceImageView.image = UIImage(named: "face\(note.member_role2?.toInt() ?? 0)")
+    cell.colorView.backgroundColor = UIColor(named: "profile\(note.member_role3?.toInt() ?? 0)")
+    
+    if note.report_yn == "Y" {
+      cell.roundView.backgroundColor = UIColor(named: "E4E6EB")
+      cell.blockLabel.text = "신고한 알림장이예요."
+      cell.blockLabel.isHidden = false
+      cell.contentLabel.isHidden = true
+    } else if note.block_yn == "Y" {
       cell.roundView.backgroundColor = UIColor(named: "E4E6EB")
       cell.blockView.isHidden = false
       cell.blockLabel.text = "차단한 알림장이예요."
       cell.blockLabel.isHidden = false
       cell.contentLabel.isHidden = true
-    } else if indexPath.row == 3 {
-      cell.roundView.backgroundColor = UIColor(named: "E4E6EB")
-      cell.blockLabel.text = "신고한 알림장이예요."
-      cell.blockLabel.isHidden = false
-      cell.contentLabel.isHidden = true
     } else {
-      cell.contentLabel.text = "보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문보일러 수리기사님 1월 10일 오전에 방문"
-      cell.moreButton.isHidden = false
+      cell.contentLabel.text = note.contents ?? ""
+      cell.buttonsView.isHidden = Defaults[.member_idx] != note.member_idx
+      cell.moreButton.isHidden = Defaults[.member_idx] == note.member_idx
     }
     
     /// 더보기
@@ -145,6 +177,7 @@ extension HouseNoticeViewController: UITableViewDataSource {
     cell.modifyButton.addTapGesture { recognizer in
       let destination = NoticeRegViewController.instantiate(storyboard: "Home")
       destination.enrollType = .modify
+      destination.note_idx = note.note_idx ?? ""
       self.navigationController?.pushViewController(destination, animated: true)
     }
     
@@ -178,15 +211,6 @@ extension HouseNoticeViewController: DZNEmptyDataSetSource {
   
 }
 
-//-------------------------------------------------------------------------------------------
-// MARK: - DZNEmptyDataSetDelegate
-//-------------------------------------------------------------------------------------------
-extension HouseNoticeViewController: DZNEmptyDataSetDelegate {
-  func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-    self.noticeList = 10
-    self.noticeTableView.reloadData()
-  }
-}
 
 //-------------------------------------------------------------------------------------------
 // MARK: - CardPopupSelectDelegate

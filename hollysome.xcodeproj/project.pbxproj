@@ -27,7 +27,6 @@
 		4B3E55422AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553D2AAE8C200015FEB1 /* SpoqaHanSansNeo-Regular.otf */; };
 		4B3E55432AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553E2AAE8C200015FEB1 /* SpoqaHanSansNeo-Bold.otf */; };
 		4B3E55442AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3E553B2AAE8C200015FEB1 /* SpoqaHanSansNeo-Thin.otf */; };
-		4B3E55462AAEDCDA0015FEB1 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E55452AAEDCDA0015FEB1 /* EmailLoginViewController.swift */; };
 		4B3F61802A2036EA0049882D /* MainTabBarViewCntroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F617F2A2036EA0049882D /* MainTabBarViewCntroller.swift */; };
 		4B3F61852A2037920049882D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61842A2037920049882D /* HomeViewController.swift */; };
 		4B3F61872A20379E0049882D /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61862A20379E0049882D /* ScheduleViewController.swift */; };
@@ -78,6 +77,8 @@
 		4BB645BE2B2B275300DF92EB /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB645BD2B2B275300DF92EB /* FileModel.swift */; };
 		4BB645C12B2B2B9300DF92EB /* MateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB645C02B2B2B9300DF92EB /* MateCell.xib */; };
 		4BB645C32B2B2B9600DF92EB /* MateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB645C22B2B2B9600DF92EB /* MateCell.swift */; };
+		4BC51FE42B33605D00B0679F /* ModifyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */; };
+		4BC51FE62B33643600B0679F /* ModifyPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */; };
 		4BE0ADD62B30508B00AD9A35 /* SchedulePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADD52B30508B00AD9A35 /* SchedulePageViewController.swift */; };
 		4BE0ADD82B3050C200AD9A35 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADD72B3050C200AD9A35 /* CalendarPageViewController.swift */; };
 		4BE0ADDA2B3050E800AD9A35 /* TodoListPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADD92B3050E800AD9A35 /* TodoListPageViewController.swift */; };
@@ -236,7 +237,6 @@
 		4B3E553D2AAE8C200015FEB1 /* SpoqaHanSansNeo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.otf"; sourceTree = "<group>"; };
 		4B3E553E2AAE8C200015FEB1 /* SpoqaHanSansNeo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.otf"; sourceTree = "<group>"; };
 		4B3E553F2AAE8C200015FEB1 /* SpoqaHanSansNeo-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.otf"; sourceTree = "<group>"; };
-		4B3E55452AAEDCDA0015FEB1 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		4B3F617F2A2036EA0049882D /* MainTabBarViewCntroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewCntroller.swift; sourceTree = "<group>"; };
 		4B3F61842A2037920049882D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4B3F61862A20379E0049882D /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -287,6 +287,8 @@
 		4BB645BD2B2B275300DF92EB /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
 		4BB645C02B2B2B9300DF92EB /* MateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MateCell.xib; sourceTree = "<group>"; };
 		4BB645C22B2B2B9600DF92EB /* MateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateCell.swift; sourceTree = "<group>"; };
+		4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInfoViewController.swift; sourceTree = "<group>"; };
+		4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPwViewController.swift; sourceTree = "<group>"; };
 		4BE0ADD52B30508B00AD9A35 /* SchedulePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePageViewController.swift; sourceTree = "<group>"; };
 		4BE0ADD72B3050C200AD9A35 /* CalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewController.swift; sourceTree = "<group>"; };
 		4BE0ADD92B3050E800AD9A35 /* TodoListPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPageViewController.swift; sourceTree = "<group>"; };
@@ -487,6 +489,8 @@
 			isa = PBXGroup;
 			children = (
 				4B3F61882A2037A80049882D /* MyViewController.swift */,
+				4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */,
+				4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -677,7 +681,6 @@
 				4B70452D2AE651EF001E03AA /* EmailJoinViewController.swift */,
 				68182F0323CF02990015B042 /* JoinFinishViewController.swift */,
 				68C0A6AC2333437700FCB61B /* LoginViewController.swift */,
-				4B3E55452AAEDCDA0015FEB1 /* EmailLoginViewController.swift */,
 				68A4653423BEFE99008E8A0A /* FindIdViewController.swift */,
 				68A4653623BF00B7008E8A0A /* FindPwViewController.swift */,
 				68182F0B23CF10CE0015B042 /* ChangePwViewController.swift */,
@@ -1070,6 +1073,7 @@
 				4B7ECC932B2CD29E00A744B1 /* HouseNoticeCell.swift in Sources */,
 				6817AF2E22C5F9060026CDAF /* QnaDetailCell.swift in Sources */,
 				4B1058912B31C625005372A7 /* AccountBookEmptyCell.swift in Sources */,
+				4BC51FE42B33605D00B0679F /* ModifyInfoViewController.swift in Sources */,
 				4B1058A52B31ED3D005372A7 /* RegAccountBookViewController.swift in Sources */,
 				4BAD39E42B2C2F8E00B99B61 /* HomeNoticeCell.swift in Sources */,
 				BB8C9CB722AE3CAE005E00B0 /* NoticeModel.swift in Sources */,
@@ -1122,7 +1126,6 @@
 				4B99FF392AD563DD00EF35F8 /* FaceCell.swift in Sources */,
 				6869964D23D159E100EFEE01 /* EventViewController.swift in Sources */,
 				685E293723C80B17001DD8B3 /* SubTab2ViewController.swift in Sources */,
-				4B3E55462AAEDCDA0015FEB1 /* EmailLoginViewController.swift in Sources */,
 				68129FA12333802F0019EDBC /* WebViewController.swift in Sources */,
 				688EE10C23D81EA70014640F /* CardPopupViewController.swift in Sources */,
 				688EE10F23D8360D0014640F /* LineChartViewController.swift in Sources */,
@@ -1167,6 +1170,7 @@
 				685E294223C80E40001DD8B3 /* HeaderView.swift in Sources */,
 				BB8C9CBD22AE44A9005E00B0 /* BannerModel.swift in Sources */,
 				4BB645BA2B2AE0C900DF92EB /* MakeHouseViewController.swift in Sources */,
+				4BC51FE62B33643600B0679F /* ModifyPwViewController.swift in Sources */,
 				4BAD39EC2B2C4BA400B99B61 /* ScheduleTitleCell.swift in Sources */,
 				685E293123C72674001DD8B3 /* TabViewController.swift in Sources */,
 				6817AF3C22C613F40026CDAF /* NoticeDetailViewController.swift in Sources */,

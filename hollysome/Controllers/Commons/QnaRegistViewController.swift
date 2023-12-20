@@ -84,8 +84,7 @@ class QnaRegistViewController: BaseViewController {
   
     APIRouter.shared.api(path: .qa_reg_in,method: .post , parameters: self.qnaRequest.toJSON()) { response in
       if let qnaResponse = QnaModel(JSON: response), Tools.shared.isSuccessResponse(response: qnaResponse) {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.post(name: Notification.Name("QnaListUpdate"), object: nil)
+        self.notificationCenter.post(name: Notification.Name("QnaListUpdate"), object: nil)
         self.navigationController?.popViewController(animated: true)
       }
     }

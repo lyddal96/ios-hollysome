@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rq4-h3-dFX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rq4-h3-dFX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -114,7 +114,7 @@
                                     <action selector="findPwButtonTouchedWithSender:" destination="Rq4-h3-dFX" eventType="touchUpInside" id="KAD-uT-BYt"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-jU-EQY">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="아이디" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-jU-EQY">
                                 <rect key="frame" x="16" y="443" width="382" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="yHC-Gf-9b0"/>
@@ -238,99 +238,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kzy-lt-t1V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-494" y="11"/>
-        </scene>
-        <!--이메일 로그인-->
-        <scene sceneID="3fs-Hs-Io2">
-            <objects>
-                <viewController storyboardIdentifier="EmailLoginViewController" id="wMd-Sd-6EG" customClass="EmailLoginViewController" customModule="hollysome" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3hz-4b-i3h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t3j-4x-w4L">
-                                <rect key="frame" x="16" y="116" width="382" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="BgX-jD-FxI"/>
-                                </constraints>
-                                <color key="textColor" name="text"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                        <color key="value" name="C8CCD5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zgr-U8-mkk">
-                                <rect key="frame" x="16" y="187.5" width="382" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="7Ms-ZX-2rk"/>
-                                </constraints>
-                                <color key="textColor" name="text"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                        <color key="value" name="C8CCD5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIj-ea-zWu">
-                                <rect key="frame" x="16" y="273.5" width="382" height="50"/>
-                                <color key="backgroundColor" name="accent"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="VAa-yK-cr0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="로그인하기">
-                                    <color key="titleColor" name="FFFFFF"/>
-                                </state>
-                                <state key="disabled">
-                                    <color key="titleColor" name="C8CCD5"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButtonTouchedWithSender:" destination="wMd-Sd-6EG" eventType="touchUpInside" id="2Lx-jw-6ps"/>
-                                </connections>
-                            </button>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caption_S_10_regular" translatesAutoresizingMaskIntoConstraints="NO" id="mRc-1z-Tdl">
-                                <rect key="frame" x="16" y="170" width="153.5" height="9.5"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Rvs-wf-ZMc"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="mRc-1z-Tdl" firstAttribute="top" secondItem="t3j-4x-w4L" secondAttribute="bottom" constant="4" id="2al-Qr-nGX"/>
-                            <constraint firstItem="t3j-4x-w4L" firstAttribute="leading" secondItem="Rvs-wf-ZMc" secondAttribute="leading" constant="16" id="Fox-LJ-FBY"/>
-                            <constraint firstItem="t3j-4x-w4L" firstAttribute="top" secondItem="Rvs-wf-ZMc" secondAttribute="top" constant="24" id="Hfi-MS-nlE"/>
-                            <constraint firstItem="mRc-1z-Tdl" firstAttribute="leading" secondItem="Rvs-wf-ZMc" secondAttribute="leading" constant="16" id="IeO-hR-Jw3"/>
-                            <constraint firstItem="Rvs-wf-ZMc" firstAttribute="trailing" secondItem="Zgr-U8-mkk" secondAttribute="trailing" constant="16" id="Ncp-iE-MOb"/>
-                            <constraint firstItem="Rvs-wf-ZMc" firstAttribute="trailing" secondItem="t3j-4x-w4L" secondAttribute="trailing" constant="16" id="SNh-hY-b8y"/>
-                            <constraint firstItem="Zgr-U8-mkk" firstAttribute="top" secondItem="mRc-1z-Tdl" secondAttribute="bottom" constant="8" id="aEm-Ss-tw6"/>
-                            <constraint firstItem="iIj-ea-zWu" firstAttribute="top" secondItem="Zgr-U8-mkk" secondAttribute="bottom" constant="36" id="gph-7t-kKF"/>
-                            <constraint firstItem="iIj-ea-zWu" firstAttribute="leading" secondItem="Rvs-wf-ZMc" secondAttribute="leading" constant="16" id="n0F-Uo-FRf"/>
-                            <constraint firstItem="Zgr-U8-mkk" firstAttribute="leading" secondItem="3hz-4b-i3h" secondAttribute="leading" constant="16" id="oxL-Uk-7YY"/>
-                            <constraint firstItem="Rvs-wf-ZMc" firstAttribute="trailing" secondItem="iIj-ea-zWu" secondAttribute="trailing" constant="16" id="pz8-dk-k9z"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="이메일 로그인" id="Lru-pZ-3fQ">
-                        <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="fMe-Yu-eDj">
-                            <connections>
-                                <action selector="backButtonTouchedWithSender:" destination="wMd-Sd-6EG" id="X21-6f-MfD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="emailErrorView" destination="mRc-1z-Tdl" id="hEl-Qr-oPL"/>
-                        <outlet property="emailTextField" destination="t3j-4x-w4L" id="rpQ-OW-SPO"/>
-                        <outlet property="loginButton" destination="iIj-ea-zWu" id="jZH-IH-AiQ"/>
-                        <outlet property="pwTextField" destination="Zgr-U8-mkk" id="8pN-FH-e78"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Rl-Lx-UJl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="480" y="11"/>
         </scene>
         <!--회원가입-->
         <scene sceneID="B2D-zi-2Qf">
@@ -619,7 +526,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axc-mx-Iwn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1440.5797101449277" y="10.714285714285714"/>
+            <point key="canvasLocation" x="480" y="11"/>
         </scene>
         <!--회원가입-->
         <scene sceneID="dwo-rU-6ak">
@@ -1037,7 +944,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diw-sa-y7u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2446" y="11"/>
+            <point key="canvasLocation" x="1484" y="11"/>
         </scene>
         <!--아이디 찾기-->
         <scene sceneID="RUe-qQ-O4K">
@@ -1531,7 +1438,7 @@ email 로 보내 드렸습니다.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOn-dE-t6G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3494" y="11"/>
+            <point key="canvasLocation" x="2532" y="11"/>
         </scene>
         <!--비밀번호 변경-->
         <scene sceneID="p5u-5W-not">
@@ -2018,7 +1925,6 @@ email 로 보내 드렸습니다.
     <resources>
         <image name="btn_check_off" width="18" height="18"/>
         <image name="btn_check_on" width="18" height="18"/>
-        <image name="caption_S_10_regular" width="153.5" height="9.5"/>
         <image name="head_btn_back" width="11" height="20"/>
         <image name="head_btn_close" width="15.5" height="15.5"/>
         <image name="img_join" width="249" height="280"/>

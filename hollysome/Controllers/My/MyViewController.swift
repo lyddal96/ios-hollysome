@@ -74,7 +74,10 @@ class MyViewController: BaseViewController {
     
     // 내 정보 수정
     self.modifyInfoView.addTapGesture { recognizer in
-      
+      let destination = ModifyInfoViewController.instantiate(storyboard: "My")
+      destination.memberData = self.memberResponse
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
     }
     
     // 알림설정
