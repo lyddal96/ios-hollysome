@@ -206,6 +206,16 @@ extension AccountBookViewController: ExpyTableViewDataSource {
     //    cell.parentsViewController = self
         cell.totalView.isHidden = indexPath.row != self.currentList
         
+        /// 나누기
+        cell.divideButton.addTapGesture { recognizer in
+          let destination = DividePopupViewController.instantiate(storyboard: "AccountBook")
+//          destination.delegate = self
+          destination.modalTransitionStyle = .crossDissolve
+          destination.modalPresentationStyle = .overCurrentContext
+//          self.present(destination, animated: false, completion: nil)
+          self.tabBarController?.present(destination, animated: true)
+        }
+        
         return cell
       }
       

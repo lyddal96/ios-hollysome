@@ -13,6 +13,7 @@ class DividePopupViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var priceLabel: UILabel!
+  @IBOutlet weak var priceView: UIView!
   @IBOutlet weak var mateCollectionView: UICollectionView!
   @IBOutlet weak var closeButton: UIButton!
   @IBOutlet weak var divideButton: UIButton!
@@ -31,6 +32,14 @@ class DividePopupViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let bottomPadding = self.window?.safeAreaInsets.bottom ?? 0.0
+    self.cardViewTopConstraint.constant = self.view.safeAreaLayoutGuide.layoutFrame.height + bottomPadding
+    
+    self.mateCollectionView.registerCell(type: MateCell.self)
+    self.mateCollectionView.delegate = self
+    self.mateCollectionView.dataSource = self
+
   }
   
   override func didReceiveMemoryWarning() {
@@ -39,6 +48,18 @@ class DividePopupViewController: BaseViewController {
   
   override func initLayout() {
     super.initLayout()
+    
+    self.cardView.setCornerRadius(radius: 12)
+    
+    self.cardView.clipsToBounds = false
+    self.cardView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    self.dimmerView.alpha = 0.0
+    self.dimmerView.isOpaque = false
+    self.popupHeight = 334
+    
+    self.priceView.setCornerRadius(radius: 12)
+    self.closeButton.setCornerRadius(radius: 12)
+    self.divideButton.setCornerRadius(radius: 12)
   }
   
  
@@ -120,5 +141,50 @@ class DividePopupViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
+  /// 닫기
+  /// - Parameter sender: 버튼
+  @IBAction func closeButtonTouched(sender: UIButton) {
+    self.hideCardAndGoBack(type: nil)
+  }
   
+  /// 광고보고 비용 알리기
+  /// - Parameter sender: 버튼
+  @IBAction func divideButtonTouched(sender: UIButton) {
+    
+  }
+}
+
+
+//-------------------------------------------------------------------------------------------
+// MARK: - UICollectionViewDelegate
+//-------------------------------------------------------------------------------------------
+extension DividePopupViewController: UICollectionViewDelegate {
+  
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - UICollectionViewDelegateFlowLayout
+//-------------------------------------------------------------------------------------------
+extension DividePopupViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: 52, height: 74)
+  }
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - UICollectionViewDataSource
+//-------------------------------------------------------------------------------------------
+extension DividePopupViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 3
+    
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as! MateCell
+    cell.setMate(index: indexPath)
+    cell.nameLabel.text = "메이트\(indexPath.row)"
+    
+    return cell
+  }
 }

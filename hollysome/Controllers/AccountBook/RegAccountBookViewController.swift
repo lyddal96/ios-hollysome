@@ -99,18 +99,18 @@ class RegAccountBookViewController: BaseViewController {
   /// 작성완료
   /// - Parameter sender: 버튼
   @IBAction func finishButtonTouched(sender: UIButton) {
-    
+    self.navigationController?.popViewController(animated: true)
   }
   
   /// 취소하기
   /// - Parameter sender: 버튼
   @IBAction func cancelButtonTouched(sender: UIButton) {
-    
+    self.navigationController?.popViewController(animated: true)
   }
   
   /// 수정
   /// - Parameter sender: 버튼
   @IBAction func modifyButtonTouched(sender: UIButton) {
-    
+    self.navigationController?.popViewController(animated: true)
   }
 }
