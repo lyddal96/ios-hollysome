@@ -15,5 +15,6 @@ extension Defaults.Keys {
   static let bannerDay = Key<Date?>("bannerDay")
   static let tutorial = Key<Bool?>("tutorial") // false 면 tutorial열고, true면 열지 않음
   static let house_code = Key<String?>("house_code") // 하우스 코드
+  static let house_idx = Key<String?>("house_idx") // 하우스 키
   static let poke_cnt = Key<Int?>("poke_cnt")
 }

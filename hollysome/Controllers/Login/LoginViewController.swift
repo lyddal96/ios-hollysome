@@ -91,6 +91,7 @@ class LoginViewController: BaseViewController {
           Defaults[.member_pw] = self.pwTextField.text
           Defaults[.member_join_type] = "C"
           Defaults[.house_code] = memberResponse.house_code
+          Defaults[.house_idx] = memberResponse.house_idx
           let destination = MainTabBarViewController.instantiate(storyboard: "Main")
           let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
           window?.rootViewController = destination
@@ -103,6 +104,7 @@ class LoginViewController: BaseViewController {
     } 
   }
   
+  /// 소셜 로그인
   func snsLoginAPI(member_id: String, member_join_type: String) {
     let memberRequest = MemberModel()
     memberRequest.member_id = member_id
@@ -114,9 +116,10 @@ class LoginViewController: BaseViewController {
       if let memberResponse = MemberModel(JSON: response) {
         if memberResponse.code == "1000" || memberResponse.code == "2000" {
           Defaults[.member_idx] = memberResponse.member_idx
-          Defaults[.member_id] = self.idTextField.text
+          Defaults[.member_id] = member_id
           Defaults[.member_join_type] = member_join_type
           Defaults[.house_code] = memberResponse.house_code
+          Defaults[.house_idx] = memberResponse.house_idx
           let destination = MainTabBarViewController.instantiate(storyboard: "Main")
           let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
           window?.rootViewController = destination
@@ -126,6 +129,7 @@ class LoginViewController: BaseViewController {
           viewController.memberRequest.member_join_type = member_join_type
           viewController.memberRequest.gcm_key = self.appDelegate.fcmKey
           viewController.memberRequest.device_os = "I"
+          viewController.loginType = .sns
           let destination = viewController.coverNavigationController()
           destination.modalPresentationStyle = .fullScreen
           destination.hero.isEnabled = true

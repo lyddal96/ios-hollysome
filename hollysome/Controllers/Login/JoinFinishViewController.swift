@@ -32,6 +32,7 @@ class JoinFinishViewController: BaseViewController {
     super.initLayout()
 //    self.toLoginButton.addBorder(width: 1, color: Colors._EA474F)
 //    self.toLoginButton.setCornerRadius(radius: 5)
+    self.toLoginButton.setCornerRadius(radius: 12)
   }
   
   override func initRequest() {

@@ -113,20 +113,34 @@ class JoinViewController: BaseViewController {
     self.memberRequest.member_role3 = self.selectedAvatar[2]!.toString
     self.memberRequest.house_code = self.houseCodeTextField.text
     self.memberRequest.id_check = "Y"
-    self.memberRequest.term_arr = "\(self.terms1Button.isSelected ? "Y" : "N"),\(self.terms2Button.isSelected ? "Y" : "N")"
     
     
     APIRouter.shared.api(path: .member_reg_in, parameters: self.memberRequest.toJSON()) { data in
       if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+        self.memberLoginAPI()
+      }
+    }
+  }
+  
+  /// 회원 로그인 API
+  func memberLoginAPI() {
+    self.memberRequest.device_os = "I"
+    self.memberRequest.gcm_key = self.appDelegate.fcmKey
+
+    APIRouter.shared.api(path: .login, parameters: memberRequest.toJSON()) { response in
+      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
         Defaults[.member_idx] = memberResponse.member_idx
         Defaults[.member_id] = self.memberRequest.member_id
         Defaults[.member_pw] = self.memberRequest.member_pw
         Defaults[.member_join_type] = "C"
+        Defaults[.house_code] = memberResponse.house_code
+        Defaults[.house_idx] = memberResponse.house_idx
         let destination = JoinFinishViewController.instantiate(storyboard: "Login")
         if var viewControllers = self.navigationController?.viewControllers {
           viewControllers = [destination]
           self.navigationController?.setViewControllers(viewControllers, animated: true)
         }
+        
       }
     }
   }
@@ -137,16 +151,27 @@ class JoinViewController: BaseViewController {
     self.memberRequest.member_role1 = self.selectedAvatar[0]!.toString
     self.memberRequest.member_role2 = self.selectedAvatar[1]!.toString
     self.memberRequest.member_role3 = self.selectedAvatar[2]!.toString
-    self.memberRequest.id_check = "Y"
-    self.memberRequest.term_arr = "\(self.terms1Button.isSelected ? "Y" : "N"),\(self.terms2Button.isSelected ? "Y" : "N")"
     self.memberRequest.house_code = self.houseCodeTextField.text
     
     APIRouter.shared.api(path: .sns_member_reg_in, parameters: self.memberRequest.toJSON()) { data in
       if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+        self.snsLoginAPI()
+        
+      }
+    }
+  }
+  
+  /// 소셜 로그인
+  func snsLoginAPI() {
+    self.memberRequest.device_os = "I"
+    self.memberRequest.gcm_key = self.appDelegate.fcmKey
+    
+    APIRouter.shared.api(path: .sns_member_login, method: .post, parameters: memberRequest.toJSON()) { response in
+      if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {
         Defaults[.member_idx] = memberResponse.member_idx
         Defaults[.member_id] = self.memberRequest.member_id
-        Defaults[.member_pw] = self.memberRequest.member_pw
-        Defaults[.member_join_type] = "C"
+        Defaults[.member_join_type] = self.memberRequest.member_join_type
+        Defaults[.house_idx] = memberResponse.house_idx
         let destination = JoinFinishViewController.instantiate(storyboard: "Login")
         if var viewControllers = self.navigationController?.viewControllers {
           viewControllers = [destination]

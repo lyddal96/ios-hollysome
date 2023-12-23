@@ -99,7 +99,8 @@ class BaseViewController: UIViewController {
     Defaults[.member_id] = nil
     Defaults[.member_pw] = nil
     Defaults[.member_join_type] = nil
-    
+    Defaults[.house_idx] = nil
+    Defaults[.house_code] = nil
   }
   /// Swipe dismiss
   /// - Parameter gestureRecognizer: UIScreenEdgePanGestureRecognizer

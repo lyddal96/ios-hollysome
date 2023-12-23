@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Defaults
+
 class MateCell: UICollectionViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var avatarView: UIView!
@@ -27,5 +29,13 @@ class MateCell: UICollectionViewCell {
     self.faceImageView.image = UIImage(named: "face\(index.row)")
     self.colorView.backgroundColor = UIColor(named: "profile\(index.row)")
     self.avatarView.addBorder(width: 2, color: UIColor(named: index.row == 0 ? "accent" : "FFFFFF")!)
+  }
+
+  func setMate(mate: MemberModel) {
+    self.nameLabel.text = mate.member_nickname ?? ""
+    self.avatarView.addBorder(width: 2, color: UIColor(named: mate.member_idx == Defaults[.member_idx] ? "accent" : "FFFFFF")!)
+    self.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[mate.member_role1?.toInt() ?? 0])71")
+    self.faceImageView.image = UIImage(named: "face\(mate.member_role2?.toInt() ?? 0)")
+    self.colorView.backgroundColor = UIColor(named: "profile\(mate.member_role3?.toInt() ?? 0)")
   }
 }

@@ -63,7 +63,7 @@ class HouseNoticeViewController: BaseViewController {
     APIRouter.shared.api(path: .note_list, method: .post, parameters: noteRequest.toJSON()) { response in
       if let noteResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: noteResponse) {
         self.noteRequest.total_page = noteResponse.total_page
-        
+        self.isLoadingList = true
         if let data_array = noteResponse.data_array, data_array.count > 0 {
           self.noteList += data_array
         }
@@ -73,7 +73,35 @@ class HouseNoticeViewController: BaseViewController {
       }
     }
   }
-  
+
+
+  /// 알림장 차단 API
+  func noteBlockAPI(note_idx: String) {
+    let noteRequest = HouseModel()
+    noteRequest.note_idx = note_idx
+    noteRequest.member_idx = Defaults[.member_idx]
+
+    APIRouter.shared.api(path: .block_mod_up, method: .post, parameters: noteRequest.toJSON()) { response in
+      if let noteResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: noteResponse) {
+        if let index = self.noteList.firstIndex(where: { $0.note_idx == note_idx }) {
+          self.noteList[index].block_yn = self.noteList[index].block_yn == "Y" ? "N" : "Y"
+        }
+        self.noticeTableView.reloadData()
+      }
+    }
+  }
+
+  /// 알림장 삭제 API
+  func noteDelAPI(note_idx: String) {
+    let noteRequest = HouseModel()
+    noteRequest.note_idx = note_idx
+
+    APIRouter.shared.api(path: .note_del, method: .post, parameters: noteRequest.toJSON()) { response in
+      if let noteResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: noteResponse) {
+        self.houseNoteUpdate()
+      }
+    }
+  }
   /// 새로고침
   @objc func houseNoteUpdate() {
     self.noteRequest.resetPage()
@@ -95,7 +123,19 @@ class HouseNoticeViewController: BaseViewController {
 // MARK: - UITableViewDelegate
 //-------------------------------------------------------------------------------------------
 extension HouseNoticeViewController: UITableViewDelegate {
-  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if scrollView == self.noticeTableView {
+      let currentOffset = scrollView.contentOffset.y
+      let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+      
+      if maximumOffset - currentOffset <= 10.0 {
+        if self.noteRequest.isMore() {
+          self.isLoadingList = false
+          self.noteListAPI()
+        }
+      }
+    }
+  }
 }
 
 //-------------------------------------------------------------------------------------------
@@ -147,6 +187,7 @@ extension HouseNoticeViewController: UITableViewDataSource {
     /// 더보기
     cell.moreButton.addTapGesture { recognizer in
       let destination = CardPopupViewController.instantiate(storyboard: "Main")
+      destination.note_idx = note.note_idx ?? ""
       destination.blockIsHidden = false
       destination.reportIsHidden = false
       destination.delegate = self
@@ -160,6 +201,7 @@ extension HouseNoticeViewController: UITableViewDataSource {
       AJAlertController.initialization().showAlert(astrTitle: "차단을 해제할까요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "차단 해제하기") { position, title in
         if position == 1 {
           // 차단 해제
+          self.noteBlockAPI(note_idx: note.note_idx ?? "")
         }
       }
     }
@@ -168,7 +210,7 @@ extension HouseNoticeViewController: UITableViewDataSource {
     cell.deleteButton.addTapGesture { recognizer in
       AJAlertController.initialization().showAlert(astrTitle: "작성한 알림장을 삭제할까요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "삭제할래요.") { position, title in
         if position == 1 {
-          
+          self.noteDelAPI(note_idx: note.note_idx ?? "")
         }
       }
     }
@@ -216,19 +258,33 @@ extension HouseNoticeViewController: DZNEmptyDataSetSource {
 // MARK: - CardPopupSelectDelegate
 //-------------------------------------------------------------------------------------------
 extension HouseNoticeViewController: CardPopupSelectDelegate {
-  func blockTouched() {
+  func blockTouched(note_idx: String) {
     AJAlertController.initialization().showAlert(astrTitle: "해당 글을 차단할까요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "차단하기") { position, title in
       if position == 1 {
         // 차단하기
+        self.noteBlockAPI(note_idx: note_idx)
       }
     }
   }
   
-  func reportTouched() {
+  func reportTouched(note_idx: String) {
     let destination = ReportPopupViewController.instantiate(storyboard: "Commons")
-//    destination.delegate = self
+    destination.delegate = self
+    destination.note_idx = note_idx
     destination.modalTransitionStyle = .crossDissolve
     destination.modalPresentationStyle = .overCurrentContext
     self.present(destination, animated: false, completion: nil)
+  }
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - ReportDelegate
+//-------------------------------------------------------------------------------------------
+extension HouseNoticeViewController: ReportDelegate {
+  func reportDelegate(note_idx: String) {
+    if let index = self.noteList.firstIndex(where: { $0.note_idx == note_idx }) {
+      self.noteList[index].report_yn = "Y"
+    }
+    self.noticeTableView.reloadData()
   }
 }

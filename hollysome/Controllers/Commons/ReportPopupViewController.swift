@@ -8,9 +8,10 @@
 import UIKit
 import RSKGrowingTextView
 import DropDown
+import Defaults
 
 protocol ReportDelegate {
-  func reportDelegate()
+  func reportDelegate(note_idx: String)
 }
 
 class ReportPopupViewController: BaseViewController {
@@ -38,7 +39,8 @@ class ReportPopupViewController: BaseViewController {
   let bottomPadding = UIApplication.shared.windows.first {$0.isKeyWindow}?.safeAreaInsets.bottom ?? 0.0
   
   let dropDown = DropDown()
-  var categoryList = ["욕설", "광고성 게시물", "기타"]
+  var type: Int? = nil
+  var note_idx = ""
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -127,8 +129,8 @@ class ReportPopupViewController: BaseViewController {
     
     self.dropDown.anchorView = self.categoryView
     self.dropDown.width = self.categoryView.frame.size.width
-    self.dropDown.dataSource = self.categoryList
-    
+    self.dropDown.dataSource = Constants.REPORT_TYPE
+
     self.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
       guard let cell = cell as? CommonDropDownCell else { return }
       cell.titleLabel.text = item
@@ -136,8 +138,8 @@ class ReportPopupViewController: BaseViewController {
     }
     
     self.dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-      self.categoryTextField.text = self.categoryList[index]
-//      self.categoryType = index
+      self.categoryTextField.text = Constants.REPORT_TYPE[index]
+      self.type = index
       UIView.animate(withDuration: (0.3)) {
         self.cateImageView.transform = CGAffineTransform(rotationAngle: (0))
         self.categoryView.addBorder(width: 1, color: UIColor(named: "E4E6EB")!)
@@ -191,7 +193,7 @@ class ReportPopupViewController: BaseViewController {
           self.dismiss(animated: false) {
             if type != nil {
               if type == 0 {
-                self.delegate?.reportDelegate()
+                self.delegate?.reportDelegate(note_idx: self.note_idx)
               }
             }
           }
@@ -201,13 +203,30 @@ class ReportPopupViewController: BaseViewController {
     
     hideCard.startAnimation()
   }
+
+  /// 알림장 신고하기 API
+  func reportRegAPI() {
+    let noteRequest = HouseModel()
+    noteRequest.note_idx = self.note_idx
+    noteRequest.member_idx = Defaults[.member_idx]
+    noteRequest.report_contents = self.reasonTextView.text
+    if let type = self.type {
+      noteRequest.report_type = "\(type)"
+    }
+
+    APIRouter.shared.api(path: .report_reg_in, method: .post, parameters: noteRequest.toJSON()) { response in
+      if let noteResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: noteResponse, alertYn: true) {
+        self.hideCardAndGoBack(type: 0)
+      }
+    }
+  }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
   /// 신고하기
   /// - Parameter sender: 버튼
   @IBAction func reportButtonTouched(sender: UIButton) {
-    
+    self.reportRegAPI()
   }
   
   /// 취소
@@ -230,7 +249,7 @@ extension ReportPopupViewController: RSKGrowingTextViewDelegate {
   }
   
   func textViewDidChange(_ textView: UITextView) {
-    self.reasonTextView.text = "\(textView.text.count) / 100"
+    self.reasonCntLabel.text = "\(textView.text.count) / 100"
     
   }
   

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "state-naver.png",
+      "filename" : "state_apple.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "state-naver@2x.png",
+      "filename" : "state_apple@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "state-naver@3x.png",
+      "filename" : "state_apple@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

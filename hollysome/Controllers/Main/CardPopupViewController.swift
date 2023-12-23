@@ -8,8 +8,8 @@ import UIKit
 @objc protocol CardPopupSelectDelegate {
   @objc optional func albumTouched()
   @objc optional func cameraTouched()
-  @objc optional func blockTouched()
-  @objc optional func reportTouched()
+  @objc optional func blockTouched(note_idx: String)
+  @objc optional func reportTouched(note_idx: String)
 }
 
 class CardPopupViewController: BaseViewController {
@@ -37,6 +37,8 @@ class CardPopupViewController: BaseViewController {
   var cameraIsHidden = true
   var reportIsHidden = true
   var blockIsHidden = true
+
+  var note_idx = ""
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -153,9 +155,9 @@ class CardPopupViewController: BaseViewController {
               } else if type == 1 {
                 self.delegate?.cameraTouched?()
               } else if type == 2 {
-                self.delegate?.blockTouched?()
+                self.delegate?.blockTouched?(note_idx: self.note_idx)
               } else if type == 3 {
-                self.delegate?.reportTouched?()
+                self.delegate?.reportTouched?(note_idx: self.note_idx)
               }
             }
           }

@@ -62,28 +62,30 @@ class IntroViewController: BaseViewController {
           Defaults[.member_idx] = memberResponse.member_idx
           Defaults[.member_join_type] = "C"
           Defaults[.house_code] = memberResponse.house_code
+          Defaults[.house_idx] = memberResponse.house_idx
           self.gotoMain()
         } else {
-          Defaults.reset([.member_idx, .member_join_type, .member_id, .member_pw])
+          self.resetDefaults()
           self.gotoLogin()
         }
       }
-//      APIRouter.shared.api(path: .login, parameters: memberRequest.toJSON()) { response in
-//        if let memberResponse = MemberModel(JSON: response) {
-//          if memberResponse.success == true {
-//
-//            Defaults[.access_token] = memberResponse.access_token ?? ""
-//            let destination = MainTabBarViewController.instantiate(storyboard: "Main")
-//            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-//            window?.rootViewController = destination
-//            //
-//          } else {
-//            Defaults[.access_token] = nil
-//            Defaults[.password] = nil
-//            self.gotoMain()
-//          }
-//        }
-//      }
+    } else if Defaults[.member_idx] != nil && Defaults[.member_join_type] != "C" {
+      let memberRequest = MemberModel()
+      memberRequest.member_id = Defaults[.member_id]
+      memberRequest.member_join_type = Defaults[.member_join_type]
+      memberRequest.device_os = "I"
+      memberRequest.gcm_key = self.appDelegate.fcmKey
+      APIRouter.shared.api(path: APIURL.sns_member_login, parameters: memberRequest.toJSON()) { data in
+        if let memberResponse = MemberModel(JSON: data), memberResponse.code == "1000" {
+          Defaults[.member_idx] = memberResponse.member_idx
+          Defaults[.house_code] = memberResponse.house_code
+          Defaults[.house_idx] = memberResponse.house_idx
+          self.gotoMain()
+        } else {
+          self.resetDefaults()
+          self.gotoLogin()
+        }
+      }
     } else {
 //      self.gotoMain()
       self.gotoLogin()

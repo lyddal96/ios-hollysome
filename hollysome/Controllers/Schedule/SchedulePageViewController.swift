@@ -23,8 +23,7 @@ class SchedulePageViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   var parentsViewController: ScheduleViewController? = nil
   var selectedDate = Date()
-  
-  var scheduleList = 0
+  var planList = [PlanModel]()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -64,7 +63,27 @@ class SchedulePageViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
-  
+  /// 할일 리스트(일자별)
+  func scheduleListAPI() {
+    let planRequest = PlanModel()
+    planRequest.house_idx = Defaults[.house_idx]
+    planRequest.member_idx = Defaults[.member_idx]
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    planRequest.today = dateFormatter.string(from: self.selectedDate)
+
+    APIRouter.shared.api(path: .schedule_list, method: .post, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        if let data_array = planResponse.data_array, data_array.count > 0 {
+          self.planList = data_array
+        } else {
+          self.planList.removeAll()
+        }
+
+        self.scheduleTableView.reloadData()
+      }
+    }
+  }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
@@ -90,9 +109,7 @@ extension SchedulePageViewController: UICollectionViewDelegate {
     dateFormatter.dateFormat = "M월 d일 EEEE"
     self.dateLabel.text = dateFormatter.string(from: self.selectedDate)
     self.dayCollectionView.reloadData()
-    
-    self.scheduleList = indexPath.row
-    self.scheduleTableView.reloadData()
+    self.scheduleListAPI()
   }
 }
 
@@ -137,14 +154,17 @@ extension SchedulePageViewController: UITableViewDelegate {
 //-------------------------------------------------------------------------------------------
 extension SchedulePageViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.scheduleList
+    return self.planList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
+
+    let plan = self.planList[indexPath.row]
+    cell.setPlan(plan: plan)
+
     
-    cell.titleLabel.text = "할일 \(indexPath.row)"
-    
+
     return cell
   }
   

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Defaults
 
 class ModifyInfoViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ class ModifyInfoViewController: BaseViewController {
     
     self.setAvatarView()
     self.nicknameTextField.text = self.memberData.member_name ?? ""
+    self.modifyPwButton.isHidden = Defaults[.member_join_type] != "C"
   }
   
   override func initRequest() {
@@ -101,7 +103,8 @@ class ModifyInfoViewController: BaseViewController {
   /// 비밀번호 변경하기
   /// - Parameter sender: 버튼
   @IBAction func modifyPwButtonTouched(sender: UIButton) {
-    
+    let destination = ModifyPwViewController.instantiate(storyboard: "My")
+    self.navigationController?.pushViewController(destination, animated: true)
   }
   
   /// 수정

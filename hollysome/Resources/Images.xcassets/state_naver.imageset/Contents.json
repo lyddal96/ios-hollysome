@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "state-kko.png",
+      "filename" : "state_naver.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "state-kko@2x.png",
+      "filename" : "state_naver@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "state-kko@3x.png",
+      "filename" : "state_naver@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -79,6 +79,11 @@
 		4BB645C32B2B2B9600DF92EB /* MateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB645C22B2B2B9600DF92EB /* MateCell.swift */; };
 		4BC51FE42B33605D00B0679F /* ModifyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */; };
 		4BC51FE62B33643600B0679F /* ModifyPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */; };
+		4BC51FE82B33EC8500B0679F /* AccountBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FE72B33EC8500B0679F /* AccountBookModel.swift */; };
+		4BC51FEA2B35650D00B0679F /* RegEtcBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC51FE92B35650D00B0679F /* RegEtcBookCell.xib */; };
+		4BC51FEC2B35651100B0679F /* RegEtcBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FEB2B35651100B0679F /* RegEtcBookCell.swift */; };
+		4BDCB4572B3742080092F6A9 /* PlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDCB4562B3742080092F6A9 /* PlanModel.swift */; };
+		4BDCB4592B375BF20092F6A9 /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDCB4582B375BF20092F6A9 /* AlarmSettingViewController.swift */; };
 		4BE0ADD62B30508B00AD9A35 /* SchedulePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADD52B30508B00AD9A35 /* SchedulePageViewController.swift */; };
 		4BE0ADD82B3050C200AD9A35 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADD72B3050C200AD9A35 /* CalendarPageViewController.swift */; };
 		4BE0ADDA2B3050E800AD9A35 /* TodoListPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADD92B3050E800AD9A35 /* TodoListPageViewController.swift */; };
@@ -289,6 +294,11 @@
 		4BB645C22B2B2B9600DF92EB /* MateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateCell.swift; sourceTree = "<group>"; };
 		4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInfoViewController.swift; sourceTree = "<group>"; };
 		4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPwViewController.swift; sourceTree = "<group>"; };
+		4BC51FE72B33EC8500B0679F /* AccountBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookModel.swift; sourceTree = "<group>"; };
+		4BC51FE92B35650D00B0679F /* RegEtcBookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegEtcBookCell.xib; sourceTree = "<group>"; };
+		4BC51FEB2B35651100B0679F /* RegEtcBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegEtcBookCell.swift; sourceTree = "<group>"; };
+		4BDCB4562B3742080092F6A9 /* PlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModel.swift; sourceTree = "<group>"; };
+		4BDCB4582B375BF20092F6A9 /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		4BE0ADD52B30508B00AD9A35 /* SchedulePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePageViewController.swift; sourceTree = "<group>"; };
 		4BE0ADD72B3050C200AD9A35 /* CalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewController.swift; sourceTree = "<group>"; };
 		4BE0ADD92B3050E800AD9A35 /* TodoListPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPageViewController.swift; sourceTree = "<group>"; };
@@ -440,6 +450,8 @@
 				4B10589C2B31CA3D005372A7 /* LastAccountBookDetailCell.swift */,
 				4B10589E2B31CDC8005372A7 /* AccountBookTitleCell.xib */,
 				4B1058A02B31CDCC005372A7 /* AccountBookTitleCell.swift */,
+				4BC51FE92B35650D00B0679F /* RegEtcBookCell.xib */,
+				4BC51FEB2B35651100B0679F /* RegEtcBookCell.swift */,
 			);
 			path = AccountBook;
 			sourceTree = "<group>";
@@ -491,6 +503,7 @@
 				4B3F61882A2037A80049882D /* MyViewController.swift */,
 				4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */,
 				4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */,
+				4BDCB4582B375BF20092F6A9 /* AlarmSettingViewController.swift */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -803,6 +816,8 @@
 				BB8C9CBE22AE455D005E00B0 /* AlarmModel.swift */,
 				BB8C9CC022AE476C005E00B0 /* EventModel.swift */,
 				4B747EFD2B1F2BF8006919EA /* HouseModel.swift */,
+				4BC51FE72B33EC8500B0679F /* AccountBookModel.swift */,
+				4BDCB4562B3742080092F6A9 /* PlanModel.swift */,
 				68F7EB6D24331A8A00D83318 /* Chat */,
 				4BB645BD2B2B275300DF92EB /* FileModel.swift */,
 			);
@@ -983,6 +998,7 @@
 				4B99FF372AD563D900EF35F8 /* FaceCell.xib in Resources */,
 				4B3E55402AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Light.otf in Resources */,
 				68A4654723BF1010008E8A0A /* BannerImageCell.xib in Resources */,
+				4BC51FEA2B35650D00B0679F /* RegEtcBookCell.xib in Resources */,
 				4BAD39EE2B2C4BB100B99B61 /* ScheduleTitleCell.xib in Resources */,
 				4B10588F2B31C622005372A7 /* AccountBookEmptyCell.xib in Resources */,
 				6817AF3822C60F600026CDAF /* FaqDetailCell.xib in Resources */,
@@ -1122,6 +1138,7 @@
 				6859B1E5240E3D440021DED5 /* AlarmViewController.swift in Sources */,
 				68848B6625DFB0A400117274 /* SceneDelegate.swift in Sources */,
 				68A4653C23BF04EF008E8A0A /* TutorialViewController.swift in Sources */,
+				4BDCB4572B3742080092F6A9 /* PlanModel.swift in Sources */,
 				4BAD39E02B2C1C0100B99B61 /* HomeEmptyScheduleCell.swift in Sources */,
 				4B99FF392AD563DD00EF35F8 /* FaceCell.swift in Sources */,
 				6869964D23D159E100EFEE01 /* EventViewController.swift in Sources */,
@@ -1130,6 +1147,7 @@
 				688EE10C23D81EA70014640F /* CardPopupViewController.swift in Sources */,
 				688EE10F23D8360D0014640F /* LineChartViewController.swift in Sources */,
 				4BB645BE2B2B275300DF92EB /* FileModel.swift in Sources */,
+				4BDCB4592B375BF20092F6A9 /* AlarmSettingViewController.swift in Sources */,
 				4BAD39E82B2C33F000B99B61 /* EmptyTableCell.swift in Sources */,
 				685E293523C7270C001DD8B3 /* SubTabViewController.swift in Sources */,
 				68F7EB7324331AE200D83318 /* MockMessage.swift in Sources */,
@@ -1152,6 +1170,7 @@
 				68C5797A21E4B4FD00558FF8 /* LocalStore.swift in Sources */,
 				6859B1E9240E3E7B0021DED5 /* AlarmCell.swift in Sources */,
 				4B99FF352AD55BF000EF35F8 /* ProfileColorCell.swift in Sources */,
+				4BC51FE82B33EC8500B0679F /* AccountBookModel.swift in Sources */,
 				68A4654323BF0CD5008E8A0A /* PhotoPopupViewController.swift in Sources */,
 				685E292423C70793001DD8B3 /* MenuViewController.swift in Sources */,
 				68A4653723BF00B7008E8A0A /* FindPwViewController.swift in Sources */,
@@ -1172,6 +1191,7 @@
 				4BB645BA2B2AE0C900DF92EB /* MakeHouseViewController.swift in Sources */,
 				4BC51FE62B33643600B0679F /* ModifyPwViewController.swift in Sources */,
 				4BAD39EC2B2C4BA400B99B61 /* ScheduleTitleCell.swift in Sources */,
+				4BC51FEC2B35651100B0679F /* RegEtcBookCell.swift in Sources */,
 				685E293123C72674001DD8B3 /* TabViewController.swift in Sources */,
 				6817AF3C22C613F40026CDAF /* NoticeDetailViewController.swift in Sources */,
 				68F7EB6F24331AAE00D83318 /* Lorem.swift in Sources */,

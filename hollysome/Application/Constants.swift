@@ -6,15 +6,36 @@
 //
 
 struct Constants {
+  static var SHAPE_LIST: [String] {
+    ["round", "clover", "heart", "square", "cloud", "star"]
+  }
   static var QNA_CATEGORY_LIST: [String] {
     ["불편 신고", "제안", "기타"]
   }
-  
-  /// 커뮤니티 스케줄 카테고리
+
+  static var REPORT_TYPE: [String] {
+    ["영리목적홍보성", "음란성,선정성", "욕설,인신공격", "같은내용반복게시(도배)", "기타"]
+  }
+
+  /// 신고 타입
+    /// - Parameter item: 인덱스
+    /// - Returns: text
+    static func report_type(item: String) -> String {
+      switch item {
+//      0영리목적홍보성 1음란성,선정성 2욕설,인신공격 3같은내용반복게시(도배) 4기타
+      case "0": return "영리목적홍보성"
+      case "1": return "음란성,선정성"
+      case "2": return "욕설,인신공격"
+      case "3": return "같은내용반복게시(도배)"
+      case "4": return "기타"
+      default: return ""
+      }
+    }
+
+  /// qna 타입
     /// - Parameter item: 인덱스
     /// - Returns: text
     static func qna_category(item: String) -> String {
-      // 0:전체, 1:방송, 2:발매, 3:축하, 4:행사, 7:기타
       switch item {
       case "0": return "불편 신고"
       case "1": return "제안"

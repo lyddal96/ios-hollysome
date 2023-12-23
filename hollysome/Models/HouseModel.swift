@@ -20,9 +20,11 @@ class HouseModel: BaseModel {
   var block_yn: String?
   /// 신고 여부
   var report_yn: String?
-  
-  
-  
+  /// 신고 내용
+  var report_contents: String?
+  /// 0영리목적홍보성 1음란성,선정성 2욕설,인신공격 3같은내용반복게시(도배) 4기타
+  var report_type: String?
+
   /// 리스트
   var data_array: [HouseModel]?
   override func mapping(map: Map) {
@@ -34,7 +36,9 @@ class HouseModel: BaseModel {
     self.ins_date <- map["ins_date"]
     self.block_yn <- map["block_yn"]
     self.report_yn <- map["report_yn"]
-    
+    self.report_contents <- map["report_contents"]
+    self.report_type <- map["report_type"]
+
     self.data_array <- map["data_array"]
   }
 }

@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import Defaults
 
 class AddScheduleCell: UITableViewCell {
   @IBOutlet weak var mateCollectionView: UICollectionView!
   @IBOutlet weak var weekCollectionView: UICollectionView!
   @IBOutlet weak var deleteButton: UIButton!
   
-  var indexPath = IndexPath()
-  var weekList = ["월", "화", "수", "목", "금", "토", "일"]
+  var plan = PlanModel()
+
+  var weekList = ["일", "월", "화", "수", "목", "금", "토"]
   override func awakeFromNib() {
     super.awakeFromNib()
     
@@ -24,6 +26,12 @@ class AddScheduleCell: UITableViewCell {
     self.weekCollectionView.registerCell(type: WeekCell.self)
     self.weekCollectionView.delegate = self
     self.weekCollectionView.dataSource = self
+  }
+
+  func setPlan(plan: PlanModel) {
+    self.plan = plan
+    self.weekCollectionView.reloadData()
+    self.mateCollectionView.reloadData()
   }
 }
 
@@ -54,7 +62,7 @@ extension AddScheduleCell: UICollectionViewDelegateFlowLayout {
 extension AddScheduleCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if collectionView == self.mateCollectionView {
-      return 3
+      return self.plan.selected_mate_list?.count ?? 0
     } else {
       return 7
     }
@@ -64,14 +72,21 @@ extension AddScheduleCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if collectionView == mateCollectionView {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as! MateCell
-      cell.setMate(index: indexPath)
-      cell.nameLabel.text = "메이트\(indexPath.row)"
-      
+//      cell.setMate(index: indexPath)
+//      cell.nameLabel.text = "메이트\(indexPath.row)"
+      if let mate = self.plan.selected_mate_list?[indexPath.row] {
+        cell.nameLabel.text = mate.member_nickname ?? ""
+        cell.avatarView.addBorder(width: 2, color: UIColor(named: mate.member_idx == Defaults[.member_idx] ? "accent" : "FFFFFF")!)
+        cell.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[mate.member_role1?.toInt() ?? 0])71")
+        cell.faceImageView.image = UIImage(named: "face\(mate.member_role2?.toInt() ?? 0)")
+        cell.colorView.backgroundColor = UIColor(named: "profile\(mate.member_role3?.toInt() ?? 0)")
+      }
+
       return cell
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekCell", for: indexPath) as! WeekCell
       
-      if indexPath.row == self.indexPath.row {
+      if self.plan.week_arr?.contains("\(indexPath.row)") ?? false {
         cell.roundView.backgroundColor = UIColor(named: "accent")
         cell.weekLabel.textColor = UIColor(named: "FFFFFF")
       } else {

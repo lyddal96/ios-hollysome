@@ -66,9 +66,19 @@ enum APIURL: String {
   case note_del = "note_v_1_0_0/note_del" // 알림장 삭제
   case report_reg_in = "note_v_1_0_0/report_reg_in" // 알림장 신고
   case block_mod_up = "note_v_1_0_0/block_mod_up" // 알림장 차단
-  
+
+  /// 일정
+  case schedule_list = "plan_v_1_0_0/schedule_list" // 날짜별 할일 리스트
+  case plan_reg_in = "plan_v_1_0_0/plan_reg_in" // 새 일정 등록
+  case schedule_date_list = "plan_v_1_0_0/schedule_date_list" // 달력 리스트
+  case schedule_date_member_list = "plan_v_1_0_0/schedule_date_member_list" // 일자별 일정 리스트(달력)
+  case plan_detail = "plan_v_1_0_0/plan_detail" // 일정 상세
+  case plan_mod_up = "plan_v_1_0_0/plan_mod_up" // 일정 수정
+  case plan_del = "plan_v_1_0_0/plan_del" // 일정 삭제
+
   /// 가계부
   case book_view = "book_v_1_0_0/book_view" // 당월 가계부
+  case book_list = "book_v_1_0_0/book_list" // 전체 가계부 리스트
   case book_reg_in = "book_v_1_0_0/book_reg_in" // 가계부 등록
   case book_detail = "book_v_1_0_0/book_detail" // 가계부 상세
   case book_mod_up = "book_v_1_0_0/book_mod_up" // 가계부 수정

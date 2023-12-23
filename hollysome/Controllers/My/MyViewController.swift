@@ -82,7 +82,9 @@ class MyViewController: BaseViewController {
     
     // 알림설정
     self.alarmView.addTapGesture { recognizer in
-      
+      let destination = AlarmSettingViewController.instantiate(storyboard: "My")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
     }
     
     // 눔메이트 공지사항
@@ -160,7 +162,7 @@ class MyViewController: BaseViewController {
         self.idLabel.text = memberResponse.member_id ?? ""
         self.idView.isHidden = memberResponse.member_join_type != "C"
         self.loginTypeImageView.isHidden = Defaults[.member_join_type] == "C"
-        self.loginTypeImageView.image = UIImage(named: Defaults[.member_join_type] == "K" ? "state_kko" : Defaults[.member_join_type] == "N" ? "state_naver" : "state_apple")
+        self.loginTypeImageView.image = UIImage(named: memberResponse.member_join_type == "K" ? "state_kko" : Defaults[.member_join_type] == "N" ? "state_naver" : "state_apple")
         let shapeList = ["round", "clover", "heart", "square", "cloud", "star"]
         
         self.avatarShapeImageView.image = UIImage(named: "\(shapeList[(memberResponse.member_role1 ?? "").toInt() ?? 0])71")
