@@ -50,49 +50,49 @@ class AlarmViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   /// 알림 리스트
   func alarmListAPI() {
-//    self.alarmRequest.setNextPage()
-//    self.alarmRequest.member_idx = Defaults[.member_idx]
-//    
-//    APIRouter.shared.api(path: .alarm_list, parameters: self.alarmRequest.toJSON()) { response in
-//      if let alarmResponse = AlarmModel(JSON: response), Tools.shared.isSuccessResponse(response: alarmResponse) {
-//        if let data_array = alarmResponse.data_array {
-//          self.isLoadingList = true
-//          self.alarmRequest.setTotalPage(total_page: alarmResponse.total_page ?? 0)
-//          self.alarmList += data_array
-//          self.alarmTableView.reloadData()
-//        }
-//      }
-//    } 
+    self.alarmRequest.setNextPage()
+    self.alarmRequest.member_idx = Defaults[.member_idx]
+    
+    APIRouter.shared.api(path: .alarm_list, parameters: self.alarmRequest.toJSON()) { response in
+      if let alarmResponse = AlarmModel(JSON: response), Tools.shared.isSuccessResponse(response: alarmResponse) {
+        if let data_array = alarmResponse.data_array {
+          self.isLoadingList = true
+          self.alarmRequest.setTotalPage(total_page: alarmResponse.total_page ?? 0)
+          self.alarmList += data_array
+          self.alarmTableView.reloadData()
+        }
+      }
+    } 
   }
   
   
   /// 알림 삭제
   /// - Parameter alarm_idx: 알림 인덱스
   func alarmDel(alarm_idx: String) {
-//    let alarmRequest = AlarmModel()
-//    alarmRequest.alarm_idx = alarm_idx
-//
-//    APIRouter.shared.api(path: .alarm_del, parameters: alarmRequest.toJSON()) { response in
-//      if let alarmResponse = AlarmModel(JSON: response), Tools.shared.isSuccessResponse(response: alarmResponse) {
-//        self.alarmRequest.resetPage()
-//        self.alarmList.removeAll()
-//        self.alarmListAPI()
-//      }
-//    } 
+    let alarmRequest = AlarmModel()
+    alarmRequest.alarm_idx = alarm_idx
+
+    APIRouter.shared.api(path: .alarm_del, parameters: alarmRequest.toJSON()) { response in
+      if let alarmResponse = AlarmModel(JSON: response), Tools.shared.isSuccessResponse(response: alarmResponse) {
+        self.alarmRequest.resetPage()
+        self.alarmList.removeAll()
+        self.alarmListAPI()
+      }
+    } 
   }
   
   /// 알림 삭제
   func alarmAllDelAPI() {
-//    let alarmParam = AlarmModel()
-//    alarmParam.member_idx = Defaults[.member_idx]
-//
-//    APIRouter.shared.api(path: .alarm_all_del, parameters: alarmParam.toJSON()) { response in
-//      if let alarmResponse = AlarmModel(JSON: response), Tools.shared.isSuccessResponse(response: alarmResponse) {
-//        self.alarmRequest.resetPage()
-//        self.alarmList.removeAll()
-//        self.alarmListAPI()
-//      }
-//    } 
+    let alarmParam = AlarmModel()
+    alarmParam.member_idx = Defaults[.member_idx]
+
+    APIRouter.shared.api(path: .alarm_all_del, parameters: alarmParam.toJSON()) { response in
+      if let alarmResponse = AlarmModel(JSON: response), Tools.shared.isSuccessResponse(response: alarmResponse) {
+        self.alarmRequest.resetPage()
+        self.alarmList.removeAll()
+        self.alarmListAPI()
+      }
+    } 
   }
   
   //-------------------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ class AlarmViewController: BaseViewController {
 //-------------------------------------------------------------------------------------------
 extension AlarmViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let alarmData = self.alarmList[indexPath.row]
+//    let alarmData = self.alarmList[indexPath.row]
     
   }
   

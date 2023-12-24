@@ -86,7 +86,7 @@ extension AddScheduleCell: UICollectionViewDataSource {
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekCell", for: indexPath) as! WeekCell
       
-      if self.plan.week_arr?.contains("\(indexPath.row)") ?? false {
+      if self.plan.week_arr?.contains("\(indexPath.row + 1)") ?? false {
         cell.roundView.backgroundColor = UIColor(named: "accent")
         cell.weekLabel.textColor = UIColor(named: "FFFFFF")
       } else {

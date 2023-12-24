@@ -39,8 +39,9 @@ class HomeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-  var schedule = 0
-  var noticeList = 0
+  var mateList = [HouseModel]()
+  var myScheduleList = [HouseModel]()
+  var noteList = [HouseModel]()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -126,11 +127,42 @@ class HomeViewController: BaseViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM월 dd일 (E)"
     self.dateLabel.text = dateFormatter.string(from: Date())
+    
+    if Defaults[.house_idx] != nil {
+      self.homeListAPI()
+    }
   }
   
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  /// 홈 API
+  func homeListAPI() {
+    let houseRequest = HouseModel()
+    houseRequest.member_idx = Defaults[.member_idx]
+    houseRequest.house_idx = Defaults[.house_idx]
+    
+    APIRouter.shared.api(path: .house_list, method: .post, parameters: houseRequest.toJSON()) { response in
+      if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse) {
+        if let mate_array = houseResponse.mate_array {
+          self.mateList = mate_array
+        }
+        self.mateCntLabel.text = "눔메이트 \(self.mateList.count)명"
+        self.mateCollectionView.reloadData()
+        
+        if let my_schedule_array = houseResponse.my_schedule_array {
+          self.myScheduleList = my_schedule_array
+        }
+        self.scheduleCollectionView.reloadData()
+        if let note_array = houseResponse.note_array {
+          self.noteList = note_array
+          self.houseNoticeHeight.constant = self.noteList.count == 0 ? 80 : self.noteList.count.toCGFloat * 70
+        }
+        self.houseNoticeTableView.reloadData()
+      }
+    }
+  }
+  
   /// 하우스 유무에 따른 세팅
   func setTitleBar() {
     self.logoView.isHidden = Defaults[.house_code] == nil
@@ -195,7 +227,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     if collectionView == self.mateCollectionView {
       return CGSize(width: 52, height: 74)
     } else {
-      if self.schedule == 0 {
+      if self.myScheduleList.count == 0 {
         return CGSize(width: (self.view.frame.size.width - 32), height: 224)
       } else {
         return CGSize(width: (self.view.frame.size.width - 48) / 2, height: 104)
@@ -212,35 +244,35 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if collectionView == self.mateCollectionView {
-      return 3
+      return self.mateList.count
     } else {
-      return self.schedule == 0 ? 1 : 4
+      return self.myScheduleList.count == 0 ? 1 : 4
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if collectionView == self.mateCollectionView {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as! MateCell
-      cell.setMate(index: indexPath)
-      cell.nameLabel.text = "메이트\(indexPath.row)"
+      let mate = self.mateList[indexPath.row]
+      cell.nameLabel.text = mate.member_nickname ?? ""
+      cell.avatarView.addBorder(width: 2, color: UIColor(named: mate.member_idx == Defaults[.member_idx] ? "accent" : "FFFFFF")!)
+      cell.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[mate.member_role1?.toInt() ?? 0])71")
+      cell.faceImageView.image = UIImage(named: "face\(mate.member_role2?.toInt() ?? 0)")
+      cell.colorView.backgroundColor = UIColor(named: "profile\(mate.member_role3?.toInt() ?? 0)")
       
       return cell
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScheduleCell", for: indexPath) as! HomeScheduleCell
       let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeEmptyScheduleCell", for: indexPath) as! HomeEmptyScheduleCell
       
-      if self.schedule == 0 || self.schedule <= indexPath.row {
-        
-        /// API작업 후 제거
-        emptyCell.roundView.addTapGesture { recognizer in
-          self.schedule = 3
-          self.scheduleCollectionView.reloadData()
-        }
+      if self.myScheduleList.count == 0 || self.myScheduleList.count <= indexPath.row {
         return emptyCell
       } else {
-        cell.titleLabel.text = "나의 할일입니다"
+        let plan = self.myScheduleList[indexPath.row]
+        cell.titleLabel.text = plan.plan_name ?? ""
+        // [TODO][12/25/23][Seunga] : API 알림시간 추가 후 수정
         cell.timeLabel.text = "미정"
-        cell.stateButton.isEnabled = indexPath.row == 0
+        cell.stateButton.isEnabled = plan.schedule_yn != "Y"
         
         /// 할일 완료
         cell.stateButton.addTapGesture { recognizer in
@@ -271,24 +303,18 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.noticeList == 0 ? 1 : self.noticeList
+    return self.noteList.count == 0 ? 1 : self.noteList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "HomeNoticeCell", for: indexPath) as! HomeNoticeCell
     let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableCell", for: indexPath) as! EmptyTableCell
     
-    if self.noticeList == 0 {
-      /// API작업 후 제거
-      emptyCell.roundView.addTapGesture { recognizer in
-        self.noticeList = 3
-        self.houseNoticeHeight.constant = 3 * 70
-        self.houseNoticeTableView.reloadData()
-      }
+    if self.noteList.count == 0 {
       return emptyCell
     }
-    
-    cell.setNotice(index: indexPath)
+    let note = self.noteList[indexPath.row]
+    cell.setNotice(note: note)
     
     return cell
   }

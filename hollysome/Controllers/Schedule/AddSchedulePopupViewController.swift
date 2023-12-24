@@ -31,10 +31,10 @@ class AddSchedulePopupViewController: BaseViewController {
   let window = UIApplication.shared.windows.first {$0.isKeyWindow}
   let bottomPadding = UIApplication.shared.windows.first {$0.isKeyWindow}?.safeAreaInsets.bottom ?? 0.0
 
-//  var selectedMate = [Int]()
   var selectedWeek = [Int]()
   var weekList = ["일", "월", "화", "수", "목", "금", "토"]
   var mateList = [MemberModel]()
+  var disableWeeks = [Int]()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -173,19 +173,15 @@ class AddSchedulePopupViewController: BaseViewController {
 extension AddSchedulePopupViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if collectionView == self.weekCollectionView {
-      if self.selectedWeek.contains(indexPath.row) {
-        self.selectedWeek.removeAll(indexPath.row)
-      } else {
-        self.selectedWeek.append(indexPath.row)
+      if !self.disableWeeks.contains(indexPath.row) {
+        if self.selectedWeek.contains(indexPath.row) {
+          self.selectedWeek.removeAll(indexPath.row)
+        } else {
+          self.selectedWeek.append(indexPath.row)
+        }
+        self.weekCollectionView.reloadData()
       }
-
-      self.weekCollectionView.reloadData()
     } else {
-//      if self.selectedMate.contains(indexPath.row) {
-//        self.selectedMate.removeAll(indexPath.row)
-//      } else {
-//        self.selectedMate.append(indexPath.row)
-//      }
       self.mateList[indexPath.row].isSelected = !(self.mateList[indexPath.row].isSelected ?? false)
       self.mateCollectionView.reloadData()
     }

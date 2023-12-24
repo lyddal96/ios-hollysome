@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Defaults
 
 class MainTabBarViewController: UITabBarController {
   //-------------------------------------------------------------------------------------------
@@ -35,7 +36,7 @@ class MainTabBarViewController: UITabBarController {
     
     self.tabBar.standardAppearance = appearance
     self.tabBar.addBorderTop(size: 1, color: UIColor(named: "C8CCD5")!)
-//    self.delegate = self
+    self.delegate = self
     
     
 //    self.tabBar.addBorderTop(size: 1, color: UIColor(named: "282828")!)
@@ -113,12 +114,16 @@ class MainTabBarViewController: UITabBarController {
 //-------------------------------------------------------------------------------------------
 // MARK: - UITabBarControllerDelegate
 //-------------------------------------------------------------------------------------------
-//extension MainTabBarViewController: UITabBarControllerDelegate {
-//  func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-//    if let index = tabBarController.viewControllers?.firstIndex(of: viewController) {
-//      /// 탭바 아이템 인덱스 선택 액션줄때
-//    }
-//    return true
-//  }
-//
-//}
+extension MainTabBarViewController: UITabBarControllerDelegate {
+  func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    if let index = tabBarController.viewControllers?.firstIndex(of: viewController) {
+      /// 탭바 아이템 인덱스 선택 액션줄때
+      ///
+      if Defaults[.house_idx] == nil && index != 0 && index != 3 {
+        return false
+      }
+    }
+    return true
+  }
+
+}

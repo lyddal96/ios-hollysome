@@ -18,14 +18,13 @@ class HomeNoticeCell: UITableViewCell {
     
   }
   
-  func setNotice(index: IndexPath) {
-    let shapeList = ["round", "clover", "heart", "square", "cloud", "star"]
+  func setNotice(note: HouseModel) {
 
-    self.shapeImageView.image = UIImage(named: "\(shapeList[index.row])71")
-    self.faceImageView.image = UIImage(named: "face\(index.row)")
-    self.colorView.backgroundColor = UIColor(named: "profile\(index.row)")
+    self.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[note.member_role1?.toInt() ?? 0])71")
+    self.faceImageView.image = UIImage(named: "face\(note.member_role2?.toInt() ?? 0)")
+    self.colorView.backgroundColor = UIColor(named: "profile\(note.member_role3?.toInt() ?? 0)")
     
-    self.contentLabel.text = "보일러 수리기사님이 1월 10일 오전에 방문하기로 했습니다~~~~~~~"
-    self.timeLabel.text = "23-01-02 00:00"
+    self.contentLabel.text = note.contents ?? ""
+    self.timeLabel.text = note.ins_date ?? "2023-12-25 00:00"
   }
 }

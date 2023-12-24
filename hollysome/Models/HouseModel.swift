@@ -24,9 +24,25 @@ class HouseModel: BaseModel {
   var report_contents: String?
   /// 0영리목적홍보성 1음란성,선정성 2욕설,인신공격 3같은내용반복게시(도배) 4기타
   var report_type: String?
+  /// 닉네임
+  var member_nickname: String?
+  /// 일정명
+  var plan_name: String?
+  /// 스케줄 키
+  var schedule_idx: String?
+  /// 일정 키
+  var plan_idx: String?
+  /// 완료 여부
+  var schedule_yn: String?
 
   /// 리스트
   var data_array: [HouseModel]?
+  /// 메이트 리스트
+  var mate_array: [HouseModel]?
+  /// 내 일정 리스트
+  var my_schedule_array: [HouseModel]?
+  /// 알림장 리스트
+  var note_array: [HouseModel]?
   override func mapping(map: Map) {
     super.mapping(map: map)
     
@@ -38,7 +54,15 @@ class HouseModel: BaseModel {
     self.report_yn <- map["report_yn"]
     self.report_contents <- map["report_contents"]
     self.report_type <- map["report_type"]
+    self.member_nickname <- map["member_nickname"]
+    self.plan_name <- map["plan_name"]
+    self.schedule_idx <- map["schedule_idx"]
+    self.plan_idx <- map["plan_idx"]
+    self.schedule_yn <- map["schedule_yn"]
 
     self.data_array <- map["data_array"]
+    self.mate_array <- map["mate_array"]
+    self.my_schedule_array <- map["my_schedule_array"]
+    self.note_array <- map["note_array"]
   }
 }

@@ -50,13 +50,13 @@ extension ScheduleCell: UICollectionViewDelegateFlowLayout {
 //-------------------------------------------------------------------------------------------
 extension ScheduleCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return self.plan.schedule_item_list?.count ?? 0
+    return self.plan.member_list?.count ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as! MateCell
     
-    if let mate = self.plan.schedule_item_list?[indexPath.row] {
+    if let mate = self.plan.member_list?[indexPath.row] {
       cell.nameLabel.text = mate.member_nickname ?? ""
       cell.avatarView.addBorder(width: 2, color: UIColor(named: mate.member_idx == Defaults[.member_idx] ? "accent" : "FFFFFF")!)
       cell.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[mate.member_role1?.toInt() ?? 0])71")

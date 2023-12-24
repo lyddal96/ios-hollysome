@@ -28,6 +28,7 @@ class AddScheduleViewController: BaseViewController {
   var timeList = ["0시", "1시", "2시", "3시", "4시", "5시", "6시", "7시", "8시", "9시", "10시", "11시", "12시", "13시", "14시", "15시", "16시", "17시", "18시", "19시", "20시", "21시", "22시", "23시"]
   var scheduleList = [PlanModel]()
   var time: Int? = nil
+  var selectedWeeks = [Int]()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -137,6 +138,7 @@ class AddScheduleViewController: BaseViewController {
   /// - Parameter sender: 버튼
   @IBAction func addButtonTouched(sender: UIButton) {
     let destination = AddSchedulePopupViewController.instantiate(storyboard: "Schedule")
+    destination.disableWeeks = self.selectedWeeks
     destination.delegate = self
     destination.modalTransitionStyle = .crossDissolve
     destination.modalPresentationStyle = .overCurrentContext
@@ -204,6 +206,10 @@ extension AddScheduleViewController: UITableViewDataSource {
     cell.setPlan(plan: self.scheduleList[indexPath.row])
     
     cell.deleteButton.addTapGesture { recognizer in
+      let weeks = self.scheduleList[indexPath.row].week_arr?.components(separatedBy: ",") ?? [String]()
+      for value in weeks {
+        self.selectedWeeks.removeAll((value.toInt() ?? 0) - 1)
+      }
       self.scheduleList.remove(at: indexPath.row)
       self.scheduleTableView.reloadData()
     }
@@ -258,7 +264,8 @@ extension AddScheduleViewController: ScheduleAddDelegate {
     let plan = PlanModel()
     plan.selected_mate_list = mates
     plan.member_arr = mateList.map({$0.member_idx ?? ""}).joined(separator: ",")
-    plan.week_arr = weekList.map(String.init).joined(separator: ",")
+    plan.week_arr = weekList.map({($0 + 1).toString}).joined(separator: ",")
+    self.selectedWeeks += weekList
     self.scheduleList.append(plan)
     self.scheduleTableView.reloadData()
   }

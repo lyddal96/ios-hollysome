@@ -42,6 +42,11 @@ enum APIURL: String {
   case app_info_mod_up = "sns_join_v_1_0_0/app_info_mod_up" // 추가정보 입력
   case sns_member_reg_in = "sns_join_v_1_0_0/sns_member_reg_in" // 소셜 회원가입
   
+  /// 홈
+  case house_list = "house_v_1_0_0/house_list" // 홈리스트
+  case today_schedule_end = "house_v_1_0_0/today_schedule_end" // 오늘 할일 완료하기
+  case today_schedule_list = "house_v_1_0_0/today_schedule_list" // 오늘 할일 리스트
+  
   
   /// 마이페이지
   case member_info_detail = "member_info_v_1_0_0/member_info_detail" // 내 정보
@@ -50,6 +55,11 @@ enum APIURL: String {
   case pw_mod_up = "member_info_v_1_0_0/pw_mod_up" // 비밀번호 수정
   case alarm_toggle_view = "alarm_v_1_0_0/alarm_toggle_view" // 알림 상태 보기
   case alarm_toggle_mod_up = "alarm_v_1_0_0/alarm_toggle_mod_up" // 알림 변경
+  
+  /// 알림
+  case alarm_list = "alarm_v_1_0_0/alarm_list" // 알림 리스트
+  case alarm_del = "alarm_v_1_0_0/alarm_del" // 알림 삭제
+  case alarm_all_del = "alarm_v_1_0_0/alarm_all_del" // 알림 전체 삭제
   
   /// 하우스
   case house_reg_in = "house_v_1_0_0/house_reg_in" // 하우스 만들기

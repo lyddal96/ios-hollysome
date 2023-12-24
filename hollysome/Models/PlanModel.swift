@@ -40,7 +40,7 @@ class PlanModel: BaseModel {
   /// 리스트
   var data_array: [PlanModel]?
   /// 일정 리스트(인원)
-  var schedule_item_list: [PlanModel]?
+  var member_list: [PlanModel]?
   override func mapping(map: Map) {
     super.mapping(map: map)
     self.plan_name <- map["plan_name"]
@@ -56,6 +56,6 @@ class PlanModel: BaseModel {
     self.schedule_yn <- map["schedule_yn"]
 
     self.data_array <- map["data_array"]
-    self.schedule_item_list <- map["schedule_item_list"]
+    self.member_list <- map["member_list"]
   }
 }

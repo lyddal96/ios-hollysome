@@ -126,7 +126,9 @@ class MyViewController: BaseViewController {
     
     // 회원탈퇴
     self.memberOutView.addTapGesture { recognizer in
-      
+      let destination = MemberOutViewController.instantiate(storyboard: "My")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
     }
   }
   

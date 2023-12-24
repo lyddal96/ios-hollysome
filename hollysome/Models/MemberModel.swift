@@ -48,6 +48,10 @@ class MemberModel: BaseModel {
   var alarm_type: String?
   /// 알림 여부 YN
   var alarm_yn: String?
+  /// 동의 여부
+  var member_leave_yn: String?
+  /// 탈퇴 사유
+  var member_leave_reason: String?
   
   
   
@@ -80,6 +84,8 @@ class MemberModel: BaseModel {
     self.alarm_call_out_yn <- map["alarm_call_out_yn"]
     self.alarm_type <- map["alarm_type"]
     self.alarm_yn <- map["alarm_yn"]
+    self.member_leave_yn <- map["member_leave_yn"]
+    self.member_leave_reason <- map["member_leave_reason"]
     
     self.result <- map["result"]
     self.data_array <- map["data_array"]

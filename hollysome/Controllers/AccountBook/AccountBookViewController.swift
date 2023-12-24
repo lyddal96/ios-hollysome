@@ -89,6 +89,7 @@ class AccountBookViewController: BaseViewController {
   /// 전체 가계부 리스트 API
   func bookListAPI() {
     self.bookRequest.house_code = Defaults[.house_code]
+//    self.bookRequest.house_code = "no22491610re"
     self.bookRequest.setNextPage()
     
     APIRouter.shared.api(path: .book_list, method: .post, parameters: bookRequest.toJSON()) { response in
@@ -168,6 +169,15 @@ extension AccountBookViewController: ExpyTableViewDataSource {
         return emptyCell
       } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LastAccountBookCell") as! LastAccountBookCell
+        let book = self.lastList[section - 2]
+        cell.monthLabel.text = book.month ?? ""
+        var total = (book.book_item_1?.toInt() ?? 0) + (book.book_item_2?.toInt() ?? 0) + (book.book_item_3?.toInt() ?? 0)
+        if let detail_list = book.item_list, detail_list.count > 0 {
+          for value in detail_list {
+            total += value.item_bill?.toInt() ?? 0
+          }
+        }
+        cell.priceLabe.text = "\(Tools.shared.numberPlaceValue("\(total)")) 원"
         
         cell.layoutMargins = UIEdgeInsets.zero
         return cell
@@ -190,7 +200,7 @@ extension AccountBookViewController: ExpyTableViewDataSource {
     if self.lastList.count == 0 {
       return 3
     } else {
-      return 1 + self.lastList.count
+      return 2 + self.lastList.count
     }
     
   }
@@ -263,7 +273,14 @@ extension AccountBookViewController: ExpyTableViewDataSource {
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "LastAccountBookDetailCell", for: indexPath) as! LastAccountBookDetailCell
   //    cell.parentsViewController = self
-      
+      let book = self.lastList[indexPath.section - 2]
+      if indexPath.row < 4 {
+        cell.titleLabel.text = indexPath.row < 4 ? self.normalTitles[indexPath.row - 1] : self.currentList?.detail_list?[indexPath.row - 4].item_name ?? ""
+        cell.priceLabel.text = "\(Tools.shared.numberPlaceValue(indexPath.row == 1 ? book.book_item_1 : indexPath.row == 2 ? book.book_item_2 : book.book_item_3)) 원"
+      } else {
+        cell.titleLabel.text = book.item_list?[indexPath.row - 4].item_name ?? ""
+        cell.priceLabel.text = "\(Tools.shared.numberPlaceValue(book.item_list?[indexPath.row - 4].item_bill ?? "")) 원"
+      }
       
       return cell
     }
