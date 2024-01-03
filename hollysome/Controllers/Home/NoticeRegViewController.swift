@@ -73,6 +73,9 @@ class NoticeRegViewController: BaseViewController {
     APIRouter.shared.api(path: .note_detail, method: .post, parameters: noteRequest.toJSON()) { response in
       if let noteResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: noteResponse) {
         self.noticeTextView.text = noteResponse.contents ?? ""
+        self.textCntLabel.text = "\(self.noticeTextView.text.count) / 200"
+        self.noticeTextView.resizeToFitHeight()
+        self.noticeTextView.isUserInteractionEnabled = true
       }
     }
   }
@@ -130,7 +133,7 @@ extension NoticeRegViewController: RSKGrowingTextViewDelegate {
   }
   
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    if textView.text.count >= 200 {
+    if text.count >= 200 {
       return false
     } else {
       return true

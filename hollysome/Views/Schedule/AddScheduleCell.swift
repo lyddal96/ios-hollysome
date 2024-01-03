@@ -30,6 +30,9 @@ class AddScheduleCell: UITableViewCell {
 
   func setPlan(plan: PlanModel) {
     self.plan = plan
+    if let schedule_member_list = plan.schedule_member_list {
+      self.plan.selected_mate_list = schedule_member_list
+    }
     self.weekCollectionView.reloadData()
     self.mateCollectionView.reloadData()
   }

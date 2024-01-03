@@ -158,22 +158,29 @@ extension HouseNoticeViewController: UITableViewDataSource {
     cell.contentLabel.text = ""
     cell.moreButton.isHidden = true
     
+    
     let note = self.noteList[indexPath.row]
     
     
     cell.timeLabel.text = note.ins_date ?? ""
-    
+    cell.nameLabel.text = note.member_nickname ?? ""
     cell.shapeImageView.image = UIImage(named: "\(shapeList[note.member_role1?.toInt() ?? 0])71")
     cell.faceImageView.image = UIImage(named: "face\(note.member_role2?.toInt() ?? 0)")
     cell.colorView.backgroundColor = UIColor(named: "profile\(note.member_role3?.toInt() ?? 0)")
     
+    cell.avatarView.isHidden = false
+    cell.nameLabel.isHidden = false
     if note.report_yn == "Y" {
+      cell.avatarView.isHidden = true
+      cell.nameLabel.isHidden = true
       cell.roundView.backgroundColor = UIColor(named: "E4E6EB")
       cell.blockLabel.text = "신고한 알림장이예요."
       cell.blockLabel.isHidden = false
       cell.contentLabel.isHidden = true
     } else if note.block_yn == "Y" {
       cell.roundView.backgroundColor = UIColor(named: "E4E6EB")
+      cell.avatarView.isHidden = true
+      cell.nameLabel.isHidden = true
       cell.blockView.isHidden = false
       cell.blockLabel.text = "차단한 알림장이예요."
       cell.blockLabel.isHidden = false

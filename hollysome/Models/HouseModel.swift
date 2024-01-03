@@ -34,6 +34,10 @@ class HouseModel: BaseModel {
   var plan_idx: String?
   /// 완료 여부
   var schedule_yn: String?
+  /// 나의 할 일 수
+  var my_schedule_count: String?
+  /// 알림 시간
+  var alarm_hour: String?
 
   /// 리스트
   var data_array: [HouseModel]?
@@ -59,6 +63,8 @@ class HouseModel: BaseModel {
     self.schedule_idx <- map["schedule_idx"]
     self.plan_idx <- map["plan_idx"]
     self.schedule_yn <- map["schedule_yn"]
+    self.my_schedule_count <- map["my_schedule_count"]
+    self.alarm_hour <- map["alarm_hour"]
 
     self.data_array <- map["data_array"]
     self.mate_array <- map["mate_array"]

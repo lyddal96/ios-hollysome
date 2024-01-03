@@ -8,6 +8,7 @@
 import UIKit
 import FSCalendar
 import DZNEmptyDataSet
+import Defaults
 
 class CalendarPageViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -25,7 +26,9 @@ class CalendarPageViewController: BaseViewController {
   var calendarView = FSCalendar()
   var currentPage = Date()
   
-  var scheduleList = 3
+  var selectedDate = Date()
+  var calendarList = [PlanModel]()
+  var planList = [PlanModel]()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -96,28 +99,36 @@ class CalendarPageViewController: BaseViewController {
     self.calendarView.appearance.titleSelectionColor = .clear // 선택시 텍스트 컬러
     self.calendarView.appearance.selectionColor = UIColor.clear
     self.calendarView.select(Date())
-    
+    self.scheduleDateListAPI()
+    self.scheduleDateMemberListAPI()
     self.calendarView.reloadData()
+//    self.calendarView.scrollEnabled = false
   }
   
   
   private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
     let dayCell = (cell as! FSDayCell)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy년 MM월"
+    let month = dateFormatter.string(from: date)
     dayCell.removeSelectionView()
     dayCell.circleView.isHidden = true
-    dayCell.newView.isHidden = !(date.isToday || date.isTomorrow)
+    dayCell.newView.isHidden = true
+    if self.calendarList.filter({ $0.month == month }).count > 0 {
+      if let data_array = self.calendarList.filter({ $0.month == month })[0].data_array {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dayCell.newView.isHidden = data_array.filter({ $0.schedule_date == dateFormatter.string(from: date)}).count == 0
+      }
+    }
     dayCell.circleView.setCornerRadius(radius: (8))
     dayCell.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
     dayCell.titleLabel.textColor = UIColor(named: "222B45")
+        
     if position == .current { // 현재달
       if self.calendarView.selectedDates.contains(date) {
         dayCell.circleView.isHidden = false
         dayCell.titleLabel.textColor = .white
       }
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "yyyy-MM"
-      let month = dateFormatter.string(from: date)
-      
     } else {
       dayCell.titleLabel.textColor = UIColor(named: "A3A7B6")!
     }
@@ -130,6 +141,51 @@ class CalendarPageViewController: BaseViewController {
       let date = self.calendarView.date(for: cell)
       let position = self.calendarView.monthPosition(for: cell)
       self.configure(cell: cell, for: date!, at: position)
+    }
+  }
+  
+  /// 달력리스트
+  func scheduleDateListAPI() {
+    let planRequest = PlanModel()
+    planRequest.house_idx = Defaults[.house_idx]
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    planRequest.s_date = dateFormatter.string(from: self.calendarView.currentPage.startDateOfMonth)
+    planRequest.e_date = dateFormatter.string(from: self.calendarView.currentPage.endDateOfMonth)
+    
+    log.debug("dates :::::::\(planRequest.s_date ?? "") ::::\(planRequest.e_date ?? "")")
+    
+    APIRouter.shared.api(path: .schedule_date_list, method: .post, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        let monthDateFormatter = DateFormatter()
+        monthDateFormatter.dateFormat = "yyyy년 MM월"
+        let monthData = planResponse
+        monthData.month = monthDateFormatter.string(from: self.calendarView.currentPage)
+        self.calendarList.append(monthData)
+        self.calendarView.reloadData()
+      }
+    }
+  }
+  
+  /// 날짜별 일정 리스트
+  func scheduleDateMemberListAPI() {
+    let planRequest = PlanModel()
+    planRequest.house_idx = Defaults[.house_idx]
+    planRequest.member_idx = Defaults[.member_idx]
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    planRequest.today = dateFormatter.string(from: self.selectedDate)
+    
+    APIRouter.shared.api(path: .schedule_date_member_list, method: .post, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        if let data_array = planResponse.data_array {
+          self.planList = data_array
+        } else {
+          self.planList.removeAll()
+        }
+        
+        self.scheduleTableView.reloadData()
+      }
     }
   }
   //-------------------------------------------------------------------------------------------
@@ -146,8 +202,10 @@ class CalendarPageViewController: BaseViewController {
   /// 다음 달
   /// - Parameter sender: 버튼
   @IBAction func nextButtonTouched(sender: UIButton) {
-    self.currentPage = Calendar.current.date(byAdding: .month, value: 1, to: self.calendarView.currentPage)!
-    self.calendarView.setCurrentPage(self.currentPage, animated: true)
+    if !self.calendarView.currentPage.isThisMonth {
+      self.currentPage = Calendar.current.date(byAdding: .month, value: 1, to: self.calendarView.currentPage)!
+      self.calendarView.setCurrentPage(self.currentPage, animated: true)
+    }
   }
 }
 
@@ -159,6 +217,13 @@ extension CalendarPageViewController: FSCalendarDelegate {
   func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
     self.monthLabel.text = "\(self.calendarView.currentPage.year)년 \(self.calendarView.currentPage.month)월"
     self.currentPage = self.calendarView.currentPage
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy년 MM월"
+    let month = dateFormatter.string(from: self.calendarView.currentPage)
+    if self.calendarList.filter({ $0.month == month}).count == 0 {
+      self.scheduleDateListAPI()
+    }
+    
   }
   
   func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
@@ -167,14 +232,9 @@ extension CalendarPageViewController: FSCalendarDelegate {
     dateFormatter.dateFormat = "MM.dd (E)"
 
     self.dateLabel.text = dateFormatter.string(from: date)
-    
-    if date.isToday || date.isTomorrow {
-      self.scheduleList = 3
-    } else {
-      self.scheduleList = 0
-    }
-    
-    self.scheduleTableView.reloadData()
+    self.selectedDate = date
+    self.scheduleDateMemberListAPI()
+
     return true
   }
   
@@ -191,6 +251,8 @@ extension CalendarPageViewController: FSCalendarDelegate {
     self.configureVisibleCells()
   }
   
+  
+  
 }
 
 //-------------------------------------------------------------------------------------------
@@ -203,6 +265,10 @@ extension CalendarPageViewController: FSCalendarDataSource {
     cell.setConfigureCell()
     return cell
   }
+  func maximumDate(for calendar: FSCalendar) -> Date {
+    return Date()
+  }
+
   
   func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
     self.configure(cell: cell, for: date, at: position)
@@ -221,13 +287,14 @@ extension CalendarPageViewController: UITableViewDelegate {
 //-------------------------------------------------------------------------------------------
 extension CalendarPageViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.scheduleList
+    return self.planList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
+    let plan = self.planList[indexPath.row]
+    cell.setPlan(plan: plan, isCalendar: true)
     
-    cell.titleLabel.text = "할일 \(indexPath.row)"
     
     return cell
   }

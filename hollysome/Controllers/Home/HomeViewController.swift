@@ -133,6 +133,7 @@ class HomeViewController: BaseViewController {
     }
   }
   
+  
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
@@ -144,6 +145,9 @@ class HomeViewController: BaseViewController {
     
     APIRouter.shared.api(path: .house_list, method: .post, parameters: houseRequest.toJSON()) { response in
       if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse) {
+        self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(houseResponse.house_img ?? "")"), placeholderImage: UIImage(named: "default_image"), options: .lowPriority, context: nil)
+        self.houseNameLabel.text = houseResponse.house_name ?? ""
+        self.scheduleCntLabel.text = "나의 할 일 \(houseResponse.my_schedule_count ?? "0")개"
         if let mate_array = houseResponse.mate_array {
           self.mateList = mate_array
         }
@@ -162,6 +166,34 @@ class HomeViewController: BaseViewController {
       }
     }
   }
+  
+  /// 하우스 이미지 변경 API
+  func houseModUpAPI() {
+    
+  }
+  
+  
+  /// 이미지 업로드
+  ///
+  /// - Parameter imageData: 업로드할 이미지
+  func uploadImages(imageData : Data) {
+    
+    APIRouter.shared.api(path: .fileUpload_action, file: imageData) { response in
+      if let fileResponse = FileModel(JSON: response), Tools.shared.isSuccessResponse(response: fileResponse) {
+        
+        let houseRequest = HouseModel()
+        houseRequest.house_img = fileResponse.file_path
+        houseRequest.house_code = Defaults[.house_code]
+        
+        APIRouter.shared.api(path: .house_mod_up, method: .post, parameters: houseRequest.toJSON()) { response in
+          if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse) {
+            self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(fileResponse.file_path ?? "")"), placeholderImage: UIImage(named: "default_image"), options: .lowPriority, context: nil)
+          }
+        }
+      }
+    }
+  }
+  
   
   /// 하우스 유무에 따른 세팅
   func setTitleBar() {
@@ -192,7 +224,13 @@ class HomeViewController: BaseViewController {
   /// 하우스 이미지 변경
   /// - Parameter sender: 버튼
   @IBAction func imageChangeButtonTouched(sender: UIButton) {
-    
+    let destination = CardPopupViewController.instantiate(storyboard: "Main")
+    destination.cameraIsHidden = false
+    destination.albumIsHidden = false
+    destination.delegate = self
+    destination.modalTransitionStyle = .crossDissolve
+    destination.modalPresentationStyle = .overCurrentContext
+    self.tabBarController?.present(destination, animated: true)
   }
   
   /// 더보기
@@ -270,8 +308,7 @@ extension HomeViewController: UICollectionViewDataSource {
       } else {
         let plan = self.myScheduleList[indexPath.row]
         cell.titleLabel.text = plan.plan_name ?? ""
-        // [TODO][12/25/23][Seunga] : API 알림시간 추가 후 수정
-        cell.timeLabel.text = "미정"
+        cell.timeLabel.text = plan.alarm_hour.isNil ? "미정" : "\(plan.alarm_hour ?? "")시"
         cell.stateButton.isEnabled = plan.schedule_yn != "Y"
         
         /// 할일 완료
@@ -320,4 +357,47 @@ extension HomeViewController: UITableViewDataSource {
   }
   
   
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - CardPopupSelectDelegate
+//-------------------------------------------------------------------------------------------
+extension HomeViewController: CardPopupSelectDelegate {
+  func albumTouched() {
+    let controller = UIImagePickerController()
+    controller.delegate = self
+    controller.sourceType = .photoLibrary
+    self.present(controller, animated: true, completion: nil)
+  }
+  
+  func cameraTouched() {
+    let controller = UIImagePickerController()
+    controller.delegate = self
+    controller.sourceType = .camera
+    self.present(controller, animated: true, completion: nil)
+  }
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+//-------------------------------------------------------------------------------------------
+extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion: nil)
+  }
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+      imagePickerController(picker, pickedImage: image)
+    }
+  }
+  
+  @objc func imagePickerController(_ picker: UIImagePickerController, pickedImage: UIImage?) {
+    picker.dismiss(animated: false) {
+      let resizeImage = pickedImage!.resized(toWidth: 1000, isOpaque: true)
+      let data = resizeImage?.jpegData(compressionQuality: 0.6) ?? Data()
+      
+      self.uploadImages(imageData: data)
+    }
+  }
 }

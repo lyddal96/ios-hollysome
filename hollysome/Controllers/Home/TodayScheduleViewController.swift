@@ -7,6 +7,8 @@
 
 import UIKit
 import ExpyTableView
+import Defaults
+import DZNEmptyDataSet
 
 class TodayScheduleViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -16,7 +18,7 @@ class TodayScheduleViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-
+  var planList = [PlanModel]()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -27,6 +29,7 @@ class TodayScheduleViewController: BaseViewController {
     self.scheduleTableView.registerCell(type: ScheduleExpandCell.self)
     self.scheduleTableView.dataSource = self
     self.scheduleTableView.delegate = self
+    self.scheduleTableView.emptyDataSetSource = self
     self.scheduleTableView.rowHeight = UITableView.automaticDimension
     self.scheduleTableView.expandingAnimation = .fade
     self.scheduleTableView.collapsingAnimation = .fade
@@ -45,6 +48,8 @@ class TodayScheduleViewController: BaseViewController {
   
   override func initRequest() {
     super.initRequest()
+    
+    self.todayScheduleListAPI()
   }
   
   override func initLocalize() {
@@ -54,7 +59,39 @@ class TodayScheduleViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  /// 오늘 할일 리스트 API
+  func todayScheduleListAPI() {
+    let planRequest = PlanModel()
+    planRequest.member_idx = Defaults[.member_idx]
+    planRequest.house_idx = Defaults[.house_idx]
+    
+    APIRouter.shared.api(path: .today_schedule_list, method: .post, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        if let data_array = planResponse.data_array, data_array.count > 0 {
+          self.planList = data_array
+        }
+        self.scheduleTableView.reloadData()
+      }
+    }
+  }
   
+  /// 나의 할일 완료API
+  func todayScheduleEndAPI(schedule_idx: String, plan_idx: String) {
+    let planRequest = PlanModel()
+    planRequest.schedule_idx = schedule_idx
+    
+    APIRouter.shared.api(path: .today_schedule_end, method: .post, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        if let index = self.planList.firstIndex(where: { $0.plan_idx == plan_idx }) {
+          if let scheduleIndex = self.planList[index].schedule_item_member_list?.firstIndex(where: { $0.schedule_idx == schedule_idx }) {
+            self.planList[index].schedule_item_member_list?[scheduleIndex].schedule_yn = "Y"
+          }
+        }
+        
+        self.scheduleTableView.reloadData()
+      }
+    }
+  }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
@@ -76,13 +113,14 @@ extension TodayScheduleViewController: ExpyTableViewDataSource {
   // 상위데이터
   func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleTitleCell") as! ScheduleTitleCell
-    cell.titleLabel.text = "빨래하기"
+    let plan = self.planList[section]
+    cell.titleLabel.text = plan.plan_name ?? ""
     cell.layoutMargins = UIEdgeInsets.zero
     return cell
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 5
+    return self.planList.count
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,12 +129,9 @@ extension TodayScheduleViewController: ExpyTableViewDataSource {
 //    } else {
 //      return 2
 //    }
+    let plan = self.planList[section]
     
-    if section == 0 {
-      return 2
-    } else {
-      return 3
-    }
+    return (plan.schedule_item_member_list?.count ?? 0) + 1
   }
   
  
@@ -104,10 +139,20 @@ extension TodayScheduleViewController: ExpyTableViewDataSource {
   // 하위 데이터
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleExpandCell", for: indexPath) as! ScheduleExpandCell
+    let plan = self.planList[indexPath.section]
+    let mate = plan.schedule_item_member_list?[indexPath.row - 1] ?? PlanModel()
     cell.parentsViewController = self
-    cell.setMate(index: indexPath)
-//    cell.setStateBar(indexPath: indexPath,data: self.healthData)
-    if (indexPath.row == 1 && indexPath.section == 0) || (indexPath.row == 2 && indexPath.section != 0) {
+    cell.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[mate.member_role1?.toInt() ?? 0])71")
+    cell.faceImageView.image = UIImage(named: "face\(mate.member_role2?.toInt() ?? 0)")
+    cell.colorView.backgroundColor = UIColor(named: "profile\(mate.member_role3?.toInt() ?? 0)")
+    cell.nameLabel.text = mate.member_nickname ?? ""
+    cell.doneButton.isHidden = mate.member_idx != Defaults[.member_idx]
+    cell.pokeButton.isHidden = mate.member_idx == Defaults[.member_idx]
+    cell.doneButton.isEnabled = mate.schedule_yn != "Y"
+    cell.pokeButton.isEnabled = mate.schedule_yn != "Y"
+    cell.avatarView.addBorder(width: 1, color: UIColor(named: "\(mate.member_idx == Defaults[.member_idx] ? "accent" : "FFFFFF")")!)
+    cell.checkImageView.isHidden = mate.schedule_yn != "Y"
+    if indexPath.row == plan.schedule_item_member_list?.count ?? 0 {
       cell.roundView.roundCorners(cornerRadius: 12, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
     } else {
       cell.roundView.roundCorners(cornerRadius: 0, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
@@ -115,9 +160,10 @@ extension TodayScheduleViewController: ExpyTableViewDataSource {
     
     // 완료
     cell.doneButton.addTapGesture { recognizer in
-      AJAlertController.initialization().showAlert(astrTitle: "빨래하기 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
+      AJAlertController.initialization().showAlert(astrTitle: "\(plan.plan_name ?? "") 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
         if position == 1 {
           // 완료
+          self.todayScheduleEndAPI(schedule_idx: mate.schedule_idx ?? "", plan_idx: plan.plan_idx ?? "")
         }
       }
     }
@@ -171,4 +217,22 @@ extension TodayScheduleViewController: ExpyTableViewDelegate {
   }
 }
 
+
+
+//-------------------------------------------------------------------------------------------
+// MARK: - DZNEmptyDataSetSource
+//-------------------------------------------------------------------------------------------
+extension TodayScheduleViewController: DZNEmptyDataSetSource {
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    
+    let text = "오늘은 하우스 일정이 없어요."
+    let attributes: [NSAttributedString.Key : Any] = [
+      NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
+      NSAttributedString.Key.foregroundColor : UIColor(named: "C8CCD5")!
+    ]
+    
+    return NSAttributedString(string: text, attributes: attributes)
+  }
+  
+}
 

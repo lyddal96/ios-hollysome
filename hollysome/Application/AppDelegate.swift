@@ -19,6 +19,7 @@ import GoogleSignIn
 import Hero
 import Defaults
 import GoogleMobileAds
+import AppAuth
 
 let log = SwiftyBeaver.self
 @main
@@ -36,12 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var pushIndex = ""
   
-  
+  var currentAuthorizationFlow: OIDExternalUserAgentSession?
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     
     UNUserNotificationCenter.current().delegate = self
     Messaging.messaging().delegate = self
+    
+ 
+
     
     if #available(iOS 10.0, *) {
       UNUserNotificationCenter.current().delegate = self
@@ -112,6 +116,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   
   public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    
+    if let authorizationFlow = self.currentAuthorizationFlow, authorizationFlow.resumeExternalUserAgentFlow(with: url) {
+      self.currentAuthorizationFlow = nil
+      return true
+    }
+    
     // 구글
     return GIDSignIn.sharedInstance.handle(url)
     
@@ -311,6 +321,8 @@ extension AppDelegate : MessagingDelegate {
     print("Firebase registration token: \(fcmToken ?? "")")
     //    LocalStore.gcm.value = fcmToken
     self.fcmKey = fcmToken
+    Defaults[.fcm_key] = fcmToken
   }
-  
+
 }
+

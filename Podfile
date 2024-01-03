@@ -57,7 +57,8 @@ target 'hollysome' do
   pod 'Firebase/Auth'
   pod 'CHIPageControl/Jaloro' #커스텀 페이지 컨트롤
   pod 'Google-Mobile-Ads-SDK' # 구글 광고
-
+  pod 'OAuthSwift', '~> 2.2.0'
+#  pod 'GTMAppAuth'
   pods_with_specific_swift_versions = {
     'EZSwiftExtensions' => '4.0',
     'RSKGrowingTextView' => '5.0',

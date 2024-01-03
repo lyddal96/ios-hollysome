@@ -159,7 +159,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssh-kT-5R1">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="989.33333333333337"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="Rsh-H1-cc8">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="Rsh-H1-cc8">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="224.33333333333334"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Rsh-H1-cc8" secondAttribute="height" multiplier="375:214" id="d4g-6W-tnD"/>

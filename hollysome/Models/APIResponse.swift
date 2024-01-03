@@ -44,7 +44,7 @@ class APIResponse {
     case HTTP_UNAUTHORIZED: // 유효하지 않은 access_token
       if let value = response.result.value {
         let baseResponse = BaseModel(JSON: value as! [String : Any])
-        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "", aStrMessage: baseResponse?.message ?? "", alertViewHiddenCheck: false) { position, title in
+        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "", aStrMessage: baseResponse?.code_msg ?? "", alertViewHiddenCheck: false) { position, title in
           if position == 0 {
             Defaults.removeAll()
             Defaults[.tutorial] = true
@@ -78,7 +78,7 @@ class APIResponse {
         AJAlertController.initialization().showAlertWithOkButton(astrTitle: "", aStrMessage: errors[0], alertViewHiddenCheck: false) { position, title in
         }
       } else {
-        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "", aStrMessage: response.message ?? "", alertViewHiddenCheck: false) { position, title in
+        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "", aStrMessage: response.code_msg ?? "", alertViewHiddenCheck: false) { position, title in
         }
       }
       return false

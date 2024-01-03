@@ -29,11 +29,11 @@
                                 <rect key="frame" x="0.0" y="117" width="414" height="17.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-artwork" translatesAutoresizingMaskIntoConstraints="NO" id="DO2-xg-oVh">
-                                <rect key="frame" x="47" y="134.5" width="320" height="177.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_login" translatesAutoresizingMaskIntoConstraints="NO" id="DO2-xg-oVh">
+                                <rect key="frame" x="63" y="134.5" width="288" height="179.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9V-jN-Qa9">
-                                <rect key="frame" x="20" y="330" width="374" height="53"/>
+                                <rect key="frame" x="20" y="332" width="374" height="53"/>
                                 <string key="text">클래스 메이트와
 우리집 일정을 공유해요</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
@@ -41,25 +41,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jZ-6q-VwA">
-                                <rect key="frame" x="0.0" y="312" width="414" height="18"/>
+                                <rect key="frame" x="0.0" y="314" width="414" height="18"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리집 일정 관리 어플, 눔메이트" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekQ-fX-43m">
-                                <rect key="frame" x="20" y="395" width="374" height="18"/>
+                                <rect key="frame" x="20" y="397" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" name="6E7583"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJ0-Tv-ETE">
-                                <rect key="frame" x="116" y="697.5" width="50" height="50"/>
-                                <color key="backgroundColor" name="naver"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="A44-Co-EQg"/>
-                                    <constraint firstAttribute="height" constant="50" id="nZb-mp-BXP"/>
-                                </constraints>
+                                <rect key="frame" x="107" y="699.5" width="56" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="logo_naver">
+                                <state key="normal" image="login_naver">
                                     <color key="titleColor" name="FFFFFF"/>
                                 </state>
                                 <connections>
@@ -67,15 +62,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZ3-GB-H7V">
-                                <rect key="frame" x="182" y="697.5" width="50" height="50"/>
-                                <color key="backgroundColor" name="kakao"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="dJO-Zp-TFL"/>
-                                    <constraint firstAttribute="width" constant="50" id="ehd-Cz-Z8t"/>
-                                </constraints>
+                                <rect key="frame" x="179" y="699.5" width="56" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="logo_kakao">
+                                <state key="normal" image="login_kakao">
                                     <color key="titleColor" name="000000"/>
                                 </state>
                                 <connections>
@@ -83,7 +73,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lmT-KT-rUG">
-                                <rect key="frame" x="206.5" y="653" width="1" height="14"/>
+                                <rect key="frame" x="206.5" y="655" width="1" height="14"/>
                                 <color key="backgroundColor" name="C8CCD5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="gIT-Jn-4PF"/>
@@ -91,7 +81,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgw-7L-dbY">
-                                <rect key="frame" x="207.5" y="642.5" width="60" height="35"/>
+                                <rect key="frame" x="207.5" y="644.5" width="60" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="10" maxX="10" maxY="10"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -103,7 +93,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0P-bz-iQd">
-                                <rect key="frame" x="122.5" y="642.5" width="84" height="35"/>
+                                <rect key="frame" x="122.5" y="644.5" width="84" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="8" maxY="10"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -115,7 +105,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="아이디" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-jU-EQY">
-                                <rect key="frame" x="16" y="443" width="382" height="50"/>
+                                <rect key="frame" x="16" y="445" width="382" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="yHC-Gf-9b0"/>
                                 </constraints>
@@ -129,7 +119,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="riO-hU-YbJ">
-                                <rect key="frame" x="16" y="509" width="382" height="50"/>
+                                <rect key="frame" x="16" y="511" width="382" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bUp-Ac-CqH"/>
                                 </constraints>
@@ -143,15 +133,10 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmT-gE-4Mh">
-                                <rect key="frame" x="248" y="697.5" width="50" height="50"/>
-                                <color key="backgroundColor" name="apple"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="AQ9-yA-W8s"/>
-                                    <constraint firstAttribute="height" constant="50" id="gl4-T5-FzY"/>
-                                </constraints>
+                                <rect key="frame" x="251" y="699.5" width="56" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="logo_apple">
+                                <state key="normal" image="login_apple">
                                     <color key="titleColor" name="FFFFFF"/>
                                 </state>
                                 <connections>
@@ -159,7 +144,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34Z-Qa-EwE">
-                                <rect key="frame" x="16" y="583" width="382" height="50"/>
+                                <rect key="frame" x="16" y="585" width="382" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="HzE-rU-5tG"/>
                                 </constraints>
@@ -177,7 +162,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="x9V-jN-Qa9" firstAttribute="top" secondItem="9jZ-6q-VwA" secondAttribute="bottom" id="0kV-0g-OT3"/>
-                            <constraint firstItem="DO2-xg-oVh" firstAttribute="height" secondItem="UpB-1f-KcV" secondAttribute="height" multiplier="0.198" id="1K1-2y-44x"/>
+                            <constraint firstItem="DO2-xg-oVh" firstAttribute="height" secondItem="UpB-1f-KcV" secondAttribute="height" multiplier="0.2" id="1K1-2y-44x"/>
                             <constraint firstItem="HPq-pA-gXq" firstAttribute="trailing" secondItem="DYN-jU-EQY" secondAttribute="trailing" constant="16" id="39p-1g-flw"/>
                             <constraint firstItem="HPq-pA-gXq" firstAttribute="trailing" secondItem="ekQ-fX-43m" secondAttribute="trailing" constant="20" id="B1F-cj-qFk"/>
                             <constraint firstItem="9jZ-6q-VwA" firstAttribute="top" secondItem="DO2-xg-oVh" secondAttribute="bottom" id="B8W-pN-C2B"/>
@@ -558,12 +543,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRZ-gr-qCk">
-                                                <rect key="frame" x="0.0" y="0.0" width="216" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="190" height="38"/>
                                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="btn_check_off">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="    ">
+                                                        <fragment content="   ">
                                                             <attributes>
                                                                 <color key="NSColor" name="3A3A3C"/>
                                                                 <font key="NSFont" metaFont="system" size="14"/>
@@ -651,12 +636,12 @@
                                         <rect key="frame" x="0.0" y="38" width="414" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jew-rt-Wth">
-                                                <rect key="frame" x="0.0" y="0.0" width="228" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="202" height="38"/>
                                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="btn_check_off">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="    ">
+                                                        <fragment content="   ">
                                                             <attributes>
                                                                 <color key="NSColor" name="3A3A3C"/>
                                                                 <font key="NSFont" metaFont="system" size="14"/>
@@ -672,7 +657,7 @@
                                                         <fragment content="필수">
                                                             <attributes>
                                                                 <color key="NSColor" name="3A3A3C"/>
-                                                                <font key="NSFont" size="14" name=".AppleSDGothicNeoI-Regular"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
                                                                 <font key="NSOriginalFont" metaFont="system" size="14"/>
                                                             </attributes>
                                                         </fragment>
@@ -692,7 +677,7 @@
                                                         <fragment content="개인정보">
                                                             <attributes>
                                                                 <color key="NSColor" name="3A3A3C"/>
-                                                                <font key="NSFont" size="14" name=".AppleSDGothicNeoI-Regular"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
                                                                 <font key="NSOriginalFont" metaFont="system" size="14"/>
                                                             </attributes>
                                                         </fragment>
@@ -705,7 +690,7 @@
                                                         <fragment content="취급방침">
                                                             <attributes>
                                                                 <color key="NSColor" name="3A3A3C"/>
-                                                                <font key="NSFont" size="14" name=".AppleSDGothicNeoI-Regular"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
                                                                 <font key="NSOriginalFont" metaFont="system" size="14"/>
                                                             </attributes>
                                                         </fragment>
@@ -743,11 +728,11 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBH-KA-xUt">
-                                <rect key="frame" x="0.0" y="596" width="176" height="60"/>
+                                <rect key="frame" x="0.0" y="616" width="150" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="   전체 약관 동의" image="btn_check_off">
+                                <state key="normal" title="  전체 약관 동의" image="btn_check_off">
                                     <color key="titleColor" name="3A3A3C"/>
                                 </state>
                                 <state key="selected" image="btn_check_on"/>
@@ -1923,17 +1908,17 @@ email 로 보내 드렸습니다.
         </scene>
     </scenes>
     <resources>
-        <image name="btn_check_off" width="40" height="40"/>
-        <image name="btn_check_on" width="40" height="40"/>
+        <image name="btn_check_off" width="18" height="18"/>
+        <image name="btn_check_on" width="18" height="18"/>
         <image name="head_btn_back" width="11" height="20"/>
         <image name="head_btn_close" width="15.5" height="15.5"/>
         <image name="img_join" width="249" height="280"/>
+        <image name="img_login" width="288" height="160"/>
         <image name="img_plus" width="35" height="35"/>
-        <image name="login-artwork" width="320" height="178"/>
-        <image name="logo_apple" width="24" height="24"/>
+        <image name="login_apple" width="56" height="56"/>
+        <image name="login_kakao" width="56" height="56"/>
+        <image name="login_naver" width="56" height="56"/>
         <image name="logo_join_finish" width="218" height="28"/>
-        <image name="logo_kakao" width="18.5" height="18"/>
-        <image name="logo_naver" width="16.5" height="16"/>
         <image name="make" width="123" height="123"/>
         <image name="noommate" width="188" height="24"/>
         <image name="reddot" width="4" height="4"/>
@@ -1957,15 +1942,6 @@ email 로 보내 드렸습니다.
         </namedColor>
         <namedColor name="accent">
             <color red="1" green="0.37299999594688416" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="apple">
-            <color red="0.019999999552965164" green="0.027000000700354576" blue="0.030999999493360519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="kakao">
-            <color red="0.99599999189376831" green="0.89800000190734863" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="naver">
-            <color red="0.012000000104308128" green="0.77999997138977051" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="point">
             <color red="1" green="0.76700001955032349" blue="0.33399999141693115" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

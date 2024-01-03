@@ -31,6 +31,7 @@ class MyViewController: BaseViewController {
   @IBOutlet weak var logoutView: UIView!
   @IBOutlet weak var memberOutView: UIView!
   @IBOutlet weak var houseNameLabel: UILabel!
+  @IBOutlet weak var donateView: UIView!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -129,6 +130,15 @@ class MyViewController: BaseViewController {
       let destination = MemberOutViewController.instantiate(storyboard: "My")
       destination.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    // 눔메이트 개발자 후원하기
+    self.donateView.addTapGesture { recognizer in
+      let destination = DonateViewController.instantiate(storyboard: "My")
+//      destination.delegate = self
+      destination.modalTransitionStyle = .crossDissolve
+      destination.modalPresentationStyle = .overCurrentContext
+      self.tabBarController?.present(destination, animated: true)
     }
   }
   

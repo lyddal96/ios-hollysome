@@ -27,6 +27,9 @@ class ScheduleExpandCell: UITableViewCell {
     self.pokeButton.setCornerRadius(radius: 15.5)
     
     self.avatarView.setCornerRadius(radius: 22)
+    
+    self.doneButton.setBackgroundColor(UIColor(named: "E4E6EB")!, forState: .disabled)
+    self.pokeButton.setBackgroundColor(UIColor(named: "E4E6EB")!, forState: .disabled)
   }
   
   

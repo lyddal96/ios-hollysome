@@ -19,6 +19,7 @@ class AddScheduleViewController: BaseViewController {
   @IBOutlet weak var addButton: UIButton!
   @IBOutlet weak var enrollButton: UIButton!
   @IBOutlet weak var scheduleTableView: UITableView!
+  @IBOutlet weak var deleteBarButtonItem: UIBarButtonItem!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -29,11 +30,14 @@ class AddScheduleViewController: BaseViewController {
   var scheduleList = [PlanModel]()
   var time: Int? = nil
   var selectedWeeks = [Int]()
+  
+  var plan_idx = ""
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     
     self.timeTextField.setInputViewPicker(picker: self.timePickerView, target: self, selector: #selector(tapPickerDone))
     self.timePickerView.delegate = self
@@ -54,11 +58,14 @@ class AddScheduleViewController: BaseViewController {
     switch(self.enrollType) {
     case .enroll:
       self.navigationItem.title = "할 일 추가"
-      self.addButton.setTitle("추가", for: .normal)
+      self.enrollButton.setTitle("추가", for: .normal)
+      self.deleteBarButtonItem.isEnabled = false
+      self.deleteBarButtonItem.image = nil
     case .modify:
       self.navigationItem.title = "할 일 수정"
-      self.addButton.setTitle("수정", for: .normal)
-
+      self.enrollButton.setTitle("수정", for: .normal)
+      self.planDetailAPI()
+      
     }
     
     self.titleTextField.setCornerRadius(radius: 4)
@@ -107,8 +114,56 @@ class AddScheduleViewController: BaseViewController {
     }
     planRequest.item_array = self.scheduleList.toJSONString() ?? ""
 
-    APIRouter.shared.api(path: .plan_reg_in, method: .post, parameters: planRequest.toJSON()) { response in
+    let path = self.enrollType == .enroll ? APIURL.plan_reg_in : .plan_mod_up
+    planRequest.plan_idx = self.plan_idx
+    APIRouter.shared.api(path: path, method: .post, parameters: planRequest.toJSON()) { response in
       if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse, alertYn: true) {
+        self.notificationCenter.post(name: Notification.Name("PlanUpdate"), object: nil)
+        self.dismiss(animated: true)
+      }
+    }
+  }
+  
+  /// 일정 상세 API
+  func planDetailAPI() {
+    let planRequest = PlanModel()
+    planRequest.plan_idx = self.plan_idx
+    planRequest.member_idx = Defaults[.member_idx]
+    
+    APIRouter.shared.api(path: .plan_detail, method: .post, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        self.titleTextField.text = planResponse.plan_name ?? ""
+        self.time = planResponse.alarm_hour?.toInt()
+        if let time = self.time {
+          self.timeTextField.text = "\(time)시"
+        }
+        self.noTimeButton.isSelected = planResponse.alarm_yn == "N"
+        if let plan_item_list = planResponse.plan_item_list {
+          self.scheduleList = plan_item_list
+          
+          for value in self.scheduleList {
+            let weekList = value.week_arr?.components(separatedBy: ",") ?? [String]()
+            for week in weekList {
+              if let weekInt = week.toInt() {
+                self.selectedWeeks.append(weekInt - 1)
+              }
+            }
+          }
+        }
+        
+        self.scheduleTableView.reloadData()
+      }
+    }
+  }
+  
+  /// 삭제 API
+  func planDelAPI() {
+    let planRequest = PlanModel()
+    planRequest.plan_idx = self.plan_idx
+    
+    APIRouter.shared.api(path: .plan_del, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        self.notificationCenter.post(name: Notification.Name("PlanUpdate"), object: nil)
         self.dismiss(animated: true)
       }
     }
@@ -126,7 +181,7 @@ class AddScheduleViewController: BaseViewController {
       AJAlertController.initialization().showAlertWithOkButton(astrTitle: "추가된 일정이 없습니다. 일정을 추가해 주세요.", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
       }
     } else {
-      AJAlertController.initialization().showAlert(astrTitle: "새 일정을 \(self.enrollType == .enroll ? "등록" : "수정")하시겠어요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: self.enrollType == .enroll ? "등록" : "수정") { position, title in
+      AJAlertController.initialization().showAlert(astrTitle: "\(self.enrollType == .enroll ? "새 " : "")일정을 \(self.enrollType == .enroll ? "등록" : "수정")하시겠어요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: self.enrollType == .enroll ? "등록" : "수정") { position, title in
         if position == 1 {
           self.planRegInAPI()
         }
@@ -152,6 +207,12 @@ class AddScheduleViewController: BaseViewController {
     self.timeTextField.isEnabled = !self.noTimeButton.isSelected
     self.timeTextField.text = ""
     self.time = nil
+  }
+  
+  /// 삭제
+  /// - Parameter sender: 바버튼
+  @IBAction func deleteBarButtonItemTouched(sender: UIBarButtonItem) {
+    
   }
 }
 

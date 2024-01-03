@@ -42,15 +42,10 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g7V-fU-mQq">
                                         <rect key="frame" x="4" y="4" width="36" height="36"/>
                                     </imageView>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="oLr-P1-fPb">
-                                        <rect key="frame" x="28" y="28" width="16" height="16"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="F1F1F4"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="VZ9-kJ-XIA" secondAttribute="trailing" constant="7" id="0bs-WZ-e8Y"/>
-                                    <constraint firstAttribute="trailing" secondItem="oLr-P1-fPb" secondAttribute="trailing" id="337-zo-XMG"/>
-                                    <constraint firstAttribute="bottom" secondItem="oLr-P1-fPb" secondAttribute="bottom" id="FtP-Ok-SqB"/>
                                     <constraint firstItem="VZ9-kJ-XIA" firstAttribute="leading" secondItem="JyC-Ex-6zO" secondAttribute="leading" constant="7" id="FtS-a4-cal"/>
                                     <constraint firstItem="g7V-fU-mQq" firstAttribute="top" secondItem="JyC-Ex-6zO" secondAttribute="top" constant="4" id="JcG-my-2Ax"/>
                                     <constraint firstAttribute="trailing" secondItem="g7V-fU-mQq" secondAttribute="trailing" constant="4" id="Yob-QC-fgV"/>
@@ -62,6 +57,9 @@
                                     <constraint firstAttribute="width" constant="44" id="uaN-Uq-MvX"/>
                                 </constraints>
                             </view>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="oLr-P1-fPb">
+                                <rect key="frame" x="36" y="40.666666666666664" width="16" height="16"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQ3-4q-iUj">
                                 <rect key="frame" x="63" y="25" width="42.333333333333343" height="19.333333333333329"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -105,9 +103,11 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4Du-3x-zCe" secondAttribute="trailing" constant="16" id="2pq-GY-HOz"/>
                             <constraint firstAttribute="height" constant="69" id="8vc-IH-hRY"/>
+                            <constraint firstItem="oLr-P1-fPb" firstAttribute="trailing" secondItem="JyC-Ex-6zO" secondAttribute="trailing" id="AsX-JS-JZi"/>
                             <constraint firstAttribute="trailing" secondItem="hPD-fv-RBT" secondAttribute="trailing" constant="16" id="BOZ-Tm-iDY"/>
                             <constraint firstItem="hQ3-4q-iUj" firstAttribute="leading" secondItem="JyC-Ex-6zO" secondAttribute="trailing" constant="11" id="CDE-1g-qvs"/>
                             <constraint firstItem="hQ3-4q-iUj" firstAttribute="centerY" secondItem="9Wp-HN-v85" secondAttribute="centerY" id="DoP-xo-TGa"/>
+                            <constraint firstItem="oLr-P1-fPb" firstAttribute="bottom" secondItem="JyC-Ex-6zO" secondAttribute="bottom" id="HMO-WF-hzi"/>
                             <constraint firstItem="4Du-3x-zCe" firstAttribute="centerY" secondItem="9Wp-HN-v85" secondAttribute="centerY" id="TLC-D8-CLV"/>
                             <constraint firstItem="JyC-Ex-6zO" firstAttribute="leading" secondItem="9Wp-HN-v85" secondAttribute="leading" constant="8" id="bTE-KA-yJh"/>
                             <constraint firstItem="JyC-Ex-6zO" firstAttribute="centerY" secondItem="9Wp-HN-v85" secondAttribute="centerY" id="cuJ-XM-OZ3"/>

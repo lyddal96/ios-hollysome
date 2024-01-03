@@ -35,7 +35,7 @@ class MainTabBarViewController: UITabBarController {
     appearance.backgroundColor = .white
     
     self.tabBar.standardAppearance = appearance
-    self.tabBar.addBorderTop(size: 1, color: UIColor(named: "C8CCD5")!)
+    self.tabBar.addBorderTop(size: 1, color: UIColor(named: "FFFFFF")!)
     self.delegate = self
     
     
@@ -120,6 +120,8 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
       /// 탭바 아이템 인덱스 선택 액션줄때
       ///
       if Defaults[.house_idx] == nil && index != 0 && index != 3 {
+        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "아직 소속된 하우스가 없어요.\n메이트가 되어 더 많은 눔메이트의 서비스를 이용해 보세요!", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
+        }
         return false
       }
     }

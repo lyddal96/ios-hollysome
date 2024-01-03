@@ -25,6 +25,6 @@ class HomeNoticeCell: UITableViewCell {
     self.colorView.backgroundColor = UIColor(named: "profile\(note.member_role3?.toInt() ?? 0)")
     
     self.contentLabel.text = note.contents ?? ""
-    self.timeLabel.text = note.ins_date ?? "2023-12-25 00:00"
+    self.timeLabel.text = note.ins_date ?? ""
   }
 }

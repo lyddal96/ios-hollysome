@@ -18,7 +18,7 @@ class BaseModel: Mappable {
   // 성공 여부
   var success: Bool?
   // 메세지
-  var message: String?
+//  var message: String?
   // Google FCM Key
   var gcm_key: String?
   // 디바이스 종류. 1: Android, 2: IOS, 3: Other
@@ -27,6 +27,17 @@ class BaseModel: Mappable {
   var errors: [String]?
   // 키
   var id: Int?
+  var type: String?
+  var project_id: String?
+  var private_key_id: String?
+  var private_key: String?
+  var client_email: String?
+  var client_id: String?
+  var auth_uri: String?
+  var token_uri: String?
+  var auth_provider_x509_cert_url: String?
+  var client_x509_cert_url: String?
+  var universe_domain: String?
   
   /// 현재 페이지 번호
   var page: Int?
@@ -68,7 +79,7 @@ class BaseModel: Mappable {
     self.code <- map["code"]
     self.member_idx <- map["member_idx"]
     self.success <- map["success"]
-    self.message <- map["message"]
+//    self.message <- map["message"]
     self.gcm_key <- map["gcm_key"]
     self.device_os <- map["device_os"]
     self.errors <- map["errors"]
@@ -87,6 +98,17 @@ class BaseModel: Mappable {
     self.term_arr <- map["term_arr"]
     self.house_name <- map["house_name"]
     self.house_idx <- map["house_idx"]
+    self.type <- map["type"]
+    self.project_id <- map["project_id"]
+    self.private_key_id <- map["private_key_id"]
+    self.private_key <- map["private_key"]
+    self.client_email <- map["client_email"]
+    self.client_id <- map["client_id"]
+    self.auth_uri <- map["auth_uri"]
+    self.token_uri <- map["token_uri"]
+    self.auth_provider_x509_cert_url <- map["auth_provider_x509_cert_url"]
+    self.client_x509_cert_url <- map["client_x509_cert_url"]
+    self.universe_domain <- map["universe_domain"]
   }
   
   
