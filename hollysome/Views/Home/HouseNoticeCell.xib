@@ -55,7 +55,7 @@
                                                 <state key="normal" image="more_btn"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-1q-X1U">
-                                                <rect key="frame" x="50" y="23.333333333333336" width="42.333333333333343" height="19.333333333333336"/>
+                                                <rect key="frame" x="58" y="23.333333333333336" width="42.333333333333343" height="19.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <color key="textColor" name="3A3A3C"/>
                                                 <nil key="highlightedColor"/>
@@ -193,7 +193,7 @@
                             <constraint firstAttribute="trailing" secondItem="hUF-Ru-BJm" secondAttribute="trailing" id="Irp-mF-Ftv"/>
                             <constraint firstItem="pbc-ck-jgp" firstAttribute="top" secondItem="f9w-vl-cfP" secondAttribute="top" constant="16" id="S7b-LV-Bi8"/>
                             <constraint firstItem="gPX-1q-X1U" firstAttribute="centerY" secondItem="pbc-ck-jgp" secondAttribute="centerY" id="hDQ-PY-EHD"/>
-                            <constraint firstItem="gPX-1q-X1U" firstAttribute="leading" secondItem="pbc-ck-jgp" secondAttribute="trailing" id="lGZ-sN-kox"/>
+                            <constraint firstItem="gPX-1q-X1U" firstAttribute="leading" secondItem="pbc-ck-jgp" secondAttribute="trailing" constant="8" id="lGZ-sN-kox"/>
                             <constraint firstItem="pbc-ck-jgp" firstAttribute="leading" secondItem="f9w-vl-cfP" secondAttribute="leading" constant="16" id="lc8-nq-iel"/>
                             <constraint firstItem="87K-FF-DJe" firstAttribute="top" secondItem="F8c-zx-IAZ" secondAttribute="bottom" constant="8" id="oWf-ng-eCD"/>
                         </constraints>

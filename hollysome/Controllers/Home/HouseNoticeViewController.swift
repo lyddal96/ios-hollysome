@@ -19,6 +19,7 @@ class HouseNoticeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   var noteList = [HouseModel]()
   var noteRequest = HouseModel()
+  var refresh = UIRefreshControl()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -30,6 +31,9 @@ class HouseNoticeViewController: BaseViewController {
     self.noticeTableView.registerCell(type: HouseNoticeCell.self)
     self.noticeTableView.delegate = self
     self.noticeTableView.dataSource = self
+    
+    self.refresh.addTarget(self, action: #selector(self.houseNoteUpdate), for: .valueChanged)
+    self.noticeTableView.refreshControl = self.refresh
   }
   
   override func didReceiveMemoryWarning() {
@@ -67,7 +71,7 @@ class HouseNoticeViewController: BaseViewController {
         if let data_array = noteResponse.data_array, data_array.count > 0 {
           self.noteList += data_array
         }
-        
+        self.refresh.endRefreshing()
         self.noticeTableView.emptyDataSetSource = self
         self.noticeTableView.reloadData()
       }
@@ -114,8 +118,9 @@ class HouseNoticeViewController: BaseViewController {
   /// 작성
   /// - Parameter sender: 바버튼
   @IBAction func writeBarButtonItemTouched(sender: UIBarButtonItem) {
-    let destination = NoticeRegViewController.instantiate(storyboard: "Home")
-    self.navigationController?.pushViewController(destination, animated: true)
+    let destination = NoticeRegViewController.instantiate(storyboard: "Home").coverNavigationController()
+    destination.modalPresentationStyle = .fullScreen
+    self.present(destination, animated: true)
   }
 }
 
@@ -224,10 +229,11 @@ extension HouseNoticeViewController: UITableViewDataSource {
     
     /// 수정
     cell.modifyButton.addTapGesture { recognizer in
-      let destination = NoticeRegViewController.instantiate(storyboard: "Home")
-      destination.enrollType = .modify
-      destination.note_idx = note.note_idx ?? ""
-      self.navigationController?.pushViewController(destination, animated: true)
+      let viewController = NoticeRegViewController.instantiate(storyboard: "Home")
+      viewController.enrollType = .modify
+      viewController.note_idx = note.note_idx ?? ""
+      let destination = viewController.coverNavigationController()
+      self.present(destination, animated: true)
     }
     
     return cell

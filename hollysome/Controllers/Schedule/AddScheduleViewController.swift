@@ -20,6 +20,7 @@ class AddScheduleViewController: BaseViewController {
   @IBOutlet weak var enrollButton: UIButton!
   @IBOutlet weak var scheduleTableView: UITableView!
   @IBOutlet weak var deleteBarButtonItem: UIBarButtonItem!
+  @IBOutlet weak var timeArrowImageView: UIImageView!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -82,6 +83,10 @@ class AddScheduleViewController: BaseViewController {
   
   override func initRequest() {
     super.initRequest()
+    
+    self.timeArrowImageView.addTapGesture { recognizer in
+      self.timeTextField.becomeFirstResponder()
+    }
   }
   
   override func initLocalize() {
@@ -118,7 +123,6 @@ class AddScheduleViewController: BaseViewController {
     planRequest.plan_idx = self.plan_idx
     APIRouter.shared.api(path: path, method: .post, parameters: planRequest.toJSON()) { response in
       if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse, alertYn: true) {
-        self.notificationCenter.post(name: Notification.Name("PlanUpdate"), object: nil)
         self.dismiss(animated: true)
       }
     }
@@ -163,7 +167,6 @@ class AddScheduleViewController: BaseViewController {
     
     APIRouter.shared.api(path: .plan_del, parameters: planRequest.toJSON()) { response in
       if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
-        self.notificationCenter.post(name: Notification.Name("PlanUpdate"), object: nil)
         self.dismiss(animated: true)
       }
     }

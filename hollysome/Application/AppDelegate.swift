@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var userInfo: [AnyHashable : Any]?
   
   var pushIndex = ""
+  var house_code = ""
   
   var currentAuthorizationFlow: OIDExternalUserAgentSession?
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

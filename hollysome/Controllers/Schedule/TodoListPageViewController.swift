@@ -25,7 +25,7 @@ class TodoListPageViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.notificationCenter.addObserver(self, selector: #selector(self.planUpdate), name: Notification.Name("PlanUpdate"), object: nil)
+//    self.notificationCenter.addObserver(self, selector: #selector(self.planUpdate), name: Notification.Name("PlanUpdate"), object: nil)
     self.todoTableView.registerCell(type: TodoCell.self)
     self.todoTableView.delegate = self
     self.todoTableView.dataSource = self
@@ -43,12 +43,16 @@ class TodoListPageViewController: BaseViewController {
   
   override func initRequest() {
     super.initRequest()
-    
-    self.planListAPI()
+
   }
   
   override func initLocalize() {
     super.initLocalize()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.planUpdate()
   }
   
   //-------------------------------------------------------------------------------------------
@@ -146,6 +150,9 @@ extension TodoListPageViewController: UITableViewDataSource {
     titleLabel.text = self.planList[section].plan_name ?? ""
     titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
     view.addSubview(titleLabel)
+    
+    let detailImageView = UIImageView(x: view.frame.size.width - 32, y: 20.3, w: 16, h: 16.3, image: UIImage(named: "detail_arrow")!)
+    view.addSubview(detailImageView)
     
     view.addTapGesture { recognizer in
       let viewController = AddScheduleViewController.instantiate(storyboard: "Schedule")

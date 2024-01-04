@@ -196,9 +196,6 @@
                                                                 <color key="textColor" name="C8CCD5"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="bEM-Vz-nUA">
-                                                                <rect key="frame" x="361" y="27.666666666666686" width="16" height="16.333333333333329"/>
-                                                            </imageView>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Bi-F2-sNg">
                                                                 <rect key="frame" x="0.0" y="79" width="393" height="74"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -226,7 +223,6 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="QcJ-ZQ-Cz2" firstAttribute="top" secondItem="RfF-dc-a2I" secondAttribute="bottom" constant="4" id="4Oa-hA-BX2"/>
-                                                            <constraint firstItem="bEM-Vz-nUA" firstAttribute="centerY" secondItem="RfF-dc-a2I" secondAttribute="centerY" id="BLr-Ry-oHp"/>
                                                             <constraint firstItem="0Bi-F2-sNg" firstAttribute="leading" secondItem="neV-zy-oHb" secondAttribute="leading" id="IyO-JW-fJM"/>
                                                             <constraint firstItem="0Bi-F2-sNg" firstAttribute="top" secondItem="Zya-l3-p7X" secondAttribute="bottom" id="JMO-Qs-JAy"/>
                                                             <constraint firstItem="QcJ-ZQ-Cz2" firstAttribute="leading" secondItem="neV-zy-oHb" secondAttribute="leading" constant="16" id="Kt1-To-s75"/>
@@ -236,7 +232,6 @@
                                                             <constraint firstAttribute="trailing" secondItem="Zya-l3-p7X" secondAttribute="trailing" id="VJo-bR-2T9"/>
                                                             <constraint firstAttribute="height" constant="177" id="e18-6F-iVQ"/>
                                                             <constraint firstItem="Zya-l3-p7X" firstAttribute="top" secondItem="neV-zy-oHb" secondAttribute="top" constant="12" id="gXY-AM-Nfu"/>
-                                                            <constraint firstAttribute="trailing" secondItem="bEM-Vz-nUA" secondAttribute="trailing" constant="16" id="gkV-vZ-0E5"/>
                                                             <constraint firstItem="RfF-dc-a2I" firstAttribute="top" secondItem="neV-zy-oHb" secondAttribute="top" constant="24" id="hs9-Ty-9kr"/>
                                                             <constraint firstItem="Zya-l3-p7X" firstAttribute="leading" secondItem="neV-zy-oHb" secondAttribute="leading" id="kec-Cy-pRs"/>
                                                         </constraints>
@@ -421,7 +416,7 @@
                             <constraint firstItem="n5T-gQ-E8n" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="lOI-Ec-QlU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="rlM-hA-mDQ">
+                    <tabBarItem key="tabBarItem" title="홈" image="tab1_off" selectedImage="tab1_on" id="rlM-hA-mDQ">
                         <color key="badgeColor" name="accent"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="홈" id="6H8-t1-fAD">
@@ -648,7 +643,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="알림장 쓰기" id="9bU-lZ-YOe">
-                        <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="CiM-Cf-wjz">
+                        <barButtonItem key="leftBarButtonItem" image="head_btn_close" id="CiM-Cf-wjz">
                             <connections>
                                 <action selector="backButtonTouchedWithSender:" destination="Ivc-fT-eR7" id="Csf-9Q-I3K"/>
                             </connections>
@@ -1592,12 +1587,14 @@
         <image name="default_image" width="343" height="195"/>
         <image name="detail_arrow" width="16" height="16.333333969116211"/>
         <image name="head_btn_back" width="10.666666984558105" height="19.666666030883789"/>
-        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="head_btn_close" width="15.666666984558105" height="15.666666984558105"/>
         <image name="img_house" width="202" height="112"/>
         <image name="img_makehouse" width="375" height="249"/>
         <image name="logo_01" width="138" height="18"/>
         <image name="red_dot" width="4" height="4"/>
         <image name="reg_btn" width="55" height="23"/>
+        <image name="tab1_off" width="24" height="24"/>
+        <image name="tab1_on" width="24" height="24"/>
         <image name="write_btn" width="55" height="23"/>
         <namedColor name="006064">
             <color red="0.0" green="0.37599998712539673" blue="0.3919999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

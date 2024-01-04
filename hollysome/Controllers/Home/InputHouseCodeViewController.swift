@@ -141,8 +141,8 @@ class InputHouseCodeViewController: BaseViewController {
     APIRouter.shared.api(path: .house_join_in, method: .post, parameters: houseRequest.toJSON()) { response in
       if let houseResponse = HouseModel(JSON: response) {
         if houseResponse.code == "1000" || houseResponse.code == "2000" {
+          Defaults[.house_code] = houseRequest.house_code
           self.hideCardAndGoBack()
-          Defaults[.house_code] = self.codeTextField.text
         } else {
           self.redDotImageView.isHidden = false
           self.retryLabel.isHidden = false

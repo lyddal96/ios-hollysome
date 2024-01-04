@@ -59,6 +59,7 @@ class AddSchedulePopupViewController: BaseViewController {
 
   override func initLayout() {
     super.initLayout()
+    self.cardView.roundCorners(cornerRadius: 35, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
 
     self.addButton.setCornerRadius(radius: 12)
     self.popupHeight = 548

@@ -171,6 +171,8 @@ extension TodayScheduleViewController: ExpyTableViewDataSource {
     // 콕찌르기
     cell.pokeButton.addTapGesture { recognizer in
       let destination = PokeViewController.instantiate(storyboard: "Home")
+      destination.member = mate
+      destination.schedule_name = plan.plan_name ?? ""
       destination.modalPresentationStyle = .overCurrentContext
       destination.modalTransitionStyle = .crossDissolve
       self.present(destination, animated: true, completion:  nil)

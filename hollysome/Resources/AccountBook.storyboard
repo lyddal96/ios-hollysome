@@ -36,7 +36,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7La-OM-qOV" customClass="ExpyTableView" customModule="ExpyTableView">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="FAFAFC"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -48,7 +48,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7La-OM-qOV" secondAttribute="bottom" id="r8V-sJ-cE0"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="가계부" image="book.closed" catalog="system" id="eBL-Om-mJl">
+                    <tabBarItem key="tabBarItem" title="가계부" image="tab3_off" selectedImage="tab3_on" id="eBL-Om-mJl">
                         <color key="badgeColor" name="accent"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="가계부" id="gjW-hb-zCW">
@@ -499,8 +499,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="book.closed" catalog="system" width="115" height="128"/>
         <image name="head_btn_back" width="10.666666984558105" height="19.666666030883789"/>
+        <image name="tab3_off" width="24" height="24"/>
+        <image name="tab3_on" width="24" height="24"/>
         <image name="write_btn" width="55" height="23"/>
         <namedColor name="3A3A3C">
             <color red="0.22699999809265137" green="0.22699999809265137" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

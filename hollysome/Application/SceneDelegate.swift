@@ -50,7 +50,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
   }
+  func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+    // Ensure we're trying to launch a link.
+    guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+          let universalLink = userActivity.webpageURL else {
+      return
+    }
 
+    if let urlComponents = URLComponents(url: universalLink, resolvingAgainstBaseURL: false) {
+      log.debug("urlComponents : \(urlComponents)")
+
+
+      if let host = urlComponents.host {
+
+        let param = host.description.components(separatedBy: "=")
+        if param.count > 0 {
+          let appDelegate = UIApplication.shared.delegate as! AppDelegate
+          if param[0] == "house_code" {
+            appDelegate.house_code = param[1]
+          }
+          NotificationCenter.default.post(name: Notification.Name("DeeplinkUpdate"), object: nil)
+        }
+      }
+
+    }
+   
+  }
 
   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
     guard let url = URLContexts.first?.url else {
@@ -69,8 +94,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       .receiveAccessToken(URLContexts.first?.url)
    
     guard let scheme = URLContexts.first?.url.scheme else { return }
-    log.debug("scheme\(scheme)")
+    log.debug("scheme::::\(scheme)")
     
+    if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+      log.debug("\(urlComponents.host)")
+      if let host = urlComponents.host {
+        
+        let param = host.description.components(separatedBy: "=")
+        if param.count > 1 {
+          let appDelegate = UIApplication.shared.delegate as! AppDelegate
+          if param[0] == "house_code" {
+            appDelegate.house_code = param[1]
+          }
+          
+          NotificationCenter.default.post(name: Notification.Name("DeeplinkUpdate"), object: nil)
+          return
+        }
+      }
+      
+    }
   }
 }
 

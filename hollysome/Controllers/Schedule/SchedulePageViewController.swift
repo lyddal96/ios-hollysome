@@ -60,6 +60,11 @@ class SchedulePageViewController: BaseViewController {
     super.initLocalize()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.scheduleListAPI()
+  }
+  
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
@@ -79,7 +84,7 @@ class SchedulePageViewController: BaseViewController {
         } else {
           self.planList.removeAll()
         }
-
+        self.scheduleCntLabel.text = "\(self.planList.count)"
         self.scheduleTableView.reloadData()
       }
     }
@@ -146,7 +151,16 @@ extension SchedulePageViewController: UICollectionViewDataSource {
 // MARK: - UITableViewDelegate
 //-------------------------------------------------------------------------------------------
 extension SchedulePageViewController: UITableViewDelegate {
-  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let viewController = AddScheduleViewController.instantiate(storyboard: "Schedule")
+    viewController.enrollType = .modify
+    viewController.plan_idx = self.planList[indexPath.row].plan_idx ?? ""
+    let destination = viewController.coverNavigationController()
+    destination.hero.isEnabled = true
+    destination.heroModalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+    destination.modalPresentationStyle = .fullScreen
+    self.parentsViewController?.tabBarController?.present(destination, animated: true)
+  }
 }
 
 //-------------------------------------------------------------------------------------------
@@ -162,7 +176,8 @@ extension SchedulePageViewController: UITableViewDataSource {
 
     let plan = self.planList[indexPath.row]
     cell.setPlan(plan: plan)
-
+    cell.detailArrowImageView.isHidden = false
+    cell.titleRightConstraint.constant = 40
     
 
     return cell

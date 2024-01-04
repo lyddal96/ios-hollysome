@@ -11,6 +11,8 @@ import Defaults
 class ScheduleCell: UITableViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var mateCollectionView: UICollectionView!
+  @IBOutlet weak var detailArrowImageView: UIImageView!
+  @IBOutlet weak var titleRightConstraint: NSLayoutConstraint!
 
   var plan = PlanModel()
   var isCalendar = false

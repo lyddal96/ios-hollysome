@@ -63,6 +63,9 @@ class IntroViewController: BaseViewController {
           Defaults[.member_join_type] = "C"
           Defaults[.house_code] = memberResponse.house_code
           Defaults[.house_idx] = memberResponse.house_idx
+          Defaults[.access_token] = memberResponse.access_token
+          Defaults[.token_time] = Date()
+          Defaults[.member_name] = memberResponse.member_name
           self.gotoMain()
         } else {
           self.resetDefaults()
@@ -80,6 +83,9 @@ class IntroViewController: BaseViewController {
           Defaults[.member_idx] = memberResponse.member_idx
           Defaults[.house_code] = memberResponse.house_code
           Defaults[.house_idx] = memberResponse.house_idx
+          Defaults[.access_token] = memberResponse.access_token
+          Defaults[.token_time] = Date()
+          Defaults[.member_name] = memberResponse.member_name
           self.gotoMain()
         } else {
           self.resetDefaults()

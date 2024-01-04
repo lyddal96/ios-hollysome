@@ -52,6 +52,7 @@ class MyViewController: BaseViewController {
     
     self.idView.setCornerRadius(radius: 12)
     self.colorView.setCornerRadius(radius: 20)
+    self.colorView.setCornerRadius(radius: 26)
   }
   
   override func initRequest() {
@@ -70,7 +71,7 @@ class MyViewController: BaseViewController {
     
     // 눔메이트 초대하기
     self.inviteView.addTapGesture { recognizer in
-      
+      Tools.shared.openShare(shareString: "http://noom.api.hollysome.com/share/house_share?member_idx=\(Defaults[.member_idx] ?? "")&house_code=\(Defaults[.house_code] ?? "")", viewController: self)
     }
     
     // 내 정보 수정

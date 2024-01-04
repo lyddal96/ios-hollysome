@@ -56,11 +56,16 @@ class AccountBookViewController: BaseViewController {
   override func initRequest() {
     super.initRequest()
     
-    self.bookViewAPI()
   }
   
   override func initLocalize() {
     super.initLocalize()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    self.bookViewAPI()
   }
   
   //-------------------------------------------------------------------------------------------

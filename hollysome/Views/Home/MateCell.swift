@@ -21,15 +21,6 @@ class MateCell: UICollectionViewCell {
     self.avatarView.setCornerRadius(radius: 26)
   }
   
-  // 메이트 세팅
-  func setMate(index: IndexPath) {
-    let shapeList = ["round", "clover", "heart", "square", "cloud", "star"]
-
-    self.shapeImageView.image = UIImage(named: "\(shapeList[index.row])71")
-    self.faceImageView.image = UIImage(named: "face\(index.row)")
-    self.colorView.backgroundColor = UIColor(named: "profile\(index.row)")
-    self.avatarView.addBorder(width: 2, color: UIColor(named: index.row == 0 ? "accent" : "FFFFFF")!)
-  }
 
   func setMate(mate: MemberModel) {
     self.nameLabel.text = mate.member_nickname ?? ""

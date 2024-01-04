@@ -116,7 +116,7 @@ class JoinViewController: BaseViewController {
     
     
     APIRouter.shared.api(path: .member_reg_in, parameters: self.memberRequest.toJSON()) { data in
-      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse, alertYn: true) {
         self.memberLoginAPI()
       }
     }
@@ -135,6 +135,9 @@ class JoinViewController: BaseViewController {
         Defaults[.member_join_type] = "C"
         Defaults[.house_code] = memberResponse.house_code
         Defaults[.house_idx] = memberResponse.house_idx
+        Defaults[.access_token] = memberResponse.access_token
+        Defaults[.token_time] = Date()
+        Defaults[.member_name] = memberResponse.member_name
         let destination = JoinFinishViewController.instantiate(storyboard: "Login")
         if var viewControllers = self.navigationController?.viewControllers {
           viewControllers = [destination]
@@ -154,7 +157,7 @@ class JoinViewController: BaseViewController {
     self.memberRequest.house_code = self.houseCodeTextField.text
     
     APIRouter.shared.api(path: .sns_member_reg_in, parameters: self.memberRequest.toJSON()) { data in
-      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse) {
+      if let memberResponse = MemberModel(JSON: data), Tools.shared.isSuccessResponse(response: memberResponse, alertYn: true) {
         self.snsLoginAPI()
         
       }
@@ -172,6 +175,10 @@ class JoinViewController: BaseViewController {
         Defaults[.member_id] = self.memberRequest.member_id
         Defaults[.member_join_type] = self.memberRequest.member_join_type
         Defaults[.house_idx] = memberResponse.house_idx
+        Defaults[.house_code] = memberResponse.house_code
+        Defaults[.access_token] = memberResponse.access_token
+        Defaults[.token_time] = Date()
+        Defaults[.member_name] = memberResponse.member_name
         let destination = JoinFinishViewController.instantiate(storyboard: "Login")
         if var viewControllers = self.navigationController?.viewControllers {
           viewControllers = [destination]

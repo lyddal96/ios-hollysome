@@ -46,6 +46,7 @@ enum APIURL: String {
   case passwordemail_check_in = "join_v_1_0_0/passwordemail_check_in" // 비밀번호/이메일 유효성 확인
   case app_info_mod_up = "sns_join_v_1_0_0/app_info_mod_up" // 추가정보 입력
   case sns_member_reg_in = "sns_join_v_1_0_0/sns_member_reg_in" // 소셜 회원가입
+  case getAccessToken = "access_token/getAccessToken" // 토근 받아오기
   
   /// 홈
   case house_list = "house_v_1_0_0/house_list" // 홈리스트
@@ -233,7 +234,7 @@ class APIRouter {
     
     let headers: HTTPHeaders = [
       "Content-type": "application/json",
-      "Authorization": "Bearer ya29.c.c0AY_VpZj2JqMCJ5l_sBlkYId2odwfe35COcrzfcaXcYgMJRm-4eeQ_umWQBKcIFk-Xjp-IWqNLi_VyGUSYV0Aq37Y8dEYYyi8Hfd9pg7Qi4d1Lt4xXvGKuPCP27icTTa_tzvS76aWD3X8lvnzz5zwQCtkLy2lBJNzz2n81ZKByR9eoTIQHHGM8GJ3KMcJOpSSHf_C80m9C9xwZ86RFqcZlYPqolsJDe6nUjHvzZNYT-LvLbz_aHyg5PeA5ZCLBApOPYi65CEbXiM3YFss8YfoTcIbrbhN8lelI5gof-aR6k6S35bZAzvXKwTcOLjPzS4xkTejUhp98JFRFQntT6jY-ktWXOxmkXZtaqUlt5vq_xHeCNcw4QED8etPT385P7FeORb50v_qzaRpoktkocsRugwXWnuWMI5tJw8le_OrcxxcFiJ1nyuaI_ZBbywVfe-5dvJfbbkxpnS4ngnRfshboZ_xzIWW01wOezZa3k5-wdFeVQxi7i3x0yRIrQjWrVbqY4Y7k_xSfQ91hthl0dmJuSBu2XzZ5ybgdMMtyrXvp88ozBMtWsfMgZo9SnnrbImh6_mzfmgp61Rr440bofJntm_0YMIq66wm2QaFbJ3of0i1puIJ9uQYayp3vB7yibgIkpyz2pXJnR40S9ytM81M7YiV0FpWOX44e6U9qXbJSif4RWgSR_iJtawwOevBeS1FJ6gsVoJFhjXOqRkw_6Ot9u7F-1338_bj1VlXphfpySqd9limc4wgQws8v2tiqzVewlXfUb08VI5zeSWo42b086h9X5mphBMQzxu4s08l0Xi-wd6b6VWZi8Vq1y_m4iMiS7ci3uSkI55BxiUjQrQoSF_Jz-dkXn5Bvyi-nld96RvZagmZnhjR2w4vSSwrW-bmBo94Zs7I4B4o4giBy6Jd5kVr0q7YkX7tVWmcyqXpp640cw9Q277uWXpcvli6pw4hty_cW62YYcWS68jxUzsQfyv2hQMO0zBQ0fz-9fn2-sVVZcJZX-q8wOo"
+      "Authorization": "Bearer \(Defaults[.access_token] ?? "")"
     ]
     
     
@@ -246,40 +247,6 @@ class APIRouter {
       }
     })
   }
-  
-  func getToken(method: HTTPMethod = .post, parameters: [String: Any]?, success: @escaping(_ data: [String: Any])-> Void, fail: @escaping (_ error: Error?)-> Void) {
-    let headers: HTTPHeaders = [
-      "client_id": "201665160506-iildl5vkf4he2v6jrhm35bdk79fg6809.apps.googleusercontent.com",
-      "redirect_uri": "com.googleusercontent.apps.201665160506-iildl5vkf4he2v6jrhm35bdk79fg6809",
-      "response_type": "code",
-      "scope":"access_type=offline",
-      "state":"state"
-    ]
-    let clientJson = BaseModel()
-    clientJson.type = "service_account"
-    clientJson.project_id = "noommate-77efd"
-    clientJson.private_key_id = "1284850adc82dc944d3cfd47400a932f7d011db6"
-    clientJson.private_key = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQChNAvGQY4yNJYo\nMFJYrYADlrCcRj4qJY+tMJZ4QlAnPBuEsjEegLqE0dGsFzDMhn60v/4GTY4hpIdn\nXULM9t6hlqfZRlyYLUi1jWHe4qhWIa9dawwBjyCjRpLYp9gZu8Mg4f9G25gb8OVz\nmVOiEh9saLLRuoeMNWTlXC94tyw6hcaCmMMmDCs8W+mZogAs6skkVbi6tRk6/4hi\nWsISuCSWcR5JbdjO543OVOqMSOdybul6ulYxdtBvXG4G4yNoWSByQG0+OJ2JWXzI\naOleHoNU7fDFKw2iMejsw9K7h6e5SouQPyRtKC4s8BXRDinf00e7r1sR3sTeIf6m\nVMDQZgBpAgMBAAECggEAAK0B7qEYOkQnq//13GrPylQPpfwSZyVUqp51RwhKIzv4\nhpAjrhPOlF930E+hk/3tWo8ifr7E/YWdzrRgoxDW4pkJ15qYqUepUh+HXUKYf5Hx\nFQRtnrUNpzmUxIVBnewAV6sy4YZqpxVVtOwb4mZOjOsMct4kEtWneGGwTkKAVDd5\nJb2s5bySs51fu0sC4/+/KPFSprJr1QNyFiKimn10fdl2Fu+mD7h6JVWWXet5tzcF\n64yPWCW7hwZyeiyYBwD/xlpgmYTKv5RnhiFGiIQd7tRYM/tb/X9dEwCxeqpBQErg\nWGajSLSlcx3UDxSkNfOKut/aov1/o1nGqg3oSuaxXQKBgQDc7rvLGBZPEmkpDWHh\neTNUoOw+5LC0O4S4yrjPJF17C521mtb9bH7TQ6SaNucc8cgeuTu8gHlScKh5Di6M\niPcdROIR3e9B4UCono7lat2IDrhq5MhVBHXYUbR+9yCUsZgfcDA44uU2XyrLfCmY\nUHE1eCJCbzAtTA2FtHdVYgQFZQKBgQC6yk2VIy90GRsxmcR9u0aQhcHnw8fNpgFb\nR8LNxu7UHo2VgHpw0fNzq8geelVRqajDPAn/SuQr/kK/DKwEB6gZrVfg8nC1dSyI\nMX4V2QZUEu/YCGScVLpeEOkkYS964HHFFSA322Oq7AbQ0n5FEdOTn3vZMC7SaWVJ\n0PQoSkpwtQKBgGyWPeC1Rwm4H82YkTozysHWkibbWepLspDsuma9FeELNYlzwCUw\ntSj6/yT4xSDZySUon66nannVe0h8au6RxvswxvhHH3g+0PvPaqZhnt5ndca8CaaX\nmaAnkFIy/mV24DDbgCgFhOjzX2JB9WOybeH82MHUSlaJIcBMkbZ6hUVtAoGAV12a\nDgBoCJhZlMiEE/7NEXnOaRW0VWaoycX1woOiX0pvFJcELdK1WMvnDQJQ96IwEij5\n0BN6R21kULGfnz7pjCD8snUS7HyCuKzVeWiJwjcdQWEjlc83YBnuwhpGt+VUsUah\nTB7sLhy5T2C0uJ+O40Q8DCiyLa4oNu9p05Jz4OUCgYEAy44Pk5VsNTO2AAAFbpB+\n8LMwDC3IKTywILBgXPM8Qeo2Pn4vdUGXkfgOEhkaJbDmqyEe2OqM72SQbMSF7B6z\nL/U2Fy4W6MP+SpjMaRKy7bTWyUUbMuF737CLUpLXOi0TkA8eOQkZgboM/IgL+erF\ntxhp+4fKVvb15FHXacHxaHg=\n-----END PRIVATE KEY-----\n"
-    clientJson.client_email = "firebase-adminsdk-3itqb@noommate-77efd.iam.gserviceaccount.com"
-    clientJson.client_id = "103474448370126103980"
-    clientJson.auth_uri = "https://accounts.google.com/o/oauth2/auth"
-    clientJson.token_uri = "https://oauth2.googleapis.com/token"
-    clientJson.auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
-    clientJson.client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-3itqb%40noommate-77efd.iam.gserviceaccount.com"
-    clientJson.universe_domain = "googleapis.com"
-    clientJson.type = "service_account"
-    
-    
-    AF.request("https://accounts.google.com/o/oauth2/v2/auth", method:method, parameters: clientJson.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { response in
-      switch response.result {
-      case .success(let value):
-        success(value as! [String : Any])
-      case .failure(let error):
-        fail(error)
-      }
-    })
-  }
-  
 }
 
 

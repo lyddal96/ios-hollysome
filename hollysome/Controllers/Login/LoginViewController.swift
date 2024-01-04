@@ -68,6 +68,11 @@ class LoginViewController: BaseViewController {
     super.initRequest()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+  }
+  
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
@@ -88,6 +93,9 @@ class LoginViewController: BaseViewController {
           Defaults[.member_join_type] = "C"
           Defaults[.house_code] = memberResponse.house_code
           Defaults[.house_idx] = memberResponse.house_idx
+          Defaults[.access_token] = memberResponse.access_token
+          Defaults[.token_time] = Date()
+          Defaults[.member_name] = memberResponse.member_name
           let destination = MainTabBarViewController.instantiate(storyboard: "Main")
           let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
           window?.rootViewController = destination
@@ -116,6 +124,9 @@ class LoginViewController: BaseViewController {
           Defaults[.member_join_type] = member_join_type
           Defaults[.house_code] = memberResponse.house_code
           Defaults[.house_idx] = memberResponse.house_idx
+          Defaults[.access_token] = memberResponse.access_token
+          Defaults[.token_time] = Date()
+          Defaults[.member_name] = memberResponse.member_name
           let destination = MainTabBarViewController.instantiate(storyboard: "Main")
           let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
           window?.rootViewController = destination

@@ -26,7 +26,7 @@ class HouseNoticeCell: UITableViewCell {
 
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+    self.avatarView.setCornerRadius(radius: 17)
     self.modifyButton.setCornerRadius(radius: 12)
     self.deleteButton.setCornerRadius(radius: 12)
     self.cancelBlockButton.setCornerRadius(radius: 15.5)

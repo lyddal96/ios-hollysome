@@ -25,6 +25,8 @@ class BaseModel: Mappable {
   var device_os: String?
   // 에러목록
   var errors: [String]?
+  /// accessToken
+  var access_token: String?
   // 키
   var id: Int?
   var type: String?
@@ -106,6 +108,7 @@ class BaseModel: Mappable {
     self.client_id <- map["client_id"]
     self.auth_uri <- map["auth_uri"]
     self.token_uri <- map["token_uri"]
+    self.access_token <- map["access_token"]
     self.auth_provider_x509_cert_url <- map["auth_provider_x509_cert_url"]
     self.client_x509_cert_url <- map["client_x509_cert_url"]
     self.universe_domain <- map["universe_domain"]

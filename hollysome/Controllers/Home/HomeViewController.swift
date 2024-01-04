@@ -48,6 +48,7 @@ class HomeViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.notificationCenter.addObserver(self, selector: #selector(self.joinHouseUpdate), name: Notification.Name("JoinHouseUpdate"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(self.deeplinkUpdate), name: Notification.Name("DeeplinkUpdate"),  object: nil)
     
     
     self.mateCollectionView.registerCell(type: MateCell.self)
@@ -127,16 +128,29 @@ class HomeViewController: BaseViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM월 dd일 (E)"
     self.dateLabel.text = dateFormatter.string(from: Date())
-    
-    if Defaults[.house_idx] != nil {
-      self.homeListAPI()
-    }
   }
   
   
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  // 딥링크 업데이트
+  @objc func deeplinkUpdate() {
+    if self.appDelegate.house_code != "" { // 플레이어 상세로 이동
+      log.debug("가입 \(self.appDelegate.house_code)")
+      
+      let houseRequest = HouseModel()
+      houseRequest.member_idx = Defaults[.member_idx]
+      houseRequest.house_code = self.appDelegate.house_code
+      APIRouter.shared.api(path: .house_join_in, method: .post, parameters: houseRequest.toJSON()) { response in
+        if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse, alertYn: true) {
+          Defaults[.house_code] = self.appDelegate.house_code
+          self.setTitleBar()
+        }
+      }
+    }
+    self.appDelegate.house_code = ""
+  }
   /// 홈 API
   func homeListAPI() {
     let houseRequest = HouseModel()
@@ -165,11 +179,6 @@ class HomeViewController: BaseViewController {
         self.houseNoticeTableView.reloadData()
       }
     }
-  }
-  
-  /// 하우스 이미지 변경 API
-  func houseModUpAPI() {
-    
   }
   
   
@@ -204,6 +213,10 @@ class HomeViewController: BaseViewController {
     self.navigationItem.title = Defaults[.house_code] == nil ? "홈" : ""
     self.houseView.isHidden = Defaults[.house_code] == nil
     self.noHouseView.isHidden = Defaults[.house_code] != nil
+    
+    if Defaults[.house_idx] != nil {
+      self.homeListAPI()
+    }
   }
   
   // 하우스 가입 업데이트

@@ -19,7 +19,7 @@ class HomeNoticeCell: UITableViewCell {
   }
   
   func setNotice(note: HouseModel) {
-
+    self.avatarView.setCornerRadius(radius: 17)
     self.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[note.member_role1?.toInt() ?? 0])71")
     self.faceImageView.image = UIImage(named: "face\(note.member_role2?.toInt() ?? 0)")
     self.colorView.backgroundColor = UIColor(named: "profile\(note.member_role3?.toInt() ?? 0)")

@@ -45,28 +45,36 @@
                             <constraint firstAttribute="height" constant="8" id="dbU-qk-RjU"/>
                         </constraints>
                     </view>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="0zw-FP-q2e">
+                        <rect key="frame" x="361" y="28" width="16" height="16.333333333333329"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="4vf-wu-rhV" firstAttribute="leading" secondItem="bOu-71-0IM" secondAttribute="leading" constant="16" id="2Fx-Kh-GmA"/>
                     <constraint firstItem="2js-bm-M6d" firstAttribute="top" secondItem="4vf-wu-rhV" secondAttribute="bottom" constant="16" id="4GM-Yk-54g"/>
                     <constraint firstAttribute="trailing" secondItem="ciq-0e-wLe" secondAttribute="trailing" id="5S3-sf-fKE"/>
                     <constraint firstItem="4vf-wu-rhV" firstAttribute="top" secondItem="bOu-71-0IM" secondAttribute="top" constant="24" id="7VE-cA-0mS"/>
+                    <constraint firstAttribute="trailing" secondItem="0zw-FP-q2e" secondAttribute="trailing" constant="16" id="7bn-1L-eGE"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ciq-0e-wLe" secondAttribute="bottom" id="9Km-ED-HBK"/>
                     <constraint firstItem="2js-bm-M6d" firstAttribute="leading" secondItem="bOu-71-0IM" secondAttribute="leading" id="9Q2-6e-JjC"/>
                     <constraint firstItem="ciq-0e-wLe" firstAttribute="top" secondItem="2js-bm-M6d" secondAttribute="bottom" constant="24" id="MWH-2d-FIN"/>
+                    <constraint firstItem="0zw-FP-q2e" firstAttribute="centerY" secondItem="4vf-wu-rhV" secondAttribute="centerY" id="NX1-fI-PmC"/>
                     <constraint firstItem="ciq-0e-wLe" firstAttribute="leading" secondItem="bOu-71-0IM" secondAttribute="leading" id="fiG-2t-EaQ"/>
                     <constraint firstAttribute="trailing" secondItem="2js-bm-M6d" secondAttribute="trailing" id="smZ-s4-g8I"/>
                     <constraint firstAttribute="trailing" secondItem="4vf-wu-rhV" secondAttribute="trailing" constant="16" id="ubk-cy-5Ec"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="detailArrowImageView" destination="0zw-FP-q2e" id="gjO-jV-zrK"/>
                 <outlet property="mateCollectionView" destination="2js-bm-M6d" id="VxV-L6-gXM"/>
                 <outlet property="titleLabel" destination="4vf-wu-rhV" id="HoA-mG-VTn"/>
+                <outlet property="titleRightConstraint" destination="ubk-cy-5Ec" id="DFU-Ax-Nm7"/>
             </connections>
             <point key="canvasLocation" x="-796.18320610687022" y="477.81690140845075"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="detail_arrow" width="16" height="16.333333969116211"/>
         <namedColor name="3A3A3C">
             <color red="0.22699999809265137" green="0.22699999809265137" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Defaults
 
 class DividePopupViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -27,6 +28,8 @@ class DividePopupViewController: BaseViewController {
   let statusHeight = UIApplication.shared.windows.first {$0.isKeyWindow}?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
   let window = UIApplication.shared.windows.first {$0.isKeyWindow}
   let bottomPadding = UIApplication.shared.windows.first {$0.isKeyWindow}?.safeAreaInsets.bottom ?? 0.0
+  
+  var mateList = [MemberModel]()
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -73,6 +76,7 @@ class DividePopupViewController: BaseViewController {
     self.dimmerView.addSwipeGesture(direction: UISwipeGestureRecognizer.Direction.down) { (recognizer) in
       self.hideCardAndGoBack(type: nil)
     }
+    self.mateListAPI()
     
   }
   
@@ -89,7 +93,22 @@ class DividePopupViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
-  
+  /// 메이트 리스트
+  func mateListAPI() {
+    let mateRequest = MemberModel()
+    mateRequest.member_idx = Defaults[.member_idx]
+    mateRequest.house_idx = Defaults[.house_idx]
+    mateRequest.house_code = Defaults[.house_code]
+
+    APIRouter.shared.api(path: .mate_list, method: .post, parameters: mateRequest.toJSON()) { response in
+      if let mateResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: mateResponse) {
+        if let data_array = mateResponse.data_array, data_array.count > 0 {
+          self.mateList = data_array
+        }
+        self.mateCollectionView.reloadData()
+      }
+    }
+  }
   /// 카드 보이기
   private func showCard() {
     self.view.layoutIfNeeded()
@@ -176,14 +195,15 @@ extension DividePopupViewController: UICollectionViewDelegateFlowLayout {
 //-------------------------------------------------------------------------------------------
 extension DividePopupViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 3
+    return self.mateList.count
     
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as! MateCell
-    cell.setMate(index: indexPath)
-    cell.nameLabel.text = "메이트\(indexPath.row)"
+    
+    let mate = self.mateList[indexPath.row]
+    cell.setMate(mate: mate)
     
     return cell
   }

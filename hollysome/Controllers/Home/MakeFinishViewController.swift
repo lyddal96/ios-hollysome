@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Defaults
 
 class MakeFinishViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -64,7 +65,7 @@ class MakeFinishViewController: BaseViewController {
   /// 초대하기
   /// - Parameter sender: 버튼
   @IBAction func inviteButtonTouched(sender: UIButton) {
-    
+    Tools.shared.openShare(shareString: "http://noom.api.hollysome.com/share/house_share?member_idx=\(Defaults[.member_idx] ?? "")&house_code=\(Defaults[.house_code] ?? "")", viewController: self)
   }
   
   /// 다음에 초대하기
