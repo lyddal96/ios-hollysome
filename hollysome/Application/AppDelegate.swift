@@ -165,7 +165,8 @@ extension AppDelegate {
     // IQKeyboardManager 세팅
     IQKeyboardManager.shared.enable = true
     //    IQKeyboardManager.shared.keyboardDistanceFromTextField = 100
-    IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+//    IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+    IQKeyboardManager.shared.resignOnTouchOutside = true
     
     // SD WEB Image 세팅
     SDImageCache.shared.store(nil, forKey: nil, toDisk: false, completion: nil)

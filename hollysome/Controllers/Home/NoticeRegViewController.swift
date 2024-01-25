@@ -91,7 +91,7 @@ class NoticeRegViewController: BaseViewController {
     APIRouter.shared.api(path: path, method: .post, parameters: noteRequest.toJSON()) { response in
       if let noteResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: noteResponse) {
         self.notificationCenter.post(name: Notification.Name("HouseNoteUpdate"), object: nil)
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
       }
 
     }

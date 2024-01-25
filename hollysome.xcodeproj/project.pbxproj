@@ -57,6 +57,7 @@
 		4B99FF352AD55BF000EF35F8 /* ProfileColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF342AD55BF000EF35F8 /* ProfileColorCell.swift */; };
 		4B99FF372AD563D900EF35F8 /* FaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B99FF362AD563D900EF35F8 /* FaceCell.xib */; };
 		4B99FF392AD563DD00EF35F8 /* FaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99FF382AD563DD00EF35F8 /* FaceCell.swift */; };
+		4B9C07072B5FD011002017BC /* MatePokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C07062B5FD011002017BC /* MatePokeViewController.swift */; };
 		4BA1475F2A204A8F00ED1B96 /* IndicatingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1475E2A204A8F00ED1B96 /* IndicatingTabBarController.swift */; };
 		4BA147622A2582B100ED1B96 /* ImageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA147612A2582B100ED1B96 /* ImageTableCell.xib */; };
 		4BA147642A2582B600ED1B96 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA147632A2582B600ED1B96 /* ImageTableCell.swift */; };
@@ -280,6 +281,7 @@
 		4B99FF342AD55BF000EF35F8 /* ProfileColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileColorCell.swift; sourceTree = "<group>"; };
 		4B99FF362AD563D900EF35F8 /* FaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FaceCell.xib; sourceTree = "<group>"; };
 		4B99FF382AD563DD00EF35F8 /* FaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCell.swift; sourceTree = "<group>"; };
+		4B9C07062B5FD011002017BC /* MatePokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatePokeViewController.swift; sourceTree = "<group>"; };
 		4BA1475E2A204A8F00ED1B96 /* IndicatingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatingTabBarController.swift; sourceTree = "<group>"; };
 		4BA147612A2582B100ED1B96 /* ImageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableCell.xib; sourceTree = "<group>"; };
 		4BA147632A2582B600ED1B96 /* ImageTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				4B3F61842A2037920049882D /* HomeViewController.swift */,
+				4B9C07062B5FD011002017BC /* MatePokeViewController.swift */,
 				4B70452F2AEB4F84001E03AA /* InputHouseCodeViewController.swift */,
 				4BB645B92B2AE0C900DF92EB /* MakeHouseViewController.swift */,
 				4BB645BB2B2AE58B00DF92EB /* MakeFinishViewController.swift */,
@@ -1202,6 +1205,7 @@
 				4B99FF352AD55BF000EF35F8 /* ProfileColorCell.swift in Sources */,
 				4BC51FE82B33EC8500B0679F /* AccountBookModel.swift in Sources */,
 				68A4654323BF0CD5008E8A0A /* PhotoPopupViewController.swift in Sources */,
+				4B9C07072B5FD011002017BC /* MatePokeViewController.swift in Sources */,
 				685E292423C70793001DD8B3 /* MenuViewController.swift in Sources */,
 				68A4653723BF00B7008E8A0A /* FindPwViewController.swift in Sources */,
 				4B99FF312AD42CD000EF35F8 /* ImageCollectionCell.swift in Sources */,

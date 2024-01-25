@@ -30,6 +30,10 @@ class AccountBookModel: BaseModel {
   var month: String?
   /// 그외항목 리스트
   var item_array: String?
+  /// 회원키
+  var member_arr: String?
+  /// 총 메이트 수
+  var mate_cnt: String?
   
   
   /// 리스트
@@ -52,9 +56,13 @@ class AccountBookModel: BaseModel {
     self.item_price <- map["item_price"]
     self.month <- map["month"]
     self.item_array <- map["item_array"]
+    self.member_arr <- map["member_arr"]
+    self.mate_cnt <- map["mate_cnt"]
+    
     
     self.data_array <- map["data_array"]
     self.item_list <- map["item_list"]
     self.detail_list <- map["detail_list"]
+    
   }
 }

@@ -1,6 +1,5 @@
 //
 //  CommonDropDownCell.swift
-//  weplay
 //
 //  Created by 이승아 on 2022/02/28.
 //

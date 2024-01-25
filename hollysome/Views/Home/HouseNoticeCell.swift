@@ -20,7 +20,6 @@ class HouseNoticeCell: UITableViewCell {
   @IBOutlet weak var cancelBlockButton: UIButton!
   @IBOutlet weak var blockView: UIView!
   @IBOutlet weak var blockLabel: UILabel!
-  @IBOutlet weak var buttonsView: UIView!
   @IBOutlet weak var roundView: UIView!
   @IBOutlet weak var nameLabel: UILabel!
 

@@ -493,7 +493,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="회원가입" id="KqS-GX-EC9">
-                        <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="s2q-QZ-MT4"/>
+                        <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="s2q-QZ-MT4">
+                            <connections>
+                                <action selector="backButtonTouchedWithSender:" destination="Jiu-hh-1Nu" id="h1j-Ig-hh4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -844,7 +848,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하우스코드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTU-9Z-40Z">
                                         <rect key="frame" x="0.0" y="0.0" width="69.5" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" name="3A3A3C"/>
                                         <nil key="highlightedColor"/>
                                     </label>

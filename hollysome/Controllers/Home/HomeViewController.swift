@@ -35,7 +35,7 @@ class HomeViewController: BaseViewController {
   @IBOutlet weak var houseNoticeHeight: NSLayoutConstraint!
   @IBOutlet weak var houseImageView: UIImageView!
   @IBOutlet weak var imageEditButton: UIButton!
-  
+  @IBOutlet weak var adView: UIView!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -102,9 +102,9 @@ class HomeViewController: BaseViewController {
     self.scheduleView.addTapGesture { recognizer in
       log.debug("일정")
       
-      let destination = TodayScheduleViewController.instantiate(storyboard: "Home")
-      destination.hidesBottomBarWhenPushed = true
-      self.navigationController?.pushViewController(destination, animated: true)
+//      let destination = TodayScheduleViewController.instantiate(storyboard: "Home")
+//      destination.hidesBottomBarWhenPushed = true
+//      self.navigationController?.pushViewController(destination, animated: true)
     }
     
     // 알림장 리스트
@@ -144,7 +144,8 @@ class HomeViewController: BaseViewController {
       houseRequest.house_code = self.appDelegate.house_code
       APIRouter.shared.api(path: .house_join_in, method: .post, parameters: houseRequest.toJSON()) { response in
         if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse, alertYn: true) {
-          Defaults[.house_code] = self.appDelegate.house_code
+          Defaults[.house_code] = houseResponse.house_code
+          Defaults[.house_idx] = houseResponse.house_idx
           self.setTitleBar()
         }
       }
@@ -210,7 +211,7 @@ class HomeViewController: BaseViewController {
     self.alarmBarButtonItem.isEnabled = Defaults[.house_code] != nil
     self.alarmBarButtonItem.image = Defaults[.house_code] == nil ? nil : UIImage(named: "bell")
     
-    self.navigationItem.title = Defaults[.house_code] == nil ? "홈" : ""
+    self.navigationItem.title = Defaults[.house_code] == nil ? "하우스 만들기" : ""
     self.houseView.isHidden = Defaults[.house_code] == nil
     self.noHouseView.isHidden = Defaults[.house_code] != nil
     
@@ -222,6 +223,18 @@ class HomeViewController: BaseViewController {
   // 하우스 가입 업데이트
   @objc func joinHouseUpdate() {
     self.setTitleBar()
+  }
+  
+  /// 나의 할일 완료API
+  func todayScheduleEndAPI(schedule_idx: String, plan_idx: String) {
+    let planRequest = PlanModel()
+    planRequest.schedule_idx = schedule_idx
+    
+    APIRouter.shared.api(path: .today_schedule_end, method: .post, parameters: planRequest.toJSON()) { response in
+      if let planResponse = PlanModel(JSON: response), Tools.shared.isSuccessResponse(response: planResponse) {
+        self.setTitleBar()
+      }
+    }
   }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
@@ -267,7 +280,27 @@ class HomeViewController: BaseViewController {
 // MARK: - UICollectionViewDelegate
 //-------------------------------------------------------------------------------------------
 extension HomeViewController: UICollectionViewDelegate {
-  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if collectionView == self.mateCollectionView {
+      if indexPath.row != 0 {
+        let destination = MatePokeViewController.instantiate(storyboard: "Home")
+        destination.member = self.mateList[indexPath.row]
+        destination.modalPresentationStyle = .overCurrentContext
+        destination.modalTransitionStyle = .crossDissolve
+        self.tabBarController?.present(destination, animated: true, completion:  nil)
+      }
+    } else if collectionView == self.scheduleCollectionView {
+      if !(self.myScheduleList.count == 0 || self.myScheduleList.count <= indexPath.row) {
+        let plan = self.myScheduleList[indexPath.row]
+        AJAlertController.initialization().showAlert(astrTitle: "\(plan.plan_name ?? "") 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
+          if position == 1 {
+            // 완료
+            self.todayScheduleEndAPI(schedule_idx: plan.schedule_idx ?? "", plan_idx: plan.plan_idx ?? "")
+          }
+        }
+      }
+    }
+  }
 }
 
 //-------------------------------------------------------------------------------------------
@@ -326,9 +359,10 @@ extension HomeViewController: UICollectionViewDataSource {
         
         /// 할일 완료
         cell.stateButton.addTapGesture { recognizer in
-          AJAlertController.initialization().showAlert(astrTitle: "설거지 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
+          AJAlertController.initialization().showAlert(astrTitle: "\(plan.plan_name ?? "") 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
             if position == 1 {
               // 완료
+              self.todayScheduleEndAPI(schedule_idx: plan.schedule_idx ?? "", plan_idx: plan.plan_idx ?? "")
             }
           }
         }

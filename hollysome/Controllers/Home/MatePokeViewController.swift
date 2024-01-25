@@ -1,8 +1,8 @@
 //
-//  PokeViewController.swift
+//  MatePokeViewController.swift
 //  hollysome
 //
-//  Created by 이승아 on 12/15/23.
+//  Created by 이승아 on 1/23/24.
 //
 
 import UIKit
@@ -17,14 +17,10 @@ import AppAuth
 import OAuthSwift
 
 
-class PokeViewController: BaseViewController {
+class MatePokeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - IBOutlets
   //-------------------------------------------------------------------------------------------
-  @IBOutlet weak var colorView: UIView!
-  @IBOutlet weak var avatarView: UIView!
-  @IBOutlet weak var shapeImageView: UIImageView!
-  @IBOutlet weak var faceImageView: UIImageView!
   @IBOutlet weak var contentLabel: UILabel!
   @IBOutlet weak var closeButton: UIButton!
   @IBOutlet weak var pokeButton: UIButton!
@@ -33,9 +29,7 @@ class PokeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
-  var member = PlanModel()
-  var schedule_name = ""
-  var schedule = ""
+  var member = HouseModel()
   
   private var rewardedAd: GADRewardedAd?
   
@@ -63,13 +57,12 @@ class PokeViewController: BaseViewController {
     self.pokeButton.setCornerRadius(radius: 12)
     self.popupView.setCornerRadius(radius: 12)
     
-    self.setMember()
     if Defaults[.poke_cnt] ?? 0 == 0 {
       self.pokeButton.setTitle("광고보고 콕콕!", for: .normal)
     } else {
-      self.pokeButton.setTitle("콕찌르기 \(Defaults[.poke_cnt]!)", for: .normal)
+      self.pokeButton.setTitle("남은 횟수 \(Defaults[.mate_poke_cnt]!)", for: .normal)
     }
-    
+    self.contentLabel.text = "\(self.member.member_nickname ?? "")(이)에게\n띵동~🔔"
   }
   
   override func initRequest() {
@@ -90,18 +83,6 @@ class PokeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
-  func setMember() {
-//    self.nameLabel.text = mate.member_nickname ?? ""
-    self.shapeImageView.image = UIImage(named: "\(Constants.SHAPE_LIST[self.member.member_role1?.toInt() ?? 0])71")
-    self.faceImageView.image = UIImage(named: "face\(self.member.member_role2?.toInt() ?? 0)")
-    self.colorView.backgroundColor = UIColor(named: "profile\(self.member.member_role3?.toInt() ?? 0)")
-    
-    let name = "\(self.member.member_nickname ?? "")(이)가\n".stylize().font(UIFont.systemFont(ofSize: 14, weight: .bold)).color(UIColor(named: "3A3A3C")!).attr
-    let content = "아직 \(self.schedule_name)을(를) 완료하지 않았어요.\n메이트를 콕 찔러 알려주세요.".stylize().font(UIFont.systemFont(ofSize: 14, weight: .regular)).color(UIColor(named: "3A3A3C")!).attr
-    self.contentLabel.attributedText = name + content
-  }
-
-  
   func callbackAd() {
     let request = GADRequest()
     GADRewardedAd.load(withAdUnitID:"ca-app-pub-3940256099942544/1712485313",
@@ -127,8 +108,8 @@ class PokeViewController: BaseViewController {
         print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
         // TODO: Reward the user.
         
-        Defaults[.poke_cnt] = 3
-        self.pokeButton.setTitle("콕찌르기 \(Defaults[.poke_cnt]!)", for: .normal)
+        Defaults[.mate_poke_cnt] = 3
+        self.pokeButton.setTitle("남은 횟수 \(Defaults[.mate_poke_cnt]!)", for: .normal)
         
         self.callbackAd()
         GADMobileAds().initializationStatus
@@ -141,7 +122,7 @@ class PokeViewController: BaseViewController {
     
 //    self.rewardedAd?.present(fromRootViewController: self, userDidEarnRewardHandler: {
 //      let reward = self.rewardedAd?.adReward
-//      
+//
 //      log.debug("reward : \(reward)")
 //    })
    }
@@ -172,12 +153,12 @@ class PokeViewController: BaseViewController {
     
     
     APIRouter.shared.fcmapi(method: .post, parameters: alarmRequest.toJSON()) { data in
-      if let poke_cnt = Defaults[.poke_cnt], poke_cnt != 0 {
-        Defaults[.poke_cnt] = poke_cnt - 1
-        if Defaults[.poke_cnt] ?? 0 == 0 {
+      if let mate_poke_cnt = Defaults[.mate_poke_cnt], mate_poke_cnt != 0 {
+        Defaults[.mate_poke_cnt] = mate_poke_cnt - 1
+        if Defaults[.mate_poke_cnt] ?? 0 == 0 {
           self.pokeButton.setTitle("광고보고 콕콕!", for: .normal)
         } else {
-          self.pokeButton.setTitle("콕찌르기 \(Defaults[.poke_cnt]!)", for: .normal)
+          self.pokeButton.setTitle("남은 횟수 \(Defaults[.mate_poke_cnt]!)", for: .normal)
         }
       }
       if let _ = PlanModel(JSON: data) {
@@ -209,7 +190,7 @@ class PokeViewController: BaseViewController {
   /// - Parameter sender: 버튼
   @IBAction func pokeButtonTouched(sender: UIButton) {
     
-    if let poke_cnt = Defaults[.poke_cnt], poke_cnt != 0 {
+    if let mate_poke_cnt = Defaults[.mate_poke_cnt], mate_poke_cnt != 0 {
       self.pokeCnt += 1
       self.sendNotification()
     } else {
@@ -222,7 +203,7 @@ class PokeViewController: BaseViewController {
 //-------------------------------------------------------------------------------------------
 // MARK: - GADFullScreenContentDelegate
 //-------------------------------------------------------------------------------------------
-extension PokeViewController: GADFullScreenContentDelegate {
+extension MatePokeViewController: GADFullScreenContentDelegate {
 
   /// Tells the delegate that the ad failed to present full screen content.
   func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {

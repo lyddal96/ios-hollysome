@@ -143,6 +143,7 @@ class InputHouseCodeViewController: BaseViewController {
         if houseResponse.code == "1000" || houseResponse.code == "2000" {
           Defaults[.house_code] = houseRequest.house_code
           self.hideCardAndGoBack()
+          self.notificationCenter.post(name: Notification.Name("JoinHouseUpdate"), object: nil)
         } else {
           self.redDotImageView.isHidden = false
           self.retryLabel.isHidden = false

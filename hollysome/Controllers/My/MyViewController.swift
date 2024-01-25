@@ -8,6 +8,7 @@
 
 import UIKit
 import Defaults
+import SwiftUI
 
 class MyViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -53,6 +54,8 @@ class MyViewController: BaseViewController {
     self.idView.setCornerRadius(radius: 12)
     self.colorView.setCornerRadius(radius: 20)
     self.colorView.setCornerRadius(radius: 26)
+    
+    self.donateView.isHidden = true
   }
   
   override func initRequest() {

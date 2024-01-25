@@ -32,6 +32,8 @@ class EmailJoinViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    self.idTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
   }
   
   override func didReceiveMemoryWarning() {
@@ -70,6 +72,11 @@ class EmailJoinViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  @objc func textFieldDidChange(_ textField: UITextField) {
+    self.isIdChecked = false
+    self.checkDotImageView.isHidden = true
+    self.idCheckLabel.isHidden = true
+  }
   /// 아이디 중복확인
   func memberIdCheckAPI() {
     let idRequest = MemberModel()

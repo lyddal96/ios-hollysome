@@ -157,7 +157,8 @@ extension HouseNoticeViewController: UITableViewDataSource {
     
     cell.blockView.isHidden = true
     cell.blockLabel.isHidden = true
-    cell.buttonsView.isHidden = true
+    cell.deleteButton.isHidden = true
+    cell.modifyButton.isHidden = true
     cell.contentLabel.isHidden = false
     cell.roundView.backgroundColor = .white
     cell.contentLabel.text = ""
@@ -192,7 +193,8 @@ extension HouseNoticeViewController: UITableViewDataSource {
       cell.contentLabel.isHidden = true
     } else {
       cell.contentLabel.text = note.contents ?? ""
-      cell.buttonsView.isHidden = Defaults[.member_idx] != note.member_idx
+      cell.deleteButton.isHidden = Defaults[.member_idx] != note.member_idx
+      cell.modifyButton.isHidden = Defaults[.member_idx] != note.member_idx
       cell.moreButton.isHidden = Defaults[.member_idx] == note.member_idx
     }
     
@@ -233,6 +235,7 @@ extension HouseNoticeViewController: UITableViewDataSource {
       viewController.enrollType = .modify
       viewController.note_idx = note.note_idx ?? ""
       let destination = viewController.coverNavigationController()
+      destination.modalPresentationStyle = .fullScreen
       self.present(destination, animated: true)
     }
     

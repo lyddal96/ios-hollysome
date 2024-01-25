@@ -784,7 +784,7 @@
             </objects>
             <point key="canvasLocation" x="3000" y="76"/>
         </scene>
-        <!--아바타 만들기-->
+        <!--캐릭터 만들기-->
         <scene sceneID="kwJ-bP-jPF">
             <objects>
                 <viewController storyboardIdentifier="CreateAvatarViewController" id="jqF-uX-kCI" customClass="CreateAvatarViewController" customModule="hollysome" customModuleProvider="target" sceneMemberID="viewController">
@@ -954,7 +954,7 @@
                             <constraint firstItem="mqZ-wU-4Rh" firstAttribute="leading" secondItem="GxV-kK-xqb" secondAttribute="leading" constant="20" id="yaE-ou-Gz0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="아바타 만들기" id="PL0-Ab-GEC">
+                    <navigationItem key="navigationItem" title="캐릭터 만들기" id="PL0-Ab-GEC">
                         <barButtonItem key="leftBarButtonItem" image="head_btn_back" id="Gh2-th-G9a">
                             <connections>
                                 <action selector="backButtonTouchedWithSender:" destination="jqF-uX-kCI" id="TwZ-TG-A65"/>

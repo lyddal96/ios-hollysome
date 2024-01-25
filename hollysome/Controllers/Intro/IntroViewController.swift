@@ -50,6 +50,7 @@ class IntroViewController: BaseViewController {
   }
   @objc func delay() {
     Defaults[.poke_cnt] = 3
+    Defaults[.mate_poke_cnt] = 3
 
     if Defaults[.member_idx] != nil && Defaults[.member_join_type] == "C" {
       let memberRequest = MemberModel()

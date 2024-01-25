@@ -99,7 +99,7 @@ enum APIURL: String {
   case book_reg_in = "book_v_1_0_0/book_reg_in" // 가계부 등록
   case book_detail = "book_v_1_0_0/book_detail" // 가계부 상세
   case book_mod_up = "book_v_1_0_0/book_mod_up" // 가계부 수정
-  
+  case book_alarm = "book_v_1_0_0/book_alarm" // 비용 알리기
   
   /// CS
   case notice_list = "notice_v_1_0_0/notice_list" // 공지시항 리스트

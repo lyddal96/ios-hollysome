@@ -28,6 +28,7 @@ class AlarmViewController: BaseViewController {
     self.alarmTableView.delegate = self
     self.alarmTableView.dataSource = self
     self.alarmTableView.tableFooterView = UIView(frame: CGRect.zero)
+    self.alarmTableView.registerCell(type: AlarmCell.self)
     self.alarmTableView.emptyDataSetSource = self
   }
   
@@ -161,6 +162,11 @@ extension AlarmViewController: UITableViewDataSource {
     let alarmData = self.alarmList[indexPath.row]
     cell.contentsLabel.text = alarmData.msg ?? ""
     cell.dateLabel.text = alarmData.ins_date ?? ""
+    
+    /// 알림 삭제
+    cell.deleteButton.addTapGesture { recognizer in
+      self.alarmDel(alarm_idx: self.alarmList[indexPath.row].alarm_idx ?? "")
+    }
     return cell
   }
   

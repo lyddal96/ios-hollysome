@@ -42,7 +42,7 @@ class BaseModel: Mappable {
   var universe_domain: String?
   
   /// 현재 페이지 번호
-  var page: Int?
+  var page_num: Int?
   /// 리스트 갯수
   var list_cnt: Int?
   /// 총 페이지 수
@@ -86,7 +86,7 @@ class BaseModel: Mappable {
     self.device_os <- map["device_os"]
     self.errors <- map["errors"]
     self.id <- map["id"]
-    self.page <- map["page"]
+    self.page_num <- map["page_num"]
     self.list_cnt <- map["list_cnt"]
     self.total_page <- map["total_page"]
     self.total_cnt <- map["total_cnt"]
@@ -119,16 +119,16 @@ class BaseModel: Mappable {
   /// : 페이지 넘버가 없을 경우에는 1로 시작한다.
   /// - Parameter pageNum: 현재 페이지 넘버
   func setNextPage() {
-    if let page = self.page {
-      self.page = page + 1
+    if let page_num = self.page_num {
+      self.page_num = page_num + 1
     } else {
-      self.page = 1
+      self.page_num = 1
     }
   }
   
   /// 페이징 초기화
   func resetPage() {
-    self.page = 0
+    self.page_num = 0
   }
   
   
@@ -151,7 +151,7 @@ class BaseModel: Mappable {
   ///
   /// - Returns: 다음페이지가 있는지 체크
   func isMore() -> Bool {
-    if getTotalPage() > (self.page ?? 1) {
+    if getTotalPage() > (self.page_num ?? 1) {
       return true
     } else {
       return false

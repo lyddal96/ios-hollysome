@@ -80,13 +80,18 @@ class AccountBookViewController: BaseViewController {
       if let bookResponse = AccountBookModel(JSON: response), Tools.shared.isSuccessResponse(response: bookResponse) {
         if bookResponse.code == "1000" {
           self.currentList = bookResponse
+          self.enrollBarButtonItem.image = UIImage(named: "modify_btn")
         } else {
           self.currentList = nil
+          self.enrollBarButtonItem.image = UIImage(named: "write_btn")
         }
         
         self.accountBookTableView.reloadData()
         
         self.refresh.endRefreshing()
+        
+        self.lastList.removeAll()
+        self.bookRequest.resetPage()
         self.bookListAPI()
       }
     }
@@ -248,10 +253,14 @@ extension AccountBookViewController: ExpyTableViewDataSource {
     //    cell.parentsViewController = self
         cell.totalView.isHidden = indexPath.row != (self.currentList?.detail_list?.count ?? 0) + 3
         cell.titleLabel.text = indexPath.row < 4 ? self.normalTitles[indexPath.row - 1] : self.currentList?.detail_list?[indexPath.row - 4].item_name ?? ""
+        var data = AccountBookModel()
+        data.item_name = indexPath.row < 4 ? self.normalTitles[indexPath.row - 1] : self.currentList?.detail_list?[indexPath.row - 4].item_name ?? ""
         if indexPath.row < 4 {
           cell.priceLabel.text = "\(Tools.shared.numberPlaceValue(indexPath.row == 1 ? self.currentList?.book_item_1 ?? "0" : indexPath.row == 2 ? self.currentList?.book_item_2 ?? "0" : self.currentList?.book_item_3 ?? "0" )) 원"
+          data.item_price = indexPath.row == 1 ? self.currentList?.book_item_1 ?? "0" : indexPath.row == 2 ? self.currentList?.book_item_2 ?? "0" : self.currentList?.book_item_3 ?? "0"
         } else {
           cell.priceLabel.text = "\(Tools.shared.numberPlaceValue(self.currentList?.detail_list?[indexPath.row - 4].item_bill ?? "0")) 원"
+          data.item_price = self.currentList?.detail_list?[indexPath.row - 4].item_bill ?? "0"
         }
         if indexPath.row == (self.currentList?.detail_list?.count ?? 0) + 3 {
           var total = (self.currentList?.book_item_1?.toInt() ?? 0) + (self.currentList?.book_item_2?.toInt() ?? 0) + (self.currentList?.book_item_3?.toInt() ?? 0)
@@ -266,6 +275,7 @@ extension AccountBookViewController: ExpyTableViewDataSource {
         cell.divideButton.addTapGesture { recognizer in
           let destination = DividePopupViewController.instantiate(storyboard: "AccountBook")
 //          destination.delegate = self
+          destination.bookData = data
           destination.modalTransitionStyle = .crossDissolve
           destination.modalPresentationStyle = .overCurrentContext
 //          self.present(destination, animated: false, completion: nil)
