@@ -66,6 +66,30 @@ class AlarmViewController: BaseViewController {
     } 
   }
   
+  func alarmMove(alarm: AlarmModel) {
+    switch alarm.data?.index {
+    case "101", "201":
+      NotificationCenter.default.post(name: Notification.Name("GoToHome"), object: nil)
+      self.dismiss(animated: true)
+      break
+    case "102":
+      let destination = HouseNoticeViewController.instantiate(storyboard: "Home")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
+      break
+    case "103", "104":
+      NotificationCenter.default.post(name: Notification.Name("GoToTodo"), object: nil)
+      self.dismiss(animated: true)
+      break
+    case "105":
+      NotificationCenter.default.post(name: Notification.Name("GoToBook"), object: nil)
+      self.dismiss(animated: true)
+      break
+    default:
+      break
+    }
+  }
+  
   
   /// 알림 삭제
   /// - Parameter alarm_idx: 알림 인덱스
@@ -82,7 +106,7 @@ class AlarmViewController: BaseViewController {
     } 
   }
   
-  /// 알림 삭제
+  /// 알림 전체 삭제
   func alarmAllDelAPI() {
     let alarmParam = AlarmModel()
     alarmParam.member_idx = Defaults[.member_idx]
@@ -112,7 +136,8 @@ class AlarmViewController: BaseViewController {
 //-------------------------------------------------------------------------------------------
 extension AlarmViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let alarmData = self.alarmList[indexPath.row]
+    let alarmData = self.alarmList[indexPath.row]
+    self.alarmMove(alarm: alarmData)
     
   }
   
@@ -142,6 +167,8 @@ extension AlarmViewController: UITableViewDelegate {
       }
     }
   }
+  
+  
 }
 
 //-------------------------------------------------------------------------------------------

@@ -114,7 +114,7 @@ extension CreateAvatarViewController: UICollectionViewDelegate {
 extension CreateAvatarViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if collectionView == self.colorCollectionView {
-      return 5
+      return 6
     }
     return 6
   }

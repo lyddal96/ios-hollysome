@@ -144,14 +144,14 @@ extension TodoListPageViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView(x: 0, y: 0, w: self.parentsViewController?.view.frame.size.width ?? 0, h: 57)
+    let view = UIView(x: 0, y: 0, w: self.parentsViewController?.view.frame.size.width ?? 0, h: 50)
     view.backgroundColor = .white
-    let titleLabel = UILabel(x: 16, y: 16, w: (self.parentsViewController?.view.frame.size.width ?? 0) - 32, h: 25)
+    let titleLabel = UILabel(x: 16, y: 20, w: (self.parentsViewController?.view.frame.size.width ?? 0) - 32, h: 25)
     titleLabel.text = self.planList[section].plan_name ?? ""
     titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
     view.addSubview(titleLabel)
     
-    let detailImageView = UIImageView(x: view.frame.size.width - 32, y: 20.3, w: 16, h: 16.3, image: UIImage(named: "detail_arrow")!)
+    let detailImageView = UIImageView(x: view.frame.size.width - 32, y: 24.3, w: 16, h: 16.3, image: UIImage(named: "detail_arrow")!)
     view.addSubview(detailImageView)
     
     view.addTapGesture { recognizer in
@@ -168,16 +168,16 @@ extension TodoListPageViewController: UITableViewDataSource {
     return view
   }
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 57
+    return 50
   }
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    let view = UIView(x: 0, y: 0, w: self.parentsViewController?.view.frame.size.width ?? 0, h: 16)
+    let view = UIView(x: 0, y: 0, w: self.parentsViewController?.view.frame.size.width ?? 0, h: 8)
     view.backgroundColor = UIColor(named: "FAFAFC")
     
     return view
   }
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    16
+    return 8
   }
   
   

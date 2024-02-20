@@ -9,6 +9,7 @@
 import UIKit
 import Defaults
 import SwiftUI
+import GoogleMobileAds
 
 class MyViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -33,15 +34,27 @@ class MyViewController: BaseViewController {
   @IBOutlet weak var memberOutView: UIView!
   @IBOutlet weak var houseNameLabel: UILabel!
   @IBOutlet weak var donateView: UIView!
+  @IBOutlet weak var adView: UIView!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
   var memberResponse = MemberModel()
+  
+  var bannerView: GADBannerView!
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    // In this case, we instantiate the banner with desired ad size.
+    self.bannerView = GADBannerView(adSize: GADAdSizeBanner)
+    bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+    bannerView.rootViewController = self
+    bannerView.load(GADRequest())
+    bannerView.frame.size.width = self.view.frame.size.width
+    bannerView.frame.size.height = 50 / 320 * self.view.frame.size.width
+    self.addBannerViewToView(self.bannerView)
   }
   
   override func didReceiveMemoryWarning() {
@@ -161,6 +174,27 @@ class MyViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  func addBannerViewToView(_ bannerView: GADBannerView) {
+    bannerView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(bannerView)
+    view.addConstraints(
+      [NSLayoutConstraint(item: bannerView,
+                          attribute: .bottom,
+                          relatedBy: .equal,
+                          toItem: view.safeAreaLayoutGuide,
+                          attribute: .bottom,
+                          multiplier: 1,
+                          constant: 0),
+       NSLayoutConstraint(item: bannerView,
+                          attribute: .centerX,
+                          relatedBy: .equal,
+                          toItem: view,
+                          attribute: .centerX,
+                          multiplier: 1,
+                          constant: 0)
+      ])
+  }
+  
   /// 사용자 프로필 정보 확인
   func memberInfoDetailAPI() {
     let memberRequest = MemberModel()
@@ -281,4 +315,42 @@ class MyViewController: BaseViewController {
       }
     }
   }
+}
+
+//-------------------------------------------------------------------------------------------
+// MARK: - GADBannerViewDelegate
+//-------------------------------------------------------------------------------------------
+extension MyViewController: GADBannerViewDelegate {
+  func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+    self.addBannerViewToView(bannerView)
+    print("bannerViewDidReceiveAd")
+  }
+
+  func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+    print("bannerView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+  }
+
+  func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+    print("bannerViewDidRecordImpression")
+  }
+
+  func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+    print("bannerViewWillPresentScreen")
+  }
+
+  func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+    print("bannerViewWillDIsmissScreen")
+  }
+
+  func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+    print("bannerViewDidDismissScreen")
+  }
+}
+
+extension MyViewController: GADAdSizeDelegate {
+  func adView(_ bannerView: GADBannerView, willChangeAdSizeTo size: GADAdSize) {
+    
+  }
+  
+  
 }

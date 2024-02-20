@@ -215,7 +215,11 @@ class AddScheduleViewController: BaseViewController {
   /// 삭제
   /// - Parameter sender: 바버튼
   @IBAction func deleteBarButtonItemTouched(sender: UIBarButtonItem) {
-    
+    AJAlertController.initialization().showAlert(astrTitle: "할일을 삭제할까요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "삭제") { position, title in
+      if position == 1 {
+        self.planDelAPI()
+      }
+    }
   }
 }
 

@@ -7,7 +7,10 @@
 
 import UIKit
 import Defaults
-import GoogleMobileAds
+
+protocol DivideDelegate {
+  func divideDelegate(divideData: AccountBookModel)
+}
 
 class DividePopupViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -30,9 +33,10 @@ class DividePopupViewController: BaseViewController {
   let window = UIApplication.shared.windows.first {$0.isKeyWindow}
   let bottomPadding = UIApplication.shared.windows.first {$0.isKeyWindow}?.safeAreaInsets.bottom ?? 0.0
   
+  
+  var delegate: DivideDelegate?
   var mateList = [MemberModel]()
   var bookData = AccountBookModel()
-  private var rewardedAd: GADRewardedAd?
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -45,7 +49,6 @@ class DividePopupViewController: BaseViewController {
     self.mateCollectionView.registerCell(type: MateCell.self)
     self.mateCollectionView.delegate = self
     self.mateCollectionView.dataSource = self
-    self.callbackAd()
   }
   
   override func didReceiveMemoryWarning() {
@@ -153,7 +156,14 @@ class DividePopupViewController: BaseViewController {
           self.dismiss(animated: false) {
             if type != nil {
               if type == 0 {
-                
+                let bookRequest = AccountBookModel()
+        //        bookRequest.member_arr = "{\()}"
+                bookRequest.mate_cnt = "\(self.mateList.count)"
+                var member_arr = self.mateList.filter({ $0.isSelected == true })
+                bookRequest.member_arr = member_arr.map({$0.member_idx ?? ""}).joined(separator: ",")
+                bookRequest.item_bill = self.bookData.item_price
+                bookRequest.item_name = self.bookData.item_name
+                self.delegate?.divideDelegate(divideData: bookRequest)
               }
             }
           }
@@ -163,59 +173,7 @@ class DividePopupViewController: BaseViewController {
     
     hideCard.startAnimation()
   }
-  
-  func callbackAd() {
-    let request = GADRequest()
-    GADRewardedAd.load(withAdUnitID:"ca-app-pub-3940256099942544/1712485313",
-                       request: request,
-                       completionHandler: { [self] ad, error in
-      if let error = error {
-        print("Failed to load rewarded ad with error: \(error.localizedDescription)")
-        return
-      }
-      rewardedAd = ad
-      print("Rewarded ad loaded.")
-      rewardedAd?.fullScreenContentDelegate = self
-      
-    }
-    )
-  }
-
-  func loadRewardedAd() {
-    
-    if let ad = rewardedAd {
-      ad.present(fromRootViewController: self) {
-        let reward = ad.adReward
-        print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
-        // TODO: Reward the user.
-        
-        let bookRequest = AccountBookModel()
-//        bookRequest.member_arr = "{\()}"
-        bookRequest.mate_cnt = "\(self.mateList.count)"
-        var member_arr = self.mateList.filter({ $0.isSelected == true })
-        bookRequest.member_arr = member_arr.map({$0.member_idx ?? ""}).joined(separator: ",")
-        bookRequest.item_bill = self.bookData.item_price
-        bookRequest.item_name = self.bookData.item_name
-        
-        APIRouter.shared.api(path: .book_alarm, method: .post, parameters: bookRequest.toJSON()) { request in
-          if let bookRequest = AccountBookModel(JSON: request), Tools.shared.isSuccessResponse(response: bookRequest) {
-            self.hideCardAndGoBack(type: nil)
-          }
-        }
-        GADMobileAds().initializationStatus
-      }
-    } else {
-      print("Ad wasn't ready")
-    }
-    
-    
-    
-//    self.rewardedAd?.present(fromRootViewController: self, userDidEarnRewardHandler: {
-//      let reward = self.rewardedAd?.adReward
-//
-//      log.debug("reward : \(reward)")
-//    })
-   }
+ 
   
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
@@ -229,7 +187,12 @@ class DividePopupViewController: BaseViewController {
   /// 광고보고 비용 알리기
   /// - Parameter sender: 버튼
   @IBAction func divideButtonTouched(sender: UIButton) {
-    self.loadRewardedAd()
+    if self.mateList.filter({ $0.isSelected == true}).count > 0 {
+      self.hideCardAndGoBack(type: 0)
+    } else {
+      Tools.shared.showToast(message: "메이트를 선택해주세요.")
+    }
+    
   }
 }
 
@@ -270,28 +233,4 @@ extension DividePopupViewController: UICollectionViewDataSource {
     cell.selectImageView.isHidden = !(mate.isSelected ?? false)
     return cell
   }
-}
-
-//-------------------------------------------------------------------------------------------
-// MARK: - GADFullScreenContentDelegate
-//-------------------------------------------------------------------------------------------
-extension DividePopupViewController: GADFullScreenContentDelegate {
-
-  /// Tells the delegate that the ad failed to present full screen content.
-  func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-    print("Ad did fail to present full screen content.")
-  }
-
-  /// Tells the delegate that the ad will present full screen content.
-  func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-    print("Ad will present full screen content.")
-  }
-
-  /// Tells the delegate that the ad dismissed full screen content.
-  func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-    print("Ad did dismiss full screen content.")
-
-  }
-  
-  
 }

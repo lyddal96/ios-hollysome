@@ -9,6 +9,7 @@
 import UIKit
 import ExpyTableView
 import Defaults
+import GoogleMobileAds
 
 class AccountBookViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
@@ -25,6 +26,8 @@ class AccountBookViewController: BaseViewController {
   
   let refresh = UIRefreshControl()
   let normalTitles = ["가스", "수도세", "전기세"]
+  
+  private var rewardedAd: GADRewardedAd?
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -43,6 +46,8 @@ class AccountBookViewController: BaseViewController {
     self.accountBookTableView.showsVerticalScrollIndicator = false
     self.refresh.addTarget(self, action: #selector(self.bookUpdate), for: .valueChanged)
     self.accountBookTableView.refreshControl = self.refresh
+    
+    self.callbackAd()
   }
   
   override func didReceiveMemoryWarning() {
@@ -122,6 +127,47 @@ class AccountBookViewController: BaseViewController {
     self.currentList = nil
     self.bookViewAPI()
   }
+  
+  
+  func callbackAd() {
+    let request = GADRequest()
+    GADRewardedAd.load(withAdUnitID:"ca-app-pub-3940256099942544/1712485313",
+                       request: request,
+                       completionHandler: { [self] ad, error in
+      if let error = error {
+        print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+        return
+      }
+      rewardedAd = ad
+      print("Rewarded ad loaded.")
+      rewardedAd?.fullScreenContentDelegate = self
+      
+    }
+    )
+  }
+
+  func loadRewardedAd(divideRequest: AccountBookModel) {
+    
+    if let ad = rewardedAd {
+      ad.present(fromRootViewController: self) {
+        let reward = ad.adReward
+        print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
+        // TODO: Reward the user.
+        
+        
+        self.callbackAd()
+        APIRouter.shared.api(path: .book_alarm, method: .post, parameters: divideRequest.toJSON()) { request in
+          if let bookRequest = AccountBookModel(JSON: request), Tools.shared.isSuccessResponse(response: bookRequest) {
+            
+          }
+        }
+        GADMobileAds().initializationStatus
+      }
+    } else {
+      print("Ad wasn't ready")
+    }
+    
+   }
   //-------------------------------------------------------------------------------------------
   // MARK: - IBActions
   //-------------------------------------------------------------------------------------------
@@ -274,7 +320,7 @@ extension AccountBookViewController: ExpyTableViewDataSource {
         /// 나누기
         cell.divideButton.addTapGesture { recognizer in
           let destination = DividePopupViewController.instantiate(storyboard: "AccountBook")
-//          destination.delegate = self
+          destination.delegate = self
           destination.bookData = data
           destination.modalTransitionStyle = .crossDissolve
           destination.modalPresentationStyle = .overCurrentContext
@@ -346,4 +392,36 @@ extension AccountBookViewController: ExpyTableViewDelegate {
   }
 }
 
+//-------------------------------------------------------------------------------------------
+// MARK: - DivideDelegate
+//-------------------------------------------------------------------------------------------
+extension AccountBookViewController: DivideDelegate {
+  func divideDelegate(divideData: AccountBookModel) {
+    self.loadRewardedAd(divideRequest: divideData)
+  }
+}
 
+
+//-------------------------------------------------------------------------------------------
+// MARK: - GADFullScreenContentDelegate
+//-------------------------------------------------------------------------------------------
+extension AccountBookViewController: GADFullScreenContentDelegate {
+
+  /// Tells the delegate that the ad failed to present full screen content.
+  func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    print("Ad did fail to present full screen content.")
+  }
+
+  /// Tells the delegate that the ad will present full screen content.
+  func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    print("Ad will present full screen content.")
+  }
+
+  /// Tells the delegate that the ad dismissed full screen content.
+  func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    print("Ad did dismiss full screen content.")
+
+  }
+  
+  
+}

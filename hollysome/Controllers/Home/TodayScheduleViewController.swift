@@ -170,12 +170,18 @@ extension TodayScheduleViewController: ExpyTableViewDataSource {
     
     // 콕찌르기
     cell.pokeButton.addTapGesture { recognizer in
-      let destination = PokeViewController.instantiate(storyboard: "Home")
-      destination.member = mate
-      destination.schedule_name = plan.plan_name ?? ""
-      destination.modalPresentationStyle = .overCurrentContext
-      destination.modalTransitionStyle = .crossDissolve
-      self.present(destination, animated: true, completion:  nil)
+      if mate.alarm_yn == "Y" {
+        let destination = PokeViewController.instantiate(storyboard: "Home")
+        destination.member = mate
+        destination.schedule_name = plan.plan_name ?? ""
+        destination.modalPresentationStyle = .overCurrentContext
+        destination.modalTransitionStyle = .crossDissolve
+        self.present(destination, animated: true, completion:  nil)
+      } else {
+        AJAlertController.initialization().showAlertWithOkButton(astrTitle: "해당 메이트가 콕찌르기 거부상태입니다.", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
+        }
+      }
+      
     }
     
     return cell

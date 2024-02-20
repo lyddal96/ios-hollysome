@@ -12,6 +12,7 @@ import ObjectMapper
 class AlarmModel: BaseModel {
   /// 알림 인덱스
   var alarm_idx: String?
+  var index: String?
   /// 알림 제목
   var msg: String?
   /// 알림 데이터: JSON 형식 > 파싱해서 써야함.
@@ -36,10 +37,12 @@ class AlarmModel: BaseModel {
   var new_alarm_conut: String?
   /// 알림 리스트
   var data_array: [AlarmModel]?
+  var data: AlarmModel?
   
   override func mapping(map: Map) {
     super.mapping(map: map)
     self.alarm_idx <- map["alarm_idx"]
+    self.index <- map["index"]
     self.msg <- map["msg"]
 //    self.data <- map["data"]
     self.read_yn <- map["read_yn"]
@@ -52,5 +55,6 @@ class AlarmModel: BaseModel {
     self.email_alarm_yn <- map["email_alarm_yn"]
     self.new_alarm_conut <- map["new_alarm_conut"]
     self.data_array <- map["data_array"]
+    self.data <- map["data"]
   }
 }

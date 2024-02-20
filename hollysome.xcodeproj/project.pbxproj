@@ -107,6 +107,7 @@
 		4BE0ADED2B307B7F00AD9A35 /* AddScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADEC2B307B7F00AD9A35 /* AddScheduleCell.swift */; };
 		4BE0ADEF2B307CC000AD9A35 /* WeekCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE0ADEE2B307CC000AD9A35 /* WeekCell.xib */; };
 		4BE0ADF12B307CC400AD9A35 /* WeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0ADF02B307CC400AD9A35 /* WeekCell.swift */; };
+		4BE51F3E2B7B9B18001B12A2 /* TermsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE51F3D2B7B9B18001B12A2 /* TermsListViewController.swift */; };
 		4BFBFBAB2B2D5823004F415E /* NoticeRegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBFBAA2B2D5823004F415E /* NoticeRegViewController.swift */; };
 		4BFBFBAD2B3015A5004F415E /* ReportPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBFBAC2B3015A5004F415E /* ReportPopupViewController.swift */; };
 		68129F9D2333772C0019EDBC /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68129F9C2333772C0019EDBC /* PopupViewController.swift */; };
@@ -331,6 +332,7 @@
 		4BE0ADEC2B307B7F00AD9A35 /* AddScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleCell.swift; sourceTree = "<group>"; };
 		4BE0ADEE2B307CC000AD9A35 /* WeekCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekCell.xib; sourceTree = "<group>"; };
 		4BE0ADF02B307CC400AD9A35 /* WeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
+		4BE51F3D2B7B9B18001B12A2 /* TermsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsListViewController.swift; sourceTree = "<group>"; };
 		4BFBFBAA2B2D5823004F415E /* NoticeRegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeRegViewController.swift; sourceTree = "<group>"; };
 		4BFBFBAC2B3015A5004F415E /* ReportPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupViewController.swift; sourceTree = "<group>"; };
 		68129F9C2333772C0019EDBC /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				4BDCB4582B375BF20092F6A9 /* AlarmSettingViewController.swift */,
 				4BDCB45A2B3885A00092F6A9 /* MemberOutViewController.swift */,
 				4BAD766B2B440667001A757C /* DonateViewController.swift */,
+				4BE51F3D2B7B9B18001B12A2 /* TermsListViewController.swift */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -1140,6 +1143,7 @@
 				6859B1E3240E32960021DED5 /* UserInfoViewController.swift in Sources */,
 				68A4654923BF101C008E8A0A /* BannerImageCell.swift in Sources */,
 				BB8C9CB922AE3DB3005E00B0 /* QnaModel.swift in Sources */,
+				4BE51F3E2B7B9B18001B12A2 /* TermsListViewController.swift in Sources */,
 				6817AF3022C603820026CDAF /* QnaRegistViewController.swift in Sources */,
 				4B70452E2AE651EF001E03AA /* EmailJoinViewController.swift in Sources */,
 				4BB645BC2B2AE58B00DF92EB /* MakeFinishViewController.swift in Sources */,

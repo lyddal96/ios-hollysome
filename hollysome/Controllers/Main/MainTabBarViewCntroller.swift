@@ -24,6 +24,9 @@ class MainTabBarViewController: UITabBarController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    NotificationCenter.default.addObserver(self, selector: #selector(self.goToHome), name: Notification.Name("GoToHome"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(self.goToTodo), name: Notification.Name("GoToTodo"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(self.goToBook), name: Notification.Name("GoToBook"), object: nil)
     let appearance = UITabBarAppearance()
     // set tabbar opacity
     appearance.configureWithOpaqueBackground()
@@ -77,7 +80,17 @@ class MainTabBarViewController: UITabBarController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
-//
+  
+  @objc func goToHome() {
+    self.selectedIndex = 0
+  }
+  @objc func goToTodo() {
+    self.selectedIndex = 1
+  }
+  @objc func goToBook() {
+    self.selectedIndex = 2
+  }
+  //
 //  private func setupTabBarUI() {
 //    // Setup your colors and corner radius
 //    self.tabBar.backgroundColor = UIColor.white

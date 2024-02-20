@@ -14,6 +14,7 @@ class FSDayCell: FSCalendarCell {
  
   @IBOutlet weak var circleView: UIView!
   @IBOutlet weak var newView: UIView!
+  @IBOutlet weak var todayLabel: UILabel!
   var cellWidth: CGFloat = 0
   var currentDate = Date()
   

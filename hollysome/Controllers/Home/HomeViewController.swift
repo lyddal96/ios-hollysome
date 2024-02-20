@@ -134,6 +134,32 @@ class HomeViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   // MARK: - Local method
   //-------------------------------------------------------------------------------------------
+  
+  // 알림 화면 이동
+  @objc func pushPresent() {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    switch appDelegate.pushIndex {
+    case "101", "201":
+      NotificationCenter.default.post(name: Notification.Name("GoToHome"), object: nil)
+      break
+    case "102":
+      let destination = HouseNoticeViewController.instantiate(storyboard: "Home")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
+      break
+    case "103", "104":
+      NotificationCenter.default.post(name: Notification.Name("GoToTodo"), object: nil)
+      break
+    case "105":
+      NotificationCenter.default.post(name: Notification.Name("GoToBook"), object: nil)
+      break
+    default:
+      break
+    }
+    appDelegate.pushIndex = ""
+  }
+  
+  
   // 딥링크 업데이트
   @objc func deeplinkUpdate() {
     if self.appDelegate.house_code != "" { // 플레이어 상세로 이동
@@ -270,9 +296,13 @@ class HomeViewController: BaseViewController {
   /// 알림
   /// - Parameter sender: 바버튼
   @IBAction func alarmBarButtonItemTouched(sender: UIButton) {
-    let destination = AlarmViewController.instantiate(storyboard: "Main")
-    destination.hidesBottomBarWhenPushed = true
-    self.navigationController?.pushViewController(destination, animated: true)
+    let destination = AlarmViewController.instantiate(storyboard: "Main").coverNavigationController()
+    destination.modalPresentationStyle = .fullScreen
+    destination.hero.isEnabled = true
+    destination.heroModalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+    self.tabBarController?.present(destination, animated: true)
+//    destination.hidesBottomBarWhenPushed = true
+//    self.navigationController?.pushViewController(destination, animated: true)
   }
 }
 
@@ -283,11 +313,18 @@ extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if collectionView == self.mateCollectionView {
       if indexPath.row != 0 {
-        let destination = MatePokeViewController.instantiate(storyboard: "Home")
-        destination.member = self.mateList[indexPath.row]
-        destination.modalPresentationStyle = .overCurrentContext
-        destination.modalTransitionStyle = .crossDissolve
-        self.tabBarController?.present(destination, animated: true, completion:  nil)
+        let member = self.mateList[indexPath.row]
+        if member.alarm_yn == "Y" {
+          let destination = MatePokeViewController.instantiate(storyboard: "Home")
+          destination.member = self.mateList[indexPath.row]
+          destination.modalPresentationStyle = .overCurrentContext
+          destination.modalTransitionStyle = .crossDissolve
+          self.tabBarController?.present(destination, animated: true, completion:  nil)
+        } else {
+          AJAlertController.initialization().showAlertWithOkButton(astrTitle: "해당 메이트가 콕찌르기 거부상태입니다.", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
+          }
+        }
+        
       }
     } else if collectionView == self.scheduleCollectionView {
       if !(self.myScheduleList.count == 0 || self.myScheduleList.count <= indexPath.row) {
@@ -354,7 +391,7 @@ extension HomeViewController: UICollectionViewDataSource {
       } else {
         let plan = self.myScheduleList[indexPath.row]
         cell.titleLabel.text = plan.plan_name ?? ""
-        cell.timeLabel.text = plan.alarm_hour.isNil ? "미정" : "\(plan.alarm_hour ?? "")시"
+        cell.timeLabel.text = plan.alarm_hour?.toInt() == nil ? "미정" : "\(plan.alarm_hour ?? "")시"
         cell.stateButton.isEnabled = plan.schedule_yn != "Y"
         
         /// 할일 완료

@@ -44,7 +44,7 @@ class ScheduleViewController: BaseViewController {
     self.pagingViewController.menuItemSize = .fixed(width: self.view.frame.size.width / 3, height: 50)
     self.pagingViewController.menuItemLabelSpacing = 0
     self.pagingViewController.indicatorColor = UIColor(named: "accent")!
-    self.pagingViewController.indicatorOptions = PagingIndicatorOptions.visible(height: 2, zIndex: 0, spacing: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10), insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    self.pagingViewController.indicatorOptions = PagingIndicatorOptions.visible(height: 2, zIndex: 0, spacing: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     self.pagingViewController.menuInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     self.pagingViewController.borderColor = UIColor(named: "FFFFFF")!
     self.pagingViewController.borderOptions = PagingBorderOptions.visible(height: 1, zIndex: 0, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))

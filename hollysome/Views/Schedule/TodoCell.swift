@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Defaults
 
 class TodoCell: UITableViewCell {
   @IBOutlet weak var weekCollectionView: UICollectionView!
@@ -108,7 +109,7 @@ extension TodoCell: UICollectionViewDataSource {
       cell.colorView.backgroundColor = UIColor(named: "profile\(mate.member_role3?.toInt() ?? 0)")
       cell.nameLabel.text = mate.member_nickname ?? ""
 //      cell.selectImageView.isHidden = !(mate.isSelected ?? false)
-
+      cell.avatarView.addBorder(width: 2, color: UIColor(named: mate.member_idx == Defaults[.member_idx] ? "accent" : "FFFFFF")!)
       return cell
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekCell", for: indexPath) as! WeekCell

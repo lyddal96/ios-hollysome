@@ -120,6 +120,7 @@ class CalendarPageViewController: BaseViewController {
         dayCell.newView.isHidden = data_array.filter({ $0.schedule_date == dateFormatter.string(from: date)}).count == 0
       }
     }
+    dayCell.todayLabel.isHidden = !(date.isToday)
     dayCell.circleView.setCornerRadius(radius: (8))
     dayCell.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
     dayCell.titleLabel.textColor = UIColor(named: "222B45")

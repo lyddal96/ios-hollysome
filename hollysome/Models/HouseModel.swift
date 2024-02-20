@@ -38,6 +38,8 @@ class HouseModel: BaseModel {
   var my_schedule_count: String?
   /// 알림 시간
   var alarm_hour: String?
+  /// 알림여부
+  var alarm_yn: String?
 
   /// 리스트
   var data_array: [HouseModel]?
@@ -65,6 +67,7 @@ class HouseModel: BaseModel {
     self.schedule_yn <- map["schedule_yn"]
     self.my_schedule_count <- map["my_schedule_count"]
     self.alarm_hour <- map["alarm_hour"]
+    self.alarm_yn <- map["alarm_yn"]
 
     self.data_array <- map["data_array"]
     self.mate_array <- map["mate_array"]
