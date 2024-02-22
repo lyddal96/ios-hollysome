@@ -806,7 +806,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8i-5q-pnD">
-                                <rect key="frame" x="16" y="270" width="361" height="80"/>
+                                <rect key="frame" x="16" y="330" width="361" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NB7-QM-t0x">
                                         <rect key="frame" x="0.0" y="0.0" width="41.666666666666664" height="19.333333333333332"/>
@@ -847,7 +847,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n41-ZV-WGu">
-                                <rect key="frame" x="16" y="374" width="361" height="50"/>
+                                <rect key="frame" x="16" y="434" width="361" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmt-ev-nYE">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
@@ -865,6 +865,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCk-zR-Mc1">
+                                <rect key="frame" x="16.000000000000004" y="282" width="36.333333333333343" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="3A3A3C"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Pw-IU-9Tc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -872,10 +878,12 @@
                             <constraint firstItem="3Pw-IU-9Tc" firstAttribute="trailing" secondItem="RcZ-wT-sei" secondAttribute="trailing" constant="16" id="0L7-I6-uRj"/>
                             <constraint firstItem="VHZ-cH-f3i" firstAttribute="centerX" secondItem="3Pw-IU-9Tc" secondAttribute="centerX" id="3NE-pM-ciu"/>
                             <constraint firstItem="n41-ZV-WGu" firstAttribute="leading" secondItem="3Pw-IU-9Tc" secondAttribute="leading" constant="16" id="3aN-H9-duU"/>
-                            <constraint firstItem="K8i-5q-pnD" firstAttribute="top" secondItem="VHZ-cH-f3i" secondAttribute="bottom" constant="20" id="BfL-yt-8bp"/>
+                            <constraint firstItem="K8i-5q-pnD" firstAttribute="top" secondItem="VHZ-cH-f3i" secondAttribute="bottom" constant="80" id="BfL-yt-8bp"/>
                             <constraint firstItem="n41-ZV-WGu" firstAttribute="top" secondItem="K8i-5q-pnD" secondAttribute="bottom" constant="24" id="Qbb-Is-FJ8"/>
                             <constraint firstItem="3Pw-IU-9Tc" firstAttribute="bottom" secondItem="RcZ-wT-sei" secondAttribute="bottom" constant="30" id="R84-tS-M6V"/>
                             <constraint firstAttribute="trailing" secondItem="K8i-5q-pnD" secondAttribute="trailing" constant="16" id="VbK-8o-ZvK"/>
+                            <constraint firstItem="cCk-zR-Mc1" firstAttribute="leading" secondItem="3Pw-IU-9Tc" secondAttribute="leading" constant="16" id="a0W-zU-P9e"/>
+                            <constraint firstItem="K8i-5q-pnD" firstAttribute="top" secondItem="cCk-zR-Mc1" secondAttribute="bottom" constant="30" id="c5q-VH-fmg"/>
                             <constraint firstItem="3Pw-IU-9Tc" firstAttribute="trailing" secondItem="n41-ZV-WGu" secondAttribute="trailing" constant="16" id="dlo-kd-fSn"/>
                             <constraint firstItem="VHZ-cH-f3i" firstAttribute="top" secondItem="3Pw-IU-9Tc" secondAttribute="top" constant="24" id="ej7-Fq-qkS"/>
                             <constraint firstItem="K8i-5q-pnD" firstAttribute="leading" secondItem="3Pw-IU-9Tc" secondAttribute="leading" constant="16" id="fHc-zc-ydc"/>
@@ -893,6 +901,7 @@
                     <connections>
                         <outlet property="avatarView" destination="VHZ-cH-f3i" id="L2T-Ia-vN5"/>
                         <outlet property="colorView" destination="Tg5-dA-TfL" id="dJJ-za-EfV"/>
+                        <outlet property="emailLabel" destination="cCk-zR-Mc1" id="Wrg-00-fnm"/>
                         <outlet property="faceImageView" destination="Z8L-fR-vEF" id="MB4-z0-zMU"/>
                         <outlet property="modifyButton" destination="RcZ-wT-sei" id="UM8-1w-CZK"/>
                         <outlet property="modifyPwButton" destination="xmt-ev-nYE" id="rWe-Wv-4JE"/>
@@ -1163,8 +1172,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8JJ-fF-gAF">
                                         <rect key="frame" x="0.0" y="148" width="393" height="74"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="콕 찌르기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm8-Ej-BFq">
-                                                <rect key="frame" x="16.000000000000004" y="27.333333333333314" width="59.333333333333343" height="19.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가계부 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm8-Ej-BFq">
+                                                <rect key="frame" x="16" y="27.333333333333314" width="73.333333333333329" height="19.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <color key="textColor" name="3A3A3C"/>
                                                 <nil key="highlightedColor"/>

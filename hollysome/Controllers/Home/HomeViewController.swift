@@ -49,6 +49,7 @@ class HomeViewController: BaseViewController {
     super.viewDidLoad()
     self.notificationCenter.addObserver(self, selector: #selector(self.joinHouseUpdate), name: Notification.Name("JoinHouseUpdate"), object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(self.deeplinkUpdate), name: Notification.Name("DeeplinkUpdate"),  object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(self.pushPresent), name: Notification.Name("PushNotification"),  object: nil)
     
     
     self.mateCollectionView.registerCell(type: MateCell.self)
@@ -128,6 +129,9 @@ class HomeViewController: BaseViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM월 dd일 (E)"
     self.dateLabel.text = dateFormatter.string(from: Date())
+    if self.appDelegate.pushIndex != "" {
+      self.pushPresent()
+    }
   }
   
   
@@ -313,17 +317,11 @@ extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if collectionView == self.mateCollectionView {
       if indexPath.row != 0 {
-        let member = self.mateList[indexPath.row]
-        if member.alarm_yn == "Y" {
-          let destination = MatePokeViewController.instantiate(storyboard: "Home")
-          destination.member = self.mateList[indexPath.row]
-          destination.modalPresentationStyle = .overCurrentContext
-          destination.modalTransitionStyle = .crossDissolve
-          self.tabBarController?.present(destination, animated: true, completion:  nil)
-        } else {
-          AJAlertController.initialization().showAlertWithOkButton(astrTitle: "해당 메이트가 콕찌르기 거부상태입니다.", aStrMessage: "", alertViewHiddenCheck: false, img: "error_circle") { position, title in
-          }
-        }
+        let destination = MatePokeViewController.instantiate(storyboard: "Home")
+        destination.member = self.mateList[indexPath.row]
+        destination.modalPresentationStyle = .overCurrentContext
+        destination.modalTransitionStyle = .crossDissolve
+        self.tabBarController?.present(destination, animated: true, completion:  nil)
         
       }
     } else if collectionView == self.scheduleCollectionView {
@@ -393,6 +391,8 @@ extension HomeViewController: UICollectionViewDataSource {
         cell.titleLabel.text = plan.plan_name ?? ""
         cell.timeLabel.text = plan.alarm_hour?.toInt() == nil ? "미정" : "\(plan.alarm_hour ?? "")시"
         cell.stateButton.isEnabled = plan.schedule_yn != "Y"
+        cell.stateButton.isHidden = true
+        cell.checkImageView.isHidden = plan.schedule_yn != "Y"
         
         /// 할일 완료
         cell.stateButton.addTapGesture { recognizer in

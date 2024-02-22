@@ -47,6 +47,7 @@ enum APIURL: String {
   case app_info_mod_up = "sns_join_v_1_0_0/app_info_mod_up" // 추가정보 입력
   case sns_member_reg_in = "sns_join_v_1_0_0/sns_member_reg_in" // 소셜 회원가입
   case getAccessToken = "access_token/getAccessToken" // 토근 받아오기
+  case member_pw_reset_send_email = "find_pw_to_email_v_1_0_0/member_pw_reset_send_email" // 비밀번호 찾기
   
   /// 홈
   case house_list = "house_v_1_0_0/house_list" // 홈리스트

@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeB-Hp-yC7">
                         <rect key="frame" x="0.0" y="0.0" width="213" height="104"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnU-Tl-rJu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnU-Tl-rJu">
                                 <rect key="frame" x="16" y="16" width="181" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" name="3A3A3C"/>
@@ -49,10 +49,19 @@
                                     <color key="titleColor" name="E4E6EB"/>
                                 </state>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select" translatesAutoresizingMaskIntoConstraints="NO" id="LS3-DL-0vp">
+                                <rect key="frame" x="168" y="59" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="jaa-Jg-4Sm"/>
+                                    <constraint firstAttribute="height" constant="35" id="yje-xT-Ozv"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="FAFAFC"/>
                         <constraints>
                             <constraint firstItem="rTA-jx-ltl" firstAttribute="top" secondItem="EnU-Tl-rJu" secondAttribute="bottom" constant="4" id="Bzd-ZS-K0i"/>
+                            <constraint firstAttribute="bottom" secondItem="LS3-DL-0vp" secondAttribute="bottom" constant="10" id="D82-kT-VYr"/>
+                            <constraint firstAttribute="trailing" secondItem="LS3-DL-0vp" secondAttribute="trailing" constant="10" id="FVz-rl-iXM"/>
                             <constraint firstItem="EnU-Tl-rJu" firstAttribute="top" secondItem="HeB-Hp-yC7" secondAttribute="top" constant="16" id="HwE-JN-ptS"/>
                             <constraint firstAttribute="trailing" secondItem="EnU-Tl-rJu" secondAttribute="trailing" constant="16" id="KpW-6L-6Se"/>
                             <constraint firstAttribute="trailing" secondItem="rTA-jx-ltl" secondAttribute="trailing" constant="16" id="TCP-kx-JQZ"/>
@@ -72,6 +81,7 @@
             </collectionViewCellContentView>
             <size key="customSize" width="213" height="104"/>
             <connections>
+                <outlet property="checkImageView" destination="LS3-DL-0vp" id="sre-Da-HRD"/>
                 <outlet property="roundView" destination="HeB-Hp-yC7" id="wee-vk-gFX"/>
                 <outlet property="stateButton" destination="W1i-vB-ZL1" id="e2m-iK-8zl"/>
                 <outlet property="timeLabel" destination="rTA-jx-ltl" id="Krs-NM-kx3"/>
@@ -81,6 +91,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="select" width="52" height="52"/>
         <namedColor name="3A3A3C">
             <color red="0.22699999809265137" green="0.22699999809265137" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

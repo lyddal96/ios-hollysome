@@ -120,17 +120,27 @@ class CalendarPageViewController: BaseViewController {
         dayCell.newView.isHidden = data_array.filter({ $0.schedule_date == dateFormatter.string(from: date)}).count == 0
       }
     }
-    dayCell.todayLabel.isHidden = !(date.isToday)
+//    dayCell.todayLabel.isHidden = !(date.isToday)
+    dayCell.todayLabel.isHidden = true
+    
     dayCell.circleView.setCornerRadius(radius: (8))
     dayCell.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
     dayCell.titleLabel.textColor = UIColor(named: "222B45")
-        
+    dayCell.circleView.backgroundColor = UIColor(named: "accent")
+    
     if position == .current { // 현재달
       if self.calendarView.selectedDates.contains(date) {
         dayCell.circleView.isHidden = false
         dayCell.titleLabel.textColor = .white
+      } else {
+        if date.isToday {
+          dayCell.circleView.backgroundColor = UIColor(named: "FFFFFF")
+          dayCell.circleView.isHidden = false
+          dayCell.circleView.addBorder(width: 1, color: UIColor(named: "accent")!)
+        }
       }
     } else {
+      
       dayCell.titleLabel.textColor = UIColor(named: "A3A7B6")!
     }
     

@@ -303,7 +303,11 @@ class LoginViewController: BaseViewController {
   /// 비밀번호 찾기
   /// - Parameter sender: 버튼
   @IBAction func findPwButtonTouched(sender: UIButton) {
-    
+    let destination = FindPwViewController.instantiate(storyboard: "Login").coverNavigationController()
+    destination.modalPresentationStyle = .fullScreen
+    destination.hero.isEnabled = true
+    destination.heroModalAnimationType = .autoReverse(presenting: .cover(direction: .left))
+    self.present(destination, animated: true)
   }
   
   /// 회원가입

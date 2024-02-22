@@ -18,6 +18,7 @@ class ModifyInfoViewController: BaseViewController {
   @IBOutlet weak var faceImageView: UIImageView!
   @IBOutlet weak var nicknameTextField: UITextField!
 //  @IBOutlet weak var emailTextField: UITextField!
+  @IBOutlet weak var emailLabel: UILabel!
   @IBOutlet weak var modifyPwButton: UIButton!
   @IBOutlet weak var modifyButton: UIButton!
   //-------------------------------------------------------------------------------------------
@@ -49,6 +50,7 @@ class ModifyInfoViewController: BaseViewController {
     self.setAvatarView()
     self.nicknameTextField.text = self.memberData.member_name ?? ""
     self.modifyPwButton.isHidden = Defaults[.member_join_type] != "C"
+    self.emailLabel.text = self.memberData.member_email ?? ""
   }
   
   override func initRequest() {

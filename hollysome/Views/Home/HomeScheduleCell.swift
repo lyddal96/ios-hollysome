@@ -12,6 +12,7 @@ class HomeScheduleCell: UICollectionViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var stateButton: UIButton!
+  @IBOutlet weak var checkImageView: UIImageView!
   override func awakeFromNib() {
     super.awakeFromNib()
     
