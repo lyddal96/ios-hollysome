@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeScheduleCollectionCell" id="w3J-0R-gIL" customClass="HomeScheduleCollectionCell" customModule="hollysome" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="138" height="223"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nUF-Ba-5WX">
+                <rect key="frame" x="0.0" y="0.0" width="138" height="223"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="FNB-2w-s4F">
+                        <rect key="frame" x="0.0" y="0.0" width="138" height="223"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="7fJ-8P-bcD">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FNB-2w-s4F" firstAttribute="leading" secondItem="nUF-Ba-5WX" secondAttribute="leading" id="5FC-iv-UfS"/>
+                    <constraint firstAttribute="trailing" secondItem="FNB-2w-s4F" secondAttribute="trailing" id="BAX-sk-ivh"/>
+                    <constraint firstItem="FNB-2w-s4F" firstAttribute="top" secondItem="nUF-Ba-5WX" secondAttribute="top" id="KcT-YO-Wz7"/>
+                    <constraint firstAttribute="bottom" secondItem="FNB-2w-s4F" secondAttribute="bottom" id="aI7-WS-aHi"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="138" height="223"/>
+            <connections>
+                <outlet property="scheduleCollectionView" destination="FNB-2w-s4F" id="hd0-ZQ-Dya"/>
+            </connections>
+            <point key="canvasLocation" x="206.10687022900763" y="80.633802816901408"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

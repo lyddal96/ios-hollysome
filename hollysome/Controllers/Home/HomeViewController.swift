@@ -22,10 +22,13 @@ class HomeViewController: BaseViewController {
   
   @IBOutlet weak var topRoundView: UIView!
   @IBOutlet weak var houseNameLabel: UILabel!
-  @IBOutlet weak var houseDetailView: UIView!
-  @IBOutlet weak var mateCntLabel: UILabel!
+  @IBOutlet weak var pageAreaConstraint: NSLayoutConstraint!
+//  @IBOutlet weak var houseDetailView: UIView!
+  @IBOutlet weak var houseWrapView: UIView!
   @IBOutlet weak var mateCollectionView: UICollectionView!
   @IBOutlet weak var scheduleCollectionView: UICollectionView!
+  @IBOutlet weak var schedulePageControl: UIPageControl!
+  @IBOutlet weak var scheduleHeight: NSLayoutConstraint!
   @IBOutlet weak var scheduleView: UIView!
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var scheduleCntLabel: UILabel!
@@ -56,7 +59,8 @@ class HomeViewController: BaseViewController {
     self.mateCollectionView.delegate = self
     self.mateCollectionView.dataSource = self
     
-    self.scheduleCollectionView.registerCell(type: HomeScheduleCell.self)
+//    self.scheduleCollectionView.registerCell(type: HomeScheduleCell.self)
+    self.scheduleCollectionView.registerCell(type: HomeScheduleCollectionCell.self)
     self.scheduleCollectionView.registerCell(type: HomeEmptyScheduleCell.self)
     self.scheduleCollectionView.delegate = self
     self.scheduleCollectionView.dataSource = self
@@ -79,6 +83,7 @@ class HomeViewController: BaseViewController {
     self.inputCodeView.setCornerRadius(radius: 8)
     self.makeHouseButton.setCornerRadius(radius: 12)
     self.moreButton.setCornerRadius(radius: 12)
+    self.houseWrapView.setCornerRadius(radius: 40.5)
   }
   
   override func initRequest() {
@@ -95,9 +100,9 @@ class HomeViewController: BaseViewController {
     }
     
     // 하우스 상세
-    self.houseDetailView.addTapGesture { recognizer in
-      log.debug("하우스")
-    }
+//    self.houseDetailView.addTapGesture { recognizer in
+//      log.debug("하우스")
+//    }
     
     // 일정 리스트
     self.scheduleView.addTapGesture { recognizer in
@@ -125,9 +130,9 @@ class HomeViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.setTitleBar()
-    
+    self.houseImageView.setCornerRadius(radius: 15)
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MM월 dd일 (E)"
+    dateFormatter.dateFormat = "M월 d일 EEEE"
     self.dateLabel.text = dateFormatter.string(from: Date())
     if self.appDelegate.pushIndex != "" {
       self.pushPresent()
@@ -192,16 +197,25 @@ class HomeViewController: BaseViewController {
       if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse) {
         self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(houseResponse.house_img ?? "")"), placeholderImage: UIImage(named: "default_image"), options: .lowPriority, context: nil)
         self.houseNameLabel.text = houseResponse.house_name ?? ""
-        self.scheduleCntLabel.text = "나의 할 일 \(houseResponse.my_schedule_count ?? "0")개"
+        self.scheduleCntLabel.text = "\(houseResponse.my_schedule_array?.filter({$0.schedule_yn == "Y"}).count ?? 0)/\(houseResponse.my_schedule_count ?? "0")"
+        
         if let mate_array = houseResponse.mate_array {
           self.mateList = mate_array
         }
-        self.mateCntLabel.text = "눔메이트 \(self.mateList.count)명"
         self.mateCollectionView.reloadData()
         
         if let my_schedule_array = houseResponse.my_schedule_array {
           self.myScheduleList = my_schedule_array
         }
+        if houseResponse.my_schedule_count ?? "0" == "0" {
+          self.scheduleHeight.constant = 100
+        } else {
+//          self.scheduleHeight.constant = self.myScheduleList.count > 3 ? 432 : 108 * self.myScheduleList.count.toCGFloat
+          self.scheduleHeight.constant = 223
+        }
+        self.schedulePageControl.isHidden = self.myScheduleList.count < 4
+        self.pageAreaConstraint.constant = self.myScheduleList.count > 4 ? 46 : 24
+        self.schedulePageControl.numberOfPages = ceil(self.myScheduleList.count.toDouble / 4.toDouble).toInt
         self.scheduleCollectionView.reloadData()
         if let note_array = houseResponse.note_array {
           self.noteList = note_array
@@ -325,15 +339,15 @@ extension HomeViewController: UICollectionViewDelegate {
         
       }
     } else if collectionView == self.scheduleCollectionView {
-      if !(self.myScheduleList.count == 0 || self.myScheduleList.count <= indexPath.row) {
-        let plan = self.myScheduleList[indexPath.row]
-        AJAlertController.initialization().showAlert(astrTitle: "\(plan.plan_name ?? "") 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
-          if position == 1 {
-            // 완료
-            self.todayScheduleEndAPI(schedule_idx: plan.schedule_idx ?? "", plan_idx: plan.plan_idx ?? "")
-          }
-        }
-      }
+      
+    }
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if scrollView == self.scheduleCollectionView {
+      let pageWidth = self.view.frame.width
+      let currentPage = Int(self.scheduleCollectionView.contentOffset.x / pageWidth)
+      self.schedulePageControl.currentPage = currentPage
     }
   }
 }
@@ -347,9 +361,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
       return CGSize(width: 52, height: 74)
     } else {
       if self.myScheduleList.count == 0 {
-        return CGSize(width: (self.view.frame.size.width - 32), height: 224)
+        return CGSize(width: (self.view.frame.size.width - 32), height: 100)
       } else {
-        return CGSize(width: (self.view.frame.size.width - 48) / 2, height: 104)
+        
+        return CGSize(width: self.view.frame.size.width, height: 223)
       }
       
     }
@@ -365,7 +380,7 @@ extension HomeViewController: UICollectionViewDataSource {
     if collectionView == self.mateCollectionView {
       return self.mateList.count
     } else {
-      return self.myScheduleList.count == 0 ? 1 : 4
+      return self.myScheduleList.count == 0 ? 1 : ceil(self.myScheduleList.count.toDouble / 4.toDouble).toInt
     }
   }
   
@@ -381,28 +396,37 @@ extension HomeViewController: UICollectionViewDataSource {
       
       return cell
     } else {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScheduleCell", for: indexPath) as! HomeScheduleCell
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScheduleCollectionCell", for: indexPath) as! HomeScheduleCollectionCell
       let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeEmptyScheduleCell", for: indexPath) as! HomeEmptyScheduleCell
       
-      if self.myScheduleList.count == 0 || self.myScheduleList.count <= indexPath.row {
+      if self.myScheduleList.count == 0 {
         return emptyCell
       } else {
-        let plan = self.myScheduleList[indexPath.row]
-        cell.titleLabel.text = plan.plan_name ?? ""
-        cell.timeLabel.text = plan.alarm_hour?.toInt() == nil ? "미정" : "\(plan.alarm_hour ?? "")시"
-        cell.stateButton.isEnabled = plan.schedule_yn != "Y"
-        cell.stateButton.isHidden = true
-        cell.checkImageView.isHidden = plan.schedule_yn != "Y"
-        
-        /// 할일 완료
-        cell.stateButton.addTapGesture { recognizer in
-          AJAlertController.initialization().showAlert(astrTitle: "\(plan.plan_name ?? "") 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
-            if position == 1 {
-              // 완료
-              self.todayScheduleEndAPI(schedule_idx: plan.schedule_idx ?? "", plan_idx: plan.plan_idx ?? "")
-            }
-          }
+//        let plan = self.myScheduleList[indexPath.row]
+//        cell.titleLabel.text = plan.plan_name ?? ""
+//        cell.timeLabel.text = plan.alarm_hour?.toInt() == nil ? "미정" : "\(plan.alarm_hour ?? "")시"
+//        cell.stateButton.isEnabled = plan.schedule_yn != "Y"
+//        cell.stateButton.isHidden = true
+//        cell.checkImageView.isHidden = plan.schedule_yn != "Y"
+//        
+//        /// 할일 완료
+//        cell.stateButton.addTapGesture { recognizer in
+//          AJAlertController.initialization().showAlert(astrTitle: "\(plan.plan_name ?? "") 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
+//            if position == 1 {
+//              // 완료
+//              self.todayScheduleEndAPI(schedule_idx: plan.schedule_idx ?? "", plan_idx: plan.plan_idx ?? "")
+//            }
+//          }
+//        }
+        cell.parentsViewController = self
+        let startIdx = indexPath.row * 4
+        var planList = [HouseModel]()
+        let maxIdx = startIdx + 3 < self.myScheduleList.count ? startIdx + 3 : self.myScheduleList.count - 1
+        for value in startIdx ... maxIdx {
+          planList.append(self.myScheduleList[value])
         }
+        cell.setScheduleList(scheduleList: planList)
+        
         return cell
       }
     }

@@ -24,4 +24,13 @@ class HomeScheduleCell: UICollectionViewCell {
     self.stateButton.setBackgroundColor(UIColor(named: "E4E6EB")!, forState: .disabled)
     
   }
+  
+  // 일정 세팅
+  func setSchedule(schedule: HouseModel) {
+    self.titleLabel.text = schedule.plan_name ?? ""
+    self.timeLabel.text = schedule.alarm_hour?.toInt() == nil ? "미정" : "\(schedule.alarm_hour ?? "")시"
+    self.stateButton.isEnabled = schedule.schedule_yn != "Y"
+    self.stateButton.isHidden = true
+    self.checkImageView.isHidden = schedule.schedule_yn != "Y"
+  }
 }

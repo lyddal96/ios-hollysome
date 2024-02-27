@@ -27,6 +27,7 @@ class MyViewController: BaseViewController {
   @IBOutlet weak var modifyInfoView: UIView!
   @IBOutlet weak var alarmView: UIView!
   @IBOutlet weak var noticeView: UIView!
+  @IBOutlet weak var faqView: UIView!
   @IBOutlet weak var qnaView: UIView!
   @IBOutlet weak var termsView: UIView!
   @IBOutlet weak var outHouseView: UIView!
@@ -108,6 +109,13 @@ class MyViewController: BaseViewController {
     // 눔메이트 공지사항
     self.noticeView.addTapGesture { recognizer in
       let destination = NoticeViewController.instantiate(storyboard: "Commons")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    //faq
+    self.faqView.addTapGesture { recognizer in
+      let destination = FaqViewController.instantiate(storyboard: "Commons")
       destination.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(destination, animated: true)
     }
@@ -228,6 +236,7 @@ class MyViewController: BaseViewController {
   func outHouseAPI() {
     let memberRequest = MemberModel()
     memberRequest.member_idx = Defaults[.member_idx]
+    memberRequest.house_idx = Defaults[.house_idx]
     
     APIRouter.shared.api(path: .house_out_up, method: .post, parameters: memberRequest.toJSON()) { response in
       if let memberResponse = MemberModel(JSON: response), Tools.shared.isSuccessResponse(response: memberResponse) {

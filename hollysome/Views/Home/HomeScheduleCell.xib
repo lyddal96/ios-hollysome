@@ -49,21 +49,22 @@
                                     <color key="titleColor" name="E4E6EB"/>
                                 </state>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select" translatesAutoresizingMaskIntoConstraints="NO" id="LS3-DL-0vp">
-                                <rect key="frame" x="168" y="59" width="35" height="35"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hand.thumbsup.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LS3-DL-0vp">
+                                <rect key="frame" x="71.666666666666671" y="18" width="70.000000000000014" height="68.666666666666671"/>
+                                <color key="tintColor" name="FF5F58"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="jaa-Jg-4Sm"/>
-                                    <constraint firstAttribute="height" constant="35" id="yje-xT-Ozv"/>
+                                    <constraint firstAttribute="height" constant="70" id="0cC-b2-Zb6"/>
+                                    <constraint firstAttribute="width" constant="70" id="55J-mC-3Pc"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="FAFAFC"/>
                         <constraints>
                             <constraint firstItem="rTA-jx-ltl" firstAttribute="top" secondItem="EnU-Tl-rJu" secondAttribute="bottom" constant="4" id="Bzd-ZS-K0i"/>
-                            <constraint firstAttribute="bottom" secondItem="LS3-DL-0vp" secondAttribute="bottom" constant="10" id="D82-kT-VYr"/>
-                            <constraint firstAttribute="trailing" secondItem="LS3-DL-0vp" secondAttribute="trailing" constant="10" id="FVz-rl-iXM"/>
+                            <constraint firstItem="LS3-DL-0vp" firstAttribute="centerX" secondItem="HeB-Hp-yC7" secondAttribute="centerX" id="HQP-zS-Nla"/>
                             <constraint firstItem="EnU-Tl-rJu" firstAttribute="top" secondItem="HeB-Hp-yC7" secondAttribute="top" constant="16" id="HwE-JN-ptS"/>
                             <constraint firstAttribute="trailing" secondItem="EnU-Tl-rJu" secondAttribute="trailing" constant="16" id="KpW-6L-6Se"/>
+                            <constraint firstItem="LS3-DL-0vp" firstAttribute="centerY" secondItem="HeB-Hp-yC7" secondAttribute="centerY" id="NRs-16-IeE"/>
                             <constraint firstAttribute="trailing" secondItem="rTA-jx-ltl" secondAttribute="trailing" constant="16" id="TCP-kx-JQZ"/>
                             <constraint firstItem="EnU-Tl-rJu" firstAttribute="leading" secondItem="HeB-Hp-yC7" secondAttribute="leading" constant="16" id="iEg-Pg-Ufp"/>
                             <constraint firstAttribute="bottom" secondItem="W1i-vB-ZL1" secondAttribute="bottom" constant="16" id="o52-T5-B6I"/>
@@ -91,7 +92,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="select" width="52" height="52"/>
+        <image name="hand.thumbsup.circle" catalog="system" width="128" height="123"/>
         <namedColor name="3A3A3C">
             <color red="0.22699999809265137" green="0.22699999809265137" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -104,11 +105,14 @@
         <namedColor name="FAFAFC">
             <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="FF5F58">
+            <color red="1" green="0.72500002384185791" blue="0.6589999794960022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="FFFFFF">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="accent">
-            <color red="1" green="0.37299999594688416" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.46299999952316284" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

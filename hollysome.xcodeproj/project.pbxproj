@@ -83,6 +83,10 @@
 		4BB645BE2B2B275300DF92EB /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB645BD2B2B275300DF92EB /* FileModel.swift */; };
 		4BB645C12B2B2B9300DF92EB /* MateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB645C02B2B2B9300DF92EB /* MateCell.xib */; };
 		4BB645C32B2B2B9600DF92EB /* MateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB645C22B2B2B9600DF92EB /* MateCell.swift */; };
+		4BBF87242B8D74190096F404 /* HomeScheduleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BBF87232B8D74190096F404 /* HomeScheduleTableCell.xib */; };
+		4BBF87262B8D741C0096F404 /* HomeScheduleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBF87252B8D741C0096F404 /* HomeScheduleTableCell.swift */; };
+		4BBF87282B8D77840096F404 /* HomeScheduleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BBF87272B8D77840096F404 /* HomeScheduleCollectionCell.xib */; };
+		4BBF872A2B8D77870096F404 /* HomeScheduleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBF87292B8D77870096F404 /* HomeScheduleCollectionCell.swift */; };
 		4BC1E12B2B3C7A0F00B368AC /* GCPAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1E12A2B3C7A0F00B368AC /* GCPAuthManager.swift */; };
 		4BC51FE42B33605D00B0679F /* ModifyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */; };
 		4BC51FE62B33643600B0679F /* ModifyPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */; };
@@ -308,6 +312,10 @@
 		4BB645BD2B2B275300DF92EB /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
 		4BB645C02B2B2B9300DF92EB /* MateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MateCell.xib; sourceTree = "<group>"; };
 		4BB645C22B2B2B9600DF92EB /* MateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateCell.swift; sourceTree = "<group>"; };
+		4BBF87232B8D74190096F404 /* HomeScheduleTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeScheduleTableCell.xib; sourceTree = "<group>"; };
+		4BBF87252B8D741C0096F404 /* HomeScheduleTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScheduleTableCell.swift; sourceTree = "<group>"; };
+		4BBF87272B8D77840096F404 /* HomeScheduleCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeScheduleCollectionCell.xib; sourceTree = "<group>"; };
+		4BBF87292B8D77870096F404 /* HomeScheduleCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScheduleCollectionCell.swift; sourceTree = "<group>"; };
 		4BC1E12A2B3C7A0F00B368AC /* GCPAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCPAuthManager.swift; sourceTree = "<group>"; };
 		4BC51FE32B33605D00B0679F /* ModifyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInfoViewController.swift; sourceTree = "<group>"; };
 		4BC51FE52B33643600B0679F /* ModifyPwViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPwViewController.swift; sourceTree = "<group>"; };
@@ -613,6 +621,10 @@
 				4BAD39F12B2C508200B99B61 /* ScheduleExpandCell.swift */,
 				4B7ECC902B2CD29900A744B1 /* HouseNoticeCell.xib */,
 				4B7ECC922B2CD29E00A744B1 /* HouseNoticeCell.swift */,
+				4BBF87232B8D74190096F404 /* HomeScheduleTableCell.xib */,
+				4BBF87252B8D741C0096F404 /* HomeScheduleTableCell.swift */,
+				4BBF87272B8D77840096F404 /* HomeScheduleCollectionCell.xib */,
+				4BBF87292B8D77870096F404 /* HomeScheduleCollectionCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1025,6 +1037,7 @@
 				4BAD39DA2B2C1BDE00B99B61 /* HomeScheduleCell.xib in Resources */,
 				4BAD39DE2B2C1BF900B99B61 /* HomeEmptyScheduleCell.xib in Resources */,
 				4B6C316D2A298ADE0048DE1C /* FSDayCell.xib in Resources */,
+				4BBF87242B8D74190096F404 /* HomeScheduleTableCell.xib in Resources */,
 				4B3F618F2A2037C40049882D /* My.storyboard in Resources */,
 				685E291A23C6C0AE001DD8B3 /* Colors.xcassets in Resources */,
 				4BA147622A2582B100ED1B96 /* ImageTableCell.xib in Resources */,
@@ -1032,6 +1045,7 @@
 				4B99FF372AD563D900EF35F8 /* FaceCell.xib in Resources */,
 				4B3E55402AAE8CCE0015FEB1 /* SpoqaHanSansNeo-Light.otf in Resources */,
 				68A4654723BF1010008E8A0A /* BannerImageCell.xib in Resources */,
+				4BBF87282B8D77840096F404 /* HomeScheduleCollectionCell.xib in Resources */,
 				4BC51FEA2B35650D00B0679F /* RegEtcBookCell.xib in Resources */,
 				4BAD39EE2B2C4BB100B99B61 /* ScheduleTitleCell.xib in Resources */,
 				4B10588F2B31C622005372A7 /* AccountBookEmptyCell.xib in Resources */,
@@ -1142,6 +1156,7 @@
 				4B99FF2D2AD428D700EF35F8 /* CreateAvatarViewController.swift in Sources */,
 				6859B1E3240E32960021DED5 /* UserInfoViewController.swift in Sources */,
 				68A4654923BF101C008E8A0A /* BannerImageCell.swift in Sources */,
+				4BBF87262B8D741C0096F404 /* HomeScheduleTableCell.swift in Sources */,
 				BB8C9CB922AE3DB3005E00B0 /* QnaModel.swift in Sources */,
 				4BE51F3E2B7B9B18001B12A2 /* TermsListViewController.swift in Sources */,
 				6817AF3022C603820026CDAF /* QnaRegistViewController.swift in Sources */,
@@ -1213,6 +1228,7 @@
 				685E292423C70793001DD8B3 /* MenuViewController.swift in Sources */,
 				68A4653723BF00B7008E8A0A /* FindPwViewController.swift in Sources */,
 				4B99FF312AD42CD000EF35F8 /* ImageCollectionCell.swift in Sources */,
+				4BBF872A2B8D77870096F404 /* HomeScheduleCollectionCell.swift in Sources */,
 				685E294423C80FEE001DD8B3 /* TabTableViewController.swift in Sources */,
 				BB8C9CC422AE49C0005E00B0 /* Extensions.swift in Sources */,
 				4BA1475F2A204A8F00ED1B96 /* IndicatingTabBarController.swift in Sources */,

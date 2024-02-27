@@ -524,6 +524,7 @@
                         <outlet property="colorView" destination="dzF-QE-VNf" id="XB9-tq-Oze"/>
                         <outlet property="donateView" destination="fUv-v6-NPb" id="Nra-XE-I1N"/>
                         <outlet property="faceImageView" destination="phY-BX-7yp" id="4Ls-4v-fxg"/>
+                        <outlet property="faqView" destination="T5i-b2-NPE" id="eIV-Di-pk7"/>
                         <outlet property="houseNameLabel" destination="Lvy-TW-m0p" id="pUU-bW-Qqr"/>
                         <outlet property="idLabel" destination="Vx6-Jh-eOa" id="FIT-NO-MIx"/>
                         <outlet property="idView" destination="07E-4E-UG2" id="3vu-7d-WSf"/>

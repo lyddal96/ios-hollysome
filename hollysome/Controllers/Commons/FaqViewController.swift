@@ -79,19 +79,16 @@ class FaqViewController: BaseViewController{
   /// faq 리스트
   func faqListAPI() {
     self.faqRequest.setNextPage()
-    self.faqRequest.target = 0
-    self.faqRequest.per_page = 10
+    self.faqRequest.setNextPage()
     
     APIRouter.shared.api(path: .faq, method: .get, parameters: self.faqRequest.toJSON()) { response in
       if let faqResponse = FaqModel(JSON: response), Tools.shared.isSuccessResponse(response: faqResponse) {
-        if let result = faqResponse.result {
-          self.isLoadingList = true
-          self.faqRequest.setTotalPage(total_page: faqResponse.total_page ?? 0)
-          if let data = result.data, data.count > 0 {
-            self.faqList += data
-          }
-          self.faqTableView.reloadData()
+        self.isLoadingList = true
+        self.faqRequest.total_page = faqResponse.total_page
+        if let data_array = faqResponse.data_array, data_array.count > 0 {
+          self.faqList += data_array
         }
+        self.faqTableView.reloadData()
         
       }
     }
@@ -141,7 +138,7 @@ extension FaqViewController: ExpyTableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "FaqDetailCell", for: indexPath) as! FaqDetailCell
     let faqData = self.faqList[indexPath.section]
-    cell.faqDetailLabel.text = faqData.content ?? ""
+    cell.faqDetailLabel.text = faqData.contents ?? ""
     return cell
   }
   

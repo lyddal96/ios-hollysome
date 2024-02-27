@@ -33,7 +33,9 @@
                         <color key="backgroundColor" name="FAFAFC"/>
                         <constraints>
                             <constraint firstItem="Wq6-fy-PxR" firstAttribute="centerY" secondItem="C2i-hf-A5M" secondAttribute="centerY" id="KTG-il-fQw"/>
+                            <constraint firstItem="Wq6-fy-PxR" firstAttribute="leading" secondItem="C2i-hf-A5M" secondAttribute="leading" constant="25" id="W9e-3p-IE2"/>
                             <constraint firstItem="Wq6-fy-PxR" firstAttribute="centerX" secondItem="C2i-hf-A5M" secondAttribute="centerX" id="jBV-O6-tnG"/>
+                            <constraint firstAttribute="trailing" secondItem="Wq6-fy-PxR" secondAttribute="trailing" constant="25" id="qFZ-0G-BYA"/>
                         </constraints>
                     </view>
                 </subviews>

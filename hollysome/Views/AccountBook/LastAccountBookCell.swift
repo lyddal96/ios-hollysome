@@ -13,7 +13,10 @@ class LastAccountBookCell: UITableViewCell, ExpyTableViewHeaderCell {
   @IBOutlet weak var priceLabe: UILabel!
   @IBOutlet weak var isExpandedImageView: UIImageView!
   
-  
+  var isLast = false
+  var section = 0
+  var dataCnt = 0
+  var parentsViewController: AccountBookViewController?
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -24,6 +27,11 @@ class LastAccountBookCell: UITableViewCell, ExpyTableViewHeaderCell {
     case .willExpand:
       //      print("WILL EXPAND")
       arrowDown(animated: !cellReuse)
+      if self.isLast {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+          self.parentsViewController?.accountBookTableView.scrollToRow(at: IndexPath(row: 2, section: self.section), at: .bottom, animated: true)
+        }
+      }
       break
     case .willCollapse:
       //      print("WILL COLLAPSE")

@@ -105,7 +105,7 @@ enum APIURL: String {
   /// CS
   case notice_list = "notice_v_1_0_0/notice_list" // 공지시항 리스트
   case notice_detail = "notice_v_1_0_0/notice_detail" // 공지사항 상세
-  case faq = "api/faq/list" // faq
+  case faq = "faq_v_1_0_0/faq_list" // faq
   case qa = "qa_v_1_0_0/qa_list" // 1:1문의 리스트
   case qa_detail = "qa_v_1_0_0/qa_detail" // 1:1문의 상세
   case qa_reg_in = "qa_v_1_0_0/qa_reg_in" // 1:1문의 등록

@@ -19,7 +19,7 @@ class FaqModel: BaseModel {
   /// FAQ 제목
   var title: String?
   /// FAQ 내용
-  var content: String?
+  var contents: String?
   
   
   /// 결과
@@ -34,7 +34,7 @@ class FaqModel: BaseModel {
     self.faq_category_name <- map["faq_category_name"]
     self.faq_idx <- map["faq_idx"]
     self.title <- map["title"]
-    self.content <- map["content"]
+    self.contents <- map["contents"]
     
     self.result <- map["result"]
     self.data_array <- map["data_array"]

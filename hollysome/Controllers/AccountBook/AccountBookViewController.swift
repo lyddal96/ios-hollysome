@@ -234,6 +234,10 @@ extension AccountBookViewController: ExpyTableViewDataSource {
           }
         }
         cell.priceLabe.text = "\(Tools.shared.numberPlaceValue("\(total)")) 원"
+        cell.isLast = section - 1 == self.lastList.count
+        cell.section = section
+        let data = self.lastList[section - 2]
+        cell.dataCnt = (data.item_list?.count ?? 0)
         
         cell.layoutMargins = UIEdgeInsets.zero
         return cell

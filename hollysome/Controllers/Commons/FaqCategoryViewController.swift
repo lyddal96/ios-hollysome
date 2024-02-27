@@ -166,7 +166,7 @@ extension FaqCategoryViewController: ExpyTableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "FaqDetailCell", for: indexPath) as! FaqDetailCell
     let faqData = self.faqList[indexPath.section]
-    cell.faqDetailLabel.text = faqData.content ?? ""
+    cell.faqDetailLabel.text = faqData.contents ?? ""
     return cell
   }
   
