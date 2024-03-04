@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import VisualEffectView
+
 class HomeScheduleCell: UICollectionViewCell {
 
   @IBOutlet weak var roundView: UIView!
@@ -14,6 +16,9 @@ class HomeScheduleCell: UICollectionViewCell {
   @IBOutlet weak var completeView: UIView!
   @IBOutlet weak var checkImageView: UIImageView!
   @IBOutlet weak var completeLabel: UILabel!
+  
+  var viewBlurEffect:UIVisualEffectView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     
@@ -25,6 +30,8 @@ class HomeScheduleCell: UICollectionViewCell {
 //    self.stateButton.setTitleColor(UIColor(named: "C8CCD5"), for: .disabled)
 //    self.stateButton.setBackgroundColor(UIColor(named: "E4E6EB")!, forState: .disabled)
     self.checkImageView.setCornerRadius(radius: 12)
+    
+    
   }
   
   // 일정 세팅
@@ -34,5 +41,16 @@ class HomeScheduleCell: UICollectionViewCell {
 //    self.stateButton.isEnabled = schedule.schedule_yn != "Y"
 //    self.stateButton.isHidden = true
     self.completeView.isHidden = schedule.schedule_yn != "Y"
+    if schedule.schedule_yn == "Y" {
+      let visualEffectView = VisualEffectView(frame: self.roundView.frame)
+      visualEffectView.setCornerRadius(radius: 12)
+      // Configure the view with tint color, blur radius, etc
+      visualEffectView.colorTint = UIColor(named: "FFFFFF")
+      visualEffectView.colorTintAlpha = 0.6
+      visualEffectView.blurRadius = 1
+      visualEffectView.scale = 1
+
+      self.roundView.addSubview(visualEffectView)
+    }
   }
 }

@@ -57,6 +57,7 @@ ${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyGif/SwiftyGif.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
+${BUILT_PRODUCTS_DIR}/VisualEffectView/VisualEffectView.framework
 ${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework
 ${PODS_XCFRAMEWORKS_BUILD_DIR}/FBAEMKit/FBAEMKit.framework/FBAEMKit
 ${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework/FBSDKCoreKit

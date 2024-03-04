@@ -47,6 +47,7 @@ target 'hollysome' do
   pod 'DropDown' #드롭다운
   pod 'FSCalendar' # 달력
   
+  pod "VisualEffectView" #블러
   pod 'Bolts' #Facebook
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
