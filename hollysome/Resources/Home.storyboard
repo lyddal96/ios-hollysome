@@ -319,25 +319,30 @@
                                                         <rect key="frame" x="16" y="16" width="361" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfF-dc-a2I">
-                                                                <rect key="frame" x="30" y="39" width="301" height="24"/>
+                                                                <rect key="frame" x="63" y="39" width="268" height="24"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                 <color key="textColor" name="FFFFFF"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY 하우스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAR-lP-gN7">
-                                                                <rect key="frame" x="30.000000000000004" y="18" width="62.333333333333343" height="17"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                <rect key="frame" x="63" y="18" width="61.333333333333343" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" name="FFFFFF"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="P6D-hK-7Zt">
+                                                                <rect key="frame" x="25" y="28.666666666666657" width="24.666666666666671" height="24"/>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="accent"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="RfF-dc-a2I" secondAttribute="trailing" constant="30" id="0Ro-pa-tiS"/>
                                                             <constraint firstAttribute="height" constant="81" id="AvP-M5-xOU"/>
-                                                            <constraint firstItem="wAR-lP-gN7" firstAttribute="leading" secondItem="vrm-4h-rSh" secondAttribute="leading" constant="30" id="fs0-SG-Z9R"/>
-                                                            <constraint firstItem="RfF-dc-a2I" firstAttribute="leading" secondItem="vrm-4h-rSh" secondAttribute="leading" constant="30" id="rcL-rQ-j6j"/>
+                                                            <constraint firstItem="P6D-hK-7Zt" firstAttribute="centerY" secondItem="vrm-4h-rSh" secondAttribute="centerY" id="B67-k0-mtE"/>
+                                                            <constraint firstItem="wAR-lP-gN7" firstAttribute="leading" secondItem="vrm-4h-rSh" secondAttribute="leading" constant="63" id="fs0-SG-Z9R"/>
+                                                            <constraint firstItem="RfF-dc-a2I" firstAttribute="leading" secondItem="vrm-4h-rSh" secondAttribute="leading" constant="63" id="rcL-rQ-j6j"/>
                                                             <constraint firstItem="wAR-lP-gN7" firstAttribute="top" secondItem="vrm-4h-rSh" secondAttribute="top" constant="18" id="s6r-db-FrA"/>
+                                                            <constraint firstItem="P6D-hK-7Zt" firstAttribute="leading" secondItem="vrm-4h-rSh" secondAttribute="leading" constant="25" id="v5p-Bf-t7y"/>
                                                             <constraint firstAttribute="bottom" secondItem="RfF-dc-a2I" secondAttribute="bottom" constant="18" id="zQ6-bK-Uhw"/>
                                                         </constraints>
                                                     </view>
@@ -1687,6 +1692,7 @@
         <image name="detail_arrow" width="16" height="16.333333969116211"/>
         <image name="head_btn_back" width="10.666666984558105" height="19.666666030883789"/>
         <image name="head_btn_close" width="15.666666984558105" height="15.666666984558105"/>
+        <image name="home" width="24.666666030883789" height="24"/>
         <image name="img_house" width="202" height="112"/>
         <image name="img_makehouse" width="375" height="249"/>
         <image name="logo_01" width="138" height="18"/>

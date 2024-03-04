@@ -5,64 +5,6 @@
 //  Created by 이승아 on 2/27/24.
 //
 
-//import UIKit
-//class HomeScheduleCollectionCell: UICollectionViewCell {
-//
-//  @IBOutlet weak var scheduleTableView: UITableView!
-//  
-//  var parentsViewController: HomeViewController?
-//  var scheduleList = [HouseModel]()
-//  override func awakeFromNib() {
-//    super.awakeFromNib()
-//    
-//    self.scheduleTableView.registerCell(type: HomeScheduleTableCell.self)
-//    self.scheduleTableView.delegate = self
-//    self.scheduleTableView.dataSource = self
-//  }
-//  
-//  func setScheduleList(scheduleList: [HouseModel]) {
-//    self.scheduleList = scheduleList
-//    self.scheduleTableView.reloadData()
-//  }
-//}
-//
-////-------------------------------------------------------------------------------------------
-//// MARK: - UITableViewDelegate
-////-------------------------------------------------------------------------------------------
-//extension HomeScheduleCollectionCell: UITableViewDelegate {
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let plan = self.scheduleList[indexPath.row]
-//    if plan.schedule_yn != "Y" {
-//      AJAlertController.initialization().showAlert(astrTitle: "\(plan.plan_name ?? "") 을(를) 완료하셨나요?", aStrMessage: "", aCancelBtnTitle: "취소", aOtherBtnTitle: "완료") { position, title in
-//        if position == 1 {
-//          // 완료
-//          self.parentsViewController?.todayScheduleEndAPI(schedule_idx: plan.schedule_idx ?? "", plan_idx: plan.plan_idx ?? "")
-//        }
-//      }
-//    } else {
-//      AJAlertController.initialization().showAlertWithOkButton(astrTitle: "이미 수행하였어요.\n아직 완료하지 않은 일을 수행해 볼까요?", aStrMessage: "", alertViewHiddenCheck: false) { position, title in
-//      }
-//    }
-//    
-//  }
-//}
-//
-////-------------------------------------------------------------------------------------------
-//// MARK: - UITableViewDataSource
-////-------------------------------------------------------------------------------------------
-//extension HomeScheduleCollectionCell: UITableViewDataSource {
-//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    self.scheduleList.count
-//  }
-//  
-//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "HomeScheduleTableCell", for: indexPath) as! HomeScheduleTableCell
-//    cell.setPlan(plan: self.scheduleList[indexPath.row])
-//    return cell
-//  }
-//  
-//  
-//}
 
 import UIKit
 class HomeScheduleCollectionCell: UICollectionViewCell {
@@ -112,7 +54,7 @@ extension HomeScheduleCollectionCell: UICollectionViewDelegate {
 //-------------------------------------------------------------------------------------------
 extension HomeScheduleCollectionCell: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: ((self.parentsViewController?.view.frame.size.width ?? 0) - 47) / 2, height: 104)
+    return CGSize(width: ((self.parentsViewController?.view.frame.size.width ?? 0) - 47) / 2, height: 130)
   }
 }
 

@@ -211,7 +211,8 @@ class HomeViewController: BaseViewController {
           self.scheduleHeight.constant = 100
         } else {
 //          self.scheduleHeight.constant = self.myScheduleList.count > 3 ? 432 : 108 * self.myScheduleList.count.toCGFloat
-          self.scheduleHeight.constant = 223
+//          self.scheduleHeight.constant = 223
+          self.scheduleHeight.constant = 276
         }
         self.schedulePageControl.isHidden = self.myScheduleList.count < 4
         self.pageAreaConstraint.constant = self.myScheduleList.count > 4 ? 46 : 24
@@ -364,7 +365,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: (self.view.frame.size.width - 32), height: 100)
       } else {
         
-        return CGSize(width: self.view.frame.size.width, height: 223)
+//        return CGSize(width: self.view.frame.size.width, height: 223)
+        return CGSize(width: self.view.frame.size.width, height: 276)
       }
       
     }
