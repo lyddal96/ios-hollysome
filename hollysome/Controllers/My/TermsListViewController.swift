@@ -13,7 +13,7 @@ class TermsListViewController: BaseViewController {
   //-------------------------------------------------------------------------------------------
   @IBOutlet weak var terms1Button: UIButton!
   @IBOutlet weak var terms2Button: UIButton!
-  @IBOutlet weak var terms3Button: UIButton!
+  
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ class TermsListViewController: BaseViewController {
     
     self.terms1Button.setCornerRadius(radius: 8)
     self.terms2Button.setCornerRadius(radius: 8)
-    self.terms3Button.setCornerRadius(radius: 8)
+    
   }
   
   override func initRequest() {
@@ -55,6 +55,23 @@ class TermsListViewController: BaseViewController {
   /// 이용약관 상세
   /// - Parameter sender: 버튼
   @IBAction func termsButtonTouched(sender: UIButton) {
-    
+    let destination = WebViewController.instantiate(storyboard: "Commons")
+    switch sender.tag {
+    case 0:
+      destination.webType = .terms0
+      break
+    case 1:
+      destination.webType = .terms1
+      break
+    case 2:
+      destination.webType = .terms2
+      break
+    case 3:
+      destination.webType = .terms3
+      break
+    default:
+      break
+    }
+    self.navigationController?.pushViewController(destination, animated: true)
   }
 }

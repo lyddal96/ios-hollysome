@@ -21,6 +21,7 @@ class ModifyInfoViewController: BaseViewController {
   @IBOutlet weak var emailLabel: UILabel!
   @IBOutlet weak var modifyPwButton: UIButton!
   @IBOutlet weak var modifyButton: UIButton!
+  @IBOutlet weak var emailView: UIView!
   //-------------------------------------------------------------------------------------------
   // MARK: - Local Variables
   //-------------------------------------------------------------------------------------------
@@ -51,6 +52,7 @@ class ModifyInfoViewController: BaseViewController {
     self.nicknameTextField.text = self.memberData.member_name ?? ""
     self.modifyPwButton.isHidden = Defaults[.member_join_type] != "C"
     self.emailLabel.text = self.memberData.member_email ?? ""
+    self.emailView.isHidden = self.memberData.member_email?.count ?? 0 == 0
   }
   
   override func initRequest() {

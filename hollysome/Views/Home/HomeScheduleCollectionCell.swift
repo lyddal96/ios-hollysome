@@ -71,6 +71,7 @@ extension HomeScheduleCollectionCell: UICollectionViewDataSource {
     let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeEmptyScheduleCell", for: indexPath) as! HomeEmptyScheduleCell
     
     if indexPath.row > self.scheduleList.count - 1 {
+      emptyCell.leftConstant.constant = 0
       return emptyCell
     } else {
       let schedule = self.scheduleList[indexPath.row]

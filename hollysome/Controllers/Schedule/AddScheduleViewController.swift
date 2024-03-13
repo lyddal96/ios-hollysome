@@ -299,7 +299,7 @@ extension AddScheduleViewController: DZNEmptyDataSetSource {
 //  }
   
   func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-    return 50
+    return 70
   }
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
     

@@ -83,7 +83,8 @@ class HomeViewController: BaseViewController {
     self.inputCodeView.setCornerRadius(radius: 8)
     self.makeHouseButton.setCornerRadius(radius: 12)
     self.moreButton.setCornerRadius(radius: 12)
-    self.houseWrapView.setCornerRadius(radius: 40.5)
+    self.houseWrapView.setCornerRadius(radius: 20)
+//    self.houseWrapView.addBorder(width: 1, color: UIColor(named: "accent")!)
   }
   
   override func initRequest() {
@@ -130,7 +131,7 @@ class HomeViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.setTitleBar()
-    self.houseImageView.setCornerRadius(radius: 15)
+//    self.houseImageView.setCornerRadius(radius: 15)
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "M월 d일 EEEE"
     self.dateLabel.text = dateFormatter.string(from: Date())
@@ -195,7 +196,7 @@ class HomeViewController: BaseViewController {
     
     APIRouter.shared.api(path: .house_list, method: .post, parameters: houseRequest.toJSON()) { response in
       if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse) {
-        self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(houseResponse.house_img ?? "")"), placeholderImage: UIImage(named: "default_image"), options: .lowPriority, context: nil)
+        self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(houseResponse.house_img ?? "")"), placeholderImage: UIImage(named: "default_image 1"), options: .lowPriority, context: nil)
         self.houseNameLabel.text = houseResponse.house_name ?? ""
         self.scheduleCntLabel.text = "\(houseResponse.my_schedule_array?.filter({$0.schedule_yn == "Y"}).count ?? 0)/\(houseResponse.my_schedule_count ?? "0")"
         
@@ -242,7 +243,7 @@ class HomeViewController: BaseViewController {
         
         APIRouter.shared.api(path: .house_mod_up, method: .post, parameters: houseRequest.toJSON()) { response in
           if let houseResponse = HouseModel(JSON: response), Tools.shared.isSuccessResponse(response: houseResponse) {
-            self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(fileResponse.file_path ?? "")"), placeholderImage: UIImage(named: "default_image"), options: .lowPriority, context: nil)
+            self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(fileResponse.file_path ?? "")"), placeholderImage: UIImage(named: "default_image 1"), options: .lowPriority, context: nil)
           }
         }
       }
@@ -362,7 +363,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
       return CGSize(width: 52, height: 74)
     } else {
       if self.myScheduleList.count == 0 {
-        return CGSize(width: (self.view.frame.size.width - 32), height: 100)
+        return CGSize(width: (self.view.frame.size.width - 20), height: 100)
       } else {
         
 //        return CGSize(width: self.view.frame.size.width, height: 223)
@@ -400,8 +401,9 @@ extension HomeViewController: UICollectionViewDataSource {
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScheduleCollectionCell", for: indexPath) as! HomeScheduleCollectionCell
       let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeEmptyScheduleCell", for: indexPath) as! HomeEmptyScheduleCell
-      
+          
       if self.myScheduleList.count == 0 {
+        emptyCell.leftConstant.constant = 16
         return emptyCell
       } else {
 //        let plan = self.myScheduleList[indexPath.row]

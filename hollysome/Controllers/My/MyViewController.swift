@@ -129,7 +129,9 @@ class MyViewController: BaseViewController {
     
     // 이용약관
     self.termsView.addTapGesture { recognizer in
-      
+      let destination = TermsListViewController.instantiate(storyboard: "My")
+      destination.hidesBottomBarWhenPushed = true
+      self.navigationController?.pushViewController(destination, animated: true)
     }
     
     // 하우스 나가기
@@ -309,8 +311,11 @@ class MyViewController: BaseViewController {
   /// 이용약관
   /// - Parameter sender: 버튼
   @IBAction func authButtonTouched(sender: UIButton) {
-    let destination = WebViewController.instantiate(storyboard: "Commons")
-    destination.webType = .address
+//    let destination = WebViewController.instantiate(storyboard: "Commons")
+//    destination.webType = .address
+//    destination.hidesBottomBarWhenPushed = true
+//    self.navigationController?.pushViewController(destination, animated: true)
+    let destination = TermsListViewController.instantiate(storyboard: "My")
     destination.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(destination, animated: true)
   }

@@ -25,6 +25,7 @@ class RegAccountBookViewController: BaseViewController {
   var enrollType = EnrollType.enroll
   var bookData = AccountBookModel()
   var item_array = [AccountBookModel(), AccountBookModel(), AccountBookModel()]
+  var etcList = ["넷플릭스", "관리비", "통신비"]
   //-------------------------------------------------------------------------------------------
   // MARK: - override method
   //-------------------------------------------------------------------------------------------
@@ -182,12 +183,14 @@ extension RegAccountBookViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "RegEtcBookCell", for: indexPath) as! RegEtcBookCell
-    cell.namaTitleLabel.text = "항목 \(indexPath.row + 1)"
+//    cell.namaTitleLabel.text = "항목 \(indexPath.row + 1)"
+    cell.namaTitleLabel.text = "항목명"
     cell.parentsViewController = self
     cell.indexPath = indexPath
     
     cell.nameTextField.text = self.item_array[indexPath.row].item_name ?? ""
     cell.priceTextField.text = self.item_array[indexPath.row].item_bill ?? ""
+    cell.nameTextField.placeholder = self.etcList[indexPath.row]
     
     if self.enrollType == .modify {
       cell.nameTextField.addBorder(width: 1, color: UIColor(named: self.item_array[indexPath.row].item_name?.count ?? 0 > 0 ? "87B7FF" :"C8CCD5")!)

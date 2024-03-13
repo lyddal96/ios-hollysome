@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2i-hf-A5M">
-                        <rect key="frame" x="0.0" y="0.0" width="233" height="159"/>
+                        <rect key="frame" x="20" y="0.0" width="213" height="159"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wq6-fy-PxR">
-                                <rect key="frame" x="73" y="60.333333333333329" width="87" height="38.333333333333329"/>
+                                <rect key="frame" x="25" y="60.333333333333329" width="163" height="38.333333333333329"/>
                                 <string key="text">하우스 
 일정이 없어요</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -43,11 +43,12 @@
                     <constraint firstAttribute="trailing" secondItem="C2i-hf-A5M" secondAttribute="trailing" id="K7L-FI-P9b"/>
                     <constraint firstAttribute="bottom" secondItem="C2i-hf-A5M" secondAttribute="bottom" id="VYd-61-tiO"/>
                     <constraint firstItem="C2i-hf-A5M" firstAttribute="top" secondItem="MTd-0Q-qJX" secondAttribute="top" id="hmh-5P-8fB"/>
-                    <constraint firstItem="C2i-hf-A5M" firstAttribute="leading" secondItem="MTd-0Q-qJX" secondAttribute="leading" id="lCO-JH-tbM"/>
+                    <constraint firstItem="C2i-hf-A5M" firstAttribute="leading" secondItem="MTd-0Q-qJX" secondAttribute="leading" constant="20" id="lCO-JH-tbM"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="233" height="159"/>
             <connections>
+                <outlet property="leftConstant" destination="lCO-JH-tbM" id="lvy-rr-m1C"/>
                 <outlet property="roundView" destination="C2i-hf-A5M" id="jN9-na-UBi"/>
             </connections>
             <point key="canvasLocation" x="278.62595419847327" y="58.098591549295776"/>

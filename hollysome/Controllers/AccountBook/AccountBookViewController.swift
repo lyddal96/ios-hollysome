@@ -207,6 +207,9 @@ extension AccountBookViewController: ExpyTableViewDataSource {
     if section == 0 {
       if self.currentList.isNil {
         emptyCell.emptyLabel.text = "이번 달 가계부 내역이 없습니다.\n지금 바로 작성해보세요!"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월"
+        emptyCell.titleLabel.text = dateFormatter.string(from: Date())
         return emptyCell
       } else {
         titleCell.backgroundColor = UIColor(named: "FFFFFF")

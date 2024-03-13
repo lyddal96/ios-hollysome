@@ -40,8 +40,8 @@
                                     <constraint firstAttribute="height" constant="16" id="Js3-bF-mB0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완료하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejv-0m-J2W">
-                                <rect key="frame" x="13.999999999999996" y="113" width="48.666666666666657" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완료하기" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejv-0m-J2W">
+                                <rect key="frame" x="14" y="113" width="185" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" name="A3A7B6"/>
                                 <nil key="highlightedColor"/>
@@ -53,6 +53,7 @@
                             <constraint firstAttribute="bottom" secondItem="Ejv-0m-J2W" secondAttribute="bottom" constant="18" id="4WN-ec-DzW"/>
                             <constraint firstItem="rTA-jx-ltl" firstAttribute="leading" secondItem="6aX-xs-Chg" secondAttribute="trailing" constant="3" id="6dd-uF-hcT"/>
                             <constraint firstItem="EnU-Tl-rJu" firstAttribute="top" secondItem="6aX-xs-Chg" secondAttribute="bottom" constant="6" id="Dj7-Pr-8O7"/>
+                            <constraint firstAttribute="trailing" secondItem="Ejv-0m-J2W" secondAttribute="trailing" constant="14" id="Hlq-hl-Ypf"/>
                             <constraint firstItem="Ejv-0m-J2W" firstAttribute="leading" secondItem="HeB-Hp-yC7" secondAttribute="leading" constant="14" id="JCp-yP-3KO"/>
                             <constraint firstAttribute="trailing" secondItem="EnU-Tl-rJu" secondAttribute="trailing" constant="16" id="KpW-6L-6Se"/>
                             <constraint firstItem="6aX-xs-Chg" firstAttribute="leading" secondItem="HeB-Hp-yC7" secondAttribute="leading" constant="16" id="Q7r-k1-eYI"/>
@@ -68,6 +69,7 @@
                                 <rect key="frame" x="44.666666666666657" y="12" width="124" height="124"/>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.79622826986754969" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="LS3-DL-0vp" firstAttribute="centerX" secondItem="Qek-nK-6xZ" secondAttribute="centerX" id="eyK-6N-bu0"/>
                             <constraint firstItem="LS3-DL-0vp" firstAttribute="centerY" secondItem="Qek-nK-6xZ" secondAttribute="centerY" id="lHG-PZ-xA5"/>

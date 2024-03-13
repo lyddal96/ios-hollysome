@@ -29,28 +29,28 @@ class HomeScheduleCell: UICollectionViewCell {
 //    self.stateButton.setTitle("완료", for: .disabled)
 //    self.stateButton.setTitleColor(UIColor(named: "C8CCD5"), for: .disabled)
 //    self.stateButton.setBackgroundColor(UIColor(named: "E4E6EB")!, forState: .disabled)
-    self.checkImageView.setCornerRadius(radius: 12)
-    
+    self.completeView.setCornerRadius(radius: 12)
+    self.completeView.addBorder(width: 1, color: UIColor(named: "F1F1F4")!)
     
   }
   
   // 일정 세팅
   func setSchedule(schedule: HouseModel) {
     self.titleLabel.text = schedule.plan_name ?? ""
-    self.timeLabel.text = schedule.alarm_hour?.toInt() == nil ? "미정" : "\(schedule.alarm_hour == "12" ? "12" : String(format: "%02d", ((schedule.alarm_hour ?? "00").toInt() ?? 0) % 12)):00 \(((schedule.alarm_hour ?? "00").toInt() ?? 0) >= 12 ? "PM" : "AM" ) ~"
+    self.timeLabel.text = schedule.alarm_hour?.toInt() == nil ? "미정" : "\(schedule.alarm_hour == "12" ? "12" : String(format: "%02d", ((schedule.alarm_hour ?? "00").toInt() ?? 0) % 12)):00 \(((schedule.alarm_hour ?? "00").toInt() ?? 0) >= 12 ? "PM" : "AM" )"
 //    self.stateButton.isEnabled = schedule.schedule_yn != "Y"
 //    self.stateButton.isHidden = true
     self.completeView.isHidden = schedule.schedule_yn != "Y"
-    if schedule.schedule_yn == "Y" {
-      let visualEffectView = VisualEffectView(frame: self.roundView.frame)
-      visualEffectView.setCornerRadius(radius: 12)
-      // Configure the view with tint color, blur radius, etc
-      visualEffectView.colorTint = UIColor(named: "FFFFFF")
-      visualEffectView.colorTintAlpha = 0.6
-      visualEffectView.blurRadius = 1
-      visualEffectView.scale = 1
-
-      self.roundView.addSubview(visualEffectView)
-    }
+//    let visualEffectView = VisualEffectView(frame: self.roundView.frame)
+//    visualEffectView.setCornerRadius(radius: 12)
+//    // Configure the view with tint color, blur radius, etc
+//    visualEffectView.colorTint = UIColor(named: "FFFFFF")
+//    visualEffectView.colorTintAlpha = 0.6
+//    visualEffectView.blurRadius = 1
+//    visualEffectView.scale = 1
+//
+//    self.roundView.addSubview(visualEffectView)
+//    visualEffectView.isHidden = schedule.schedule_yn != "Y"
+    
   }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class AccountBookEmptyCell: UITableViewCell {
   @IBOutlet weak var emptyLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
 
   override func awakeFromNib() {
     super.awakeFromNib()

@@ -8,6 +8,7 @@
 import UIKit
 class HomeEmptyScheduleCell: UICollectionViewCell {
   @IBOutlet weak var roundView: UIView!
+  @IBOutlet weak var leftConstant: NSLayoutConstraint!
   override func awakeFromNib() {
     super.awakeFromNib()
     

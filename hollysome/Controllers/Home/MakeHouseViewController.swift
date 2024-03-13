@@ -81,7 +81,7 @@ class MakeHouseViewController: BaseViewController {
       if let fileResponse = FileModel(JSON: response), Tools.shared.isSuccessResponse(response: fileResponse) {
         
         self.image_path = fileResponse.file_path
-        self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(self.image_path ?? "")"), placeholderImage: UIImage(named: "default_image"), options: .lowPriority, context: nil)
+        self.houseImageView.sd_setImage(with: URL(string: "\(baseURL)\(self.image_path ?? "")"), placeholderImage: UIImage(named: "default_image 1"), options: .lowPriority, context: nil)
       }
     }
   }

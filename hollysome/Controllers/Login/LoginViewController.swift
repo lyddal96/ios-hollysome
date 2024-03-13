@@ -62,6 +62,8 @@ class LoginViewController: BaseViewController {
     
     self.idTextField.setTextPadding(10)
     self.pwTextField.setTextPadding(10)
+    
+    self.naverButton.isHidden = true
   }
   
   override func initRequest() {
